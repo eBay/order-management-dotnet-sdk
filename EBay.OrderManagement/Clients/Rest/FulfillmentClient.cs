@@ -18,6 +18,7 @@ using EBay.OrderManagement.Configuration;
 using EBay.OrderManagement.Exceptions;
 using EBay.OrderManagement.Generated.Fulfillment;
 using EBay.OrderManagement.Generated.Fulfillment.Models;
+using System.Globalization;
 using System.Net;
 
 namespace EBay.OrderManagement.Clients.Rest;
@@ -76,9 +77,9 @@ public sealed class FulfillmentClient
                 if (!string.IsNullOrEmpty(filter))
                     config.QueryParameters.Filter = filter;
                 if (limit.HasValue)
-                    config.QueryParameters.Limit = limit.ToString();
+                    config.QueryParameters.Limit = limit.Value.ToString(CultureInfo.InvariantCulture);
                 if (offset.HasValue)
-                    config.QueryParameters.Offset = offset.ToString();
+                    config.QueryParameters.Offset = offset.Value.ToString(CultureInfo.InvariantCulture);
                 if (!string.IsNullOrEmpty(fieldGroups))
                     config.QueryParameters.FieldGroups = fieldGroups;
                 if (!string.IsNullOrEmpty(orderIds))
@@ -344,9 +345,9 @@ public sealed class FulfillmentClient
                 if (!string.IsNullOrEmpty(buyerUsername))
                     config.QueryParameters.BuyerUsername = buyerUsername;
                 if (limit.HasValue)
-                    config.QueryParameters.Limit = limit.ToString();
+                    config.QueryParameters.Limit = limit.Value.ToString(CultureInfo.InvariantCulture);
                 if (offset.HasValue)
-                    config.QueryParameters.Offset = offset.ToString();
+                    config.QueryParameters.Offset = offset.Value.ToString(CultureInfo.InvariantCulture);
                 if (!string.IsNullOrEmpty(openDateFrom))
                     config.QueryParameters.OpenDateFrom = openDateFrom;
                 if (!string.IsNullOrEmpty(openDateTo))
