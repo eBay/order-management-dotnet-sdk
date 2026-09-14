@@ -1,6 +1,6 @@
 {
   "descriptionHash": "121E8A225FC146C3BE8923278BA218907445FA15537EF8A065D5BCA373F791C5E946E9D879718EFE0352496517762DC27EA9C779E93429936A9D091F73172181",
-  "descriptionLocation": "../../../specs/sell_fulfillment_v1_oas3.yaml",
+  "descriptionLocation": "../../../specs/openapi/fulfillment.yaml",
   "lockFileVersion": "1.0.0",
   "kiotaVersion": "1.31.0",
   "clientClassName": "FulfillmentApiClient",

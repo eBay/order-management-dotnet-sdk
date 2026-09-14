@@ -16,19 +16,12 @@
 
 set -euo pipefail
 
-echo "========================================="
-echo "Order Management SDK - Regeneration"
-echo "========================================="
-
-# Restore dotnet tools
-echo "Restoring .NET tools..."
+echo "Restoring tools..."
 dotnet tool restore
 
-# Regenerate Kiota clients
-echo ""
-echo "Regenerating REST clients with Kiota..."
+echo "Regenerating REST clients via Kiota..."
+rm -rf ./EBay.OrderManagement/Generated
 
-echo "  - Fulfillment client..."
 dotnet kiota generate \
   -l csharp \
   -d specs/openapi/fulfillment.yaml \
@@ -37,7 +30,6 @@ dotnet kiota generate \
   -o EBay.OrderManagement/Generated/Fulfillment \
   --ebc --co
 
-echo "  - Logistics client..."
 dotnet kiota generate \
   -l csharp \
   -d specs/openapi/logistics.yaml \
@@ -49,12 +41,7 @@ dotnet kiota generate \
 echo "Adding license headers to generated files..."
 ./add-license-headers.sh ./EBay.OrderManagement/Generated
 
-# Build the project
-echo ""
-echo "Building the SDK..."
+echo "Building (triggers StrawberryShake GraphQL codegen)..."
 DOTNET_ROLL_FORWARD=LatestMajor dotnet build EBay.OrderManagement/EBay.OrderManagement.csproj
 
-echo ""
-echo "========================================="
-echo "Done! SDK regenerated successfully."
-echo "========================================="
+echo "Done."

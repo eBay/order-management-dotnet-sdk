@@ -12,58 +12,69 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 namespace EBay.OrderManagement.Configuration;
 
 public sealed class OrderManagementConfiguration
 {
     private string _fulfillmentBaseUrl = "https://api.ebay.com/sell/fulfillment/v1";
-    private string _logisticsBaseUrl = "https://api.ebay.com/sell/logistics/v1";
+    private string _logisticsBaseUrl = "https://api.ebay.com/sell/logistics/v1_beta";
     private string _graphQLBaseUrl = "https://api.ebay.com/graphql";
 
     public string FulfillmentBaseUrl
     {
         get => _fulfillmentBaseUrl;
-        set => _fulfillmentBaseUrl = RequireHttps(value, nameof(FulfillmentBaseUrl));
+        set => _fulfillmentBaseUrl = RequireHttps(value);
     }
 
     public string LogisticsBaseUrl
     {
         get => _logisticsBaseUrl;
-        set => _logisticsBaseUrl = RequireHttps(value, nameof(LogisticsBaseUrl));
+        set => _logisticsBaseUrl = RequireHttps(value);
     }
 
     public string GraphQLBaseUrl
     {
         get => _graphQLBaseUrl;
-        set => _graphQLBaseUrl = RequireHttps(value, nameof(GraphQLBaseUrl));
+        set => _graphQLBaseUrl = RequireHttps(value);
     }
-
-    /// <summary>Timeout applied to all HTTP requests. Defaults to 30 seconds.</summary>
-    public TimeSpan HttpTimeout { get; init; } = TimeSpan.FromSeconds(30);
 
     /// <summary>Fallback bearer token used when no per-call accessToken is supplied.</summary>
     public string? AccessToken { get; set; }
 
     /// <summary>
-    /// When true, logs the HTTP method, URL, and status code of non-success responses to stderr.
-    /// Response bodies are intentionally excluded to avoid leaking PII.
+    /// When true, logs the HTTP method, URL, status code, and response reason phrase for all
+    /// non-success responses to stderr.
     /// <para>
-    /// <b>WARNING — PII risk.</b> URLs may contain order IDs and query parameters that are
-    /// sensitive in context. Never enable this in production. Ensure logs are access-controlled
-    /// and not persisted to any external system when enabled in non-production environments.
+    /// <b>WARNING — PII risk.</b> Response bodies and headers may contain personally identifiable
+    /// information. Do not enable in production without appropriate data-handling controls.
     /// </para>
     /// </summary>
     public bool DiagnosticLogging { get; set; }
 
+    /// <summary>Timeout applied to all HTTP requests. Defaults to 30 seconds.</summary>
+    public TimeSpan HttpTimeout { get; init; } = TimeSpan.FromSeconds(30);
+
+    /// <summary>Default headers applied to every REST request. Per-call RequestOptions override these.</summary>
     public RequestOptions DefaultRequestOptions { get; set; } = new();
 
-    internal static IEnumerable<string> AllowedHosts => ["api.ebay.com", "apim.ebay.com", "apiz.ebay.com"];
+    internal string RestBaseUrl(string apiId) => apiId switch
+    {
+        "fulfillment" => _fulfillmentBaseUrl,
+        "logistics" => _logisticsBaseUrl,
+        _ => throw new ArgumentOutOfRangeException(nameof(apiId), apiId, "Unknown REST API.")
+    };
 
-    private static string RequireHttps(string value, string paramName)
+    internal static IEnumerable<string> AllowedHosts =>
+    [
+        "api.ebay.com"
+    ];
+
+    private static string RequireHttps(string value)
     {
         if (!value.StartsWith("https://", StringComparison.OrdinalIgnoreCase))
-            throw new ArgumentException("Only HTTPS endpoints are allowed.", paramName);
+        {
+            throw new ArgumentException($"URL must use HTTPS: '{value}'", nameof(value));
+        }
         return value;
     }
 }

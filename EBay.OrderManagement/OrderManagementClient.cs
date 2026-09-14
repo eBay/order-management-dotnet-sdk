@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 using EBay.OrderManagement.Clients.GraphQL;
 using EBay.OrderManagement.Clients.Rest;
 using EBay.OrderManagement.Configuration;
@@ -23,49 +22,65 @@ using EBay.OrderManagement.Generated.Logistics;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Kiota.Abstractions.Authentication;
 using Microsoft.Kiota.Http.HttpClientLibrary;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
 
 namespace EBay.OrderManagement;
 
-public sealed class OrderManagementClient : IDisposable
+public class OrderManagementClient : IDisposable
 {
-    internal const string FulfillmentClientName = "OrderManagementFulfillmentClient";
-    internal const string LogisticsClientName = "OrderManagementLogisticsClient";
+    internal const string FulfillmentClientName = "OrderManagementClient.Fulfillment";
+    internal const string LogisticsClientName = "OrderManagementClient.Logistics";
+    internal const string GraphQLClientName = "OrderManagementGraphQLClient";
 
-    private readonly HttpClient _fulfillmentHttpClient;
-    private readonly HttpClient _logisticsHttpClient;
-    private readonly bool _ownsHttpClients;
+    private readonly HttpClient[] _ownedClients;
 
-    public FulfillmentClient Fulfillment { get; }
-    public LogisticsClient Logistics { get; }
+    public FulfillmentClient Fulfillment { get; private set; } = null!;
+    public LogisticsClient Logistics { get; private set; } = null!;
+
     public OrderGraphQLClient GraphQL { get; }
 
     /// <summary>
+    /// DI-friendly constructor. Named HttpClients come from <see cref="IHttpClientFactory"/>.
+    /// </summary>
+    internal OrderManagementClient(
+        OrderManagementConfiguration config,
+        IHttpClientFactory factory,
+        IOrderManagementGraphQLClient graphQLClient,
+        ITokenContext tokenContext)
+    {
+        _ownedClients = [];
+        var auth = new BaseBearerTokenAuthenticationProvider(new KiotaAuthProvider(config, tokenContext));
+        InitializeRestClients(auth, config, tokenContext, endpoint => factory.CreateClient(endpoint.HttpClientName));
+        GraphQL = new OrderGraphQLClient(
+            graphQLClient,
+            new DynamicGraphQLClient(factory.CreateClient(GraphQLClientName), config, tokenContext),
+            tokenContext);
+    }
+
+    /// <summary>
     /// Standalone constructor for use outside DI (tests, scripts).
-    /// Builds a minimal internal service provider so that typed GraphQL operations work
-    /// without requiring the caller to set up DI.
+    /// Creates its own HttpClients with DiagnosticLoggingHandler.
+    /// Typed GraphQL operations are unavailable; use GraphQL.ExecuteRawUnsafeAsync instead.
     /// </summary>
     public OrderManagementClient(OrderManagementConfiguration config)
     {
         var tokenContext = new AsyncLocalTokenContext();
-        _fulfillmentHttpClient = BuildStandaloneHttpClient(config);
-        _logisticsHttpClient   = BuildStandaloneHttpClient(config);
-        _ownsHttpClients = true;
-
         var auth = new BaseBearerTokenAuthenticationProvider(new KiotaAuthProvider(config, tokenContext));
-
-        var fulfillmentAdapter = new HttpClientRequestAdapter(
-            auth, httpClient: BuildKiotaClient(config.FulfillmentBaseUrl, _fulfillmentHttpClient))
-        { BaseUrl = config.FulfillmentBaseUrl };
-
-        var logisticsAdapter = new HttpClientRequestAdapter(
-            auth, httpClient: BuildKiotaClient(config.LogisticsBaseUrl, _logisticsHttpClient))
-        { BaseUrl = config.LogisticsBaseUrl };
-
-        Fulfillment = new FulfillmentClient(new FulfillmentApiClient(fulfillmentAdapter), config, tokenContext);
-        Logistics   = new LogisticsClient(new LogisticsApiClient(logisticsAdapter), config, tokenContext);
-        GraphQL     = new OrderGraphQLClient(
+        var owned = new List<HttpClient>();
+        InitializeRestClients(auth, config, tokenContext, endpoint =>
+        {
+            var client = BuildStandaloneHttpClient(config, endpoint.BaseUrl);
+            owned.Add(client);
+            return client;
+        });
+        var graphQLHttp = BuildStandaloneHttpClient(config, config.GraphQLBaseUrl);
+        owned.Add(graphQLHttp);
+        _ownedClients = [.. owned];
+        GraphQL = new OrderGraphQLClient(
             BuildStandaloneGqlClient(config, tokenContext),
-            new DynamicGraphQLClient(_fulfillmentHttpClient, config, tokenContext),
+            new DynamicGraphQLClient(graphQLHttp, config, tokenContext),
             tokenContext);
     }
 
@@ -78,64 +93,47 @@ public sealed class OrderManagementClient : IDisposable
         return services.BuildServiceProvider().GetRequiredService<IOrderManagementGraphQLClient>();
     }
 
-    /// <summary>
-    /// DI constructor: SS-generated GraphQL client and ITokenContext injected by the container.
-    /// </summary>
-    internal OrderManagementClient(
-        OrderManagementConfiguration config,
-        HttpClient fulfillmentHttpClient,
-        HttpClient logisticsHttpClient,
-        IOrderManagementGraphQLClient ssGqlClient,
-        ITokenContext tokenContext)
-    {
-        _fulfillmentHttpClient = fulfillmentHttpClient;
-        _logisticsHttpClient = logisticsHttpClient;
-        _ownsHttpClients = false;
-
-        var auth = new BaseBearerTokenAuthenticationProvider(new KiotaAuthProvider(config, tokenContext));
-
-        var fulfillmentAdapter = new HttpClientRequestAdapter(
-            auth,
-            httpClient: BuildKiotaClient(config.FulfillmentBaseUrl, fulfillmentHttpClient))
-        {
-            BaseUrl = config.FulfillmentBaseUrl
-        };
-
-        var logisticsAdapter = new HttpClientRequestAdapter(
-            auth,
-            httpClient: BuildKiotaClient(config.LogisticsBaseUrl, logisticsHttpClient))
-        {
-            BaseUrl = config.LogisticsBaseUrl
-        };
-
-        Fulfillment = new FulfillmentClient(new FulfillmentApiClient(fulfillmentAdapter), config, tokenContext);
-        Logistics = new LogisticsClient(new LogisticsApiClient(logisticsAdapter), config, tokenContext);
-
-        // For GraphQL dynamic client, use the fulfillment client (GraphQL has its own named client via StrawberryShake)
-        GraphQL = new OrderGraphQLClient(ssGqlClient, new DynamicGraphQLClient(_fulfillmentHttpClient, config, tokenContext), tokenContext);
-    }
-
-    private static HttpClient BuildKiotaClient(string baseUrl, HttpClient httpClient)
-    {
-        httpClient.BaseAddress = new Uri(baseUrl);
-        return httpClient;
-    }
-
-    private static HttpClient BuildStandaloneHttpClient(OrderManagementConfiguration config)
+    private static HttpClient BuildStandaloneHttpClient(OrderManagementConfiguration config, string baseUrl)
     {
         var handler = new DiagnosticLoggingHandler(config)
         {
             InnerHandler = new SocketsHttpHandler { PooledConnectionLifetime = TimeSpan.FromMinutes(2) }
         };
-        return new HttpClient(handler) { Timeout = config.HttpTimeout };
+        return new HttpClient(handler) { BaseAddress = new Uri(baseUrl), Timeout = config.HttpTimeout };
+    }
+
+    internal static IReadOnlyList<(string ApiId, string HttpClientName)> RestEndpointNames { get; } =
+    [
+        ("fulfillment", FulfillmentClientName),
+        ("logistics", LogisticsClientName)
+    ];
+
+    internal static IReadOnlyList<RestEndpoint> RestEndpoints(OrderManagementConfiguration config) =>
+        [.. RestEndpointNames.Select(name => new RestEndpoint(name.ApiId, name.HttpClientName, config.RestBaseUrl(name.ApiId)))];
+
+    private void InitializeRestClients(
+        IAuthenticationProvider auth,
+        OrderManagementConfiguration config,
+        ITokenContext tokenContext,
+        RestHttpClientProvider httpClientFor)
+    {
+        var endpoints = RestEndpoints(config);
+        var fulfillmentAdapter = new HttpClientRequestAdapter(auth, httpClient: httpClientFor(endpoints.First(endpoint => endpoint.ApiId == "fulfillment")));
+        Fulfillment = new FulfillmentClient(new FulfillmentApiClient(fulfillmentAdapter), config, tokenContext, fulfillmentAdapter);
+        var logisticsAdapter = new HttpClientRequestAdapter(auth, httpClient: httpClientFor(endpoints.First(endpoint => endpoint.ApiId == "logistics")));
+        Logistics = new LogisticsClient(new LogisticsApiClient(logisticsAdapter), config, tokenContext, logisticsAdapter);
     }
 
     public void Dispose()
     {
-        if (_ownsHttpClients)
+        foreach (var client in _ownedClients)
         {
-            _fulfillmentHttpClient.Dispose();
-            _logisticsHttpClient.Dispose();
+            client.Dispose();
         }
+        GC.SuppressFinalize(this);
     }
 }
+
+internal sealed record RestEndpoint(string ApiId, string HttpClientName, string BaseUrl);
+
+internal delegate HttpClient RestHttpClientProvider(RestEndpoint endpoint);

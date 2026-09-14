@@ -12,9 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
+using EBay.OrderManagement;
 using EBay.OrderManagement.Clients.GraphQL;
-using EBay.OrderManagement.Clients.Rest;
 using EBay.OrderManagement.Configuration;
 using EBay.OrderManagement.Generated.GraphQL;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,69 +29,44 @@ public static class ServiceCollectionExtensions
         services.AddSingleton(config);
         services.AddSingleton<ITokenContext, AsyncLocalTokenContext>();
 
-        // StrawberryShake: register generated client
         services.AddOrderManagementGraphQLClient();
-
-        // Wire auth into the named HTTP client that StrawberryShake uses
         services.AddTransient<BearerTokenHandler>();
         services
-            .AddHttpClient("OrderManagementGraphQLClient", client =>
-            {
-                client.BaseAddress = new Uri(config.GraphQLBaseUrl);
-                client.Timeout = config.HttpTimeout;
-            })
+            .AddHttpClient(OrderManagementClient.GraphQLClientName, client =>
+                client.BaseAddress = new Uri(config.GraphQLBaseUrl))
+            .ConfigureHttpClient(c => c.Timeout = config.HttpTimeout)
             .AddHttpMessageHandler<BearerTokenHandler>()
             .AddHttpMessageHandler(_ => new GraphQLHttpHandler(config));
-
-        // Dynamic escape hatch
         services.AddScoped<DynamicGraphQLClient>(sp =>
             new DynamicGraphQLClient(
-                sp.GetRequiredService<IHttpClientFactory>().CreateClient("OrderManagementGraphQLClient"),
+                sp.GetRequiredService<IHttpClientFactory>().CreateClient(OrderManagementClient.GraphQLClientName),
                 sp.GetRequiredService<OrderManagementConfiguration>(),
                 sp.GetRequiredService<ITokenContext>()));
 
-        // Named HTTP clients for REST sub-clients; diagnostic handler wired in here
-        services.AddHttpClient(OrderManagementClient.FulfillmentClientName, (sp, client) =>
-            {
-                var cfg = sp.GetRequiredService<OrderManagementConfiguration>();
-                client.BaseAddress = new Uri(cfg.FulfillmentBaseUrl);
-                client.Timeout = cfg.HttpTimeout;
-            })
-            .AddHttpMessageHandler(sp => new DiagnosticLoggingHandler(sp.GetRequiredService<OrderManagementConfiguration>()));
-        services.AddHttpClient(OrderManagementClient.LogisticsClientName, (sp, client) =>
-            {
-                var cfg = sp.GetRequiredService<OrderManagementConfiguration>();
-                client.BaseAddress = new Uri(cfg.LogisticsBaseUrl);
-                client.Timeout = cfg.HttpTimeout;
-            })
-            .AddHttpMessageHandler(sp => new DiagnosticLoggingHandler(sp.GetRequiredService<OrderManagementConfiguration>()));
+        foreach (var endpoint in OrderManagementClient.RestEndpointNames)
+        {
+            var id = endpoint.ApiId;
+            services.AddHttpClient(endpoint.HttpClientName, (sp, c) =>
+                    c.BaseAddress = new Uri(sp.GetRequiredService<OrderManagementConfiguration>().RestBaseUrl(id)))
+                .ConfigureHttpClient((sp, c) =>
+                    c.Timeout = sp.GetRequiredService<OrderManagementConfiguration>().HttpTimeout)
+                .AddHttpMessageHandler(sp =>
+                    new DiagnosticLoggingHandler(sp.GetRequiredService<OrderManagementConfiguration>()));
+        }
 
-        // Register facade (DI path: SS client injected)
         services.AddScoped<OrderManagementClient>(sp =>
         {
             var factory = sp.GetRequiredService<IHttpClientFactory>();
             return new OrderManagementClient(
                 sp.GetRequiredService<OrderManagementConfiguration>(),
-                factory.CreateClient(OrderManagementClient.FulfillmentClientName),
-                factory.CreateClient(OrderManagementClient.LogisticsClientName),
+                factory,
                 sp.GetRequiredService<IOrderManagementGraphQLClient>(),
                 sp.GetRequiredService<ITokenContext>());
         });
 
-        // Register sub-clients for direct injection
         services.AddScoped(sp => sp.GetRequiredService<OrderManagementClient>().Fulfillment);
         services.AddScoped(sp => sp.GetRequiredService<OrderManagementClient>().Logistics);
         services.AddScoped(sp => sp.GetRequiredService<OrderManagementClient>().GraphQL);
-
         return services;
-    }
-
-    public static IServiceCollection AddOrderManagementSdk(
-        this IServiceCollection services,
-        Action<OrderManagementConfiguration> configBuilder)
-    {
-        var config = new OrderManagementConfiguration();
-        configBuilder(config);
-        return services.AddOrderManagementSdk(config);
     }
 }

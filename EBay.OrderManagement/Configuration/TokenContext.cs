@@ -12,13 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
 namespace EBay.OrderManagement.Configuration;
 
-/// <summary>
-/// Carries a per-request access token via async execution context.
-/// Isolated between concurrent Tasks; flows down to child async operations.
-/// </summary>
 internal sealed class AsyncLocalTokenContext : ITokenContext
 {
     private readonly AsyncLocal<string?> _current = new();
