@@ -9,6 +9,7 @@ A production-ready .NET SDK for eBay Order Management APIs, combining REST and G
 - **OAuth Authentication**: Token refresh handler interface for seamless authentication
 - **Dependency Injection**: First-class support for ASP.NET Core DI
 - **Strong Typing**: Internal generated types with public abstraction layer
+- **Target frameworks**: .NET Framework 4.7.2, .NET 8, .NET 9 and .NET 10
 
 ## Architecture
 
@@ -23,7 +24,8 @@ OrderManagementSdk/
 │   │   └── LogisticsClient.cs
 │   └── GraphQL/           # GraphQL clients
 │       ├── OrderGraphQLClient.cs      # Typed operations
-│       └── DynamicGraphQLClient.cs    # Escape hatch
+│       ├── DynamicGraphQLClient.cs    # Escape hatch
+│       └── Generated/                 # Generated GraphQL types and operations
 ├── Configuration/         # SDK configuration and auth
 ├── Models/               # Public models
 ├── Exceptions/           # SDK exceptions
@@ -364,6 +366,7 @@ catch (HttpRequestException ex)
 ### Prerequisites
 
 - .NET 10 SDK, plus the .NET 8 and .NET 9 SDKs so every target framework can build
+- `net472` builds on any OS (reference assemblies come from NuGet); its tests run on Windows only
 - Kiota CLI tool (auto-installed via dotnet tools)
 
 ### Building
@@ -383,6 +386,7 @@ dotnet pack OrderManagementSdk/OrderManagementSdk.csproj
 - **Microsoft.Kiota.Bundle**: REST client generation and runtime
 - **Microsoft.Extensions.DependencyInjection.Abstractions**: DI support
 - **Microsoft.Extensions.Http**: HttpClient factory integration
+- **System.Text.Json** (.NET Framework only): GraphQL request and response serialization
 
 ## License
 
