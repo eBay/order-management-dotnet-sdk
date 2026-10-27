@@ -1,3 +1,4 @@
 <Solution>
   <Project Path="EBay.OrderManagement/EBay.OrderManagement.csproj" />
+  <Project Path="tests/EBay.OrderManagement.Tests/EBay.OrderManagement.Tests.csproj" />
 </Solution>
