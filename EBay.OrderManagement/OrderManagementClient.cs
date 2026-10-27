@@ -15,12 +15,9 @@
 using EBay.OrderManagement.Clients.GraphQL;
 using EBay.OrderManagement.Clients.Rest;
 using EBay.OrderManagement.Configuration;
-using EBay.OrderManagement.Extensions;
 using EBay.OrderManagement.Generated.Fulfillment;
-using EBay.OrderManagement.Generated.GraphQL;
 using EBay.OrderManagement.Generated.Logistics;
 using EBay.OrderManagement.Generated.PostOrderApi;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Kiota.Abstractions.Authentication;
 using Microsoft.Kiota.Http.HttpClientLibrary;
 using System.Collections.Generic;
@@ -50,22 +47,21 @@ public class OrderManagementClient : IDisposable
     internal OrderManagementClient(
         OrderManagementConfiguration config,
         IHttpClientFactory factory,
-        IOrderManagementGraphQLClient graphQLClient,
         ITokenContext tokenContext)
     {
         _ownedClients = [];
         var auth = new BaseBearerTokenAuthenticationProvider(new KiotaAuthProvider(config, tokenContext));
         InitializeRestClients(auth, config, tokenContext, endpoint => factory.CreateClient(endpoint.HttpClientName));
+        var graphQLHttp = factory.CreateClient(GraphQLClientName);
         GraphQL = new OrderGraphQLClient(
-            graphQLClient,
-            new DynamicGraphQLClient(factory.CreateClient(GraphQLClientName), config, tokenContext),
+            new GraphQLExecutor(graphQLHttp, config, tokenContext),
+            new DynamicGraphQLClient(graphQLHttp, config, tokenContext),
             tokenContext);
     }
 
     /// <summary>
     /// Standalone constructor for use outside DI (tests, scripts).
     /// Creates its own HttpClients with DiagnosticLoggingHandler.
-    /// Typed GraphQL operations are unavailable; use GraphQL.ExecuteRawUnsafeAsync instead.
     /// </summary>
     public OrderManagementClient(OrderManagementConfiguration config)
     {
@@ -82,25 +78,21 @@ public class OrderManagementClient : IDisposable
         owned.Add(graphQLHttp);
         _ownedClients = [.. owned];
         GraphQL = new OrderGraphQLClient(
-            BuildStandaloneGqlClient(config, tokenContext),
+            new GraphQLExecutor(graphQLHttp, config, tokenContext),
             new DynamicGraphQLClient(graphQLHttp, config, tokenContext),
             tokenContext);
-    }
-
-    private static IOrderManagementGraphQLClient BuildStandaloneGqlClient(
-        OrderManagementConfiguration config, ITokenContext tokenContext)
-    {
-        var services = new ServiceCollection();
-        services.AddOrderManagementSdk(config);
-        services.AddSingleton<ITokenContext>(tokenContext);
-        return services.BuildServiceProvider().GetRequiredService<IOrderManagementGraphQLClient>();
     }
 
     private static HttpClient BuildStandaloneHttpClient(OrderManagementConfiguration config, string baseUrl)
     {
         var handler = new DiagnosticLoggingHandler(config)
         {
+#if NETFRAMEWORK
+            // .NET Framework defaults to 2 connections per host outside ASP.NET.
+            InnerHandler = new HttpClientHandler { MaxConnectionsPerServer = 64 }
+#else
             InnerHandler = new SocketsHttpHandler { PooledConnectionLifetime = TimeSpan.FromMinutes(2) }
+#endif
         };
         return new HttpClient(handler) { BaseAddress = new Uri(baseUrl), Timeout = config.HttpTimeout };
     }

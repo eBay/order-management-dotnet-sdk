@@ -34,6 +34,6 @@ internal sealed class BearerTokenHandler : DelegatingHandler
         var token = _tokenContext.Current ?? _config.AccessToken;
         if (token is not null)
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
-        return await base.SendAsync(request, ct);
+        return await base.SendAsync(request, ct).ConfigureAwait(false);
     }
 }

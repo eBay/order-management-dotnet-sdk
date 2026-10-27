@@ -65,11 +65,15 @@ internal sealed class DynamicGraphQLClient
             Encoding.UTF8, "application/json");
 
         using var resp = await _http.SendAsync(req, ct).ConfigureAwait(false);
+#if NETFRAMEWORK
+        var body = await resp.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
         var body = await resp.Content.ReadAsStringAsync(ct).ConfigureAwait(false);
+#endif
 
         if (_config.DiagnosticLogging && !resp.IsSuccessStatusCode)
         {
-            var safeUrl = _config.GraphQLBaseUrl?.ReplaceLineEndings(" ") ?? string.Empty;
+            var safeUrl = _config.GraphQLBaseUrl?.Replace("\r", " ").Replace("\n", " ") ?? string.Empty;
             Console.Error.WriteLine($"[SDK] POST {safeUrl} → {(int)resp.StatusCode} {resp.ReasonPhrase}");
         }
 

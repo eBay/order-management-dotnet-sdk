@@ -15,7 +15,6 @@
 using EBay.OrderManagement;
 using EBay.OrderManagement.Clients.GraphQL;
 using EBay.OrderManagement.Configuration;
-using EBay.OrderManagement.Generated.GraphQL;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace EBay.OrderManagement.Extensions;
@@ -29,14 +28,17 @@ public static class ServiceCollectionExtensions
         services.AddSingleton(config);
         services.AddSingleton<ITokenContext, AsyncLocalTokenContext>();
 
-        services.AddOrderManagementGraphQLClient();
         services.AddTransient<BearerTokenHandler>();
         services
             .AddHttpClient(OrderManagementClient.GraphQLClientName, client =>
                 client.BaseAddress = new Uri(config.GraphQLBaseUrl))
             .ConfigureHttpClient(c => c.Timeout = config.HttpTimeout)
             .AddHttpMessageHandler<BearerTokenHandler>()
-            .AddHttpMessageHandler(_ => new GraphQLHttpHandler(config));
+            .AddHttpMessageHandler(_ => new GraphQLHttpHandler(config))
+#if NETFRAMEWORK
+            .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler { MaxConnectionsPerServer = 64 })
+#endif
+            ;
         services.AddScoped<DynamicGraphQLClient>(sp =>
             new DynamicGraphQLClient(
                 sp.GetRequiredService<IHttpClientFactory>().CreateClient(OrderManagementClient.GraphQLClientName),
@@ -51,7 +53,11 @@ public static class ServiceCollectionExtensions
                 .ConfigureHttpClient((sp, c) =>
                     c.Timeout = sp.GetRequiredService<OrderManagementConfiguration>().HttpTimeout)
                 .AddHttpMessageHandler(sp =>
-                    new DiagnosticLoggingHandler(sp.GetRequiredService<OrderManagementConfiguration>()));
+                    new DiagnosticLoggingHandler(sp.GetRequiredService<OrderManagementConfiguration>()))
+#if NETFRAMEWORK
+                .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler { MaxConnectionsPerServer = 64 })
+#endif
+                ;
         }
 
         services.AddScoped<OrderManagementClient>(sp =>
@@ -60,7 +66,6 @@ public static class ServiceCollectionExtensions
             return new OrderManagementClient(
                 sp.GetRequiredService<OrderManagementConfiguration>(),
                 factory,
-                sp.GetRequiredService<IOrderManagementGraphQLClient>(),
                 sp.GetRequiredService<ITokenContext>());
         });
 

@@ -62,7 +62,7 @@ public sealed class LogisticsClient
     /// - The shipment tracking number
     /// - The total shipping cost (the sum cost of the base shipping service and any added options)
     /// When you create a shipment, your billing agreement account is charged the sum of the <b>baseShippingCost</b> and the total cost of any additional shipping options you might have selected. Use the URL returned in <b>labelDownloadUrl</b> field, or call <b>downloadLabelFile</b> with the <b>shipmentId</b> value from the response, to download a shipping label for your package.
-    /// Important! </b>"&gt;<b>Important!</b> Sellers must set up their payment method before they can use this method to create a shipment and the associated shipping label.
+    /// Important! "&gt;<b>Important!</b> Sellers must set up their payment method before they can use this method to create a shipment and the associated shipping label.
     /// Set up a billing agreement
     /// Prior to using this method to create a shipment, sellers must first set up their billing agreement. Failure to do so will return <c>Error 90030 Payment could not be completed.</c>
     /// The preferred method for sellers to set up their billing agreement is to go to <see href="https://www.ebay.com/ship/bulk/payments">Set up billing agreement</see> and follow the on-screen directions.
