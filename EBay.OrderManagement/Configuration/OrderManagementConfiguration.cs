@@ -59,7 +59,7 @@ public sealed class OrderManagementConfiguration
     public bool DiagnosticLogging { get; set; }
 
     /// <summary>Timeout applied to all HTTP requests. Defaults to 30 seconds.</summary>
-    public TimeSpan HttpTimeout { get; init; } = TimeSpan.FromSeconds(30);
+    public TimeSpan HttpTimeout { get; set; } = TimeSpan.FromSeconds(30);
 
     /// <summary>Default headers applied to every REST request. Per-call RequestOptions override these.</summary>
     public RequestOptions DefaultRequestOptions { get; set; } = new();
