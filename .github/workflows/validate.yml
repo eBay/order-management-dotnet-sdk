@@ -71,3 +71,7 @@ jobs:
 
       - name: Test
         run: dotnet test tests/EBay.OrderManagement.Tests/EBay.OrderManagement.Tests.csproj -f net472
+
+      # Partners on .NET Framework compile with C# 7.3; the public API must stay usable from it.
+      - name: C# 7.3 consumer compile check
+        run: dotnet build tests/EBay.OrderManagement.CSharp73/EBay.OrderManagement.CSharp73.csproj
