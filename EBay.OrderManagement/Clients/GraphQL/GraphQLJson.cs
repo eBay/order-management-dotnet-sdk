@@ -106,7 +106,7 @@ internal static class GraphQLJson
 
     internal static void WriteDecimal(Utf8JsonWriter writer, decimal value) => writer.WriteNumberValue(value);
 
-    // UTC is written with a "Z" suffix, other offsets as +hh:mm (StrawberryShake wire format).
+    // UTC is written with a "Z" suffix, other offsets as +hh:mm.
     internal static void WriteDateTimeOffset(Utf8JsonWriter writer, DateTimeOffset value) =>
         writer.WriteStringValue(value.Offset == TimeSpan.Zero
             ? value.ToString("yyyy-MM-ddTHH:mm:ss.fffZ", CultureInfo.InvariantCulture)

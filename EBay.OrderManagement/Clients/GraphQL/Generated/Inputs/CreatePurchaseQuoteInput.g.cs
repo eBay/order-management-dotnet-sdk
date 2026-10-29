@@ -106,7 +106,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null (StrawberryShake behaviour).
+            // An input object with no fields set is sent as null, not {}.
             if (!(_set_emailCopyToSeller || _set_lineItems || _set_logisticsOptions || _set_messageToBuyer || _set_total))
             {
                 writer.WriteNullValue();

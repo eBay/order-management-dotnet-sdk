@@ -104,7 +104,7 @@ internal sealed class GraphQLExecutor
             writer.WriteStartObject();
             writer.WriteString("query", document);
             writer.WriteString("operationName", operationName);
-            // Operations without variables omit the member (StrawberryShake wire format).
+            // Operations without variables omit the "variables" member.
             if (writeVariables is not null)
             {
                 writer.WritePropertyName("variables");
