@@ -14,10 +14,14 @@ internal sealed class TestSdk
     public FakeHandler Handler { get; } = new();
     public OrderManagementClient Client { get; }
 
-    public TestSdk(string? accessToken = "config-token")
+    public OrderManagementConfiguration Config { get; }
+
+    public TestSdk(string? accessToken = "config-token", Action<OrderManagementConfiguration>? configure = null)
     {
+        Config = new OrderManagementConfiguration { AccessToken = accessToken };
+        configure?.Invoke(Config);
         var services = new ServiceCollection();
-        services.AddOrderManagementSdk(new OrderManagementConfiguration { AccessToken = accessToken });
+        services.AddOrderManagementSdk(Config);
         services.ConfigureAll<HttpClientFactoryOptions>(options =>
             options.HttpMessageHandlerBuilderActions.Add(builder => builder.PrimaryHandler = Handler));
         Client = services.BuildServiceProvider().CreateScope().ServiceProvider.GetRequiredService<OrderManagementClient>();
@@ -30,12 +34,16 @@ internal sealed class FakeHandler : HttpMessageHandler
     public string ResponseBody { get; set; } = "{}";
     public JsonDocument? Request { get; private set; }
     public string? Authorization { get; private set; }
+    public Uri? RequestUri { get; private set; }
+    public int Calls { get; private set; }
 
     protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
     {
         var body = request.Content is null ? "{}" : await request.Content.ReadAsStringAsync().ConfigureAwait(false);
         Request = JsonDocument.Parse(body);
         Authorization = request.Headers.Authorization?.ToString();
+        RequestUri = request.RequestUri;
+        Calls++;
         return new HttpResponseMessage(Status)
         {
             Content = new StringContent(ResponseBody, Encoding.UTF8, "application/json"),

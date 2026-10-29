@@ -18,6 +18,8 @@ namespace EBay.OrderManagement.CSharp73
                 AccessToken = "token",
                 HttpTimeout = TimeSpan.FromSeconds(60),
                 DiagnosticLogging = true,
+                FulfillmentBaseUrl = "https://ebay-proxy.example.com/sell/fulfillment/v1",
+                AllowedHosts = { "ebay-proxy.example.com" },
                 DefaultRequestOptions = new RequestOptions
                 {
                     Headers = new Dictionary<string, string> { { "X-EBAY-C-MARKETPLACE-ID", "EBAY_US" } }
