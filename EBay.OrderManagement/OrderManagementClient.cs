@@ -49,6 +49,7 @@ public class OrderManagementClient : IDisposable
         IHttpClientFactory factory,
         ITokenContext tokenContext)
     {
+        config.ValidateTrustedHosts();
         _ownedClients = [];
         var auth = new BaseBearerTokenAuthenticationProvider(new KiotaAuthProvider(config, tokenContext));
         InitializeRestClients(auth, config, tokenContext, endpoint => factory.CreateClient(endpoint.HttpClientName));
@@ -65,6 +66,7 @@ public class OrderManagementClient : IDisposable
     /// </summary>
     public OrderManagementClient(OrderManagementConfiguration config)
     {
+        config.ValidateTrustedHosts();
         var tokenContext = new AsyncLocalTokenContext();
         var auth = new BaseBearerTokenAuthenticationProvider(new KiotaAuthProvider(config, tokenContext));
         var owned = new List<HttpClient>();

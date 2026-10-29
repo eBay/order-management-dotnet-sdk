@@ -59,6 +59,9 @@ internal sealed class DynamicGraphQLClient
                 "No access token available. Pass an accessToken per call or set OrderManagementConfiguration.AccessToken.");
 
         using var req = new HttpRequestMessage(HttpMethod.Post, _config.GraphQLBaseUrl);
+        if (!_config.IsTrustedHost(req.RequestUri))
+            throw new InvalidOperationException(
+                $"GraphQLBaseUrl host '{req.RequestUri?.Host}' is not trusted with the access token. Add it to OrderManagementConfiguration.AllowedHosts.");
         req.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
         req.Content = new StringContent(
             JsonSerializer.Serialize(new { query, variables }, JsonOpts),

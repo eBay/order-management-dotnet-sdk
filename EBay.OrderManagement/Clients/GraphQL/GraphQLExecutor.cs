@@ -79,7 +79,8 @@ internal sealed class GraphQLExecutor
     {
         using var request = new HttpRequestMessage(HttpMethod.Post, _http.BaseAddress ?? new Uri(_config.GraphQLBaseUrl));
         var token = _tokenContext.Current ?? _config.AccessToken;
-        if (token is not null)
+        // Never hand the token to a host outside the trusted list.
+        if (token is not null && _config.IsTrustedHost(request.RequestUri))
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
         request.Content = new ByteArrayContent(RequestBody(operationName, document, writeVariables));
         request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json") { CharSet = "utf-8" };

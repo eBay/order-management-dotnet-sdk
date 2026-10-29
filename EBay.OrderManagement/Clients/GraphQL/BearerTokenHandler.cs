@@ -32,7 +32,7 @@ internal sealed class BearerTokenHandler : DelegatingHandler
         HttpRequestMessage request, CancellationToken ct)
     {
         var token = _tokenContext.Current ?? _config.AccessToken;
-        if (token is not null)
+        if (token is not null && _config.IsTrustedHost(request.RequestUri))
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
         return await base.SendAsync(request, ct).ConfigureAwait(false);
     }
