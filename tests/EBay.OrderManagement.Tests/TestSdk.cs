@@ -2,13 +2,10 @@ using System.Net;
 using System.Text;
 using System.Text.Json;
 using EBay.OrderManagement.Configuration;
-using EBay.OrderManagement.Extensions;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Http;
 
 namespace EBay.OrderManagement.Tests;
 
-/// <summary>SDK wired through DI with a fake primary handler on every named HttpClient.</summary>
+/// <summary>SDK client whose every request goes through a fake primary handler.</summary>
 internal sealed class TestSdk
 {
     public FakeHandler Handler { get; } = new();
@@ -20,11 +17,7 @@ internal sealed class TestSdk
     {
         Config = new OrderManagementConfiguration { AccessToken = accessToken };
         configure?.Invoke(Config);
-        var services = new ServiceCollection();
-        services.AddOrderManagementSdk(Config);
-        services.ConfigureAll<HttpClientFactoryOptions>(options =>
-            options.HttpMessageHandlerBuilderActions.Add(builder => builder.PrimaryHandler = Handler));
-        Client = services.BuildServiceProvider().CreateScope().ServiceProvider.GetRequiredService<OrderManagementClient>();
+        Client = new OrderManagementClient(Config, Handler);
     }
 }
 

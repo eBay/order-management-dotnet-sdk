@@ -115,9 +115,9 @@ public sealed class GraphQLClientTests
     }
 
     [Fact]
-    public async Task Raw_queries_under_DI_map_401_to_UnauthorizedException()
+    public async Task Raw_queries_map_401_to_UnauthorizedException()
     {
-        // Previously the DI pipeline's handler threw a raw HttpRequestException here.
+        // Previously the IHttpClientFactory pipeline threw a raw HttpRequestException here.
         var sdk = new TestSdk { Handler = { Status = HttpStatusCode.Unauthorized } };
 
         await Assert.ThrowsAsync<UnauthorizedException>(() =>
