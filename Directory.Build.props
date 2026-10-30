@@ -1,4 +1,19 @@
 <Project>
+  <!--
+    Dependency minimums: the lowest versions this SDK supports, published as ">= version" ranges.
+    They equal Kiota 1.22.0's own minimums, so the SDK adds no constraint beyond Kiota's:
+    Kiota 1.22.0 is the first release with the redirect auth-header security fix and the
+    BaseBearerTokenAuthenticationProvider deadlock fix; System.Text.Json 6.0.10 is the first 6.x
+    without CVE-2024-43485. NuGet restores the lowest version in a range, so a plain build and
+    test run exercises these minimums; CI also tests the latest versions by overriding the
+    properties (see .github/workflows/validate.yml).
+  -->
+  <PropertyGroup>
+    <KiotaVersion Condition="'$(KiotaVersion)' == ''">1.22.0</KiotaVersion>
+    <DependencyInjectionVersion Condition="'$(DependencyInjectionVersion)' == ''">6.0.0</DependencyInjectionVersion>
+    <SystemTextJsonVersion Condition="'$(SystemTextJsonVersion)' == ''">6.0.10</SystemTextJsonVersion>
+  </PropertyGroup>
+
   <PropertyGroup Condition="'$(EBayLint)' == 'true'">
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <AnalysisLevel>latest-Recommended</AnalysisLevel>
