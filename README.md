@@ -145,38 +145,31 @@ var rawResult = await client.GraphQL.ExecuteRawAsync(@"
 
 ### 3. Dependency Injection (ASP.NET Core)
 
+`AddOrderManagementSdk` registers the configuration and one shared `OrderManagementClient` (a singleton that owns its HTTP connections and is disposed with the container). Inject the client and use its properties for the individual APIs:
+
 ```csharp
-using OrderManagement.Extensions;
-using OrderManagement.Configuration;
+using EBay.OrderManagement;
+using EBay.OrderManagement.Configuration;
+using EBay.OrderManagement.Extensions;
 
-// In Program.cs or Startup.cs
-builder.Services.AddSingleton<ITokenRefreshHandler, MyTokenRefreshHandler>();
+builder.Services.AddOrderManagementSdk(new OrderManagementConfiguration());
 
-builder.Services.AddOrderManagementSdk(config =>
-{
-    config.TokenRefreshHandler = sp.GetRequiredService<ITokenRefreshHandler>();
-});
-
-// Inject the SDK or sub-clients
 public class OrdersController : ControllerBase
 {
     private readonly OrderManagementClient _sdk;
-    private readonly FulfillmentClient _fulfillment;
 
-    public OrdersController(OrderManagementClient sdk, FulfillmentClient fulfillment)
-    {
-        _sdk = sdk;
-        _fulfillment = fulfillment;
-    }
+    public OrdersController(OrderManagementClient sdk) => _sdk = sdk;
 
     [HttpGet("{orderId}")]
-    public async Task<IActionResult> GetOrder(string orderId)
+    public async Task<IActionResult> GetOrder(string orderId, [FromHeader] string authorization)
     {
-        var order = await _fulfillment.GetOrderAsync(orderId);
+        var order = await _sdk.Fulfillment.GetOrderAsync(orderId, accessToken: authorization["Bearer ".Length..]);
         return Ok(order);
     }
 }
 ```
+
+To route requests through your own handler (proxy, client certificates, a test double), pass it to the constructor: `new OrderManagementClient(config, handler)`. The handler is shared by all APIs and is not disposed by the client.
 
 ## REST API Examples
 
@@ -384,8 +377,7 @@ dotnet pack OrderManagementSdk/OrderManagementSdk.csproj
 ## Dependencies
 
 - **Microsoft.Kiota.Bundle**: REST client generation and runtime
-- **Microsoft.Extensions.DependencyInjection.Abstractions**: DI support
-- **Microsoft.Extensions.Http**: HttpClient factory integration
+- **Microsoft.Extensions.DependencyInjection.Abstractions**: `AddOrderManagementSdk` registration
 - **System.Text.Json** (.NET Framework only): GraphQL request and response serialization
 
 ## License
