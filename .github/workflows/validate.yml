@@ -102,6 +102,6 @@ jobs:
           dotnet test tests/EBay.OrderManagement.Tests/EBay.OrderManagement.Tests.csproj -f net472
           -p:KiotaVersion=1.* -p:DependencyInjectionVersion=10.* -p:SystemTextJsonVersion=10.*
 
-      # Partners on .NET Framework compile with C# 7.3; the public API must stay usable from it.
+      # .NET Framework projects often compile with C# 7.3; the public API must stay usable from it.
       - name: C# 7.3 consumer compile check
         run: dotnet build tests/EBay.OrderManagement.CSharp73/EBay.OrderManagement.CSharp73.csproj

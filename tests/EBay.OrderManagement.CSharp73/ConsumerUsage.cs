@@ -8,7 +8,7 @@ using EBay.OrderManagement.Generated.GraphQL;
 
 namespace EBay.OrderManagement.CSharp73
 {
-    /// <summary>Typical partner code written in C# 7.3; it only has to compile.</summary>
+    /// <summary>Typical consumer code written in C# 7.3; it only has to compile.</summary>
     public static class ConsumerUsage
     {
         public static async Task<string> RunAsync()
