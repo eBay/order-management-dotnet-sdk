@@ -380,6 +380,8 @@ dotnet pack OrderManagementSdk/OrderManagementSdk.csproj
 - **Microsoft.Extensions.DependencyInjection.Abstractions**: `AddOrderManagementSdk` registration
 - **System.Text.Json** (.NET Framework only): GraphQL request and response serialization
 
+On .NET Framework with `packages.config`, see [samples/NetFramework472](samples/NetFramework472/README.md) for the full package list, the binding redirects, and which existing packages must be upgraded.
+
 ## License
 
 [Apache 2.0](LICENSE) © 2026 eBay Inc.
