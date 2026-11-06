@@ -13,61 +13,24 @@
 // limitations under the License.
 
 using EBay.OrderManagement;
-using EBay.OrderManagement.Clients.GraphQL;
 using EBay.OrderManagement.Configuration;
-using EBay.OrderManagement.Generated.GraphQL;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace EBay.OrderManagement.Extensions;
 
 public static class ServiceCollectionExtensions
 {
+    /// <summary>
+    /// Registers <paramref name="config"/> and a singleton <see cref="OrderManagementClient"/>. The client
+    /// owns its HTTP connections and is disposed with the container. Reach the individual APIs through
+    /// its properties.
+    /// </summary>
     public static IServiceCollection AddOrderManagementSdk(
         this IServiceCollection services,
         OrderManagementConfiguration config)
     {
         services.AddSingleton(config);
-        services.AddSingleton<ITokenContext, AsyncLocalTokenContext>();
-
-        services.AddOrderManagementGraphQLClient();
-        services.AddTransient<BearerTokenHandler>();
-        services
-            .AddHttpClient(OrderManagementClient.GraphQLClientName, client =>
-                client.BaseAddress = new Uri(config.GraphQLBaseUrl))
-            .ConfigureHttpClient(c => c.Timeout = config.HttpTimeout)
-            .AddHttpMessageHandler<BearerTokenHandler>()
-            .AddHttpMessageHandler(_ => new GraphQLHttpHandler(config));
-        services.AddScoped<DynamicGraphQLClient>(sp =>
-            new DynamicGraphQLClient(
-                sp.GetRequiredService<IHttpClientFactory>().CreateClient(OrderManagementClient.GraphQLClientName),
-                sp.GetRequiredService<OrderManagementConfiguration>(),
-                sp.GetRequiredService<ITokenContext>()));
-
-        foreach (var endpoint in OrderManagementClient.RestEndpointNames)
-        {
-            var id = endpoint.ApiId;
-            services.AddHttpClient(endpoint.HttpClientName, (sp, c) =>
-                    c.BaseAddress = new Uri(sp.GetRequiredService<OrderManagementConfiguration>().RestBaseUrl(id)))
-                .ConfigureHttpClient((sp, c) =>
-                    c.Timeout = sp.GetRequiredService<OrderManagementConfiguration>().HttpTimeout)
-                .AddHttpMessageHandler(sp =>
-                    new DiagnosticLoggingHandler(sp.GetRequiredService<OrderManagementConfiguration>()));
-        }
-
-        services.AddScoped<OrderManagementClient>(sp =>
-        {
-            var factory = sp.GetRequiredService<IHttpClientFactory>();
-            return new OrderManagementClient(
-                sp.GetRequiredService<OrderManagementConfiguration>(),
-                factory,
-                sp.GetRequiredService<IOrderManagementGraphQLClient>(),
-                sp.GetRequiredService<ITokenContext>());
-        });
-
-        services.AddScoped(sp => sp.GetRequiredService<OrderManagementClient>().Fulfillment);
-        services.AddScoped(sp => sp.GetRequiredService<OrderManagementClient>().Logistics);
-        services.AddScoped(sp => sp.GetRequiredService<OrderManagementClient>().PostOrderApi);
-        services.AddScoped(sp => sp.GetRequiredService<OrderManagementClient>().GraphQL);
+        services.AddSingleton(_ => new OrderManagementClient(config));
         return services;
     }
 }
