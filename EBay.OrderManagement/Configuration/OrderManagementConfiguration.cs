@@ -78,7 +78,8 @@ public sealed class OrderManagementConfiguration
         "api.ebay.com",
         "api.sandbox.ebay.com",
         "apiz.ebay.com",
-        "apiz.sandbox.ebay.com"
+        "apiz.sandbox.ebay.com",
+        "graphqlapi.sandbox.ebay.com"
     });
 
     /// <summary>

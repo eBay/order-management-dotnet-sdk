@@ -16,6 +16,7 @@ using EBay.OrderManagement.Configuration;
 using EBay.OrderManagement.Generated.Logistics.Models;
 using EBay.OrderManagement.Generated.Logistics;
 using Microsoft.Kiota.Abstractions;
+using System.IO;
 
 namespace EBay.OrderManagement.Clients.Rest;
 
@@ -94,7 +95,7 @@ public sealed class LogisticsClient
     /// <b>Note:</b> The Logistics API only supports USPS shipping rates and labels.
     /// Use the <c>Accept</c> HTTP header to specify the format of the returned file. The default file format is a PDF file.
     /// </summary>
-    public Task DownloadLabelFileAsync(
+    public Task<Stream?> DownloadLabelFileAsync(
         string shipmentId,
         string? accessToken = null,
         RequestOptions? requestOptions = null,
