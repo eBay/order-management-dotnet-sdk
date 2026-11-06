@@ -200,7 +200,7 @@ public sealed class FulfillmentClient
     /// <summary>
     /// Get Payment Dispute Evidence File
     /// </summary>
-    public Task FetchEvidenceContentAsync(
+    public Task<Stream?> FetchEvidenceContentAsync(
         string paymentDisputeId,
         string evidenceId,
         string fileId,
