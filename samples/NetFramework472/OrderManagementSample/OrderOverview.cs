@@ -21,14 +21,15 @@ namespace OrderManagementSample
     /// <summary>Builds the SDK configuration for production or the eBay sandbox.</summary>
     public static class SdkSetup
     {
-        public const string SandboxGraphQLUrl = "https://api.sandbox.ebay.com/graphql";
+        // The sandbox GraphQL API is not on api.sandbox.ebay.com (that returns 404).
+        public const string SandboxGraphQLUrl = "https://graphqlapi.sandbox.ebay.com/graphql";
 
         public static OrderManagementConfiguration Create(EbayEnvironment environment, string accessToken, string graphQLUrl)
         {
             var config = new OrderManagementConfiguration { AccessToken = accessToken };
             if (environment == EbayEnvironment.Sandbox)
             {
-                // Sandbox hosts (api.sandbox.ebay.com, apiz.sandbox.ebay.com) are trusted by default.
+                // Sandbox hosts (api, apiz and graphqlapi.sandbox.ebay.com) are trusted by default.
                 config.FulfillmentBaseUrl = "https://api.sandbox.ebay.com/sell/fulfillment/v1";
                 config.LogisticsBaseUrl = "https://api.sandbox.ebay.com/sell/logistics/v1_beta";
                 config.PostOrderApiBaseUrl = "https://api.sandbox.ebay.com/post-order/v2";

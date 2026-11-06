@@ -15,7 +15,7 @@ A WinForms app that uses `EBay.OrderManagement` the way an older .NET Framework 
 - **Production / Sandbox** switch. Sandbox points every API at `*.sandbox.ebay.com`; those hosts are trusted by default.
 - **Load orders**: calls the Fulfillment REST API (`GetOrdersAsync`, the last N days) and the GraphQL `orders` query **concurrently**, and joins them by order id. REST gives fulfillment status and total; GraphQL gives the order state and payment state, read from the GraphQL union types with C# 7 type patterns.
 - **Select a row**: fetches the full order (`GetOrderAsync`) and renders it with the app's own Newtonsoft.Json.
-- **GraphQL URL (optional)**: overrides the GraphQL endpoint. A host that isn't an eBay default is added to `AllowedHosts` explicitly, which is how a proxy would be trusted. There's no documented public sandbox GraphQL endpoint, so the sandbox default (`https://api.sandbox.ebay.com/graphql`) may need changing.
+- **GraphQL URL (optional)**: overrides the GraphQL endpoint. A host that isn't an eBay default is added to `AllowedHosts` explicitly, which is how a proxy would be trusted. In the sandbox it defaults to `https://graphqlapi.sandbox.ebay.com/graphql`, which the SDK trusts by default (`api.sandbox.ebay.com/graphql` returns 404).
 
 You need a **user access token** with the `sell.fulfillment` scope (eBay developer portal → User Tokens), for the environment you select.
 
