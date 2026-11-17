@@ -1,394 +1,389 @@
-# Order Management .NET SDK
+# eBay Order Management SDK for .NET
 
-A production-ready .NET SDK for eBay Order Management APIs, combining REST and GraphQL clients with a unified facade.
+Process and fulfill orders, buy shipping labels, and handle post-order cases. This SDK wraps the eBay Fulfillment API, Logistics API, Post-Order API and eBay GraphQL behind one client, `OrderManagementClient`.
 
-## Features
-
-- **REST API Support**: Fulfillment and Logistics APIs generated with Microsoft Kiota
-- **GraphQL Support**: Typed operations for orders, cancellations, returns, and more
-- **OAuth Authentication**: Token refresh handler interface for seamless authentication
-- **Dependency Injection**: First-class support for ASP.NET Core DI
-- **Strong Typing**: Internal generated types with public abstraction layer
-- **Target frameworks**: .NET Framework 4.7.2, .NET 8, .NET 9 and .NET 10
-
-## Architecture
-
-```
-OrderManagementSdk/
-├── Generated/              # Kiota-generated REST clients (internal)
-│   ├── Fulfillment/
-│   └── Logistics/
-├── Clients/
-│   ├── Rest/              # REST client wrappers (public API)
-│   │   ├── FulfillmentClient.cs
-│   │   └── LogisticsClient.cs
-│   └── GraphQL/           # GraphQL clients
-│       ├── OrderGraphQLClient.cs      # Typed operations
-│       ├── DynamicGraphQLClient.cs    # Escape hatch
-│       └── Generated/                 # Generated GraphQL types and operations
-├── Configuration/         # SDK configuration and auth
-├── Models/               # Public models
-├── Exceptions/           # SDK exceptions
-└── OrderManagementClient.cs  # Main SDK facade
-```
+- **Target frameworks:** .NET Framework 4.7.2, .NET 8, .NET 9 and .NET 10
+- **C#:** usable from C# 7.3 and later
 
 ## Installation
 
-```bash
-# From source
-dotnet pack OrderManagementSdk/OrderManagementSdk.csproj
-dotnet add reference path/to/OrderManagementSdk.1.0.0.nupkg
+The package `EBay.OrderManagement` is not on nuget.org yet. Reference the project, or build the package and add it to a local feed:
 
-# Or add project reference
-dotnet add reference OrderManagementSdk/OrderManagementSdk.csproj
+```bash
+dotnet pack EBay.OrderManagement -c Release -o artifacts/packages
 ```
 
-## Quick Start
-
-### 1. Implement Token Refresh Handler
+## Quick start
 
 ```csharp
-using OrderManagement.Configuration;
+using EBay.OrderManagement;
+using EBay.OrderManagement.Configuration;
 
-public class MyTokenRefreshHandler : ITokenRefreshHandler
+var config = new OrderManagementConfiguration
 {
-    private readonly string _clientId;
-    private readonly string _clientSecret;
-    private string? _accessToken;
-    private DateTime _tokenExpiry;
+    // A user or application access token from your own OAuth flow (see "Authentication").
+    AccessToken = Environment.GetEnvironmentVariable("EBAY_ACCESS_TOKEN")
+};
 
-    public MyTokenRefreshHandler(string clientId, string clientSecret)
-    {
-        _clientId = clientId;
-        _clientSecret = clientSecret;
-    }
+using var client = new OrderManagementClient(config);
 
-    public async Task<string> GetAccessTokenAsync(CancellationToken cancellationToken = default)
+var orders = await client.Fulfillment.GetOrdersAsync(limit: "10");
+Console.WriteLine($"{orders?.Total} orders");
+```
+
+The GraphQL API is on the same client:
+
+```csharp
+using EBay.OrderManagement.Generated.GraphQL;
+
+var to = DateTimeOffset.UtcNow;
+var result = await client.GraphQL.OrdersAsync(new OrdersInput
+{
+    OrdersFirstPage = new OrdersFirstPageInput
     {
-        if (_accessToken != null && DateTime.UtcNow < _tokenExpiry.AddMinutes(-5))
+        MaxPageSize = 10,
+        Filter = new OrdersFirstFilterInput
         {
-            return _accessToken;
+            DateRange = new OrdersDateRangeInput
+            {
+                DateType = OrdersDateType.Confirmed,
+                DateTimeRange = new DateTimeRangeInput { StartDateTime = to.AddDays(-30), EndDateTime = to }
+            }
         }
-
-        // Refresh token using eBay OAuth API
-        using var client = new HttpClient();
-        var request = new HttpRequestMessage(HttpMethod.Post, "https://api.ebay.com/identity/v1/oauth2/token");
-        request.Headers.Authorization = new AuthenticationHeaderValue(
-            "Basic",
-            Convert.ToBase64String(Encoding.UTF8.GetBytes($"{_clientId}:{_clientSecret}")));
-        
-        request.Content = new FormUrlEncodedContent(new[]
-        {
-            new KeyValuePair<string, string>("grant_type", "client_credentials"),
-            new KeyValuePair<string, string>("scope", "https://api.ebay.com/oauth/api_scope https://api.ebay.com/oauth/api_scope/sell.fulfillment")
-        });
-
-        var response = await client.SendAsync(request, cancellationToken);
-        response.EnsureSuccessStatusCode();
-
-        var json = await response.Content.ReadAsStringAsync(cancellationToken);
-        var tokenResponse = JsonSerializer.Deserialize<TokenResponse>(json);
-
-        _accessToken = tokenResponse.AccessToken;
-        _tokenExpiry = DateTime.UtcNow.AddSeconds(tokenResponse.ExpiresIn);
-
-        return _accessToken;
     }
+});
+
+foreach (var order in result?.SellerOrders.Orders ?? [])
+{
+    // GraphQL unions surface as interfaces: test for the concrete type.
+    var state = order.OrderState is IOrders_Orders_SellerOrders_Orders_OrderState_OrderConfirmed confirmed
+        ? confirmed.Label
+        : order.OrderState.__typename;
+    Console.WriteLine($"{order.OrderId}: {state}");
 }
 ```
 
-### 2. Configure and Use the SDK
+## APIs
+
+| `OrderManagementClient` property | API | Default base URL | Access token |
+|---|---|---|---|
+| `Fulfillment` | Fulfillment API | `https://apiz.ebay.com/sell/fulfillment/v1` | User (some operations: application) |
+| `Logistics` | Logistics API | `https://api.ebay.com/sell/logistics/v1_beta` | User |
+| `PostOrderApi` | Post-Order API | `https://api.ebay.com/post-order/v2` | User |
+| `GraphQL` | eBay GraphQL | `https://api.ebay.com/graphql` | See eBay's GraphQL docs |
+
+"Access token" is what eBay's OpenAPI spec declares: an application token (client credentials) or a user token (authorization code). Scopes are listed per API below.
+
+<details>
+<summary><b>Fulfillment</b>: Fulfillment API, 15 operations</summary>
+
+Scopes: `eBayUser`, `https://api.ebay.com/oauth/api_scope/sell.finances`, `https://api.ebay.com/oauth/api_scope/sell.fulfillment`, `https://api.ebay.com/oauth/api_scope/sell.fulfillment.readonly`, `https://api.ebay.com/oauth/api_scope/sell.payment.dispute`
+
+| Method | Description |
+|---|---|
+| `GetOrderAsync` | Use this call to retrieve the contents of an order based on its unique identifier, orderId. |
+| `GetOrdersAsync` | Use this method to search for and retrieve one or more orders based on their creation date, last modification date, or fulfillment status using the filter parameter. |
+| `IssueRefundAsync` | Issues a full or partial refund to a buyer on behalf of the seller. |
+| `GetShippingFulfillmentsAsync` | Use this call to retrieve the contents of all fulfillments currently defined for a specified order based on the order's unique identifier, orderId. |
+| `CreateShippingFulfillmentAsync` | When you group an order's line items into one or more packages, each package requires a corresponding plan for handling, addressing, and shipping; this is shipping fulfillment. |
+| `GetShippingFulfillmentAsync` | Use this call to retrieve the contents of a fulfillment based on its unique identifier, fulfillmentId (combined with the associated order's orderId). |
+| `GetPaymentDisputeAsync` | Get Payment Dispute Details |
+| `FetchEvidenceContentAsync` | Get Payment Dispute Evidence File |
+| `GetActivitiesAsync` | Get Payment Dispute Activity |
+| `GetPaymentDisputeSummariesAsync` | Search Payment Dispute by Filters |
+| `ContestPaymentDisputeAsync` | Contest Payment Dispute |
+| `AcceptPaymentDisputeAsync` | Accept Payment Dispute |
+| `UploadEvidenceFileAsync` | Upload an Evidence File |
+| `AddEvidenceAsync` | Add an Evidence File |
+| `UpdateEvidenceAsync` | Update evidence |
+
+</details>
+
+<details>
+<summary><b>Logistics</b>: Logistics API, 6 operations</summary>
+
+Scopes: `https://api.ebay.com/oauth/api_scope/sell.logistics`
+
+> **Note:** The Logistics API only supports USPS shipping rates and labels.
+
+| Method | Description |
+|---|---|
+| `CancelShipmentAsync` | This method cancels the shipment associated with the specified shipment ID and the associated shipping label is deleted. |
+| `CreateFromShippingQuoteAsync` | This method creates a shipment based on the shippingQuoteId and rateId values supplied in the request. |
+| `DownloadLabelFileAsync` | This method returns the shipping label file that was generated for the shipmentId value specified in the request. |
+| `GetShipmentAsync` | This method retrieves the shipment details for the specified shipment ID. |
+| `CreateShippingQuoteAsync` | The createShippingQuote method returns a shipping quote that contains a list of live "rates." |
+| `GetShippingQuoteAsync` | This method retrieves the complete details of the shipping quote associated with the specified shippingQuoteId value. |
+
+</details>
+
+<details>
+<summary><b>PostOrderApi</b>: Post-Order API, 38 operations</summary>
+
+Scopes: `https://api.ebay.com/oauth/scope/sell@user`
+
+| Method | Description |
+|---|---|
+| `CheckCancellationEligibilityAsync` | Check Cancellation Eligibility |
+| `GetCancellationAsync` | Get Cancellation |
+| `CreateCancellationRequestAsync` | Create Cancellation Request |
+| `ConfirmAsync` | Confirm Cancellation Refund |
+| `SearchCancellationsAsync` | Search Cancellations |
+| `ApproveCancellationAsync` | Approve Cancellation |
+| `RejectCancellationAsync` | Reject Cancellation |
+| `AppealCaseDecisionAsync` | Appeal Case Decision |
+| `GetCaseAsync` | Get Case |
+| `IssueCaseRefundAsync` | Issue Case Refund |
+| `ProvideCaseReturnAddressAsync` | Provides Return Address |
+| `CloseCaseAsync` | Close Case |
+| `ProvideCaseShipmentInfoAsync` | Provide Case Shipment Info |
+| `SearchCasesAsync` | Search Cases |
+| `CreateInquiryAsync` | Create Inquiry |
+| `SendInquiryMessageAsync` | Send Inquiry Message |
+| `EscalateInquiryAsync` | Escalate Inquiry |
+| `CloseInquiryAsync` | Close Inquiry |
+| `ConfirmInquiryRefundAsync` | Confirm Inquiry Refund |
+| `GetInquiryAsync` | Get Inquiry |
+| `IssueInquiryRefundAsync` | Issue Inquiry Refund |
+| `ProvideInquiryShipmentInfoAsync` | Provide Inquiry Shipment Info |
+| `SearchInquiriesAsync` | Search Inquiries |
+| `ProvideInquiryRefundInfoAsync` | Provide Inquiry Refund Info |
+| `CreateReturnRequestAsync` | Create Return Request |
+| `GetReturnAsync` | Get Return |
+| `SearchReturnsAsync` | Search Returns |
+| `EscalateReturnAsync` | Escalate Return |
+| `ProcessReturnRequestAsync` | Process Return Request |
+| `MarkItemReceivedAsync` | Mark Return Received |
+| `IssueReturnRefundAsync` | Issue Return Refund |
+| `GetShipmentTrackingInfoAsync` | Get Shipment Tracking Info |
+| `SendReturnMessageAsync` | Send Return Message |
+| `AddShippingLabelInfoAsync` | Add Shipping Label Info |
+| `UploadReturnFileAsync` | Upload Return File |
+| `GetReturnFilesAsync` | Get Return Files |
+| `GetReturnPreferencesAsync` | Get Return Preferences |
+| `SetReturnPreferencesAsync` | Set Return Preferences |
+
+</details>
+
+<details>
+<summary><b>GraphQL</b>: eBay GraphQL, 57 operations</summary>
+
+Scopes (any operation may need any of these): `https://api.ebay.com/oauth/api_scope/buy.cancellation`, `https://api.ebay.com/oauth/api_scope/buy.cancellation.read`, `https://api.ebay.com/oauth/api_scope/buy.commitment`, `https://api.ebay.com/oauth/api_scope/buy.commitment.read`, `https://api.ebay.com/oauth/api_scope/buy.inquiry`, `https://api.ebay.com/oauth/api_scope/buy.inquiry.read`, `https://api.ebay.com/oauth/api_scope/buy.order`, `https://api.ebay.com/oauth/api_scope/buy.order.read`, `https://api.ebay.com/oauth/api_scope/buy.purchase.quote`, `https://api.ebay.com/oauth/api_scope/buy.purchase.quote.read`, `https://api.ebay.com/oauth/api_scope/buy.return`, `https://api.ebay.com/oauth/api_scope/buy.return.read`, `https://api.ebay.com/oauth/api_scope/sell.cancellation`, `https://api.ebay.com/oauth/api_scope/sell.cancellation.read`, `https://api.ebay.com/oauth/api_scope/sell.commitment`, `https://api.ebay.com/oauth/api_scope/sell.commitment.read`, `https://api.ebay.com/oauth/api_scope/sell.inquiry`, `https://api.ebay.com/oauth/api_scope/sell.inquiry.read`, `https://api.ebay.com/oauth/api_scope/sell.order`, `https://api.ebay.com/oauth/api_scope/sell.order.read`, `https://api.ebay.com/oauth/api_scope/sell.purchase.quote`, `https://api.ebay.com/oauth/api_scope/sell.purchase.quote.read`, `https://api.ebay.com/oauth/api_scope/sell.return`, `https://api.ebay.com/oauth/api_scope/sell.return.instore@partner`, `https://api.ebay.com/oauth/api_scope/sell.return.preference`, `https://api.ebay.com/oauth/api_scope/sell.return.preference.rules_group.read@partner`, `https://api.ebay.com/oauth/api_scope/sell.return.preference.rules_group@partner`, `https://api.ebay.com/oauth/api_scope/sell.return.read`
+
+| Method | Description |
+|---|---|
+| `AddListingsToReturnRuleListingGroupAsync` | The **addListingsToReturnRuleListingGroup** mutation appends items to an existing listing group to be used in seller's return automation rules. |
+| `AppendSellerReturnResponseRuleAsync` | The **appendSellerReturnResponseRule** mutation adds a new return-respond automation rule. |
+| `AppendSellerReturnToAddressRuleAsync` | The **appendSellerReturnToAddressRule** mutation adds a new return-to-address automation rule. |
+| `ApproveContractCancellationAsync` | The **approveContractCancellation** mutation approves a contract cancellation using an existing cancellation entity. |
+| `ApproveReturnAsync` | The **approveReturn** mutation allows a seller to approve a return request. |
+| `AttachReturnShipmentLabelAsync` | The **attachReturnShipmentLabel** mutation attaches a return shipment label to the specified return. |
+| `BulkUpdateItemCommitmentTagsAsync` | This mutation allows a seller to add and/or delete up to five custom item commitment tags for up to 100 item commitments per operation. |
+| `BulkUpdateOrderTagsAsync` | The **bulkUpdateOrderTags** mutation updates tags for up to 100 orders in a single operation. |
+| `BulkUpdatePurchaseQuotesAsync` | This mutation allows a seller to update up to 100 existing purchase quotes in a single request. |
+| `CommitToPurchaseAsync` | This mutation is used to create an item commitment on a listing, where a buyer commits to purchase an item and pay for it at a later date. |
+| `ContractCancellationAsync` | The **contractCancellation** query retrieves details about a contract cancellation by its ID. |
+| `CreateInStoreReturnAsync` | The **createInStoreReturn** mutation initiates a return. |
+| `CreateItemCommitmentCancellationAsync` | The **createItemCommitmentCancellation** mutation creates a cancellation on an item commitment. |
+| `CreateOrderCancellationAsync` | The **createOrderCancellation** mutation creates a cancellation on an order. |
+| `CreatePurchaseQuoteAsync` | This mutation allows a seller to create a new purchase quote containing multiple item commitments with price details and optional shipping estimates. |
+| `CreatePurchaseQuoteCancellationAsync` | The **createPurchaseQuoteCancellation** mutation creates a cancellation on a purchase quote for item commitments which are part of a **PurchaseQuote**. |
+| `CreateReturnRuleListingGroupAsync` | The **createReturnRuleListingGroup** mutation creates a group of listings that can be used in seller's return automation rules. |
+| `DeclineContractCancellationAsync` | The **declineContractCancellation** mutation declines a contract cancellation using an existing cancellation entity. |
+| `DeclineReturnAsync` | The **declineReturn** mutation declines a return request and can include a message. |
+| `DeleteReturnRuleListingGroupAsync` | The **deleteReturnRuleListingGroup** mutation deletes a seller created listing group for return automation rules. |
+| `DeleteSellerReturnRuleAsync` | The **deleteSellerReturnRule** mutation allows the seller to delete the specified existing return automation rule. |
+| `ItemCommitmentsAsync` | The output for the **itemCommitmentsByIds** query. |
+| `ItemCommitmentsByIdsAsync` | This query is used to retrieve detailed information on up to 100 of an authenticated user's item commitments. |
+| `MarkItemCommitmentsPaidAsync` | This mutation allows a seller to mark up to 100 item commitments as paid. |
+| `MarkOrdersPaidAsync` | The **markOrdersPaid** mutation marks up to 100 specified orders as payment received and is available only for the authorized user (the seller of the orders). |
+| `OrderInquiryAsync` | This query can be used to retrieve full inquiry details for an inquiry, specified by its inquiry ID. |
+| `OrderLineItemsByIdsAsync` | The **orderLineItemsByIds** query retrieves one or more line items from orders using their unique IDs. |
+| `OrderReturnAsync` | The **orderReturn** query retrieves information on a specific return by return ID. |
+| `OrdersAsync` | Entry point for the **authenticated user's** order data. |
+| `OrdersByIdsAsync` | The **ordersByIds** query retrieves one or more orders by their unique IDs. |
+| `ProcessOrderInquiryRefundAsync` | This mutation can be used to issue a full refund for an inquiry. |
+| `ProcessReturnRefundAsync` | The **processReturnRefund** mutation processes a refund for a return in accordance with the applicable refund policy. |
+| `ProposeKeepItemWithPartialRefundAsync` | The **proposeKeepItemWithPartialRefund** mutation proposes a keep-item-with-partial-refund offer on one or more items in an existing return. |
+| `ProvideRmaNumberAsync` | The **provideRmaNumber** mutation supplies the Return Merchandise Authorization (RMA) number for a return. |
+| `ProvideShipmentInfoForItemNotReceivedInquiryAsync` | This mutation can be used to provide shipment-related information in response to an Item Not Received inquiry. |
+| `PurchaseQuoteLineItemsByIdsAsync` | This query is used to retrieve detailed information on up to 100 of an authenticated user's purchase quote line items. |
+| `PurchaseQuotesAsync` | This query is used to search for and retrieve detailed information on multiple purchase quotes. |
+| `PurchaseQuotesByIdsAsync` | This query is used to retrieve detailed information on up to 100 of an authenticated user's purchase quotes using provided purchase quote identifiers. |
+| `RecordReturnLabelSentOfflineAsync` | The **recordReturnLabelSentOffline** mutation records that a return shipment label has been sent to the buyer for the specified return |
+| `RecordReturnReceivedAsync` | The **recordReturnReceived** mutation is an optional step to notify eBay that the returned item has been received. |
+| `RequestPurchaseQuoteAsync` | This mutation allows a buyer to submit a new purchase quote request to the seller. |
+| `ReturnRuleListingGroupAsync` | The **returnRuleListingGroup** query retrieves listing group detail that can be used in return automation rules. |
+| `SellerContractCancellationsAsync` | The **sellerContractCancellations** query retrieves a list of contract cancellations with optional filtering. |
+| `SellerOrderInquiriesAsync` | This query can be used to retrieve a paginated list of order inquiries visible to the seller. |
+| `SellerOrderReturnsAsync` | The **sellerOrderReturns** query retrieves a list of order returns for the seller, with filtering and sorting options. |
+| `SellerReturnPreferenceAsync` | The **sellerReturnPreference** query retrieves the return preferences set by a seller on a specified marketplace. |
+| `SendOrderInquiryMessageAsync` | This mutation can be used to send a message within the context of a specific order inquiry. |
+| `SendReturnMessageAsync` | The **sendReturnMessage** mutation sends a message to a return conversation. |
+| `SubmitOrderInquiryReferralAsync` | This mutation can be used to submit an order inquiry to eBay as a referral request. |
+| `SubmitReturnReferralAsync` | The **submitReturnReferral** mutation submits an order return to eBay as a referral request. |
+| `UpdateSellerReturnResponseRuleConditionAsync` | The **updateSellerReturnResponseRuleCondition** mutation updates a seller's return automation rule. |
+| `UpdateSellerReturnResponseRulesPrioritiesAsync` | The **updateSellerReturnResponseRulesPriorities** mutation updates the priority order of existing return-respond automation rules. |
+| `UpdateSellerReturnRuleStatusAsync` | The **updateSellerReturnRuleStatus** mutation is used to enable or disable an automation return rule which determines how returns are processed based on their defined conditions. |
+| `UpdateSellerReturnToAddressRuleConditionAsync` | The **updateSellerReturnToAddressRuleCondition** mutation updates a seller's return automation rule. |
+| `UpdateSellerReturnToAddressRulesPrioritiesAsync` | The **updateSellerReturnToAddressRulesPriorities** mutation updates the priority order of existing return-to-address automation rules. |
+| `UpdateSellerRmaPreferenceAsync` | The **updateSellerRmaPreference** mutation updates the seller's Return Merchandise Authorization (RMA) preference. |
+| `ExecuteRawUnsafeAsync` | Runs any GraphQL query or mutation and returns the raw JSON response. |
+
+</details>
+
+## GraphQL
+
+`client.GraphQL` has a typed method per GraphQL operation the SDK ships (see the table above). Inputs are classes with settable properties; only the properties you set are sent, so leaving a property unset is different from setting it to `null`. Results are interfaces named after their path in the query, and GraphQL unions surface as one interface per possible type: use `is`/`as` to pick the concrete type, as in the quick start.
+
+For anything else, `ExecuteRawUnsafeAsync` sends any query and returns the response as a `JsonDocument`:
 
 ```csharp
-using OrderManagement;
-using OrderManagement.Configuration;
-
-// Create configuration
-var config = new OrderManagementConfiguration
-{
-    TokenRefreshHandler = new MyTokenRefreshHandler(clientId, secret),
-    FulfillmentBaseUrl = "https://api.ebay.com/sell/fulfillment/v1",
-    LogisticsBaseUrl = "https://api.ebay.com/sell/logistics/v1",
-    GraphQLBaseUrl = "https://api.ebay.com/graphql"
-};
-
-// Create SDK client
-using var client = new OrderManagementClient(config);
-
-// Use REST APIs
-var order = await client.Fulfillment.GetOrderAsync("12345");
-var orders = await client.Fulfillment.GetOrdersAsync(
-    filter: "orderfulfillmentstatus:{NOT_STARTED|IN_PROGRESS}",
-    limit: 50);
-
-var shipment = await client.Logistics.GetShipmentAsync("shipment-123");
-
-// Use GraphQL APIs
-var ordersResult = await client.GraphQL.GetOrdersAsync(
-    new OrdersInput
-    {
-        Filter = new OrderFilter { OrderStatus = "ACTIVE" },
-        Pagination = new PaginationInput { Limit = 20 }
-    });
-
-// Use GraphQL escape hatch
-var rawResult = await client.GraphQL.ExecuteRawAsync(@"
-    query {
-      orders(input: {}) {
-        orders {
-          orderId
-          orderStatus
-        }
-      }
-    }");
+using var document = await client.GraphQL.ExecuteRawUnsafeAsync("query { __typename }");
+Console.WriteLine(document.RootElement.GetRawText());
 ```
 
-### 3. Dependency Injection (ASP.NET Core)
+## Authentication
 
-`AddOrderManagementSdk` registers the configuration and one shared `OrderManagementClient` (a singleton that owns its HTTP connections and is disposed with the container). Inject the client and use its properties for the individual APIs:
+The SDK does not obtain or refresh tokens: get them with your own OAuth flow ([eBay OAuth guide](https://developer.ebay.com/develop/guides/sell/authorization)) and give them to the SDK in one of two ways:
+
+- `OrderManagementConfiguration.AccessToken`: used for every call that doesn't pass its own token.
+- The `accessToken` parameter on every method: used for that call only, for example a user token where the configuration holds an application token.
+
+```csharp
+string userToken = Environment.GetEnvironmentVariable("EBAY_USER_TOKEN")!;
+var orders = await client.Fulfillment.GetOrdersAsync(limit: "10", accessToken: userToken);
+```
+
+A token is only ever sent to trusted hosts, see below.
+
+## Configuration
+
+| Property | Type | Default | Description |
+|---|---|---|---|
+| `FulfillmentBaseUrl` | `string` | `https://apiz.ebay.com/sell/fulfillment/v1` | Base URL of the Fulfillment API. |
+| `LogisticsBaseUrl` | `string` | `https://api.ebay.com/sell/logistics/v1_beta` | Base URL of the Logistics API. |
+| `PostOrderApiBaseUrl` | `string` | `https://api.ebay.com/post-order/v2` | Base URL of the Post-Order API. |
+| `GraphQLBaseUrl` | `string` | `https://api.ebay.com/graphql` | Base URL of the GraphQL endpoint. |
+| `AccessToken` | `string?` |  | Fallback bearer token used when no per-call accessToken is supplied. |
+| `DiagnosticLogging` | `bool` | `false` | When true, logs the HTTP method, URL, status code, and response reason phrase for all non-success responses to stderr. |
+| `HttpTimeout` | `TimeSpan` | 30 seconds | Timeout applied to all HTTP requests. |
+| `DefaultRequestOptions` | `RequestOptions` | no headers | Default headers applied to every REST request. |
+| `AllowedHosts` | `IList<string>` | empty | Additional hosts trusted with the access token, for example a proxy (see below). |
+
+`OrderManagementConfiguration.DefaultAllowedHosts` lists the hosts trusted by default.
+
+## Sandbox and trusted hosts
+
+The access token is only sent to trusted hosts: the hosts in `OrderManagementConfiguration.DefaultAllowedHosts`, which are the eBay production hosts and their `*.sandbox.ebay.com` counterparts, plus any in `AllowedHosts`. Switching to the sandbox needs only the base URLs:
+
+```csharp
+var sandboxConfig = new OrderManagementConfiguration
+{
+    AccessToken = Environment.GetEnvironmentVariable("EBAY_SANDBOX_ACCESS_TOKEN"),
+    FulfillmentBaseUrl = "https://apiz.sandbox.ebay.com/sell/fulfillment/v1",
+    LogisticsBaseUrl = "https://api.sandbox.ebay.com/sell/logistics/v1_beta",
+    PostOrderApiBaseUrl = "https://api.sandbox.ebay.com/post-order/v2",
+    GraphQLBaseUrl = "https://graphqlapi.sandbox.ebay.com/graphql",
+};
+```
+
+Any other host, for example a proxy that forwards to eBay, has to be added to `AllowedHosts`; the client constructor throws `InvalidOperationException` otherwise:
+
+```csharp
+var proxied = new OrderManagementConfiguration
+{
+    FulfillmentBaseUrl = "https://ebay-proxy.example.com/sell/fulfillment/v1",
+    AllowedHosts = { "ebay-proxy.example.com" },
+};
+```
+
+## Dependency injection
+
+`AddOrderManagementSdk` registers the configuration and one shared `OrderManagementClient` as a singleton. It owns its HTTP connections and is disposed with the container. Inject the client and use its properties for the individual APIs:
 
 ```csharp
 using EBay.OrderManagement;
 using EBay.OrderManagement.Configuration;
 using EBay.OrderManagement.Extensions;
 
-builder.Services.AddOrderManagementSdk(new OrderManagementConfiguration());
-
-public class OrdersController : ControllerBase
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddOrderManagementSdk(new OrderManagementConfiguration
 {
-    private readonly OrderManagementClient _sdk;
+    AccessToken = builder.Configuration["EBay:AccessToken"]
+});
 
-    public OrdersController(OrderManagementClient sdk) => _sdk = sdk;
-
-    [HttpGet("{orderId}")]
-    public async Task<IActionResult> GetOrder(string orderId, [FromHeader] string authorization)
-    {
-        var order = await _sdk.Fulfillment.GetOrderAsync(orderId, accessToken: authorization["Bearer ".Length..]);
-        return Ok(order);
-    }
-}
-```
-
-To route requests through your own handler (proxy, client certificates, a test double), pass it to the constructor: `new OrderManagementClient(config, handler)`. The handler is shared by all APIs and is not disposed by the client.
-
-## REST API Examples
-
-### Fulfillment API
-
-```csharp
-// Get a specific order
-var order = await client.Fulfillment.GetOrderAsync("12345");
-
-// Get orders with filter
-var orders = await client.Fulfillment.GetOrdersAsync(
-    filter: "orderfulfillmentstatus:{NOT_STARTED}",
-    limit: 100,
-    offset: 0);
-
-// Get payment dispute
-var dispute = await client.Fulfillment.GetPaymentDisputeAsync("dispute-123");
-
-// Get payment dispute summaries
-var summaries = await client.Fulfillment.GetPaymentDisputeSummariesAsync();
-
-// Get shipping fulfillments for an order
-var fulfillments = await client.Fulfillment.GetShippingFulfillmentsAsync("order-123");
-```
-
-### Logistics API
-
-```csharp
-// Get shipping quote
-var quote = await client.Logistics.GetShippingQuoteAsync("quote-123");
-
-// Get shipment
-var shipment = await client.Logistics.GetShipmentAsync("shipment-123");
-```
-
-## GraphQL API Examples
-
-### Typed Operations
-
-```csharp
-using OrderManagement.Models.GraphQL;
-
-// Get orders with filtering and pagination
-var result = await client.GraphQL.GetOrdersAsync(
-    new OrdersInput
-    {
-        Filter = new OrderFilter
-        {
-            OrderStatus = "ACTIVE",
-            CreationDateRange = "2024-01-01T00:00:00Z..2024-12-31T23:59:59Z"
-        },
-        Pagination = new PaginationInput
-        {
-            Limit = 50,
-            Offset = 0
-        }
-    });
-
-if (result != null)
+var app = builder.Build();
+app.MapGet("/example", async (OrderManagementClient client) =>
 {
-    Console.WriteLine($"Total orders: {result.PaginationOutput?.Total}");
-    
-    foreach (var order in result.Orders)
-    {
-        Console.WriteLine($"Order {order.OrderId}: {order.OrderStatus}");
-        Console.WriteLine($"Buyer: {order.Buyer?.Username}");
-        Console.WriteLine($"Total: {order.PricingSummary?.Total?.Value} " +
-                          $"{order.PricingSummary?.Total?.Currency}");
-        
-        foreach (var item in order.LineItems)
-        {
-            Console.WriteLine($"  - {item.Title} x{item.Quantity}");
-        }
-    }
-}
+    var orders = await client.Fulfillment.GetOrdersAsync(limit: "10");
+    return Results.Ok();
+});
+app.Run();
 ```
 
-### Dynamic Queries (Escape Hatch)
+## Custom HTTP handler
+
+To send requests through your own handler, for example for a proxy, client certificates or a test double, pass it to the constructor. The handler is shared by all APIs and is not disposed by the client:
 
 ```csharp
-// Execute arbitrary GraphQL query
-var result = await client.GraphQL.ExecuteRawAsync(@"
-    query GetOrderDetails($orderId: ID!) {
-      ordersByIds(input: { orderIds: [$orderId] }) {
-        orderId
-        orderStatus
-        lineItems {
-          lineItemId
-          title
-          quantity
-          lineItemCost {
-            value
-            currency
-          }
-        }
-      }
-    }",
-    variables: new { orderId = "12345" });
-
-// Parse the JSON response
-var data = result.RootElement.GetProperty("data");
-// ... process the response
+var handler = new HttpClientHandler { Proxy = new WebProxy("http://corporate-proxy:8080") };
+using var proxiedClient = new OrderManagementClient(config, handler);
 ```
 
-## Supported Operations
-
-### Fulfillment API (REST)
-- Order Management: `getOrder`, `getOrders`
-- Payment Disputes: `getPaymentDispute`, `getPaymentDisputeSummaries`
-- Shipping Fulfillments: `getShippingFulfillments`
-
-### Logistics API (REST)
-- Shipping Quotes: `createShippingQuote`, `getShippingQuote`
-- Shipments: `getShipment`, `cancelShipment`
-
-### GraphQL Operations
-- **Orders**: `orders`, `ordersByIds`, `markOrdersPaid`
-- **Cancellations**: `sellerContractCancellations`, `createOrderCancellation`, `approveContractCancellation`
-- **Returns**: `orderReturn`, `approveReturn`, `processReturnRefund`
-- **Item Commitments**: `itemCommitments`, `itemCommitmentsByIds`
-
-## Regenerating the SDK
-
-When OpenAPI specs or GraphQL schemas change:
-
-```bash
-# Run the regeneration script
-./generate.sh
-
-# Or manually:
-dotnet tool restore
-dotnet kiota generate -l csharp -d specs/openapi/fulfillment.yaml ...
-dotnet build OrderManagementSdk/OrderManagementSdk.csproj
-```
-
-## Error Handling
+## Error handling
 
 ```csharp
-using OrderManagement.Exceptions;
-
 try
 {
-    var result = await client.GraphQL.GetOrdersAsync(input);
+    var orders = await client.Fulfillment.GetOrdersAsync(limit: "10");
+}
+catch (UnauthorizedException)
+{
+    // HTTP 401: the token is missing, expired, for the other environment, or lacks a scope.
+}
+catch (ApiException ex)
+{
+    // Any other REST error.
+    Console.WriteLine($"HTTP {ex.ResponseStatusCode}");
 }
 catch (GraphQLException ex)
 {
-    foreach (var error in ex.Errors)
-    {
-        Console.WriteLine($"GraphQL Error: {error.Message}");
-        if (error.Path != null)
-        {
-            Console.WriteLine($"Path: {string.Join(" > ", error.Path)}");
-        }
-    }
-}
-catch (SdkException ex)
-{
-    Console.WriteLine($"SDK Error: {ex.Message}");
-}
-catch (HttpRequestException ex)
-{
-    Console.WriteLine($"HTTP Error: {ex.Message}");
+    // GraphQL "errors" in the response.
+    Console.WriteLine(string.Join("; ", ex.Errors));
 }
 ```
 
-## Configuration Options
+- `UnauthorizedException` (HTTP 401) and `GraphQLException` derive from `SdkException`.
+- Other REST errors throw Kiota's `ApiException`, or a generated subclass named in eBay's spec for that operation, with `ResponseStatusCode`. eBay's error text is only available where the spec describes the error body correctly; set `DiagnosticLogging = true` to log failed requests to stderr.
 
-| Property | Default | Description |
-|----------|---------|-------------|
-| `FulfillmentBaseUrl` | `https://api.ebay.com/sell/fulfillment/v1` | Fulfillment API base URL |
-| `LogisticsBaseUrl` | `https://api.ebay.com/sell/logistics/v1` | Logistics API base URL |
-| `GraphQLBaseUrl` | `https://api.ebay.com/graphql` | GraphQL API endpoint |
-| `TokenRefreshHandler` | (required) | OAuth token refresh handler |
+## .NET Framework
 
-## Project Structure
+The `net472` build is a classic package that `packages.config` projects can use. Such projects must list every dependency themselves. At the minimum versions the SDK supports, these are:
 
-- **Generated/**: Kiota-generated REST clients (internal, committed to git)
-- **Clients/Rest/**: Hand-crafted wrappers exposing public API
-- **Clients/GraphQL/**: GraphQL typed client + dynamic escape hatch
-- **Configuration/**: SDK config, auth providers
-- **Models/**: Public models and GraphQL types
-- **Exceptions/**: SDK exceptions
-- **Extensions/**: DI extension methods
+| Package | Version |
+|---|---|
+| Microsoft.Kiota.Abstractions, .Bundle, .Http.HttpClientLibrary, .Serialization.Form, .Serialization.Json, .Serialization.Multipart, .Serialization.Text | 1.22.0 |
+| Std.UriTemplate | 2.0.8 |
+| Microsoft.IO.RecyclableMemoryStream | 3.0.1 |
+| Microsoft.Extensions.DependencyInjection.Abstractions | 6.0.0 |
+| System.Diagnostics.DiagnosticSource, System.Net.Http.WinHttpHandler | 6.0.0 |
+| System.Text.Json, System.Text.Encodings.Web, System.IO.Pipelines, Microsoft.Bcl.AsyncInterfaces | 10.0.0 |
+| System.Runtime.CompilerServices.Unsafe | 6.1.2 |
+| System.Memory, System.Threading.Tasks.Extensions | 4.6.3 |
+| System.Buffers, System.Numerics.Vectors, System.ValueTuple | 4.6.1 |
+
+With these versions the app needs binding redirects for Microsoft.Bcl.AsyncInterfaces (10.0.0.0), System.Buffers (4.0.5.0), System.Memory (4.0.5.0), System.Runtime.CompilerServices.Unsafe (6.0.3.0), System.Text.Encodings.Web (10.0.0.0), System.Text.Json (10.0.0.0) and System.Threading.Tasks.Extensions (4.2.4.0). There must be no redirect for System.ValueTuple: .NET Framework 4.7.1+ provides it. Newer package versions work too and change the redirect versions.
 
 ## Development
 
-### Prerequisites
+- .NET 10 SDK, plus the .NET 8 and .NET 9 SDKs so every target framework builds. `net472` builds on any OS; its tests run on Windows only.
+- Build: `dotnet build EBay.OrderManagement`
+- Test: `dotnet test tests/EBay.OrderManagement.Tests`
+- Most of this repository is generated from eBay's API specs by the SDK generator (`api-sdk-definitions`): the API clients, `Configuration/`, `Extensions/`, `OrderManagementClient.cs`, `specs/` and `generate.sh`. Change the generator, not the generated files. `./generate.sh` reruns Kiota for the specs in `specs/openapi`.
 
-- .NET 10 SDK, plus the .NET 8 and .NET 9 SDKs so every target framework can build
-- `net472` builds on any OS (reference assemblies come from NuGet); its tests run on Windows only
-- Kiota CLI tool (auto-installed via dotnet tools)
-
-### Building
-
-```bash
-dotnet build OrderManagementSdk/OrderManagementSdk.csproj
-```
-
-### Packaging
-
-```bash
-dotnet pack OrderManagementSdk/OrderManagementSdk.csproj
-```
-
-## Dependencies
-
-- **Microsoft.Kiota.Bundle**: REST client generation and runtime
-- **Microsoft.Extensions.DependencyInjection.Abstractions**: `AddOrderManagementSdk` registration
-- **System.Text.Json** (.NET Framework only): GraphQL request and response serialization
+See [CONTRIBUTING.adoc](CONTRIBUTING.adoc).
 
 ## License
 
-[Apache 2.0](LICENSE) © 2026 eBay Inc.
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Run `./generate.sh` if specs changed
-5. Ensure `dotnet build` succeeds
-6. Submit a pull request
+Apache 2.0, see [LICENSE](LICENSE).
