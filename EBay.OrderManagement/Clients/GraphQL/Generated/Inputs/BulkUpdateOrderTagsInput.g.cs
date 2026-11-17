@@ -29,7 +29,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         private bool _set_updates;
 
         /// <summary>
-        /// The list of individual input.
+        /// This array is used to provide updates to one or more order tags.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<UpdateOrderTagInput> Updates
         {

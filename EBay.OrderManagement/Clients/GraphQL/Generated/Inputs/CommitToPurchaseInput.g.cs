@@ -64,6 +64,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The number of units requested by the buyer. This value can not exceed the available quantity of the listing.
+        ///
         /// **Default**: 1
         /// </summary>
         public int? Quantity
@@ -77,7 +78,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This boolean specifies if the buyer gives their consent to buy an item. This field is required if the item is in a category that requires user consent. If 'true', this boolean confirms that the buyer has read and agrees to eBay's privacy policy. If this field is 'false' and the item category requires user consent, an error will occur.
+        /// This boolean specifies if the buyer gives their consent to buy an item. This field is required if the item is in a category that requires user consent. If `true`, this boolean confirms that the buyer has read and agrees to eBay's privacy policy. If this field is `false` and the item category requires user consent, an error will occur.
+        ///
         /// **Default**: false
         /// </summary>
         public bool? UserConsentReceived
@@ -91,7 +93,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This boolean specifies if the buyer can bid on adult-only items. This field is required if the item is in a category that requires adult verification. If 'true', this field confirms that the buyer has been verified as an adult. If this field is 'false' and the item category requires adult verification, an error will occur.
+        /// This boolean specifies if the buyer can bid on adult-only items. This field is required if the item is in a category that requires adult verification. If `true`, this field confirms that the buyer has been verified as an adult. If this field is `false` and the item category requires adult verification, an error will occur.
+        ///
         /// **Default**: false
         /// </summary>
         public bool? UserVerifiedAsAdult

@@ -33,7 +33,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// The eBay-standard carrier code for the shipping carrier which must match one of the supported eBay carrier codes for the marketplace. Use the special value `UNSUPPORTED` if the carrier is not supported or recognized by eBay for the marketplace. For unsupported carriers, provide the carrier name in the **unsupportedCarrierName** field.
         ///
-        /// **Note:** Use the **Metadata API** &lt;a href="https://developer.ebay.com/api-docs/sell/metadata/resources/shipping:marketplace/methods/getShippingCarriers" target="_blank"&gt;getShippingCarriers&lt;/a&gt; method to retrieve **shippingCarrier** codes for an eBay marketplace.
+        /// **Note**: Use the **Metadata API** &lt;a href=\"https://developer.ebay.com/api-docs/sell/metadata/resources/shipping:marketplace/methods/getShippingCarriers\" target=\"_blank\"&gt;getShippingCarriers&lt;/a&gt; method to retrieve **shippingCarrier** codes for an eBay marketplace.
         /// </summary>
         public string CarrierCode
         {

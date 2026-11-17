@@ -58,21 +58,9 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
         /// <summary>The enumeration value returned in this field indicates the method of fulfillment that will be used to deliver this set of line items (this package) to the buyer. This field will have a value of &lt;code&gt;SHIP_TO&lt;/code&gt; if the &lt;strong&gt;ebaySupportedFulfillment&lt;/strong&gt; field is returned with a value of &lt;code&gt;true&lt;/code&gt;. See the &lt;strong&gt;FulfillmentInstructionsType&lt;/strong&gt; definition for more information about different fulfillment types.</summary>
         public global::EBay.OrderManagement.Generated.Fulfillment.Models.FulfillmentInstructionsType? FulfillmentInstructionsType { get; set; }
         /// <summary>This is the estimated latest date that the fulfillment will be completed. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned ifthe value of the &lt;strong&gt;fulfillmentInstructionsType&lt;/strong&gt; field is &lt;code&gt;DIGITAL&lt;/code&gt; or &lt;code&gt;PREPARE_FOR_PICKUP&lt;/code&gt;.  &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? MaxEstimatedDeliveryDate { get; set; }
-#nullable restore
-#else
-        public string MaxEstimatedDeliveryDate { get; set; }
-#endif
+        public DateTimeOffset? MaxEstimatedDeliveryDate { get; set; }
         /// <summary>This is the estimated earliest date that the fulfillment will be completed. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned if  the value of the &lt;strong&gt;fulfillmentInstructionsType&lt;/strong&gt; field is &lt;code&gt;DIGITAL&lt;/code&gt; or &lt;code&gt;PREPARE_FOR_PICKUP&lt;/code&gt;.  &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? MinEstimatedDeliveryDate { get; set; }
-#nullable restore
-#else
-        public string MinEstimatedDeliveryDate { get; set; }
-#endif
+        public DateTimeOffset? MinEstimatedDeliveryDate { get; set; }
         /// <summary>This container is only returned for In-Store Pickup orders, and it indicates the specific merchant&apos;s store where the buyer will pick up the order. The In-Store Pickup feature is supported in the US, Canada, UK, Germany, and Australia marketplaces.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -119,8 +107,8 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
                 { "ebaySupportedFulfillment", n => { EbaySupportedFulfillment = n.GetBoolValue(); } },
                 { "finalDestinationAddress", n => { FinalDestinationAddress = n.GetObjectValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.Address>(global::EBay.OrderManagement.Generated.Fulfillment.Models.Address.CreateFromDiscriminatorValue); } },
                 { "fulfillmentInstructionsType", n => { FulfillmentInstructionsType = n.GetEnumValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.FulfillmentInstructionsType>(); } },
-                { "maxEstimatedDeliveryDate", n => { MaxEstimatedDeliveryDate = n.GetStringValue(); } },
-                { "minEstimatedDeliveryDate", n => { MinEstimatedDeliveryDate = n.GetStringValue(); } },
+                { "maxEstimatedDeliveryDate", n => { MaxEstimatedDeliveryDate = n.GetDateTimeOffsetValue(); } },
+                { "minEstimatedDeliveryDate", n => { MinEstimatedDeliveryDate = n.GetDateTimeOffsetValue(); } },
                 { "pickupStep", n => { PickupStep = n.GetObjectValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.PickupStep>(global::EBay.OrderManagement.Generated.Fulfillment.Models.PickupStep.CreateFromDiscriminatorValue); } },
                 { "shippingStep", n => { ShippingStep = n.GetObjectValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.ShippingStep>(global::EBay.OrderManagement.Generated.Fulfillment.Models.ShippingStep.CreateFromDiscriminatorValue); } },
             };
@@ -137,8 +125,8 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
             writer.WriteBoolValue("ebaySupportedFulfillment", EbaySupportedFulfillment);
             writer.WriteObjectValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.Address>("finalDestinationAddress", FinalDestinationAddress);
             writer.WriteEnumValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.FulfillmentInstructionsType>("fulfillmentInstructionsType", FulfillmentInstructionsType);
-            writer.WriteStringValue("maxEstimatedDeliveryDate", MaxEstimatedDeliveryDate);
-            writer.WriteStringValue("minEstimatedDeliveryDate", MinEstimatedDeliveryDate);
+            writer.WriteDateTimeOffsetValue("maxEstimatedDeliveryDate", MaxEstimatedDeliveryDate);
+            writer.WriteDateTimeOffsetValue("minEstimatedDeliveryDate", MinEstimatedDeliveryDate);
             writer.WriteObjectValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.PickupStep>("pickupStep", PickupStep);
             writer.WriteObjectValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.ShippingStep>("shippingStep", ShippingStep);
             writer.WriteAdditionalData(AdditionalData);

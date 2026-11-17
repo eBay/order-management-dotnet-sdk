@@ -37,6 +37,14 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
 #else
         public global::EBay.OrderManagement.Generated.Fulfillment.Models.ExtendedContact BuyerRegistrationAddress { get; set; }
 #endif
+        /// <summary>The external identifiers associated with the buyer.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::EBay.OrderManagement.Generated.Fulfillment.Models.ExternalId>? ExternalIds { get; set; }
+#nullable restore
+#else
+        public List<global::EBay.OrderManagement.Generated.Fulfillment.Models.ExternalId> ExternalIds { get; set; }
+#endif
         /// <summary>This container consists of address information that can be used by sellers for tax purpose.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; When using the eBay vault program, if an item is shipped to a vault, the tax address will be the vault address.&lt;/span&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -87,6 +95,7 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "buyerRegistrationAddress", n => { BuyerRegistrationAddress = n.GetObjectValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.ExtendedContact>(global::EBay.OrderManagement.Generated.Fulfillment.Models.ExtendedContact.CreateFromDiscriminatorValue); } },
+                { "externalIds", n => { ExternalIds = n.GetCollectionOfObjectValues<global::EBay.OrderManagement.Generated.Fulfillment.Models.ExternalId>(global::EBay.OrderManagement.Generated.Fulfillment.Models.ExternalId.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "taxAddress", n => { TaxAddress = n.GetObjectValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.TaxAddress>(global::EBay.OrderManagement.Generated.Fulfillment.Models.TaxAddress.CreateFromDiscriminatorValue); } },
                 { "taxIdentifier", n => { TaxIdentifier = n.GetObjectValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.TaxIdentifier>(global::EBay.OrderManagement.Generated.Fulfillment.Models.TaxIdentifier.CreateFromDiscriminatorValue); } },
                 { "username", n => { Username = n.GetStringValue(); } },
@@ -100,6 +109,7 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.ExtendedContact>("buyerRegistrationAddress", BuyerRegistrationAddress);
+            writer.WriteCollectionOfObjectValues<global::EBay.OrderManagement.Generated.Fulfillment.Models.ExternalId>("externalIds", ExternalIds);
             writer.WriteObjectValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.TaxAddress>("taxAddress", TaxAddress);
             writer.WriteObjectValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.TaxIdentifier>("taxIdentifier", TaxIdentifier);
             writer.WriteStringValue("username", Username);

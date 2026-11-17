@@ -33,8 +33,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// An optional message from the seller to the buyer regarding the overall approval. The message is stored as provided and not localized.
         ///
-        /// **Minimum length:** 1 character
-        /// **Maximum length:** 500 characters
+        /// **Maximum length**: 500 characters
         /// </summary>
         public string? ApprovalNote
         {
@@ -47,7 +46,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The unique identifier of the Return to approve. This must be a valid return request that the user has permission to access and approve.
+        /// The unique identifier of the return request to approve. This must be a valid return request that the user has permission to access and approve.
         /// </summary>
         public string ReturnId
         {

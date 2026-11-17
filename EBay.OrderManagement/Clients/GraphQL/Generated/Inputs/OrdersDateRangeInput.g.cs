@@ -31,7 +31,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         private bool _set_dateType;
 
         /// <summary>
-        /// The date-type range to apply to the delected **dateType**.
+        /// The date-time range to apply to the selected **dateType** value.
         /// </summary>
         public DateTimeRangeInput DateTimeRange
         {
@@ -44,7 +44,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The order type of date to filter, such as `CONFIRMED` or `UPDATED`.
+        /// The type of date to filter, such as `CONFIRMED` or `UPDATED`.
         /// </summary>
         public OrdersDateType DateType
         {

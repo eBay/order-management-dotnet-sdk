@@ -23,12 +23,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This enumerated type provides values for contract cancellations sorting criteria.
     ///
-    /// **Note:** Additional sort fields may be added in the future; clients should handle unrecognized values gracefully.
+    /// **Note**: Additional sort fields may be added in the future; clients should handle unrecognized values gracefully.
     /// </summary>
     public enum ContractCancellationSortField
     {
         /// <summary>
-        /// The request date timestamp of the contract cancellation.
+        /// This value indicates that contract cancellations will be sorted according to request date timestamp.
         /// </summary>
         RequestedAt
     }

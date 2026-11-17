@@ -33,7 +33,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// The unique identifier of the rule to delete.
         ///
-        /// **Note:** Deletion is permanent. Once deleted, the rule is no longer active, will not be evaluated, and cannot be modified or re-enabled.
+        /// **Note**: Deletion is permanent. Once deleted, the rule is no longer active, will not be evaluated, and cannot be modified or re-enabled.
         /// </summary>
         public string RuleId
         {

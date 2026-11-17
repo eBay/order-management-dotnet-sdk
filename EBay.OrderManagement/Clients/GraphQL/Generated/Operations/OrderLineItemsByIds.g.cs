@@ -26,13 +26,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IOrderLineItemsByIdsResult
     {
         /// <summary>
-        /// The **orderLineItemsByIds** query retrieves one or more line items from orders using their unique IDs. This allows for direct access to individual line items without requiring retrival of the full order. Use this query operations requiring a line-item level retrieval such as fulfillment, returns, or inventory processing. Accepts up to 100 identifiers. Line items not found will be excluded from the results.
+        ///   This query can be used to retrieve one or more line items from orders using their unique IDs. This allows for direct access to individual line items without requiring retrival of the full order. Use this query for operations requiring a line-item level retrieval such as fulfillment, returns, or inventory processing. You can access up to 100 identifiers for each query.
         ///
-        /// Possible Errors:
-        /// | Code                  |  Message                                                                     |
-        /// |-----------------------|------------------------------------------------------------------------------|
-        /// | BAD_INPUT_VALUE       |  Input size is 0 or over the limit. Please provide valid input.              |
-        /// | INTERNAL_SERVER_ERROR |  System failure.                                                             |
+        ///   **Note**: Line items not found will be excluded from the results.
+        ///
+        ///   ### HTTP Headers
+        ///   - **X-EBAY-C-MARKETPLACE-ID**: Determines the site/marketplace id associated with the calling context. Defaults to EBAY-US.
         /// </summary>
         public IOrderLineItemsByIds_OrderLineItemsByIds OrderLineItemsByIds { get; }
     }
@@ -48,13 +47,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The **orderLineItemsByIds** query retrieves one or more line items from orders using their unique IDs. This allows for direct access to individual line items without requiring retrival of the full order. Use this query operations requiring a line-item level retrieval such as fulfillment, returns, or inventory processing. Accepts up to 100 identifiers. Line items not found will be excluded from the results.
+        ///   This query can be used to retrieve one or more line items from orders using their unique IDs. This allows for direct access to individual line items without requiring retrival of the full order. Use this query for operations requiring a line-item level retrieval such as fulfillment, returns, or inventory processing. You can access up to 100 identifiers for each query.
         ///
-        /// Possible Errors:
-        /// | Code                  |  Message                                                                     |
-        /// |-----------------------|------------------------------------------------------------------------------|
-        /// | BAD_INPUT_VALUE       |  Input size is 0 or over the limit. Please provide valid input.              |
-        /// | INTERNAL_SERVER_ERROR |  System failure.                                                             |
+        ///   **Note**: Line items not found will be excluded from the results.
+        ///
+        ///   ### HTTP Headers
+        ///   - **X-EBAY-C-MARKETPLACE-ID**: Determines the site/marketplace id associated with the calling context. Defaults to EBAY-US.
         /// </summary>
         public IOrderLineItemsByIds_OrderLineItemsByIds OrderLineItemsByIds { get; }
 
@@ -134,11 +132,11 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the error message. This string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string DisplayMessage { get; }
         /// <summary>
-        /// The ID of the line item ID that could not be retrieved.
+        /// The unique identifier of the line item that could not be retrieved.
         /// </summary>
         public string InputLineItemId { get; }
         /// <summary>
@@ -157,12 +155,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This type represents a complete failure for the **orderLineItemsByIds** query.
     ///
-    /// **Note:** No line items were successfully retrieved.
+    /// **Note**: No line items were successfully retrieved.
     /// </summary>
     public partial interface IOrderLineItemsByIds_OrderLineItemsByIds_OrderLineItemsByIdsCompleteFailure : IOrderLineItemsByIds_OrderLineItemsByIds
     {
         /// <summary>
-        /// A list of one or more line items that failed to retrieve.
+        /// A list of one or more line items that failed to be retrieved.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IOrderLineItemsByIds_OrderLineItemsByIds_Failures> Failures { get; }
         /// <summary>
@@ -172,7 +170,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the error message. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
     }
@@ -217,11 +215,11 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the error message. This string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string DisplayMessage { get; }
         /// <summary>
-        /// The ID of the line item ID that could not be retrieved.
+        /// The unique identifier of the line item that could not be retrieved.
         /// </summary>
         public string InputLineItemId { get; }
         /// <summary>
@@ -257,7 +255,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the error message. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
     }
@@ -322,12 +320,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the error message. This string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string DisplayMessage { get; }
 
         /// <summary>
-        /// The ID of the line item ID that could not be retrieved.
+        /// The unique identifier of the line item that could not be retrieved.
         /// </summary>
         public string InputLineItemId { get; }
 
@@ -405,7 +403,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This type represents a complete failure for the **orderLineItemsByIds** query.
     ///
-    /// **Note:** No line items were successfully retrieved.
+    /// **Note**: No line items were successfully retrieved.
     /// </summary>
     public partial class OrderLineItemsByIds_OrderLineItemsByIds_OrderLineItemsByIdsCompleteFailure : global::System.IEquatable<OrderLineItemsByIds_OrderLineItemsByIds_OrderLineItemsByIdsCompleteFailure>, IOrderLineItemsByIds_OrderLineItemsByIds_OrderLineItemsByIdsCompleteFailure
     {
@@ -420,7 +418,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// A list of one or more line items that failed to retrieve.
+        /// A list of one or more line items that failed to be retrieved.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IOrderLineItemsByIds_OrderLineItemsByIds_Failures> Failures { get; }
 
@@ -432,7 +430,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the error message. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
 
@@ -610,12 +608,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the error message. This string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string DisplayMessage { get; }
 
         /// <summary>
-        /// The ID of the line item ID that could not be retrieved.
+        /// The unique identifier of the line item that could not be retrieved.
         /// </summary>
         public string InputLineItemId { get; }
 
@@ -724,7 +722,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the error message. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
 

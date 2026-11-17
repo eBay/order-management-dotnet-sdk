@@ -35,7 +35,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         private bool _set_minAmountInListingCurrency;
 
         /// <summary>
-        /// Maximum refund amount in currency of listing marketplace.
+        /// The maximum refund amount in currency of listing marketplace.
         /// </summary>
         public decimal MaxAmountInListingCurrency
         {
@@ -50,7 +50,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// The minimum refund amount in currency of listing marketplace. The currency for minimum and maximum must be the same.
         ///
-        /// **Note:** A value of `0.0` indicates no minimum.
+        /// **Note**: A value of `0.0` indicates no minimum.
         ///
         /// **Default**: `0.0`
         /// </summary>

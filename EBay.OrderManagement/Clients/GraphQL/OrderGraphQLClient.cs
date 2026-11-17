@@ -30,22 +30,6 @@ public sealed class OrderGraphQLClient
         ITokenContext tokenContext)
         => (_executor, _dynamic, _tokenContext) = (executor, dynamic, tokenContext);
 
-    public Task<IAddListingsToReturnRuleListingGroup_AddListingsToReturnRuleListingGroup?> AddListingsToReturnRuleListingGroupAsync(
-        AddListingsToReturnRuleListingGroupInput input,
-        string? accessToken = null,
-        CancellationToken ct = default)
-        => _tokenContext.RunAsync(accessToken, async () =>
-        {
-            var result = await GraphQLInvocation.ExecuteAsync(() => _executor.ExecuteAsync(
-                AddListingsToReturnRuleListingGroupOperation.OperationName,
-                AddListingsToReturnRuleListingGroupOperation.Document,
-                writer => AddListingsToReturnRuleListingGroupOperation.WriteVariables(writer, input),
-                AddListingsToReturnRuleListingGroupOperation.Parse,
-                ct)).ConfigureAwait(false);
-            GraphQLInvocation.EnsureNoErrors(result);
-            return result.Data?.AddListingsToReturnRuleListingGroup;
-        });
-
     public Task<IAppendSellerReturnResponseRule_AppendSellerReturnResponseRule?> AppendSellerReturnResponseRuleAsync(
         AppendSellerReturnResponseRuleInput input,
         string? accessToken = null,
@@ -206,22 +190,6 @@ public sealed class OrderGraphQLClient
             return result.Data?.ContractCancellation;
         });
 
-    public Task<ICreateInStoreReturn_CreateInStoreReturn?> CreateInStoreReturnAsync(
-        CreateInStoreReturnInput input,
-        string? accessToken = null,
-        CancellationToken ct = default)
-        => _tokenContext.RunAsync(accessToken, async () =>
-        {
-            var result = await GraphQLInvocation.ExecuteAsync(() => _executor.ExecuteAsync(
-                CreateInStoreReturnOperation.OperationName,
-                CreateInStoreReturnOperation.Document,
-                writer => CreateInStoreReturnOperation.WriteVariables(writer, input),
-                CreateInStoreReturnOperation.Parse,
-                ct)).ConfigureAwait(false);
-            GraphQLInvocation.EnsureNoErrors(result);
-            return result.Data?.CreateInStoreReturn;
-        });
-
     public Task<ICreateItemCommitmentCancellation_CreateItemCommitmentCancellation?> CreateItemCommitmentCancellationAsync(
         CreateItemCommitmentCancellationInput input,
         string? accessToken = null,
@@ -286,22 +254,6 @@ public sealed class OrderGraphQLClient
             return result.Data?.CreatePurchaseQuoteCancellation;
         });
 
-    public Task<ICreateReturnRuleListingGroup_CreateReturnRuleListingGroup?> CreateReturnRuleListingGroupAsync(
-        CreateReturnRuleListingGroupInput input,
-        string? accessToken = null,
-        CancellationToken ct = default)
-        => _tokenContext.RunAsync(accessToken, async () =>
-        {
-            var result = await GraphQLInvocation.ExecuteAsync(() => _executor.ExecuteAsync(
-                CreateReturnRuleListingGroupOperation.OperationName,
-                CreateReturnRuleListingGroupOperation.Document,
-                writer => CreateReturnRuleListingGroupOperation.WriteVariables(writer, input),
-                CreateReturnRuleListingGroupOperation.Parse,
-                ct)).ConfigureAwait(false);
-            GraphQLInvocation.EnsureNoErrors(result);
-            return result.Data?.CreateReturnRuleListingGroup;
-        });
-
     public Task<IDeclineContractCancellation_DeclineContractCancellation?> DeclineContractCancellationAsync(
         DeclineContractCancellationInput input,
         string? accessToken = null,
@@ -332,22 +284,6 @@ public sealed class OrderGraphQLClient
                 ct)).ConfigureAwait(false);
             GraphQLInvocation.EnsureNoErrors(result);
             return result.Data?.DeclineReturn;
-        });
-
-    public Task<IDeleteReturnRuleListingGroup_DeleteReturnRuleListingGroup?> DeleteReturnRuleListingGroupAsync(
-        DeleteReturnRuleListingGroupInput input,
-        string? accessToken = null,
-        CancellationToken ct = default)
-        => _tokenContext.RunAsync(accessToken, async () =>
-        {
-            var result = await GraphQLInvocation.ExecuteAsync(() => _executor.ExecuteAsync(
-                DeleteReturnRuleListingGroupOperation.OperationName,
-                DeleteReturnRuleListingGroupOperation.Document,
-                writer => DeleteReturnRuleListingGroupOperation.WriteVariables(writer, input),
-                DeleteReturnRuleListingGroupOperation.Parse,
-                ct)).ConfigureAwait(false);
-            GraphQLInvocation.EnsureNoErrors(result);
-            return result.Data?.DeleteReturnRuleListingGroup;
         });
 
     public Task<IDeleteSellerReturnRule_DeleteSellerReturnRule?> DeleteSellerReturnRuleAsync(
@@ -686,22 +622,6 @@ public sealed class OrderGraphQLClient
                 ct)).ConfigureAwait(false);
             GraphQLInvocation.EnsureNoErrors(result);
             return result.Data?.RequestPurchaseQuote;
-        });
-
-    public Task<IReturnRuleListingGroup_ReturnRuleListingGroup?> ReturnRuleListingGroupAsync(
-        ReturnRuleListingGroupInput input,
-        string? accessToken = null,
-        CancellationToken ct = default)
-        => _tokenContext.RunAsync(accessToken, async () =>
-        {
-            var result = await GraphQLInvocation.ExecuteAsync(() => _executor.ExecuteAsync(
-                ReturnRuleListingGroupOperation.OperationName,
-                ReturnRuleListingGroupOperation.Document,
-                writer => ReturnRuleListingGroupOperation.WriteVariables(writer, input),
-                ReturnRuleListingGroupOperation.Parse,
-                ct)).ConfigureAwait(false);
-            GraphQLInvocation.EnsureNoErrors(result);
-            return result.Data?.ReturnRuleListingGroup;
         });
 
     public Task<ISellerContractCancellations_SellerContractCancellations?> SellerContractCancellationsAsync(

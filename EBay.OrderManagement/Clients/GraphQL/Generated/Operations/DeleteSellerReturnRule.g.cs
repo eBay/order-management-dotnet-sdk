@@ -28,7 +28,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// The **deleteSellerReturnRule** mutation allows the seller to delete the specified existing return automation rule.
         ///
-        /// **Note:** Deleted rules cannot be recovered.
+        /// **Note**: Deleted rules cannot be recovered.
         /// </summary>
         public IDeleteSellerReturnRule_DeleteSellerReturnRule DeleteSellerReturnRule { get; }
     }
@@ -46,7 +46,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// The **deleteSellerReturnRule** mutation allows the seller to delete the specified existing return automation rule.
         ///
-        /// **Note:** Deleted rules cannot be recovered.
+        /// **Note**: Deleted rules cannot be recovered.
         /// </summary>
         public IDeleteSellerReturnRule_DeleteSellerReturnRule DeleteSellerReturnRule { get; }
 
@@ -121,11 +121,11 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IDeleteSellerReturnRule_DeleteSellerReturnRule_DeleteSellerReturnRuleSuccess : IDeleteSellerReturnRule_DeleteSellerReturnRule
     {
         /// <summary>
-        /// The unique identifier of the deleted rule.
+        /// The unique identifier of the deleted return rule.
         /// </summary>
         public string RuleId { get; }
         /// <summary>
-        /// The name of the deleted rule.
+        /// The name of the deleted return rule.
         /// </summary>
         public string Name { get; }
     }
@@ -133,7 +133,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This error type indicates that the return rules feature is not enabled for the seller.
     ///
-    /// **Note:** The seller is authenticated but does not have the required feature capability enabled ramped for them.
+    /// **Note**: The seller is authenticated but does not have the required feature capability enabled ramped for them.
     /// </summary>
     public partial interface IDeleteSellerReturnRule_DeleteSellerReturnRule_ReturnRuleFeatureNotEnabledError : IDeleteSellerReturnRule_DeleteSellerReturnRule
     {
@@ -144,7 +144,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable error message. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
     }
@@ -161,11 +161,11 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable error message that the rule was not found. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
         /// <summary>
-        /// The **ruleId** which was not found.
+        /// The unique identifier of the return rule which was not found.
         /// </summary>
         public string RequestedRuleId { get; }
     }
@@ -185,12 +185,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// The unique identifier of the deleted rule.
+        /// The unique identifier of the deleted return rule.
         /// </summary>
         public string RuleId { get; }
 
         /// <summary>
-        /// The name of the deleted rule.
+        /// The name of the deleted return rule.
         /// </summary>
         public string Name { get; }
 
@@ -261,7 +261,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This error type indicates that the return rules feature is not enabled for the seller.
     ///
-    /// **Note:** The seller is authenticated but does not have the required feature capability enabled ramped for them.
+    /// **Note**: The seller is authenticated but does not have the required feature capability enabled ramped for them.
     /// </summary>
     public partial class DeleteSellerReturnRule_DeleteSellerReturnRule_ReturnRuleFeatureNotEnabledError : global::System.IEquatable<DeleteSellerReturnRule_DeleteSellerReturnRule_ReturnRuleFeatureNotEnabledError>, IDeleteSellerReturnRule_DeleteSellerReturnRule_ReturnRuleFeatureNotEnabledError
     {
@@ -282,7 +282,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable error message. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
 
@@ -373,12 +373,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable error message that the rule was not found. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
 
         /// <summary>
-        /// The **ruleId** which was not found.
+        /// The unique identifier of the return rule which was not found.
         /// </summary>
         public string RequestedRuleId { get; }
 

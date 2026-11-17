@@ -26,15 +26,9 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IMarkOrdersPaidResult
     {
         /// <summary>
-        /// The **markOrdersPaid** mutation marks up to 100 specified orders as payment received and is available only for the authorized user (the seller of the orders).
+        /// This mutation can be used to mark up to 100 specified orders as payment received and is available only for the authorized user (the seller of the orders).
         ///
-        /// **Note:** This action is irreversible.
-        ///
-        /// Possible Errors:
-        /// | Code                  |  Message                                                                     |
-        /// |-----------------------|------------------------------------------------------------------------------|
-        /// | BAD_INPUT_VALUE       |  Input size is 0 or over the limit. Please provide valid input.              |
-        /// | INTERNAL_SERVER_ERROR |  System failure.                                                             |
+        /// **Note**: This action is irreversible.
         /// </summary>
         public IMarkOrdersPaid_MarkOrdersPaid MarkOrdersPaid { get; }
     }
@@ -50,15 +44,9 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The **markOrdersPaid** mutation marks up to 100 specified orders as payment received and is available only for the authorized user (the seller of the orders).
+        /// This mutation can be used to mark up to 100 specified orders as payment received and is available only for the authorized user (the seller of the orders).
         ///
-        /// **Note:** This action is irreversible.
-        ///
-        /// Possible Errors:
-        /// | Code                  |  Message                                                                     |
-        /// |-----------------------|------------------------------------------------------------------------------|
-        /// | BAD_INPUT_VALUE       |  Input size is 0 or over the limit. Please provide valid input.              |
-        /// | INTERNAL_SERVER_ERROR |  System failure.                                                             |
+        /// **Note**: This action is irreversible.
         /// </summary>
         public IMarkOrdersPaid_MarkOrdersPaid MarkOrdersPaid { get; }
 
@@ -140,15 +128,15 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the error message. This string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string DisplayMessage { get; }
         /// <summary>
-        /// The ID of the order that failed to update.
+        /// The unique identifier of the order that failed to update.
         /// </summary>
         public string InputOrderId { get; }
         /// <summary>
-        /// When `true`, the operation can be retried and may succeed. When `false`, a retry will not succeed.
+        /// When this boolean field is returned as `true`, the operation can be retried and may succeed. When returned as `false`, a retry will not succeed.
         /// </summary>
         public bool Retryable { get; }
     }
@@ -163,14 +151,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This type represents a complete failure for a **markOrdersPaid** mutation. The response includes the orders that could not be marked as paid as specified in the request.
     ///
-    /// **Note:** No orders were successfully marked as paid.
+    /// **Note**: No orders were successfully marked as paid.
     /// </summary>
     public partial interface IMarkOrdersPaid_MarkOrdersPaid_MarkOrdersPaidCompleteFailure : IMarkOrdersPaid_MarkOrdersPaid
     {
         /// <summary>
         /// This array lists one or more orders that could not be updated.
         ///
-        /// **Note:** This list is never empty.
+        /// **Note**: This list is never empty.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IMarkOrdersPaid_MarkOrdersPaid_Failures> Failures { get; }
         /// <summary>
@@ -180,7 +168,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the error message. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
     }
@@ -191,11 +179,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_MethodName
     {
         /// <summary>
-        /// A unique identifier.
+        /// The unique identifier of the entity.
         /// </summary>
         public string Id { get; }
         /// <summary>
-        /// A human-readable name or description.
+        /// A human-readable name or description of the identifier entity .
+        ///
         /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayName { get; }
@@ -214,7 +203,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps
     {
         /// <summary>
-        /// This container shows the user-friendly description and unique identifier of the logistics step, for example, `Standard Shipping`.
+        /// This object shows the user-friendly description and unique identifier of the logistics step, for example, `Standard Shipping`.
         /// </summary>
         public IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_MethodName MethodName { get; }
     }
@@ -223,6 +212,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// This type convey details of a digital delivery logistics step involved in a fulfillment plan.
     /// </summary>
     public partial interface IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_DigitalDeliveryStep : IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps
+    {
+    }
+
+    /// <summary>
+    /// This type conveys details of a package drop-off logistics step involved in a fulfillment plan. This step is used when the seller is required to physically drop off the package at a designated location such as a post office, retail store, or authorized carrier drop-off point, as part of an intermediated shipping fulfillment. This step appears in both `logisticsPlanSteps` (the intended plan) and `logisticsExecutionSteps` (the actual execution) within the `logistics` field of an order.
+    /// </summary>
+    public partial interface IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_PackageDropOffStep : IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps
     {
     }
 
@@ -241,7 +237,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type convey details of a shipping logistics step involved in a fulfillment plan.
+    /// This type conveys the details of a shipping logistics step involved in a fulfillment plan.
     /// </summary>
     public partial interface IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_ShippingStep : IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps
     {
@@ -253,12 +249,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan
     {
         /// <summary>
-        /// The identifier displayed here will indicate the type of fufillment plan available to be used or selected to be used. Below are some possible values that can be returned here:
-        /// - SHIPPING: standard domestic or international shipping.
-        /// - INTERMEDIATED_SHIPPING: shipping that involves multiple shipping legs, with eBay or an eBay partner taking care of at least one of those shipping legs. Examples of this include Global Shipping Program, eBay International Shipping, eBay Vault, and Authenticity Guarantee.
-        /// - STORE_PICKUP: buyer picks up item at local store for a 'Buy online, pick up in store' (BOPIS) or 'Click and Collect' order.
-        /// - PICKUP: local pickup.
-        /// - DIGITAL_DELIVERY: digital delivery of an item, such as a gift card.
+        /// The identifier displayed here will indicate the type of fulfillment plan available to be used or selected to be used. Below are some possible values that can be returned here:
+        /// - `SHIPPING`: standard domestic or international shipping.
+        /// - `INTERMEDIATED_SHIPPING`: shipping that involves multiple shipping legs, with eBay or an eBay partner taking care of at least one of those shipping legs. Examples of this include Global Shipping Program, eBay International Shipping, eBay Vault, and Authenticity Guarantee.
+        /// - `STORE_PICKUP`: buyer picks up item at local store for a 'Buy online, pick up in store' (BOPIS) or 'Click and Collect' order.
+        /// - `PICKUP`: local pickup.
+        /// - `DIGITAL_DELIVERY`: digital delivery of an item, such as a gift card.
         /// </summary>
         public string PlanType { get; }
         /// <summary>
@@ -311,7 +307,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// A state representing when the order was abandoned before completion.
+    /// This type represents the state when the order was abandoned before completion.
     /// </summary>
     public partial interface IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_OrderState_OrderAbandoned : IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_OrderState
     {
@@ -330,7 +326,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// A state representing when the order was canceled.
+    /// This type represents the state when the order was canceled.
     /// </summary>
     public partial interface IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_OrderState_OrderCancelled : IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_OrderState
     {
@@ -412,7 +408,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// The current state of the funding process.
         ///
-        /// **Note:** Use this field to track and manage funding.
+        /// **Note**: Use this field to track and manage funding.
         /// </summary>
         public IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_OrderState_FundingState FundingState { get; }
         /// <summary>
@@ -433,7 +429,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type defines the unique identifier of an order, which is an confirmed request by a customer to purchase one or more products or services through an e-commerce platform. It contains all relevant details required to process, fulfill, and track the transaction, including customer information, items purchased, payment details, shipping data, and state updates.
+    /// This type defines the unique identifier of an order, which is a confirmed request by a customer to purchase one or more products or services through an e-commerce platform. It contains all relevant details required to process, fulfill, and track the transaction, including customer information, items purchased, payment details, shipping data, and state updates.
     /// </summary>
     public partial interface IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders
     {
@@ -444,18 +440,17 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// The timestamp when the order was initially created which marks the start of the order lifecycle.
         ///
-        /// **Note:** This is a non-null field, always.
+        /// **Note**: This object is never null.
         /// </summary>
         public global::System.DateTimeOffset PlacedAt { get; }
         /// <summary>
         /// The timestamp when the order was last updated. This timestamp captures changes made to order details, state, or related information.
         ///
-        /// **Note:** This is a non-null field, always.
+        /// **Note**: This object is never null.
         /// </summary>
         public global::System.DateTimeOffset UpdatedAt { get; }
         /// <summary>
-        /// Logistics information associated with the order, describing how the purchased items
-        /// will be fulfilled, delivered, or made available to the buyer.
+        /// This object returns logistics information associated with the order. This information describes how the purchased items will be fulfilled, delivered, or made available to the buyer.
         /// </summary>
         public IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics Logistics { get; }
         /// <summary>
@@ -465,7 +460,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type defines the unique identifier of an order, which is an confirmed request by a customer to purchase one or more products or services through an e-commerce platform. It contains all relevant details required to process, fulfill, and track the transaction, including customer information, items purchased, payment details, shipping data, and state updates.
+    /// This type defines the unique identifier of an order, which is a confirmed request by a customer to purchase one or more products or services through an e-commerce platform. It contains all relevant details required to process, fulfill, and track the transaction, including customer information, items purchased, payment details, shipping data, and state updates.
     /// </summary>
     public partial interface IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Order : IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders
     {
@@ -487,15 +482,15 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the error message. This string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string DisplayMessage { get; }
         /// <summary>
-        /// The ID of the order that failed to update.
+        /// The unique identifier of the order that failed to update.
         /// </summary>
         public string InputOrderId { get; }
         /// <summary>
-        /// When `true`, the operation can be retried and may succeed. When `false`, a retry will not succeed.
+        /// When this boolean field is returned as `true`, the operation can be retried and may succeed. When returned as `false`, a retry will not succeed.
         /// </summary>
         public bool Retryable { get; }
     }
@@ -519,7 +514,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the error message. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
         /// <summary>
@@ -538,11 +533,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_MethodName_1
     {
         /// <summary>
-        /// A unique identifier.
+        /// The unique identifier of the entity.
         /// </summary>
         public string Id { get; }
         /// <summary>
-        /// A human-readable name or description.
+        /// A human-readable name or description of the identifier entity .
+        ///
         /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayName { get; }
@@ -561,7 +557,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_1
     {
         /// <summary>
-        /// This container shows the user-friendly description and unique identifier of the logistics step, for example, `Standard Shipping`.
+        /// This object shows the user-friendly description and unique identifier of the logistics step, for example, `Standard Shipping`.
         /// </summary>
         public IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_MethodName_1 MethodName { get; }
     }
@@ -570,6 +566,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// This type convey details of a digital delivery logistics step involved in a fulfillment plan.
     /// </summary>
     public partial interface IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_DigitalDeliveryStep_1 : IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_1
+    {
+    }
+
+    /// <summary>
+    /// This type conveys details of a package drop-off logistics step involved in a fulfillment plan. This step is used when the seller is required to physically drop off the package at a designated location such as a post office, retail store, or authorized carrier drop-off point, as part of an intermediated shipping fulfillment. This step appears in both `logisticsPlanSteps` (the intended plan) and `logisticsExecutionSteps` (the actual execution) within the `logistics` field of an order.
+    /// </summary>
+    public partial interface IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_PackageDropOffStep_1 : IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_1
     {
     }
 
@@ -588,7 +591,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type convey details of a shipping logistics step involved in a fulfillment plan.
+    /// This type conveys the details of a shipping logistics step involved in a fulfillment plan.
     /// </summary>
     public partial interface IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_ShippingStep_1 : IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_1
     {
@@ -600,12 +603,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_1
     {
         /// <summary>
-        /// The identifier displayed here will indicate the type of fufillment plan available to be used or selected to be used. Below are some possible values that can be returned here:
-        /// - SHIPPING: standard domestic or international shipping.
-        /// - INTERMEDIATED_SHIPPING: shipping that involves multiple shipping legs, with eBay or an eBay partner taking care of at least one of those shipping legs. Examples of this include Global Shipping Program, eBay International Shipping, eBay Vault, and Authenticity Guarantee.
-        /// - STORE_PICKUP: buyer picks up item at local store for a 'Buy online, pick up in store' (BOPIS) or 'Click and Collect' order.
-        /// - PICKUP: local pickup.
-        /// - DIGITAL_DELIVERY: digital delivery of an item, such as a gift card.
+        /// The identifier displayed here will indicate the type of fulfillment plan available to be used or selected to be used. Below are some possible values that can be returned here:
+        /// - `SHIPPING`: standard domestic or international shipping.
+        /// - `INTERMEDIATED_SHIPPING`: shipping that involves multiple shipping legs, with eBay or an eBay partner taking care of at least one of those shipping legs. Examples of this include Global Shipping Program, eBay International Shipping, eBay Vault, and Authenticity Guarantee.
+        /// - `STORE_PICKUP`: buyer picks up item at local store for a 'Buy online, pick up in store' (BOPIS) or 'Click and Collect' order.
+        /// - `PICKUP`: local pickup.
+        /// - `DIGITAL_DELIVERY`: digital delivery of an item, such as a gift card.
         /// </summary>
         public string PlanType { get; }
         /// <summary>
@@ -658,7 +661,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// A state representing when the order was abandoned before completion.
+    /// This type represents the state when the order was abandoned before completion.
     /// </summary>
     public partial interface IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_OrderState_OrderAbandoned_1 : IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_OrderState_1
     {
@@ -677,7 +680,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// A state representing when the order was canceled.
+    /// This type represents the state when the order was canceled.
     /// </summary>
     public partial interface IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_OrderState_OrderCancelled_1 : IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_OrderState_1
     {
@@ -759,7 +762,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// The current state of the funding process.
         ///
-        /// **Note:** Use this field to track and manage funding.
+        /// **Note**: Use this field to track and manage funding.
         /// </summary>
         public IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_OrderState_FundingState_1 FundingState { get; }
         /// <summary>
@@ -780,7 +783,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type defines the unique identifier of an order, which is an confirmed request by a customer to purchase one or more products or services through an e-commerce platform. It contains all relevant details required to process, fulfill, and track the transaction, including customer information, items purchased, payment details, shipping data, and state updates.
+    /// This type defines the unique identifier of an order, which is a confirmed request by a customer to purchase one or more products or services through an e-commerce platform. It contains all relevant details required to process, fulfill, and track the transaction, including customer information, items purchased, payment details, shipping data, and state updates.
     /// </summary>
     public partial interface IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_1
     {
@@ -791,18 +794,17 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// The timestamp when the order was initially created which marks the start of the order lifecycle.
         ///
-        /// **Note:** This is a non-null field, always.
+        /// **Note**: This object is never null.
         /// </summary>
         public global::System.DateTimeOffset PlacedAt { get; }
         /// <summary>
         /// The timestamp when the order was last updated. This timestamp captures changes made to order details, state, or related information.
         ///
-        /// **Note:** This is a non-null field, always.
+        /// **Note**: This object is never null.
         /// </summary>
         public global::System.DateTimeOffset UpdatedAt { get; }
         /// <summary>
-        /// Logistics information associated with the order, describing how the purchased items
-        /// will be fulfilled, delivered, or made available to the buyer.
+        /// This object returns logistics information associated with the order. This information describes how the purchased items will be fulfilled, delivered, or made available to the buyer.
         /// </summary>
         public IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_1 Logistics { get; }
         /// <summary>
@@ -812,7 +814,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type defines the unique identifier of an order, which is an confirmed request by a customer to purchase one or more products or services through an e-commerce platform. It contains all relevant details required to process, fulfill, and track the transaction, including customer information, items purchased, payment details, shipping data, and state updates.
+    /// This type defines the unique identifier of an order, which is a confirmed request by a customer to purchase one or more products or services through an e-commerce platform. It contains all relevant details required to process, fulfill, and track the transaction, including customer information, items purchased, payment details, shipping data, and state updates.
     /// </summary>
     public partial interface IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Order_1 : IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_1
     {
@@ -854,17 +856,17 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the error message. This string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string DisplayMessage { get; }
 
         /// <summary>
-        /// The ID of the order that failed to update.
+        /// The unique identifier of the order that failed to update.
         /// </summary>
         public string InputOrderId { get; }
 
         /// <summary>
-        /// When `true`, the operation can be retried and may succeed. When `false`, a retry will not succeed.
+        /// When this boolean field is returned as `true`, the operation can be retried and may succeed. When returned as `false`, a retry will not succeed.
         /// </summary>
         public bool Retryable { get; }
 
@@ -937,7 +939,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This type represents a complete failure for a **markOrdersPaid** mutation. The response includes the orders that could not be marked as paid as specified in the request.
     ///
-    /// **Note:** No orders were successfully marked as paid.
+    /// **Note**: No orders were successfully marked as paid.
     /// </summary>
     public partial class MarkOrdersPaid_MarkOrdersPaid_MarkOrdersPaidCompleteFailure : global::System.IEquatable<MarkOrdersPaid_MarkOrdersPaid_MarkOrdersPaidCompleteFailure>, IMarkOrdersPaid_MarkOrdersPaid_MarkOrdersPaidCompleteFailure
     {
@@ -954,7 +956,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// This array lists one or more orders that could not be updated.
         ///
-        /// **Note:** This list is never empty.
+        /// **Note**: This list is never empty.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IMarkOrdersPaid_MarkOrdersPaid_Failures> Failures { get; }
 
@@ -966,7 +968,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the error message. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
 
@@ -1048,12 +1050,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// A unique identifier.
+        /// The unique identifier of the entity.
         /// </summary>
         public string Id { get; }
 
         /// <summary>
-        /// A human-readable name or description.
+        /// A human-readable name or description of the identifier entity .
+        ///
         /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayName { get; }
@@ -1128,7 +1131,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container shows the user-friendly description and unique identifier of the logistics step, for example, `Standard Shipping`.
+        /// This object shows the user-friendly description and unique identifier of the logistics step, for example, `Standard Shipping`.
         /// </summary>
         public IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_MethodName MethodName { get; }
 
@@ -1187,6 +1190,75 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
+    /// This type conveys details of a package drop-off logistics step involved in a fulfillment plan. This step is used when the seller is required to physically drop off the package at a designated location such as a post office, retail store, or authorized carrier drop-off point, as part of an intermediated shipping fulfillment. This step appears in both `logisticsPlanSteps` (the intended plan) and `logisticsExecutionSteps` (the actual execution) within the `logistics` field of an order.
+    /// </summary>
+    public partial class MarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_PackageDropOffStep : global::System.IEquatable<MarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_PackageDropOffStep>, IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_PackageDropOffStep
+    {
+        public MarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_PackageDropOffStep(IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_MethodName methodName)
+        {
+            this.MethodName = methodName;
+        }
+
+        /// <summary>
+        /// This object shows the user-friendly description and unique identifier of the logistics step, for example, `Standard Shipping`.
+        /// </summary>
+        public IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_MethodName MethodName { get; }
+
+        public virtual bool Equals(MarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_PackageDropOffStep? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return global::System.Object.Equals(MethodName, other.MethodName);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((MarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_PackageDropOffStep)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                if (MethodName is not null)
+                {
+                    hash ^= 397 * MethodName.GetHashCode();
+                }
+                return hash;
+            }
+        }
+    }
+
+    /// <summary>
     /// This type convey details of a pickup logistics step involved in a fulfillment plan.
     /// </summary>
     public partial class MarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_PickupStep : global::System.IEquatable<MarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_PickupStep>, IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_PickupStep
@@ -1197,7 +1269,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container shows the user-friendly description and unique identifier of the logistics step, for example, `Standard Shipping`.
+        /// This object shows the user-friendly description and unique identifier of the logistics step, for example, `Standard Shipping`.
         /// </summary>
         public IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_MethodName MethodName { get; }
 
@@ -1266,7 +1338,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container shows the user-friendly description and unique identifier of the logistics step, for example, `Standard Shipping`.
+        /// This object shows the user-friendly description and unique identifier of the logistics step, for example, `Standard Shipping`.
         /// </summary>
         public IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_MethodName MethodName { get; }
 
@@ -1325,7 +1397,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type convey details of a shipping logistics step involved in a fulfillment plan.
+    /// This type conveys the details of a shipping logistics step involved in a fulfillment plan.
     /// </summary>
     public partial class MarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_ShippingStep : global::System.IEquatable<MarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_ShippingStep>, IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_ShippingStep
     {
@@ -1335,7 +1407,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container shows the user-friendly description and unique identifier of the logistics step, for example, `Standard Shipping`.
+        /// This object shows the user-friendly description and unique identifier of the logistics step, for example, `Standard Shipping`.
         /// </summary>
         public IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_MethodName MethodName { get; }
 
@@ -1405,12 +1477,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The identifier displayed here will indicate the type of fufillment plan available to be used or selected to be used. Below are some possible values that can be returned here:
-        /// - SHIPPING: standard domestic or international shipping.
-        /// - INTERMEDIATED_SHIPPING: shipping that involves multiple shipping legs, with eBay or an eBay partner taking care of at least one of those shipping legs. Examples of this include Global Shipping Program, eBay International Shipping, eBay Vault, and Authenticity Guarantee.
-        /// - STORE_PICKUP: buyer picks up item at local store for a 'Buy online, pick up in store' (BOPIS) or 'Click and Collect' order.
-        /// - PICKUP: local pickup.
-        /// - DIGITAL_DELIVERY: digital delivery of an item, such as a gift card.
+        /// The identifier displayed here will indicate the type of fulfillment plan available to be used or selected to be used. Below are some possible values that can be returned here:
+        /// - `SHIPPING`: standard domestic or international shipping.
+        /// - `INTERMEDIATED_SHIPPING`: shipping that involves multiple shipping legs, with eBay or an eBay partner taking care of at least one of those shipping legs. Examples of this include Global Shipping Program, eBay International Shipping, eBay Vault, and Authenticity Guarantee.
+        /// - `STORE_PICKUP`: buyer picks up item at local store for a 'Buy online, pick up in store' (BOPIS) or 'Click and Collect' order.
+        /// - `PICKUP`: local pickup.
+        /// - `DIGITAL_DELIVERY`: digital delivery of an item, such as a gift card.
         /// </summary>
         public string PlanType { get; }
 
@@ -1542,7 +1614,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// A state representing when the order was abandoned before completion.
+    /// This type represents the state when the order was abandoned before completion.
     /// </summary>
     public partial class MarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_OrderState_OrderAbandoned : global::System.IEquatable<MarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_OrderState_OrderAbandoned>, IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_OrderState_OrderAbandoned
     {
@@ -1638,7 +1710,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// A state representing when the order was canceled.
+    /// This type represents the state when the order was canceled.
     /// </summary>
     public partial class MarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_OrderState_OrderCancelled : global::System.IEquatable<MarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_OrderState_OrderCancelled>, IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_OrderState_OrderCancelled
     {
@@ -2064,7 +2136,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// The current state of the funding process.
         ///
-        /// **Note:** Use this field to track and manage funding.
+        /// **Note**: Use this field to track and manage funding.
         /// </summary>
         public IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_OrderState_FundingState FundingState { get; }
 
@@ -2217,7 +2289,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type defines the unique identifier of an order, which is an confirmed request by a customer to purchase one or more products or services through an e-commerce platform. It contains all relevant details required to process, fulfill, and track the transaction, including customer information, items purchased, payment details, shipping data, and state updates.
+    /// This type defines the unique identifier of an order, which is a confirmed request by a customer to purchase one or more products or services through an e-commerce platform. It contains all relevant details required to process, fulfill, and track the transaction, including customer information, items purchased, payment details, shipping data, and state updates.
     /// </summary>
     public partial class MarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Order : global::System.IEquatable<MarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Order>, IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Order
     {
@@ -2238,20 +2310,19 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// The timestamp when the order was initially created which marks the start of the order lifecycle.
         ///
-        /// **Note:** This is a non-null field, always.
+        /// **Note**: This object is never null.
         /// </summary>
         public global::System.DateTimeOffset PlacedAt { get; }
 
         /// <summary>
         /// The timestamp when the order was last updated. This timestamp captures changes made to order details, state, or related information.
         ///
-        /// **Note:** This is a non-null field, always.
+        /// **Note**: This object is never null.
         /// </summary>
         public global::System.DateTimeOffset UpdatedAt { get; }
 
         /// <summary>
-        /// Logistics information associated with the order, describing how the purchased items
-        /// will be fulfilled, delivered, or made available to the buyer.
+        /// This object returns logistics information associated with the order. This information describes how the purchased items will be fulfilled, delivered, or made available to the buyer.
         /// </summary>
         public IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics Logistics { get; }
 
@@ -2353,17 +2424,17 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the error message. This string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string DisplayMessage { get; }
 
         /// <summary>
-        /// The ID of the order that failed to update.
+        /// The unique identifier of the order that failed to update.
         /// </summary>
         public string InputOrderId { get; }
 
         /// <summary>
-        /// When `true`, the operation can be retried and may succeed. When `false`, a retry will not succeed.
+        /// When this boolean field is returned as `true`, the operation can be retried and may succeed. When returned as `false`, a retry will not succeed.
         /// </summary>
         public bool Retryable { get; }
 
@@ -2457,7 +2528,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the error message. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
 
@@ -2551,12 +2622,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// A unique identifier.
+        /// The unique identifier of the entity.
         /// </summary>
         public string Id { get; }
 
         /// <summary>
-        /// A human-readable name or description.
+        /// A human-readable name or description of the identifier entity .
+        ///
         /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayName { get; }
@@ -2631,7 +2703,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container shows the user-friendly description and unique identifier of the logistics step, for example, `Standard Shipping`.
+        /// This object shows the user-friendly description and unique identifier of the logistics step, for example, `Standard Shipping`.
         /// </summary>
         public IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_MethodName_1 MethodName { get; }
 
@@ -2690,6 +2762,75 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
+    /// This type conveys details of a package drop-off logistics step involved in a fulfillment plan. This step is used when the seller is required to physically drop off the package at a designated location such as a post office, retail store, or authorized carrier drop-off point, as part of an intermediated shipping fulfillment. This step appears in both `logisticsPlanSteps` (the intended plan) and `logisticsExecutionSteps` (the actual execution) within the `logistics` field of an order.
+    /// </summary>
+    public partial class MarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_PackageDropOffStep_1 : global::System.IEquatable<MarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_PackageDropOffStep_1>, IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_PackageDropOffStep_1
+    {
+        public MarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_PackageDropOffStep_1(IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_MethodName_1 methodName)
+        {
+            this.MethodName = methodName;
+        }
+
+        /// <summary>
+        /// This object shows the user-friendly description and unique identifier of the logistics step, for example, `Standard Shipping`.
+        /// </summary>
+        public IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_MethodName_1 MethodName { get; }
+
+        public virtual bool Equals(MarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_PackageDropOffStep_1? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return global::System.Object.Equals(MethodName, other.MethodName);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((MarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_PackageDropOffStep_1)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                if (MethodName is not null)
+                {
+                    hash ^= 397 * MethodName.GetHashCode();
+                }
+                return hash;
+            }
+        }
+    }
+
+    /// <summary>
     /// This type convey details of a pickup logistics step involved in a fulfillment plan.
     /// </summary>
     public partial class MarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_PickupStep_1 : global::System.IEquatable<MarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_PickupStep_1>, IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_PickupStep_1
@@ -2700,7 +2841,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container shows the user-friendly description and unique identifier of the logistics step, for example, `Standard Shipping`.
+        /// This object shows the user-friendly description and unique identifier of the logistics step, for example, `Standard Shipping`.
         /// </summary>
         public IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_MethodName_1 MethodName { get; }
 
@@ -2769,7 +2910,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container shows the user-friendly description and unique identifier of the logistics step, for example, `Standard Shipping`.
+        /// This object shows the user-friendly description and unique identifier of the logistics step, for example, `Standard Shipping`.
         /// </summary>
         public IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_MethodName_1 MethodName { get; }
 
@@ -2828,7 +2969,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type convey details of a shipping logistics step involved in a fulfillment plan.
+    /// This type conveys the details of a shipping logistics step involved in a fulfillment plan.
     /// </summary>
     public partial class MarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_ShippingStep_1 : global::System.IEquatable<MarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_ShippingStep_1>, IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_ShippingStep_1
     {
@@ -2838,7 +2979,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container shows the user-friendly description and unique identifier of the logistics step, for example, `Standard Shipping`.
+        /// This object shows the user-friendly description and unique identifier of the logistics step, for example, `Standard Shipping`.
         /// </summary>
         public IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_MethodName_1 MethodName { get; }
 
@@ -2908,12 +3049,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The identifier displayed here will indicate the type of fufillment plan available to be used or selected to be used. Below are some possible values that can be returned here:
-        /// - SHIPPING: standard domestic or international shipping.
-        /// - INTERMEDIATED_SHIPPING: shipping that involves multiple shipping legs, with eBay or an eBay partner taking care of at least one of those shipping legs. Examples of this include Global Shipping Program, eBay International Shipping, eBay Vault, and Authenticity Guarantee.
-        /// - STORE_PICKUP: buyer picks up item at local store for a 'Buy online, pick up in store' (BOPIS) or 'Click and Collect' order.
-        /// - PICKUP: local pickup.
-        /// - DIGITAL_DELIVERY: digital delivery of an item, such as a gift card.
+        /// The identifier displayed here will indicate the type of fulfillment plan available to be used or selected to be used. Below are some possible values that can be returned here:
+        /// - `SHIPPING`: standard domestic or international shipping.
+        /// - `INTERMEDIATED_SHIPPING`: shipping that involves multiple shipping legs, with eBay or an eBay partner taking care of at least one of those shipping legs. Examples of this include Global Shipping Program, eBay International Shipping, eBay Vault, and Authenticity Guarantee.
+        /// - `STORE_PICKUP`: buyer picks up item at local store for a 'Buy online, pick up in store' (BOPIS) or 'Click and Collect' order.
+        /// - `PICKUP`: local pickup.
+        /// - `DIGITAL_DELIVERY`: digital delivery of an item, such as a gift card.
         /// </summary>
         public string PlanType { get; }
 
@@ -3045,7 +3186,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// A state representing when the order was abandoned before completion.
+    /// This type represents the state when the order was abandoned before completion.
     /// </summary>
     public partial class MarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_OrderState_OrderAbandoned_1 : global::System.IEquatable<MarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_OrderState_OrderAbandoned_1>, IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_OrderState_OrderAbandoned_1
     {
@@ -3141,7 +3282,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// A state representing when the order was canceled.
+    /// This type represents the state when the order was canceled.
     /// </summary>
     public partial class MarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_OrderState_OrderCancelled_1 : global::System.IEquatable<MarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_OrderState_OrderCancelled_1>, IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_OrderState_OrderCancelled_1
     {
@@ -3567,7 +3708,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// The current state of the funding process.
         ///
-        /// **Note:** Use this field to track and manage funding.
+        /// **Note**: Use this field to track and manage funding.
         /// </summary>
         public IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_OrderState_FundingState_1 FundingState { get; }
 
@@ -3720,7 +3861,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type defines the unique identifier of an order, which is an confirmed request by a customer to purchase one or more products or services through an e-commerce platform. It contains all relevant details required to process, fulfill, and track the transaction, including customer information, items purchased, payment details, shipping data, and state updates.
+    /// This type defines the unique identifier of an order, which is a confirmed request by a customer to purchase one or more products or services through an e-commerce platform. It contains all relevant details required to process, fulfill, and track the transaction, including customer information, items purchased, payment details, shipping data, and state updates.
     /// </summary>
     public partial class MarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Order_1 : global::System.IEquatable<MarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Order_1>, IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Order_1
     {
@@ -3741,20 +3882,19 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// The timestamp when the order was initially created which marks the start of the order lifecycle.
         ///
-        /// **Note:** This is a non-null field, always.
+        /// **Note**: This object is never null.
         /// </summary>
         public global::System.DateTimeOffset PlacedAt { get; }
 
         /// <summary>
         /// The timestamp when the order was last updated. This timestamp captures changes made to order details, state, or related information.
         ///
-        /// **Note:** This is a non-null field, always.
+        /// **Note**: This object is never null.
         /// </summary>
         public global::System.DateTimeOffset UpdatedAt { get; }
 
         /// <summary>
-        /// Logistics information associated with the order, describing how the purchased items
-        /// will be fulfilled, delivered, or made available to the buyer.
+        /// This object returns logistics information associated with the order. This information describes how the purchased items will be fulfilled, delivered, or made available to the buyer.
         /// </summary>
         public IMarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_1 Logistics { get; }
 
@@ -4094,6 +4234,9 @@ namespace EBay.OrderManagement.Generated.GraphQL
             case "DigitalDeliveryStep":
                 return new MarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_DigitalDeliveryStep(
                     Parse_MarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_MethodName(GraphQLJson.Required(element, "methodName")));
+            case "PackageDropOffStep":
+                return new MarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_PackageDropOffStep(
+                    Parse_MarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_MethodName(GraphQLJson.Required(element, "methodName")));
             case "PickupStep":
                 return new MarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_PickupStep(
                     Parse_MarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_MethodName(GraphQLJson.Required(element, "methodName")));
@@ -4217,6 +4360,9 @@ namespace EBay.OrderManagement.Generated.GraphQL
             {
             case "DigitalDeliveryStep":
                 return new MarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_DigitalDeliveryStep_1(
+                    Parse_MarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_MethodName_1(GraphQLJson.Required(element, "methodName")));
+            case "PackageDropOffStep":
+                return new MarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_PackageDropOffStep_1(
                     Parse_MarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_MethodName_1(GraphQLJson.Required(element, "methodName")));
             case "PickupStep":
                 return new MarkOrdersPaid_MarkOrdersPaid_MarkPaidOrders_Logistics_FulfillmentPlan_LogisticsPlanSteps_PickupStep_1(

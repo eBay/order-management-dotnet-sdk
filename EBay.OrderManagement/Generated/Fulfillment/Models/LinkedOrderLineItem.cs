@@ -46,21 +46,9 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
         public string LineItemId { get; set; }
 #endif
         /// <summary>The end of the date range in which the linked line item is expected to be delivered to the shipping address.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? MaxEstimatedDeliveryDate { get; set; }
-#nullable restore
-#else
-        public string MaxEstimatedDeliveryDate { get; set; }
-#endif
+        public DateTimeOffset? MaxEstimatedDeliveryDate { get; set; }
         /// <summary>The beginning of the date range in which the linked line item is expected to be delivered to the shipping address.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? MinEstimatedDeliveryDate { get; set; }
-#nullable restore
-#else
-        public string MinEstimatedDeliveryDate { get; set; }
-#endif
+        public DateTimeOffset? MinEstimatedDeliveryDate { get; set; }
         /// <summary>The unique identifier of the order to which the linked line item belongs.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -120,8 +108,8 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
             {
                 { "lineItemAspects", n => { LineItemAspects = n.GetCollectionOfObjectValues<global::EBay.OrderManagement.Generated.Fulfillment.Models.NameValuePair>(global::EBay.OrderManagement.Generated.Fulfillment.Models.NameValuePair.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "lineItemId", n => { LineItemId = n.GetStringValue(); } },
-                { "maxEstimatedDeliveryDate", n => { MaxEstimatedDeliveryDate = n.GetStringValue(); } },
-                { "minEstimatedDeliveryDate", n => { MinEstimatedDeliveryDate = n.GetStringValue(); } },
+                { "maxEstimatedDeliveryDate", n => { MaxEstimatedDeliveryDate = n.GetDateTimeOffsetValue(); } },
+                { "minEstimatedDeliveryDate", n => { MinEstimatedDeliveryDate = n.GetDateTimeOffsetValue(); } },
                 { "orderId", n => { OrderId = n.GetStringValue(); } },
                 { "sellerId", n => { SellerId = n.GetStringValue(); } },
                 { "shipments", n => { Shipments = n.GetCollectionOfObjectValues<global::EBay.OrderManagement.Generated.Fulfillment.Models.TrackingInfo>(global::EBay.OrderManagement.Generated.Fulfillment.Models.TrackingInfo.CreateFromDiscriminatorValue)?.AsList(); } },
@@ -137,8 +125,8 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::EBay.OrderManagement.Generated.Fulfillment.Models.NameValuePair>("lineItemAspects", LineItemAspects);
             writer.WriteStringValue("lineItemId", LineItemId);
-            writer.WriteStringValue("maxEstimatedDeliveryDate", MaxEstimatedDeliveryDate);
-            writer.WriteStringValue("minEstimatedDeliveryDate", MinEstimatedDeliveryDate);
+            writer.WriteDateTimeOffsetValue("maxEstimatedDeliveryDate", MaxEstimatedDeliveryDate);
+            writer.WriteDateTimeOffsetValue("minEstimatedDeliveryDate", MinEstimatedDeliveryDate);
             writer.WriteStringValue("orderId", OrderId);
             writer.WriteStringValue("sellerId", SellerId);
             writer.WriteCollectionOfObjectValues<global::EBay.OrderManagement.Generated.Fulfillment.Models.TrackingInfo>("shipments", Shipments);

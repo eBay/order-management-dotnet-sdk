@@ -44,6 +44,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The first line of the street address.
+        ///
         /// **Maximum length**: 100 characters
         /// </summary>
         public string? AddressLine1
@@ -58,6 +59,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// This optional field is used to provide the second line of the street address if applicable. The second line of the street address is generally used to provide apartment or suite number.
+        ///
         /// **Maximum length**: 100 characters
         /// </summary>
         public string? AddressLine2
@@ -72,6 +74,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The city of the street address.
+        ///
         /// **Maximum length**: 50 characters
         /// </summary>
         public string? City
@@ -99,6 +102,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The email address associated with the buyer (if applicable). A valid email format must be used.
+        ///
         /// **Maximum length**: 254 characters
         /// </summary>
         public string? Email
@@ -113,7 +117,9 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The phone number associated with the street address (if applicable).
+        ///
         /// **Note**: The value must consist of numeric characters and may include symbols such as +, -, and spaces.
+        ///
         /// **Maximum length**: 20 characters
         /// </summary>
         public string? Phone
@@ -128,6 +134,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The postal code of the street address.
+        ///
         /// **Maximum length**: 20 characters
         /// </summary>
         public string? PostalCode
@@ -142,6 +149,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The state or province of the street address.
+        ///
         /// **Maximum length**: 50 characters
         /// </summary>
         public string? StateOrProvince

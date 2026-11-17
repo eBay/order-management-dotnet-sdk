@@ -21,9 +21,7 @@ using EBay.OrderManagement.Clients.GraphQL;
 namespace EBay.OrderManagement.Generated.GraphQL
 {
     /// <summary>
-    /// This input type specifies tag updates for an order and has the following constraints:
-    /// - Accepts a maximum of 5 tags.
-    /// - Each tag must be up to 10 characters long.
+    /// This is the base input type for the bulkUpdateOrderTags mutation, and is used to add or delete order tags for up to 100 orders per operation.
     /// </summary>
     public partial class UpdateOrderTagInput : global::System.IEquatable<UpdateOrderTagInput>
     {
@@ -36,6 +34,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// This enumerated value specifies the operation to perform on the specified tags.
+        ///
+        /// **Note**: Currently, `ADD` and `DELETE` are supported.
         /// </summary>
         public TagUpdateAction Action
         {
@@ -48,7 +48,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The unique ID of the order.
+        /// The unique identifier of the order that will have the specified tag added or deleted.
         /// </summary>
         public string OrderId
         {
@@ -61,9 +61,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Use this array to provide up to 5 custom tags to apply to the order.
-        ///
-        /// **Note:** A maximum of 5 tags can be specified, with each up to 10 characters long.
+        /// This array is used to specify the order tag to add or delete for the corresponding order.
+        /// The only two supported values are acknowledged and unacknowledged, and only one of these values may be used per order.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<string> Tags
         {

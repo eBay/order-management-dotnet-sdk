@@ -21,7 +21,7 @@ using EBay.OrderManagement.Clients.GraphQL;
 namespace EBay.OrderManagement.Generated.GraphQL
 {
     /// <summary>
-    ///  This input type defines the payload for the **contractCancellation** query, which is used to retrieve information about a contract cancellation.
+    /// This input type defines the payload for the **contractCancellation** query, which is used to retrieve information about a contract cancellation.
     /// </summary>
     public partial class ContractCancellationInput : global::System.IEquatable<ContractCancellationInput>
     {
@@ -29,7 +29,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         private bool _set_cancellationId;
 
         /// <summary>
-        ///  The contract cancellation ID to be retrieved.
+        /// The unique identifier of the contract cancellation to be retrieved.
         /// </summary>
         public string CancellationId
         {

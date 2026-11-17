@@ -40,6 +40,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// This boolean field is used to control whether or not the seller should receive an email copy of the updated purchase quote sent to the buyer. If this field is included and set to 'true', the seller will receive a copy of the updated purchase quote in their eBay Inbox.
+        ///
         /// **Default value**: false
         /// </summary>
         public bool? EmailCopyToSeller
@@ -54,6 +55,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// This array is used to update the list of item commitments that are a part of the purchase quote. A comma is used as a delimiter for each item commitment identifier.
+        ///
         /// **Note**: All item commitment IDs that are a part of the purchase quote must be included here. Omitted item commitments will be removed from the purchase quote.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<PurchaseQuoteItemInput>? LineItems
@@ -67,7 +69,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to add or modify available shipping and/or pickup logistics options provided by the seller.
+        /// This object is used to add or modify available shipping and/or pickup logistics options provided by the seller.
         /// </summary>
         public PurchaseQuoteLogisticsOptionInput? LogisticsOptions
         {
@@ -81,7 +83,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// This field allows the seller to provide a custom message to the buyer regarding the update(s) that were made to purchase quote.
-        /// **Minimum length**: 1 character
+        ///
         /// **Maximum length**: 512 characters
         /// </summary>
         public string? MessageToBuyer
@@ -108,7 +110,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to add or modify handling charges and/or a shipping discount for a purchase quote.
+        /// This object is used to add or modify handling charges and/or a shipping discount for a purchase quote.
         /// </summary>
         public PurchaseQuoteTotalsInput? Total
         {

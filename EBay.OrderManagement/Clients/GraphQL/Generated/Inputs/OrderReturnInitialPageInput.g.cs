@@ -23,7 +23,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This input type provides filtering and sorting parameters for the first page of a return query.
     ///
-    /// **Note:** The same filters and sort order are also used when returning subsequent pages using cursor-based pagination.
+    /// **Note**: The same filters and sort order are also used when returning subsequent pages using cursor-based pagination.
     /// </summary>
     public partial class OrderReturnInitialPageInput : global::System.IEquatable<OrderReturnInitialPageInput>
     {
@@ -35,7 +35,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// This object specifies filtering options for order returns, including the action or status filters (such as `AWAITING_ACTION_FROM_SELLER` or `IN_PROGRESS`) and a date-range filter. If either field is omitted, the query filters using that field's default value.
         ///
-        /// **Default:** Returns all open returns from the last 30 days that currently require immediate seller action
+        /// **Default**: Returns all open returns from the last 30 days that currently require immediate seller action
         /// </summary>
         public OrderReturnFilterInput Filter
         {
@@ -50,7 +50,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// This object specifies sorting options for order returns including the field to sort by such as `REQUESTED_AT`, and the order of the items returned. Ascending sorts by end time from oldest to newest, while descending sorts by end time from newest to oldest.
         ///
-        /// **Default:** Sort returned order line items by `REQUESTED_AT` in ascending order (`ASC`)
+        /// **Default**: Sort returned order line items by `REQUESTED_AT` in ascending order (`ASC`)
         /// </summary>
         public OrderReturnSortInput Sort
         {

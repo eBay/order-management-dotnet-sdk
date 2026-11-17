@@ -22,6 +22,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 {
     /// <summary>
     /// This input type is used when retrieving purchase quotes for an authenticated seller or buyer. The **purchaseQuotesFirstPage** container is used for an initial search of purchase quotes, and includes parameters to retrieve purchase quotes in specific states and/or from a specific listing, as well as a field to control the number of purchase quotes retrieved per page of results. The **purchaseQuotesPage** container is used for a subsequent search of purchase quotes, and allows the user to retrieve the next or previous page of results if the query produced multiple pages of results.
+    ///
     /// **Note**: Either the **purchaseQuotesFirstPage** container or the **purchaseQuotesPage** container may be used, but not both.
     /// </summary>
     public partial class PurchaseQuotesInput : global::System.IEquatable<PurchaseQuotesInput>
@@ -32,7 +33,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         private bool _set_purchaseQuotesPage;
 
         /// <summary>
-        /// This container is used for the initial query of purchase quotes, and includes parameters to retrieve purchase quotes in specific states and/or from a specific listing, as well as a field to control the number of purchase quotes retrieved per page of results.
+        /// This object is used for the initial query of purchase quotes, and includes parameters to retrieve purchase quotes in specific states and/or from a specific listing, as well as a field to control the number of purchase quotes retrieved per page of results.
         /// </summary>
         public PurchaseQuotesFirstPageInput? PurchaseQuotesFirstPage
         {
@@ -45,7 +46,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used for a subsequent search of purchase quotes, and allows the user to retrieve the next or previous page of results if the query produced multiple pages of results.
+        /// This object is used for a subsequent search of purchase quotes, and allows the user to retrieve the next or previous page of results if the query produced multiple pages of results.
         /// </summary>
         public PageInfoInput? PurchaseQuotesPage
         {

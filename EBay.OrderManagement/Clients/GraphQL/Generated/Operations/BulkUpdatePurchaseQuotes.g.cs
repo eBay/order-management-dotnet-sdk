@@ -27,13 +27,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// This mutation allows a seller to update up to 100 existing purchase quotes in a single request.
-        /// **Note**: This operation is not available to buyers.
         ///
-        /// PossibleErrors:
-        /// | Code                  |  Message                                                                     |
-        /// |-----------------------|------------------------------------------------------------------------------|
-        /// | BAD_INPUT_VALUE       |  Input size is 0 or over the limit. Please provide valid input.              |
-        /// | INTERNAL_SERVER_ERROR |  System failure.                                                             |
+        /// **Note**: This operation is not available to buyers.
         /// </summary>
         public IBulkUpdatePurchaseQuotes_BulkUpdatePurchaseQuotes BulkUpdatePurchaseQuotes { get; }
     }
@@ -50,13 +45,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// This mutation allows a seller to update up to 100 existing purchase quotes in a single request.
-        /// **Note**: This operation is not available to buyers.
         ///
-        /// PossibleErrors:
-        /// | Code                  |  Message                                                                     |
-        /// |-----------------------|------------------------------------------------------------------------------|
-        /// | BAD_INPUT_VALUE       |  Input size is 0 or over the limit. Please provide valid input.              |
-        /// | INTERNAL_SERVER_ERROR |  System failure.                                                             |
+        /// **Note**: This operation is not available to buyers.
         /// </summary>
         public IBulkUpdatePurchaseQuotes_BulkUpdatePurchaseQuotes BulkUpdatePurchaseQuotes { get; }
 
@@ -163,7 +153,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The unique identifier of the error.
-        /// **Note**: Currently this field will always show UPDATE_QUOTES_COMPLETE_FAILURE.
+        ///
+        /// **Note**: Currently this field will always show `UPDATE_QUOTES_COMPLETE_FAILURE`.
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
@@ -171,7 +162,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// </summary>
         public string ErrorMessage { get; }
         /// <summary>
-        /// This array contains the unique identifiers of all purchase quotes that were not successully updated, and the error(s) that caused them not to be updated.
+        /// This array contains the unique identifiers of all purchase quotes that were not successfully updated, and the error(s) that caused them not to be updated.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IBulkUpdatePurchaseQuotes_BulkUpdatePurchaseQuotes_Failures> Failures { get; }
     }
@@ -235,7 +226,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The unique identifier of the error.
-        /// **Note**: Currently this field will always show UPDATE_QUOTES_PARTIAL_FAILURE.
+        ///
+        /// **Note**: Currently this field will always show `UPDATE_QUOTES_PARTIAL_FAILURE`.
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
@@ -244,11 +236,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string ErrorMessage { get; }
         /// <summary>
         /// This array contains all of the successfully updated purchase quotes.
+        ///
         /// **Note**: There will always be at one object in this array.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IBulkUpdatePurchaseQuotes_BulkUpdatePurchaseQuotes_UpdatedPurchaseQuotes> UpdatedPurchaseQuotes { get; }
         /// <summary>
         /// This array contains the unique identifiers of all purchase quotes that were not updated successfully, and the error(s) that caused them not to be updated.
+        ///
         /// **Note**: There will always be at one object in this array.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IBulkUpdatePurchaseQuotes_BulkUpdatePurchaseQuotes_Failures_1> Failures { get; }
@@ -403,7 +397,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The unique identifier of the error.
-        /// **Note**: Currently this field will always show UPDATE_QUOTES_COMPLETE_FAILURE.
+        ///
+        /// **Note**: Currently this field will always show `UPDATE_QUOTES_COMPLETE_FAILURE`.
         /// </summary>
         public string ErrorCode { get; }
 
@@ -413,7 +408,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string ErrorMessage { get; }
 
         /// <summary>
-        /// This array contains the unique identifiers of all purchase quotes that were not successully updated, and the error(s) that caused them not to be updated.
+        /// This array contains the unique identifiers of all purchase quotes that were not successfully updated, and the error(s) that caused them not to be updated.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IBulkUpdatePurchaseQuotes_BulkUpdatePurchaseQuotes_Failures> Failures { get; }
 
@@ -673,7 +668,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The unique identifier of the error.
-        /// **Note**: Currently this field will always show UPDATE_QUOTES_PARTIAL_FAILURE.
+        ///
+        /// **Note**: Currently this field will always show `UPDATE_QUOTES_PARTIAL_FAILURE`.
         /// </summary>
         public string ErrorCode { get; }
 
@@ -684,12 +680,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// This array contains all of the successfully updated purchase quotes.
+        ///
         /// **Note**: There will always be at one object in this array.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IBulkUpdatePurchaseQuotes_BulkUpdatePurchaseQuotes_UpdatedPurchaseQuotes> UpdatedPurchaseQuotes { get; }
 
         /// <summary>
         /// This array contains the unique identifiers of all purchase quotes that were not updated successfully, and the error(s) that caused them not to be updated.
+        ///
         /// **Note**: There will always be at one object in this array.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IBulkUpdatePurchaseQuotes_BulkUpdatePurchaseQuotes_Failures_1> Failures { get; }

@@ -33,7 +33,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// These address IDs can be retrieved from **eligibleReturnAddresses** field in **SellerReturnPreferences.returnResponseRules**.
         ///
-        /// **Note:** This field is required when address routing strategy is `RETURN_TO_SPECIFIC_ADDRESS`.
+        /// **Note**: This field is required when address routing strategy is `RETURN_TO_SPECIFIC_ADDRESS`.
         /// </summary>
         public string? AddressId
         {

@@ -22,7 +22,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
 {
     /// <summary>
     /// This input type includes the filters that can be used for an **itemCommitments** query. The **listingId** field can be used to retrieve item commitment(s) for a specific listing, or one or more of the boolean fields can be used to retrieve item commitments in certain states.
-    /// **Note**: The default value for the **includeActive** boolean fields is 'true', but the default value for all other boolean fields is 'false'.
+    ///
+    /// **Note**: The default value for the **includeActive** boolean fields is `true`, but the default value for all other boolean fields is `false`.
     /// </summary>
     public partial class ItemCommitmentsFilterInput : global::System.IEquatable<ItemCommitmentsFilterInput>
     {
@@ -40,7 +41,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
         private bool _set_listingId;
 
         /// <summary>
-        /// Include this field and set to 'true' to include abandoned item commitments in the output, or set to 'false' (or omit field) to exclude abandoned item commitments.
+        /// Include this field and set to `true` to include abandoned item commitments in the output, or set to `false` (or omit field) to exclude abandoned item commitments.
+        ///
         /// **Default**: false
         /// </summary>
         public bool? IncludeAbandoned
@@ -54,7 +56,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Include this field and set to 'true' (or omit field) to include active item commitments in the output, or set to 'false' to exclude active item commitments.
+        /// Include this field and set to `true` (or omit field) to include active item commitments in the output, or set to `false` to exclude active item commitments.
+        ///
         /// **Default**: true
         /// </summary>
         public bool? IncludeActive
@@ -68,7 +71,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Include this field and set to 'true' to include cancelled item commitments in the output, or set to 'false' (or omit field) to exclude cancelled item commitments.
+        /// Include this field and set to `true` to include cancelled item commitments in the output, or set to `false` (or omit field) to exclude cancelled item commitments.
+        ///
         /// **Default**: false
         /// </summary>
         public bool? IncludeCancelled
@@ -82,7 +86,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Include this field and set to 'true' to include completed item commitments in the output, or set to 'false' (or omit field) to exclude completed item commitments.
+        /// Include this field and set to `true` to include completed item commitments in the output, or set to `false` (or omit field) to exclude completed item commitments.
+        ///
         /// **Default**: false
         /// </summary>
         public bool? IncludeCompleted
@@ -96,7 +101,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Include this field and set to 'true' to include locked item commitments in the output, or set to 'false' (or omit field) to exclude locked item commitments.
+        /// Include this field and set to `true` to include locked item commitments in the output, or set to `false` (or omit field) to exclude locked item commitments.
+        ///
         /// **Default**: false
         /// </summary>
         public bool? IncludeLocked

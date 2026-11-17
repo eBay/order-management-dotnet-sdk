@@ -27,13 +27,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// This query is used to retrieve detailed information on up to 100 of an authenticated user's purchase quotes using provided purchase quote identifiers. Each returned purchase quote includes pricing details, available logistics options, and serves as the source of truth during checkout.
-        /// **Note**: If an purchase quote is not found, it will not be included in the output.
         ///
-        /// PossibleErrors:
-        /// | Code                  |  Message                                                                     |
-        /// |-----------------------|------------------------------------------------------------------------------|
-        /// | BAD_INPUT_VALUE       |  Input size is 0 or over the limit. Please provide valid input.              |
-        /// | INTERNAL_SERVER_ERROR |  System failure.                                                             |
+        /// **Note**: If an purchase quote is not found, it will not be included in the output.
         /// </summary>
         public IPurchaseQuotesByIds_PurchaseQuotesByIds PurchaseQuotesByIds { get; }
     }
@@ -50,13 +45,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// This query is used to retrieve detailed information on up to 100 of an authenticated user's purchase quotes using provided purchase quote identifiers. Each returned purchase quote includes pricing details, available logistics options, and serves as the source of truth during checkout.
-        /// **Note**: If an purchase quote is not found, it will not be included in the output.
         ///
-        /// PossibleErrors:
-        /// | Code                  |  Message                                                                     |
-        /// |-----------------------|------------------------------------------------------------------------------|
-        /// | BAD_INPUT_VALUE       |  Input size is 0 or over the limit. Please provide valid input.              |
-        /// | INTERNAL_SERVER_ERROR |  System failure.                                                             |
+        /// **Note**: If an purchase quote is not found, it will not be included in the output.
         /// </summary>
         public IPurchaseQuotesByIds_PurchaseQuotesByIds PurchaseQuotesByIds { get; }
 
@@ -123,7 +113,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type displays the unique identifiers of all purchase quotes that were not successully retrieved, and the error(s) that caused them not to be retrieved.
+    /// This type displays the unique identifiers of all purchase quotes that were not successfully retrieved, and the error(s) that caused them not to be retrieved.
     /// </summary>
     public partial interface IPurchaseQuotesByIds_PurchaseQuotesByIds_Failures
     {
@@ -133,9 +123,9 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string DisplayMessage { get; }
         /// <summary>
         /// The unique identifier of the error. Below are the three errors that may occur:
-        /// - INVALID_INPUT: This error indicates that the purchase quote ID is not recognized or it doesn't belong to the authenticated eBay user.
-        /// - TEMPORARILY_NOT_AVAILABLE: This error indicates that a system error occurred. This error may occur with a complete failure, and the user can try again after a short period of time.
-        /// - DEPENDENCY_TIME_OUTE: This error indicates that the request timed out, and the user can try again after a short period of time.
+        /// - `INVALID_INPUT`: This error indicates that the purchase quote ID is not recognized or it doesn't belong to the authenticated eBay user.
+        /// - `TEMPORARILY_NOT_AVAILABLE`: This error indicates that a system error occurred. This error may occur with a complete failure, and the user can try again after a short period of time.
+        /// - `DEPENDENCY_TIME_OUTE`: This error indicates that the request timed out, and the user can try again after a short period of time.
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
@@ -143,13 +133,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// </summary>
         public string InputPurchaseQuoteId { get; }
         /// <summary>
-        /// This boolean indicates whether or not the user should try to retrieve the corresponding purchase quote again. If this field is returned as 'true', the user can make another attempt to retrieve the purchase quote.
+        /// This boolean indicates whether or not the user should try to retrieve the corresponding purchase quote again. If this field is returned as `true`, the user can make another attempt to retrieve the purchase quote.
         /// </summary>
         public bool Retryable { get; }
     }
 
     /// <summary>
-    /// This type displays the unique identifiers of all purchase quotes that were not successully retrieved, and the error(s) that caused them not to be retrieved.
+    /// This type displays the unique identifiers of all purchase quotes that were not successfully retrieved, and the error(s) that caused them not to be retrieved.
     /// </summary>
     public partial interface IPurchaseQuotesByIds_PurchaseQuotesByIds_Failures_PurchaseQuotesByIdsError : IPurchaseQuotesByIds_PurchaseQuotesByIds_Failures
     {
@@ -162,7 +152,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The unique identifier of the error.
-        /// **Note**: Currently this field will always show PURCHASE_QUOTES_BY_IDS_COMPLETE_FAILURE.
+        ///
+        /// **Note**: Currently this field will always show `PURCHASE_QUOTES_BY_IDS_COMPLETE_FAILURE`.
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
@@ -176,7 +167,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type displays the unique identifiers of all purchase quotes that were not successully retrieved, and the error(s) that caused them not to be retrieved.
+    /// This type displays the unique identifiers of all purchase quotes that were not successfully retrieved, and the error(s) that caused them not to be retrieved.
     /// </summary>
     public partial interface IPurchaseQuotesByIds_PurchaseQuotesByIds_Failures_1
     {
@@ -186,9 +177,9 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string DisplayMessage { get; }
         /// <summary>
         /// The unique identifier of the error. Below are the three errors that may occur:
-        /// - INVALID_INPUT: This error indicates that the purchase quote ID is not recognized or it doesn't belong to the authenticated eBay user.
-        /// - TEMPORARILY_NOT_AVAILABLE: This error indicates that a system error occurred. This error may occur with a complete failure, and the user can try again after a short period of time.
-        /// - DEPENDENCY_TIME_OUTE: This error indicates that the request timed out, and the user can try again after a short period of time.
+        /// - `INVALID_INPUT`: This error indicates that the purchase quote ID is not recognized or it doesn't belong to the authenticated eBay user.
+        /// - `TEMPORARILY_NOT_AVAILABLE`: This error indicates that a system error occurred. This error may occur with a complete failure, and the user can try again after a short period of time.
+        /// - `DEPENDENCY_TIME_OUTE`: This error indicates that the request timed out, and the user can try again after a short period of time.
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
@@ -196,13 +187,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// </summary>
         public string InputPurchaseQuoteId { get; }
         /// <summary>
-        /// This boolean indicates whether or not the user should try to retrieve the corresponding purchase quote again. If this field is returned as 'true', the user can make another attempt to retrieve the purchase quote.
+        /// This boolean indicates whether or not the user should try to retrieve the corresponding purchase quote again. If this field is returned as `true`, the user can make another attempt to retrieve the purchase quote.
         /// </summary>
         public bool Retryable { get; }
     }
 
     /// <summary>
-    /// This type displays the unique identifiers of all purchase quotes that were not successully retrieved, and the error(s) that caused them not to be retrieved.
+    /// This type displays the unique identifiers of all purchase quotes that were not successfully retrieved, and the error(s) that caused them not to be retrieved.
     /// </summary>
     public partial interface IPurchaseQuotesByIds_PurchaseQuotesByIds_Failures_PurchaseQuotesByIdsError_1 : IPurchaseQuotesByIds_PurchaseQuotesByIds_Failures_1
     {
@@ -223,6 +214,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The human-readable label representing an active purchase quote.
+        ///
         /// **Maximum length**: 100 characters.
         /// </summary>
         public string Label { get; }
@@ -234,12 +226,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IPurchaseQuotesByIds_PurchaseQuotesByIds_PurchaseQuotes_State_Reason
     {
         /// <summary>
-        /// A human-readable name or description.
+        /// A human-readable name or description of the identifier entity .
+        ///
         /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayName { get; }
         /// <summary>
-        /// A unique identifier.
+        /// The unique identifier of the entity.
         /// </summary>
         public string Id { get; }
     }
@@ -257,12 +250,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IPurchaseQuotesByIds_PurchaseQuotesByIds_PurchaseQuotes_State_PurchaseQuoteCancelled : IPurchaseQuotesByIds_PurchaseQuotesByIds_PurchaseQuotes_State
     {
         /// <summary>
-        /// This time stamp indicates when the cancellation occurred.
+        /// This timestamp indicates when the cancellation occurred.
         /// </summary>
         public global::System.DateTimeOffset CancelledAt { get; }
         /// <summary>
         /// The human-readable label representing a cancelled purchase quote.
-        /// **Maximum length**: 100 characters.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Label { get; }
         /// <summary>
@@ -278,7 +272,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The human-readable label representing a completed purchase quote.
-        /// **Maximum length**: 100 characters.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Label { get; }
     }
@@ -289,12 +284,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IPurchaseQuotesByIds_PurchaseQuotesByIds_PurchaseQuotes_State_Reason_1
     {
         /// <summary>
-        /// A human-readable name or description.
+        /// A human-readable name or description of the identifier entity .
+        ///
         /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayName { get; }
         /// <summary>
-        /// A unique identifier.
+        /// The unique identifier of the entity.
         /// </summary>
         public string Id { get; }
     }
@@ -313,7 +309,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The human-readable label representing an invalid purchase quote.
-        /// **Maximum length**: 100 characters.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Label { get; }
         /// <summary>
@@ -329,7 +326,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The human-readable label representing a locked purchase quote.
-        /// **Maximum length**: 100 characters.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Label { get; }
     }
@@ -341,6 +339,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The human-readable label representing a purchase quote has been requested by a buyer.
+        ///
         /// **Maximum length**: 100 characters.
         /// </summary>
         public string Label { get; }
@@ -357,16 +356,18 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string PurchaseQuoteId { get; }
         /// <summary>
         /// The exact date and time when the purchase quote was last modified or updated in the system. This timestamp captures any changes made to the purchase quote after initial creation, including change in state.
+        ///
         /// **Note**: Guaranteed to be non-null.
         /// </summary>
         public global::System.DateTimeOffset UpdatedAt { get; }
         /// <summary>
         /// The exact date and time when the purchase quote was initially created in the system. This marks the start of the purchase quote lifecycle.
+        ///
         /// **Note**: Guaranteed to be non-null.
         /// </summary>
         public global::System.DateTimeOffset CreatedAt { get; }
         /// <summary>
-        /// This container provides Information on the current state of the purchase quote. The information that one will see here will be dependent on the state of the purchase quote.
+        /// This object provides Information on the current state of the purchase quote. The information that one will see here will be dependent on the state of the purchase quote.
         /// </summary>
         public IPurchaseQuotesByIds_PurchaseQuotesByIds_PurchaseQuotes_State State { get; }
     }
@@ -385,7 +386,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The unique identifier of the error.
-        /// **Note**: Currently this field will always show PURCHASE_QUOTES_BY_IDS_PARTIAL_FAILURE.
+        ///
+        /// **Note**: Currently this field will always show `PURCHASE_QUOTES_BY_IDS_PARTIAL_FAILURE`.
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
@@ -417,6 +419,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The human-readable label representing an active purchase quote.
+        ///
         /// **Maximum length**: 100 characters.
         /// </summary>
         public string Label { get; }
@@ -428,12 +431,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IPurchaseQuotesByIds_PurchaseQuotesByIds_PurchaseQuotes_State_Reason_2
     {
         /// <summary>
-        /// A human-readable name or description.
+        /// A human-readable name or description of the identifier entity .
+        ///
         /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayName { get; }
         /// <summary>
-        /// A unique identifier.
+        /// The unique identifier of the entity.
         /// </summary>
         public string Id { get; }
     }
@@ -451,12 +455,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IPurchaseQuotesByIds_PurchaseQuotesByIds_PurchaseQuotes_State_PurchaseQuoteCancelled_1 : IPurchaseQuotesByIds_PurchaseQuotesByIds_PurchaseQuotes_State_1
     {
         /// <summary>
-        /// This time stamp indicates when the cancellation occurred.
+        /// This timestamp indicates when the cancellation occurred.
         /// </summary>
         public global::System.DateTimeOffset CancelledAt { get; }
         /// <summary>
         /// The human-readable label representing a cancelled purchase quote.
-        /// **Maximum length**: 100 characters.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Label { get; }
         /// <summary>
@@ -472,7 +477,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The human-readable label representing a completed purchase quote.
-        /// **Maximum length**: 100 characters.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Label { get; }
     }
@@ -483,12 +489,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IPurchaseQuotesByIds_PurchaseQuotesByIds_PurchaseQuotes_State_Reason_3
     {
         /// <summary>
-        /// A human-readable name or description.
+        /// A human-readable name or description of the identifier entity .
+        ///
         /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayName { get; }
         /// <summary>
-        /// A unique identifier.
+        /// The unique identifier of the entity.
         /// </summary>
         public string Id { get; }
     }
@@ -507,7 +514,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The human-readable label representing an invalid purchase quote.
-        /// **Maximum length**: 100 characters.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Label { get; }
         /// <summary>
@@ -523,7 +531,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The human-readable label representing a locked purchase quote.
-        /// **Maximum length**: 100 characters.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Label { get; }
     }
@@ -535,6 +544,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The human-readable label representing a purchase quote has been requested by a buyer.
+        ///
         /// **Maximum length**: 100 characters.
         /// </summary>
         public string Label { get; }
@@ -551,16 +561,18 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string PurchaseQuoteId { get; }
         /// <summary>
         /// The exact date and time when the purchase quote was last modified or updated in the system. This timestamp captures any changes made to the purchase quote after initial creation, including change in state.
+        ///
         /// **Note**: Guaranteed to be non-null.
         /// </summary>
         public global::System.DateTimeOffset UpdatedAt { get; }
         /// <summary>
         /// The exact date and time when the purchase quote was initially created in the system. This marks the start of the purchase quote lifecycle.
+        ///
         /// **Note**: Guaranteed to be non-null.
         /// </summary>
         public global::System.DateTimeOffset CreatedAt { get; }
         /// <summary>
-        /// This container provides Information on the current state of the purchase quote. The information that one will see here will be dependent on the state of the purchase quote.
+        /// This object provides Information on the current state of the purchase quote. The information that one will see here will be dependent on the state of the purchase quote.
         /// </summary>
         public IPurchaseQuotesByIds_PurchaseQuotesByIds_PurchaseQuotes_State_1 State { get; }
     }
@@ -584,7 +596,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type displays the unique identifiers of all purchase quotes that were not successully retrieved, and the error(s) that caused them not to be retrieved.
+    /// This type displays the unique identifiers of all purchase quotes that were not successfully retrieved, and the error(s) that caused them not to be retrieved.
     /// </summary>
     public partial class PurchaseQuotesByIds_PurchaseQuotesByIds_Failures_PurchaseQuotesByIdsError : global::System.IEquatable<PurchaseQuotesByIds_PurchaseQuotesByIds_Failures_PurchaseQuotesByIdsError>, IPurchaseQuotesByIds_PurchaseQuotesByIds_Failures_PurchaseQuotesByIdsError
     {
@@ -603,9 +615,9 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The unique identifier of the error. Below are the three errors that may occur:
-        /// - INVALID_INPUT: This error indicates that the purchase quote ID is not recognized or it doesn't belong to the authenticated eBay user.
-        /// - TEMPORARILY_NOT_AVAILABLE: This error indicates that a system error occurred. This error may occur with a complete failure, and the user can try again after a short period of time.
-        /// - DEPENDENCY_TIME_OUTE: This error indicates that the request timed out, and the user can try again after a short period of time.
+        /// - `INVALID_INPUT`: This error indicates that the purchase quote ID is not recognized or it doesn't belong to the authenticated eBay user.
+        /// - `TEMPORARILY_NOT_AVAILABLE`: This error indicates that a system error occurred. This error may occur with a complete failure, and the user can try again after a short period of time.
+        /// - `DEPENDENCY_TIME_OUTE`: This error indicates that the request timed out, and the user can try again after a short period of time.
         /// </summary>
         public string ErrorCode { get; }
 
@@ -615,7 +627,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string InputPurchaseQuoteId { get; }
 
         /// <summary>
-        /// This boolean indicates whether or not the user should try to retrieve the corresponding purchase quote again. If this field is returned as 'true', the user can make another attempt to retrieve the purchase quote.
+        /// This boolean indicates whether or not the user should try to retrieve the corresponding purchase quote again. If this field is returned as `true`, the user can make another attempt to retrieve the purchase quote.
         /// </summary>
         public bool Retryable { get; }
 
@@ -702,7 +714,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The unique identifier of the error.
-        /// **Note**: Currently this field will always show PURCHASE_QUOTES_BY_IDS_COMPLETE_FAILURE.
+        ///
+        /// **Note**: Currently this field will always show `PURCHASE_QUOTES_BY_IDS_COMPLETE_FAILURE`.
         /// </summary>
         public string ErrorCode { get; }
 
@@ -783,7 +796,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type displays the unique identifiers of all purchase quotes that were not successully retrieved, and the error(s) that caused them not to be retrieved.
+    /// This type displays the unique identifiers of all purchase quotes that were not successfully retrieved, and the error(s) that caused them not to be retrieved.
     /// </summary>
     public partial class PurchaseQuotesByIds_PurchaseQuotesByIds_Failures_PurchaseQuotesByIdsError_1 : global::System.IEquatable<PurchaseQuotesByIds_PurchaseQuotesByIds_Failures_PurchaseQuotesByIdsError_1>, IPurchaseQuotesByIds_PurchaseQuotesByIds_Failures_PurchaseQuotesByIdsError_1
     {
@@ -802,9 +815,9 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The unique identifier of the error. Below are the three errors that may occur:
-        /// - INVALID_INPUT: This error indicates that the purchase quote ID is not recognized or it doesn't belong to the authenticated eBay user.
-        /// - TEMPORARILY_NOT_AVAILABLE: This error indicates that a system error occurred. This error may occur with a complete failure, and the user can try again after a short period of time.
-        /// - DEPENDENCY_TIME_OUTE: This error indicates that the request timed out, and the user can try again after a short period of time.
+        /// - `INVALID_INPUT`: This error indicates that the purchase quote ID is not recognized or it doesn't belong to the authenticated eBay user.
+        /// - `TEMPORARILY_NOT_AVAILABLE`: This error indicates that a system error occurred. This error may occur with a complete failure, and the user can try again after a short period of time.
+        /// - `DEPENDENCY_TIME_OUTE`: This error indicates that the request timed out, and the user can try again after a short period of time.
         /// </summary>
         public string ErrorCode { get; }
 
@@ -814,7 +827,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string InputPurchaseQuoteId { get; }
 
         /// <summary>
-        /// This boolean indicates whether or not the user should try to retrieve the corresponding purchase quote again. If this field is returned as 'true', the user can make another attempt to retrieve the purchase quote.
+        /// This boolean indicates whether or not the user should try to retrieve the corresponding purchase quote again. If this field is returned as `true`, the user can make another attempt to retrieve the purchase quote.
         /// </summary>
         public bool Retryable { get; }
 
@@ -899,6 +912,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The human-readable label representing an active purchase quote.
+        ///
         /// **Maximum length**: 100 characters.
         /// </summary>
         public string Label { get; }
@@ -974,13 +988,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// A human-readable name or description.
+        /// A human-readable name or description of the identifier entity .
+        ///
         /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayName { get; }
 
         /// <summary>
-        /// A unique identifier.
+        /// The unique identifier of the entity.
         /// </summary>
         public string Id { get; }
 
@@ -1059,13 +1074,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// This time stamp indicates when the cancellation occurred.
+        /// This timestamp indicates when the cancellation occurred.
         /// </summary>
         public global::System.DateTimeOffset CancelledAt { get; }
 
         /// <summary>
         /// The human-readable label representing a cancelled purchase quote.
-        /// **Maximum length**: 100 characters.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Label { get; }
 
@@ -1155,7 +1171,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The human-readable label representing a completed purchase quote.
-        /// **Maximum length**: 100 characters.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Label { get; }
 
@@ -1230,13 +1247,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// A human-readable name or description.
+        /// A human-readable name or description of the identifier entity .
+        ///
         /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayName { get; }
 
         /// <summary>
-        /// A unique identifier.
+        /// The unique identifier of the entity.
         /// </summary>
         public string Id { get; }
 
@@ -1315,7 +1333,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The human-readable label representing an invalid purchase quote.
-        /// **Maximum length**: 100 characters.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Label { get; }
 
@@ -1403,7 +1422,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The human-readable label representing a locked purchase quote.
-        /// **Maximum length**: 100 characters.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Label { get; }
 
@@ -1481,6 +1501,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The human-readable label representing a purchase quote has been requested by a buyer.
+        ///
         /// **Maximum length**: 100 characters.
         /// </summary>
         public string Label { get; }
@@ -1564,18 +1585,20 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The exact date and time when the purchase quote was last modified or updated in the system. This timestamp captures any changes made to the purchase quote after initial creation, including change in state.
+        ///
         /// **Note**: Guaranteed to be non-null.
         /// </summary>
         public global::System.DateTimeOffset UpdatedAt { get; }
 
         /// <summary>
         /// The exact date and time when the purchase quote was initially created in the system. This marks the start of the purchase quote lifecycle.
+        ///
         /// **Note**: Guaranteed to be non-null.
         /// </summary>
         public global::System.DateTimeOffset CreatedAt { get; }
 
         /// <summary>
-        /// This container provides Information on the current state of the purchase quote. The information that one will see here will be dependent on the state of the purchase quote.
+        /// This object provides Information on the current state of the purchase quote. The information that one will see here will be dependent on the state of the purchase quote.
         /// </summary>
         public IPurchaseQuotesByIds_PurchaseQuotesByIds_PurchaseQuotes_State State { get; }
 
@@ -1660,7 +1683,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The unique identifier of the error.
-        /// **Note**: Currently this field will always show PURCHASE_QUOTES_BY_IDS_PARTIAL_FAILURE.
+        ///
+        /// **Note**: Currently this field will always show `PURCHASE_QUOTES_BY_IDS_PARTIAL_FAILURE`.
         /// </summary>
         public string ErrorCode { get; }
 
@@ -1762,6 +1786,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The human-readable label representing an active purchase quote.
+        ///
         /// **Maximum length**: 100 characters.
         /// </summary>
         public string Label { get; }
@@ -1837,13 +1862,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// A human-readable name or description.
+        /// A human-readable name or description of the identifier entity .
+        ///
         /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayName { get; }
 
         /// <summary>
-        /// A unique identifier.
+        /// The unique identifier of the entity.
         /// </summary>
         public string Id { get; }
 
@@ -1922,13 +1948,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// This time stamp indicates when the cancellation occurred.
+        /// This timestamp indicates when the cancellation occurred.
         /// </summary>
         public global::System.DateTimeOffset CancelledAt { get; }
 
         /// <summary>
         /// The human-readable label representing a cancelled purchase quote.
-        /// **Maximum length**: 100 characters.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Label { get; }
 
@@ -2018,7 +2045,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The human-readable label representing a completed purchase quote.
-        /// **Maximum length**: 100 characters.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Label { get; }
 
@@ -2093,13 +2121,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// A human-readable name or description.
+        /// A human-readable name or description of the identifier entity .
+        ///
         /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayName { get; }
 
         /// <summary>
-        /// A unique identifier.
+        /// The unique identifier of the entity.
         /// </summary>
         public string Id { get; }
 
@@ -2178,7 +2207,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The human-readable label representing an invalid purchase quote.
-        /// **Maximum length**: 100 characters.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Label { get; }
 
@@ -2266,7 +2296,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The human-readable label representing a locked purchase quote.
-        /// **Maximum length**: 100 characters.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Label { get; }
 
@@ -2344,6 +2375,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The human-readable label representing a purchase quote has been requested by a buyer.
+        ///
         /// **Maximum length**: 100 characters.
         /// </summary>
         public string Label { get; }
@@ -2427,18 +2459,20 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The exact date and time when the purchase quote was last modified or updated in the system. This timestamp captures any changes made to the purchase quote after initial creation, including change in state.
+        ///
         /// **Note**: Guaranteed to be non-null.
         /// </summary>
         public global::System.DateTimeOffset UpdatedAt { get; }
 
         /// <summary>
         /// The exact date and time when the purchase quote was initially created in the system. This marks the start of the purchase quote lifecycle.
+        ///
         /// **Note**: Guaranteed to be non-null.
         /// </summary>
         public global::System.DateTimeOffset CreatedAt { get; }
 
         /// <summary>
-        /// This container provides Information on the current state of the purchase quote. The information that one will see here will be dependent on the state of the purchase quote.
+        /// This object provides Information on the current state of the purchase quote. The information that one will see here will be dependent on the state of the purchase quote.
         /// </summary>
         public IPurchaseQuotesByIds_PurchaseQuotesByIds_PurchaseQuotes_State_1 State { get; }
 

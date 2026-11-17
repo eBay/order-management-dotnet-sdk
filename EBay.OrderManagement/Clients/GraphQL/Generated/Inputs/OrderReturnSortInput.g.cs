@@ -33,7 +33,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// Specifies the field by which the order line item results are sorted.
         ///
-        /// **Default:** Sorts by the date the return was requested
+        /// **Default**: Sorts by the date the return was requested
         /// </summary>
         public OrderReturnSortField? SortField
         {
@@ -50,7 +50,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// * `ASC` ascending (oldest to newest)
         /// * `DESC` descending (newest to oldest)
         ///
-        /// **Default:** `ASC`
+        /// **Default**: `ASC`
         /// </summary>
         public SortOrder? SortOrder
         {

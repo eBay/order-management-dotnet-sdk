@@ -21,16 +21,16 @@ using EBay.OrderManagement.Clients.GraphQL;
 namespace EBay.OrderManagement.Generated.GraphQL
 {
     /// <summary>
-    /// Represents the type of order date being referenced.
+    /// This enumerated type represents the type of order date being referenced.
     /// </summary>
     public enum OrdersDateType
     {
         /// <summary>
-        /// The date and time when the order was confirmed.
+        /// This value indicates the date and time when the order was confirmed.
         /// </summary>
         Confirmed,
         /// <summary>
-        /// The most recent date and time the order was updated.
+        /// This value indicates the most recent date and time the order was updated.
         /// </summary>
         Updated
     }

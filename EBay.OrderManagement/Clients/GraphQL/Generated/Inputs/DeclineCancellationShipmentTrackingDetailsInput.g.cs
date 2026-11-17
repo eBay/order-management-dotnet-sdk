@@ -21,7 +21,7 @@ using EBay.OrderManagement.Clients.GraphQL;
 namespace EBay.OrderManagement.Generated.GraphQL
 {
     /// <summary>
-    ///  This input type provides the shipment tracking details for a declined cancellation.
+    /// This input type provides the shipment tracking details for a declined cancellation.
     /// </summary>
     public partial class DeclineCancellationShipmentTrackingDetailsInput : global::System.IEquatable<DeclineCancellationShipmentTrackingDetailsInput>
     {
@@ -35,8 +35,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
         ///
         /// Required if you include the **shippingCarrierCode** field.
         ///
-        /// **Format:** Alphanumeric
-        /// **Maximum length:** 512 characters
+        /// **Format**: Alphanumeric
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ShipmentTrackingNumber
         {

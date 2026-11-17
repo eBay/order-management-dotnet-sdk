@@ -21,7 +21,7 @@ using EBay.OrderManagement.Clients.GraphQL;
 namespace EBay.OrderManagement.Generated.GraphQL
 {
     /// <summary>
-    ///  This input type defines the payload for the **declineContractCancellation** mutation. It specifies the cancellation to decline and optionally includes fulfillment information.
+    /// This input type defines the payload for the **declineContractCancellation** mutation. It specifies the cancellation to decline and optionally includes fulfillment information.
     /// </summary>
     public partial class DeclineContractCancellationInput : global::System.IEquatable<DeclineContractCancellationInput>
     {
@@ -31,7 +31,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         private bool _set_fulfillmentDetails;
 
         /// <summary>
-        ///  The ID of the contract cancellation to decline.
+        /// The unique identifier of the contract cancellation request to decline.
         /// </summary>
         public string CancellationId
         {
@@ -44,7 +44,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        ///  Optional additional fulfillment details for the contract cancellation decline, such as the dates shipped and tracking information.
+        /// Optional additional fulfillment details for the contract cancellation decline, such as the dates shipped and tracking information.
         /// </summary>
         public DeclineCancellationFulfillmentDetailsInput? FulfillmentDetails
         {

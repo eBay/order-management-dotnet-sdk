@@ -31,7 +31,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         private bool _set_itemLocationCountries;
 
         /// <summary>
-        /// Country code in ISO format. Example `US` for United States.
+        /// The list of countries in which the seller will apply a return rule based on item condition.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<CountryAlpha2Code> ItemLocationCountries
         {

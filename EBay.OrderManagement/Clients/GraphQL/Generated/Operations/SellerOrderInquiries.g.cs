@@ -27,14 +27,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// This query can be used to retrieve a paginated list of order inquiries visible to the seller. This query supports standard filters, sorting, and offset-based pagination.
-        /// **Note**: This query does not raise errors for invalid or conflicting filter values. If filters are inconsistent (e.g., end date before start date), the server will return an empty result set.
         ///
-        /// PossibleErrors:
-        /// | Code                              | Message                                                                                           |
-        /// |-----------------------------------|---------------------------------------------------------------------------------------------------|
-        /// | INQRY_INVALID_DATE_RANGE          | The specified date range is invalid or exceeds the allowed limit.                                 |
-        /// | INQRY_INVALID_PAGE_SIZE           | The requested page size is outside the allowed range (min: 1, max: 100).                          |
-        /// | INQRY_INVALID_SEARCH_INPUT        | The search request must include either initial search input or valid page cursor information.     |
+        /// **Note**: This query does not raise errors for invalid or conflicting filter values. If filters are inconsistent (e.g., end date before start date), the server will return an empty result set.
         /// </summary>
         public ISellerOrderInquiries_SellerOrderInquiries SellerOrderInquiries { get; }
     }
@@ -51,14 +45,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// This query can be used to retrieve a paginated list of order inquiries visible to the seller. This query supports standard filters, sorting, and offset-based pagination.
-        /// **Note**: This query does not raise errors for invalid or conflicting filter values. If filters are inconsistent (e.g., end date before start date), the server will return an empty result set.
         ///
-        /// PossibleErrors:
-        /// | Code                              | Message                                                                                           |
-        /// |-----------------------------------|---------------------------------------------------------------------------------------------------|
-        /// | INQRY_INVALID_DATE_RANGE          | The specified date range is invalid or exceeds the allowed limit.                                 |
-        /// | INQRY_INVALID_PAGE_SIZE           | The requested page size is outside the allowed range (min: 1, max: 100).                          |
-        /// | INQRY_INVALID_SEARCH_INPUT        | The search request must include either initial search input or valid page cursor information.     |
+        /// **Note**: This query does not raise errors for invalid or conflicting filter values. If filters are inconsistent (e.g., end date before start date), the server will return an empty result set.
         /// </summary>
         public ISellerOrderInquiries_SellerOrderInquiries SellerOrderInquiries { get; }
 
@@ -130,13 +118,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface ISellerOrderInquiries_SellerOrderInquiries_OrderInquiryInvalidDateRangeError : ISellerOrderInquiries_SellerOrderInquiries
     {
         /// <summary>
-        /// The unique identifier for this specific error type - 'INQRY_INVALID_DATE_RANGE'
+        /// The unique identifier for this specific error type - `INQRY_INVALID_DATE_RANGE`
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
         /// The human-readable error message for the order inquiry error.
+        ///
         /// **Maximum length**: 512 characters
-        /// **Format**: Alphanumeric
         /// </summary>
         public string ErrorMessage { get; }
     }
@@ -147,13 +135,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface ISellerOrderInquiries_SellerOrderInquiries_OrderInquiryInvalidPageSizeError : ISellerOrderInquiries_SellerOrderInquiries
     {
         /// <summary>
-        /// The unique identifier for this specific error type - 'INQRY_INVALID_PAGE_SIZE'
+        /// The unique identifier for this specific error type - `INQRY_INVALID_PAGE_SIZE`
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
         /// The human-readable error message for the order inquiry error.
+        ///
         /// **Maximum length**: 512 characters
-        /// **Format**: Alphanumeric
         /// </summary>
         public string ErrorMessage { get; }
         /// <summary>
@@ -176,21 +164,21 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface ISellerOrderInquiries_SellerOrderInquiries_OrderInquiryInvalidSearchInputError : ISellerOrderInquiries_SellerOrderInquiries
     {
         /// <summary>
-        /// The unique identifier for this specific error type - 'INQRY_INVALID_SEARCH_INPUT'
+        /// The unique identifier for this specific error type - `INQRY_INVALID_SEARCH_INPUT`
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
         /// The human-readable error message for the order inquiry error.
+        ///
         /// **Maximum length**: 512 characters
-        /// **Format**: Alphanumeric
         /// </summary>
         public string ErrorMessage { get; }
     }
 
     /// <summary>
     /// This union type represents the structured data provided in response to an information request. The actual type depends on the expected **OrderInquiryInformation** type. For example:
-    /// - 'SHIPMENT_TRACKING_INFO' → **OrderInquiryShipmentTracking**
-    /// - 'SIGNATURE_CONFIRMATION_INFO' → **OrderInquirySignatureConfirmation**
+    /// - `SHIPMENT_TRACKING_INFO` → **OrderInquiryShipmentTracking**
+    /// - `SIGNATURE_CONFIRMATION_INFO` → **OrderInquirySignatureConfirmation**
     /// </summary>
     public partial interface ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_ProvidedInformation_SubmittedInformation
     {
@@ -204,12 +192,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The eBay-standard code representing the shipping carrier. This value corresponds to one of the supported eBay `CarrierCodes`.
-        /// **Note:** The special value `UNSUPPORTED` indicates that eBay does not officially support or recognize the provided carrier.
+        ///
+        /// **Note**: The special value `UNSUPPORTED` indicates that eBay does not officially support or recognize the provided carrier.
         /// </summary>
         public string CarrierCode { get; }
         /// <summary>
         /// The carrier name provided by the user when eBay does not recognize the carrier.
-        /// **Note: **This field is populated only when **carrierCode** is `UNSUPPORTED`.
+        ///
+        /// **Note**: This field is populated only when **carrierCode** is `UNSUPPORTED`.
         /// </summary>
         public string? UnsupportedCarrierName { get; }
     }
@@ -228,13 +218,10 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The tracking number provided by the shipping carrier.
-        /// **Minimum value**: 1
-        /// **Maximum value**: 100
-        /// **Format**: Alphanumeric
         /// </summary>
         public string TrackingNumber { get; }
         /// <summary>
-        /// The standardized carrier code (e.g., 'UPS', 'USPS', 'FEDEX') associated with the shipment.
+        /// The standardized carrier code (e.g., `UPS`, `USPS`, `FEDEX`) associated with the shipment.
         /// </summary>
         public ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_ProvidedInformation_SubmittedInformation_ShippingCarrier ShippingCarrier { get; }
     }
@@ -245,18 +232,17 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_ProvidedInformation_SubmittedInformation_SignatureConfirmationProof
     {
         /// <summary>
-        /// The unique identifier of the document.
+        /// The unique identifier of the document uploaded for the order inquiry.
         /// </summary>
         public string DocumentId { get; }
         /// <summary>
         /// The original or display name of the document file, as provided during upload.
-        /// **Minimum value**: 1
+        ///
         /// **Maximum value**: 100
-        /// **Format**: Alphanumeric
         /// </summary>
         public string DocumentName { get; }
         /// <summary>
-        /// The file name extension or format of the document (e.g., 'PDF', 'JPG', 'DOCX') as defined in the **FilenameExtension** enum.
+        /// The file name extension or format of the document (e.g., `PDF`, `JPG`, `DOCX`) as defined in the **FilenameExtension** enum.
         /// </summary>
         public FilenameExtension FilenameExtension { get; }
         /// <summary>
@@ -283,9 +269,6 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_ProvidedInformation_SubmittedInformation_SignatureConfirmationProof SignatureConfirmationProof { get; }
         /// <summary>
         /// The tracking number associated with the shipment for which signature confirmation is provided. This field is required to associate the signature with a specific shipment.
-        /// **Minimum value**: 1
-        /// **Maximum value**: 100
-        /// **Format**: Alphanumeric
         /// </summary>
         public string TrackingNumber { get; }
     }
@@ -301,6 +284,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public global::System.DateTimeOffset SubmittedAt { get; }
         /// <summary>
         /// This array returns a list of documents or files associated with the submission.
+        ///
         /// **Note**: This array may return an empty list if the response was purely textual.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_ProvidedInformation_SubmittedInformation> SubmittedInformation { get; }
@@ -347,7 +331,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This interface provides the status for an inquiry request.
+    /// This interface is used to provide the status for an inquiry request.
     /// </summary>
     public partial interface ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_Status
     {
@@ -357,8 +341,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string Code { get; }
         /// <summary>
         /// The human-readable text of the inquiry status.
-        /// **Max length**: 100 characters
-        /// **Format**: Alphanumeric
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
     }
@@ -385,7 +369,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string __typename { get; }
         /// <summary>
         /// The timestamp when the inquiry was closed.
-        /// **Note**: This container will be returned null if the inquiry is still open.
+        ///
+        /// **Note**: This object will be returned null if the inquiry is still open.
         /// </summary>
         public global::System.DateTimeOffset? ClosedAt { get; }
         /// <summary>
@@ -398,7 +383,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public PostPurchaseActorRole Initiator { get; }
         /// <summary>
         /// This array returns a list of all actors who have inquired about the same subject within this inquiry — starting with the original initiator, and including any other parties (e.g., buyer, seller, participant, or system) who later engaged. For example, the system might initiate the inquiry after handling time + 1 business day to prompt a seller response, and the buyer might inquire later on EDD + 1 day. Both actors would be listed here as having inquired about the same issue.
-        /// **Note:** This field is required and will always contain at least one actor.
+        ///
+        /// **Note**: This field is required and will always contain at least one actor.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<PostPurchaseActorRole> Inquirers { get; }
         /// <summary>
@@ -407,11 +393,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string InquiryId { get; }
         /// <summary>
         /// This array returns a list of information or evidence provided by inquiry participants in response to system or CS requests. This includes user-submitted files, text notes, or structured responses.
-        /// **Note:** This array may be an empty list if no additional information was provided.
+        ///
+        /// **Note**: This array may be an empty list if no additional information was provided.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_ProvidedInformation> ProvidedInformation { get; }
         /// <summary>
         /// This array returns a list of information or evidence requests made during the inquiry lifecycle. These requests may be generated by the system or manually initiated by participants and are typically used to collect supporting documentation or clarifications from one or more involved parties (e.g., buyer or seller). Examples include requests for tracking details, signature confirmation, proof of delivery or other relevant evidence.
+        ///
         /// **Note**: This list may be empty if no additional information was requested.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_RequestedInformation>? RequestedInformation { get; }
@@ -420,7 +408,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// </summary>
         public PostPurchaseActorRole Responder { get; }
         /// <summary>
-        /// The current overall status of the inquiry (e.g., 'OPEN', 'CLOSED').
+        /// The current overall status of the inquiry (e.g., `OPEN`, `CLOSED`).
         /// </summary>
         public ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_Status Status { get; }
     }
@@ -454,6 +442,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string InquiryLineItemId { get; }
         /// <summary>
         /// The quantity of the item under inquiry.
+        ///
         /// **Note**: This field may be returned null if the quantity is not applicable to the inquiry context.
         /// </summary>
         public int? Quantity { get; }
@@ -476,35 +465,35 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_SellerAvailableActions_RespondByAction_RespondAction
     {
         /// <summary>
-        /// A stable, machine-readable identifier for inquiry action. Example values include `SEND_MESSAGE`, `REFUND`, `ESCALATE`, 'PROVIDE_INFO'.
-        /// **Max length**: 100 characters.
-        /// **Format**: Alphanumeric.
+        /// A stable, machine-readable identifier for inquiry action. Example values include `SEND_MESSAGE`, `REFUND`, `ESCALATE`, `PROVIDE_INFO`.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
         /// <summary>
         /// The human-readable text for inquiry action.
-        /// **Max length**: 100 characters.
-        /// **Format**: Alphanumeric.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
     }
 
     /// <summary>
-    /// This type represents a 'close' action available during an inquiry.
+    /// This type represents a `close` action available during an inquiry.
     /// </summary>
     public partial interface ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_SellerAvailableActions_RespondByAction_RespondAction_OrderInquiryCloseAction : ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_SellerAvailableActions_RespondByAction_RespondAction
     {
     }
 
     /// <summary>
-    /// This type represents a 'provide info' action available during an inquiry. This action is shown when the system or participant has requested additional information (e.g., tracking details, signature confirmation) from a participant.
+    /// This type represents a `provide info` action available during an inquiry. This action is shown when the system or participant has requested additional information (e.g., tracking details, signature confirmation) from a participant.
     /// </summary>
     public partial interface ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_SellerAvailableActions_RespondByAction_RespondAction_OrderInquiryProvideInfoAction : ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_SellerAvailableActions_RespondByAction_RespondAction
     {
     }
 
     /// <summary>
-    /// This type represents the 'referral action' available during an inquiry. This action becomes available when the participant is eligible to escalate the inquiry for eBay's help or further review, and includes the list of valid referral reasons that may be selected by the user.
+    /// This type represents the `referral action` available during an inquiry. This action becomes available when the participant is eligible to escalate the inquiry for eBay's help or further review, and includes the list of valid referral reasons that may be selected by the user.
     /// </summary>
     public partial interface ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_SellerAvailableActions_RespondByAction_RespondAction_OrderInquiryReferralAction : ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_SellerAvailableActions_RespondByAction_RespondAction
     {
@@ -523,7 +512,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_SellerAvailableActions_RespondByAction
     {
         /// <summary>
-        /// The action that must be taken by the due date, specified by the associated **responseDueAt** container.
+        /// The action that must be taken by the due date, specified by the associated **responseDueAt** object.
         /// </summary>
         public ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_SellerAvailableActions_RespondByAction_RespondAction RespondAction { get; }
         /// <summary>
@@ -545,35 +534,35 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_SellerAvailableActions_SecondaryActions
     {
         /// <summary>
-        /// A stable, machine-readable identifier for inquiry action. Example values include `SEND_MESSAGE`, `REFUND`, `ESCALATE`, 'PROVIDE_INFO'.
-        /// **Max length**: 100 characters.
-        /// **Format**: Alphanumeric.
+        /// A stable, machine-readable identifier for inquiry action. Example values include `SEND_MESSAGE`, `REFUND`, `ESCALATE`, `PROVIDE_INFO`.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
         /// <summary>
         /// The human-readable text for inquiry action.
-        /// **Max length**: 100 characters.
-        /// **Format**: Alphanumeric.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
     }
 
     /// <summary>
-    /// This type represents a 'close' action available during an inquiry.
+    /// This type represents a `close` action available during an inquiry.
     /// </summary>
     public partial interface ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_SellerAvailableActions_SecondaryActions_OrderInquiryCloseAction : ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_SellerAvailableActions_SecondaryActions
     {
     }
 
     /// <summary>
-    /// This type represents a 'provide info' action available during an inquiry. This action is shown when the system or participant has requested additional information (e.g., tracking details, signature confirmation) from a participant.
+    /// This type represents a `provide info` action available during an inquiry. This action is shown when the system or participant has requested additional information (e.g., tracking details, signature confirmation) from a participant.
     /// </summary>
     public partial interface ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_SellerAvailableActions_SecondaryActions_OrderInquiryProvideInfoAction : ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_SellerAvailableActions_SecondaryActions
     {
     }
 
     /// <summary>
-    /// This type represents the 'referral action' available during an inquiry. This action becomes available when the participant is eligible to escalate the inquiry for eBay's help or further review, and includes the list of valid referral reasons that may be selected by the user.
+    /// This type represents the `referral action` available during an inquiry. This action becomes available when the participant is eligible to escalate the inquiry for eBay's help or further review, and includes the list of valid referral reasons that may be selected by the user.
     /// </summary>
     public partial interface ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_SellerAvailableActions_SecondaryActions_OrderInquiryReferralAction : ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_SellerAvailableActions_SecondaryActions
     {
@@ -592,7 +581,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_SellerAvailableActions
     {
         /// <summary>
-        /// This container returns the primary action that the participant is expected to take, along with the deadline by which it must be completed.
+        /// This object returns the primary action that the participant is expected to take, along with the deadline by which it must be completed.
         /// </summary>
         public ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_SellerAvailableActions_RespondByAction? RespondByAction { get; }
         /// <summary>
@@ -609,20 +598,23 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents an 'Item Not Received' (INR) inquiry. The fields in this type capture the full inquiry lifecycle — from initiation through buyer and seller interactions, shipment tracking events, participants, refund processing, and final resolution. This type implements the OrderInquiry interface and specializes it for the INR Inquiry.
+    /// This type represents an Item Not Received (INR) inquiry. The fields in this type capture the full inquiry lifecycle — from initiation through buyer and seller interactions, shipment tracking events, participants, refund processing, and final resolution. This type implements the OrderInquiry interface and specializes it for the INR Inquiry.
     /// </summary>
     public partial interface ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_ItemNotReceivedInquiry : ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries
     {
         /// <summary>
         /// This array returns a list of line items associated with this INR inquiry.
-        /// **Note:** This list is guaranteed to be non-null but may be empty in certain valid cases. In most typical cases, it will contain at least one line item.
+        ///
+        /// **Note**: This list is guaranteed to be non-null but may be empty in certain valid cases. In most typical cases, it will contain at least one line item.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_LineItems> LineItems { get; }
         /// <summary>
-        /// A list of actions currently available to the seller for this INR inquiry. This container may be returned null if:
+        /// A list of actions currently available to the seller for this INR inquiry.
+        ///
+        /// This object may be returned `null` if:
         /// - The viewer is not a participant.
         /// - No actions are currently available based on the inquiry state and role.
-        /// - The inquiry is in a terminal state (e.g., 'CLOSED' or 'RESOLVED').
+        /// - The inquiry is in a terminal state (e.g., `CLOSED` or `RESOLVED`).
         /// </summary>
         public ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_SellerAvailableActions? SellerAvailableActions { get; }
     }
@@ -663,7 +655,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries>? OrderInquiries { get; }
         /// <summary>
-        /// This container can be used to specify optional pagination settings that can be used to control page size and navigate through multiple pages of results.
+        /// This object can be used to specify optional pagination settings that can be used to control page size and navigate through multiple pages of results.
         /// </summary>
         public ISellerOrderInquiries_SellerOrderInquiries_Pagination Pagination { get; }
     }
@@ -683,14 +675,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// The unique identifier for this specific error type - 'INQRY_INVALID_DATE_RANGE'
+        /// The unique identifier for this specific error type - `INQRY_INVALID_DATE_RANGE`
         /// </summary>
         public string ErrorCode { get; }
 
         /// <summary>
         /// The human-readable error message for the order inquiry error.
+        ///
         /// **Maximum length**: 512 characters
-        /// **Format**: Alphanumeric
         /// </summary>
         public string ErrorMessage { get; }
 
@@ -776,14 +768,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// The unique identifier for this specific error type - 'INQRY_INVALID_PAGE_SIZE'
+        /// The unique identifier for this specific error type - `INQRY_INVALID_PAGE_SIZE`
         /// </summary>
         public string ErrorCode { get; }
 
         /// <summary>
         /// The human-readable error message for the order inquiry error.
+        ///
         /// **Maximum length**: 512 characters
-        /// **Format**: Alphanumeric
         /// </summary>
         public string ErrorMessage { get; }
 
@@ -887,14 +879,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// The unique identifier for this specific error type - 'INQRY_INVALID_SEARCH_INPUT'
+        /// The unique identifier for this specific error type - `INQRY_INVALID_SEARCH_INPUT`
         /// </summary>
         public string ErrorCode { get; }
 
         /// <summary>
         /// The human-readable error message for the order inquiry error.
+        ///
         /// **Maximum length**: 512 characters
-        /// **Format**: Alphanumeric
         /// </summary>
         public string ErrorMessage { get; }
 
@@ -975,13 +967,15 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The eBay-standard code representing the shipping carrier. This value corresponds to one of the supported eBay `CarrierCodes`.
-        /// **Note:** The special value `UNSUPPORTED` indicates that eBay does not officially support or recognize the provided carrier.
+        ///
+        /// **Note**: The special value `UNSUPPORTED` indicates that eBay does not officially support or recognize the provided carrier.
         /// </summary>
         public string CarrierCode { get; }
 
         /// <summary>
         /// The carrier name provided by the user when eBay does not recognize the carrier.
-        /// **Note: **This field is populated only when **carrierCode** is `UNSUPPORTED`.
+        ///
+        /// **Note**: This field is populated only when **carrierCode** is `UNSUPPORTED`.
         /// </summary>
         public string? UnsupportedCarrierName { get; }
 
@@ -1060,14 +1054,11 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The tracking number provided by the shipping carrier.
-        /// **Minimum value**: 1
-        /// **Maximum value**: 100
-        /// **Format**: Alphanumeric
         /// </summary>
         public string TrackingNumber { get; }
 
         /// <summary>
-        /// The standardized carrier code (e.g., 'UPS', 'USPS', 'FEDEX') associated with the shipment.
+        /// The standardized carrier code (e.g., `UPS`, `USPS`, `FEDEX`) associated with the shipment.
         /// </summary>
         public ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_ProvidedInformation_SubmittedInformation_ShippingCarrier ShippingCarrier { get; }
 
@@ -1149,20 +1140,19 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The unique identifier of the document.
+        /// The unique identifier of the document uploaded for the order inquiry.
         /// </summary>
         public string DocumentId { get; }
 
         /// <summary>
         /// The original or display name of the document file, as provided during upload.
-        /// **Minimum value**: 1
+        ///
         /// **Maximum value**: 100
-        /// **Format**: Alphanumeric
         /// </summary>
         public string DocumentName { get; }
 
         /// <summary>
-        /// The file name extension or format of the document (e.g., 'PDF', 'JPG', 'DOCX') as defined in the **FilenameExtension** enum.
+        /// The file name extension or format of the document (e.g., `PDF`, `JPG`, `DOCX`) as defined in the **FilenameExtension** enum.
         /// </summary>
         public FilenameExtension FilenameExtension { get; }
 
@@ -1255,9 +1245,6 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The tracking number associated with the shipment for which signature confirmation is provided. This field is required to associate the signature with a specific shipment.
-        /// **Minimum value**: 1
-        /// **Maximum value**: 100
-        /// **Format**: Alphanumeric
         /// </summary>
         public string TrackingNumber { get; }
 
@@ -1344,6 +1331,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// This array returns a list of documents or files associated with the submission.
+        ///
         /// **Note**: This array may return an empty list if the response was purely textual.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_ProvidedInformation_SubmittedInformation> SubmittedInformation { get; }
@@ -1574,8 +1562,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The human-readable text of the inquiry status.
-        /// **Max length**: 100 characters
-        /// **Format**: Alphanumeric
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -1656,8 +1644,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The human-readable text of the inquiry status.
-        /// **Max length**: 100 characters
-        /// **Format**: Alphanumeric
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -1808,6 +1796,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The quantity of the item under inquiry.
+        ///
         /// **Note**: This field may be returned null if the quantity is not applicable to the inquiry context.
         /// </summary>
         public int? Quantity { get; }
@@ -1882,7 +1871,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents a 'close' action available during an inquiry.
+    /// This type represents a `close` action available during an inquiry.
     /// </summary>
     public partial class SellerOrderInquiries_SellerOrderInquiries_OrderInquiries_SellerAvailableActions_RespondByAction_RespondAction_OrderInquiryCloseAction : global::System.IEquatable<SellerOrderInquiries_SellerOrderInquiries_OrderInquiries_SellerAvailableActions_RespondByAction_RespondAction_OrderInquiryCloseAction>, ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_SellerAvailableActions_RespondByAction_RespondAction_OrderInquiryCloseAction
     {
@@ -1893,16 +1882,16 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// A stable, machine-readable identifier for inquiry action. Example values include `SEND_MESSAGE`, `REFUND`, `ESCALATE`, 'PROVIDE_INFO'.
-        /// **Max length**: 100 characters.
-        /// **Format**: Alphanumeric.
+        /// A stable, machine-readable identifier for inquiry action. Example values include `SEND_MESSAGE`, `REFUND`, `ESCALATE`, `PROVIDE_INFO`.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// The human-readable text for inquiry action.
-        /// **Max length**: 100 characters.
-        /// **Format**: Alphanumeric.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -1966,7 +1955,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents a 'provide info' action available during an inquiry. This action is shown when the system or participant has requested additional information (e.g., tracking details, signature confirmation) from a participant.
+    /// This type represents a `provide info` action available during an inquiry. This action is shown when the system or participant has requested additional information (e.g., tracking details, signature confirmation) from a participant.
     /// </summary>
     public partial class SellerOrderInquiries_SellerOrderInquiries_OrderInquiries_SellerAvailableActions_RespondByAction_RespondAction_OrderInquiryProvideInfoAction : global::System.IEquatable<SellerOrderInquiries_SellerOrderInquiries_OrderInquiries_SellerAvailableActions_RespondByAction_RespondAction_OrderInquiryProvideInfoAction>, ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_SellerAvailableActions_RespondByAction_RespondAction_OrderInquiryProvideInfoAction
     {
@@ -1977,16 +1966,16 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// A stable, machine-readable identifier for inquiry action. Example values include `SEND_MESSAGE`, `REFUND`, `ESCALATE`, 'PROVIDE_INFO'.
-        /// **Max length**: 100 characters.
-        /// **Format**: Alphanumeric.
+        /// A stable, machine-readable identifier for inquiry action. Example values include `SEND_MESSAGE`, `REFUND`, `ESCALATE`, `PROVIDE_INFO`.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// The human-readable text for inquiry action.
-        /// **Max length**: 100 characters.
-        /// **Format**: Alphanumeric.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -2050,7 +2039,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents the 'referral action' available during an inquiry. This action becomes available when the participant is eligible to escalate the inquiry for eBay's help or further review, and includes the list of valid referral reasons that may be selected by the user.
+    /// This type represents the `referral action` available during an inquiry. This action becomes available when the participant is eligible to escalate the inquiry for eBay's help or further review, and includes the list of valid referral reasons that may be selected by the user.
     /// </summary>
     public partial class SellerOrderInquiries_SellerOrderInquiries_OrderInquiries_SellerAvailableActions_RespondByAction_RespondAction_OrderInquiryReferralAction : global::System.IEquatable<SellerOrderInquiries_SellerOrderInquiries_OrderInquiries_SellerAvailableActions_RespondByAction_RespondAction_OrderInquiryReferralAction>, ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_SellerAvailableActions_RespondByAction_RespondAction_OrderInquiryReferralAction
     {
@@ -2061,16 +2050,16 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// A stable, machine-readable identifier for inquiry action. Example values include `SEND_MESSAGE`, `REFUND`, `ESCALATE`, 'PROVIDE_INFO'.
-        /// **Max length**: 100 characters.
-        /// **Format**: Alphanumeric.
+        /// A stable, machine-readable identifier for inquiry action. Example values include `SEND_MESSAGE`, `REFUND`, `ESCALATE`, `PROVIDE_INFO`.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// The human-readable text for inquiry action.
-        /// **Max length**: 100 characters.
-        /// **Format**: Alphanumeric.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -2145,16 +2134,16 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// A stable, machine-readable identifier for inquiry action. Example values include `SEND_MESSAGE`, `REFUND`, `ESCALATE`, 'PROVIDE_INFO'.
-        /// **Max length**: 100 characters.
-        /// **Format**: Alphanumeric.
+        /// A stable, machine-readable identifier for inquiry action. Example values include `SEND_MESSAGE`, `REFUND`, `ESCALATE`, `PROVIDE_INFO`.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// The human-readable text for inquiry action.
-        /// **Max length**: 100 characters.
-        /// **Format**: Alphanumeric.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -2229,7 +2218,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The action that must be taken by the due date, specified by the associated **responseDueAt** container.
+        /// The action that must be taken by the due date, specified by the associated **responseDueAt** object.
         /// </summary>
         public ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_SellerAvailableActions_RespondByAction_RespondAction RespondAction { get; }
 
@@ -2295,7 +2284,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents a 'close' action available during an inquiry.
+    /// This type represents a `close` action available during an inquiry.
     /// </summary>
     public partial class SellerOrderInquiries_SellerOrderInquiries_OrderInquiries_SellerAvailableActions_SecondaryActions_OrderInquiryCloseAction : global::System.IEquatable<SellerOrderInquiries_SellerOrderInquiries_OrderInquiries_SellerAvailableActions_SecondaryActions_OrderInquiryCloseAction>, ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_SellerAvailableActions_SecondaryActions_OrderInquiryCloseAction
     {
@@ -2306,16 +2295,16 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// A stable, machine-readable identifier for inquiry action. Example values include `SEND_MESSAGE`, `REFUND`, `ESCALATE`, 'PROVIDE_INFO'.
-        /// **Max length**: 100 characters.
-        /// **Format**: Alphanumeric.
+        /// A stable, machine-readable identifier for inquiry action. Example values include `SEND_MESSAGE`, `REFUND`, `ESCALATE`, `PROVIDE_INFO`.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// The human-readable text for inquiry action.
-        /// **Max length**: 100 characters.
-        /// **Format**: Alphanumeric.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -2379,7 +2368,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents a 'provide info' action available during an inquiry. This action is shown when the system or participant has requested additional information (e.g., tracking details, signature confirmation) from a participant.
+    /// This type represents a `provide info` action available during an inquiry. This action is shown when the system or participant has requested additional information (e.g., tracking details, signature confirmation) from a participant.
     /// </summary>
     public partial class SellerOrderInquiries_SellerOrderInquiries_OrderInquiries_SellerAvailableActions_SecondaryActions_OrderInquiryProvideInfoAction : global::System.IEquatable<SellerOrderInquiries_SellerOrderInquiries_OrderInquiries_SellerAvailableActions_SecondaryActions_OrderInquiryProvideInfoAction>, ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_SellerAvailableActions_SecondaryActions_OrderInquiryProvideInfoAction
     {
@@ -2390,16 +2379,16 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// A stable, machine-readable identifier for inquiry action. Example values include `SEND_MESSAGE`, `REFUND`, `ESCALATE`, 'PROVIDE_INFO'.
-        /// **Max length**: 100 characters.
-        /// **Format**: Alphanumeric.
+        /// A stable, machine-readable identifier for inquiry action. Example values include `SEND_MESSAGE`, `REFUND`, `ESCALATE`, `PROVIDE_INFO`.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// The human-readable text for inquiry action.
-        /// **Max length**: 100 characters.
-        /// **Format**: Alphanumeric.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -2463,7 +2452,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents the 'referral action' available during an inquiry. This action becomes available when the participant is eligible to escalate the inquiry for eBay's help or further review, and includes the list of valid referral reasons that may be selected by the user.
+    /// This type represents the `referral action` available during an inquiry. This action becomes available when the participant is eligible to escalate the inquiry for eBay's help or further review, and includes the list of valid referral reasons that may be selected by the user.
     /// </summary>
     public partial class SellerOrderInquiries_SellerOrderInquiries_OrderInquiries_SellerAvailableActions_SecondaryActions_OrderInquiryReferralAction : global::System.IEquatable<SellerOrderInquiries_SellerOrderInquiries_OrderInquiries_SellerAvailableActions_SecondaryActions_OrderInquiryReferralAction>, ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_SellerAvailableActions_SecondaryActions_OrderInquiryReferralAction
     {
@@ -2474,16 +2463,16 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// A stable, machine-readable identifier for inquiry action. Example values include `SEND_MESSAGE`, `REFUND`, `ESCALATE`, 'PROVIDE_INFO'.
-        /// **Max length**: 100 characters.
-        /// **Format**: Alphanumeric.
+        /// A stable, machine-readable identifier for inquiry action. Example values include `SEND_MESSAGE`, `REFUND`, `ESCALATE`, `PROVIDE_INFO`.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// The human-readable text for inquiry action.
-        /// **Max length**: 100 characters.
-        /// **Format**: Alphanumeric.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -2558,16 +2547,16 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// A stable, machine-readable identifier for inquiry action. Example values include `SEND_MESSAGE`, `REFUND`, `ESCALATE`, 'PROVIDE_INFO'.
-        /// **Max length**: 100 characters.
-        /// **Format**: Alphanumeric.
+        /// A stable, machine-readable identifier for inquiry action. Example values include `SEND_MESSAGE`, `REFUND`, `ESCALATE`, `PROVIDE_INFO`.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// The human-readable text for inquiry action.
-        /// **Max length**: 100 characters.
-        /// **Format**: Alphanumeric.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -2642,7 +2631,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container returns the primary action that the participant is expected to take, along with the deadline by which it must be completed.
+        /// This object returns the primary action that the participant is expected to take, along with the deadline by which it must be completed.
         /// </summary>
         public ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_SellerAvailableActions_RespondByAction? RespondByAction { get; }
 
@@ -2708,7 +2697,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents an 'Item Not Received' (INR) inquiry. The fields in this type capture the full inquiry lifecycle — from initiation through buyer and seller interactions, shipment tracking events, participants, refund processing, and final resolution. This type implements the OrderInquiry interface and specializes it for the INR Inquiry.
+    /// This type represents an Item Not Received (INR) inquiry. The fields in this type capture the full inquiry lifecycle — from initiation through buyer and seller interactions, shipment tracking events, participants, refund processing, and final resolution. This type implements the OrderInquiry interface and specializes it for the INR Inquiry.
     /// </summary>
     public partial class SellerOrderInquiries_SellerOrderInquiries_OrderInquiries_ItemNotReceivedInquiry : global::System.IEquatable<SellerOrderInquiries_SellerOrderInquiries_OrderInquiries_ItemNotReceivedInquiry>, ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_ItemNotReceivedInquiry
     {
@@ -2732,7 +2721,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The timestamp when the inquiry was closed.
-        /// **Note**: This container will be returned null if the inquiry is still open.
+        ///
+        /// **Note**: This object will be returned null if the inquiry is still open.
         /// </summary>
         public global::System.DateTimeOffset? ClosedAt { get; }
 
@@ -2748,7 +2738,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// This array returns a list of all actors who have inquired about the same subject within this inquiry — starting with the original initiator, and including any other parties (e.g., buyer, seller, participant, or system) who later engaged. For example, the system might initiate the inquiry after handling time + 1 business day to prompt a seller response, and the buyer might inquire later on EDD + 1 day. Both actors would be listed here as having inquired about the same issue.
-        /// **Note:** This field is required and will always contain at least one actor.
+        ///
+        /// **Note**: This field is required and will always contain at least one actor.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<PostPurchaseActorRole> Inquirers { get; }
 
@@ -2759,12 +2750,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// This array returns a list of information or evidence provided by inquiry participants in response to system or CS requests. This includes user-submitted files, text notes, or structured responses.
-        /// **Note:** This array may be an empty list if no additional information was provided.
+        ///
+        /// **Note**: This array may be an empty list if no additional information was provided.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_ProvidedInformation> ProvidedInformation { get; }
 
         /// <summary>
         /// This array returns a list of information or evidence requests made during the inquiry lifecycle. These requests may be generated by the system or manually initiated by participants and are typically used to collect supporting documentation or clarifications from one or more involved parties (e.g., buyer or seller). Examples include requests for tracking details, signature confirmation, proof of delivery or other relevant evidence.
+        ///
         /// **Note**: This list may be empty if no additional information was requested.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_RequestedInformation>? RequestedInformation { get; }
@@ -2775,21 +2768,24 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public PostPurchaseActorRole Responder { get; }
 
         /// <summary>
-        /// The current overall status of the inquiry (e.g., 'OPEN', 'CLOSED').
+        /// The current overall status of the inquiry (e.g., `OPEN`, `CLOSED`).
         /// </summary>
         public ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_Status Status { get; }
 
         /// <summary>
         /// This array returns a list of line items associated with this INR inquiry.
-        /// **Note:** This list is guaranteed to be non-null but may be empty in certain valid cases. In most typical cases, it will contain at least one line item.
+        ///
+        /// **Note**: This list is guaranteed to be non-null but may be empty in certain valid cases. In most typical cases, it will contain at least one line item.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_LineItems> LineItems { get; }
 
         /// <summary>
-        /// A list of actions currently available to the seller for this INR inquiry. This container may be returned null if:
+        /// A list of actions currently available to the seller for this INR inquiry.
+        ///
+        /// This object may be returned `null` if:
         /// - The viewer is not a participant.
         /// - No actions are currently available based on the inquiry state and role.
-        /// - The inquiry is in a terminal state (e.g., 'CLOSED' or 'RESOLVED').
+        /// - The inquiry is in a terminal state (e.g., `CLOSED` or `RESOLVED`).
         /// </summary>
         public ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries_SellerAvailableActions? SellerAvailableActions { get; }
 
@@ -2985,7 +2981,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public global::System.Collections.Generic.IReadOnlyList<ISellerOrderInquiries_SellerOrderInquiries_OrderInquiries>? OrderInquiries { get; }
 
         /// <summary>
-        /// This container can be used to specify optional pagination settings that can be used to control page size and navigate through multiple pages of results.
+        /// This object can be used to specify optional pagination settings that can be used to control page size and navigate through multiple pages of results.
         /// </summary>
         public ISellerOrderInquiries_SellerOrderInquiries_Pagination Pagination { get; }
 

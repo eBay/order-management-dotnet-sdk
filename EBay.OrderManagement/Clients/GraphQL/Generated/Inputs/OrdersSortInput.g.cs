@@ -21,7 +21,7 @@ using EBay.OrderManagement.Clients.GraphQL;
 namespace EBay.OrderManagement.Generated.GraphQL
 {
     /// <summary>
-    /// Input specifying how the list of orders should be sorted in the response.
+    /// This input type specifies how the list of orders should be sorted in the response.
     /// </summary>
     public partial class OrdersSortInput : global::System.IEquatable<OrdersSortInput>
     {

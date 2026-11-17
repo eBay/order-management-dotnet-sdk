@@ -22,6 +22,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 {
     /// <summary>
     /// This type is used to add or modify available shipping or pickup logistics options provided by the seller.
+    ///
     /// **Note**: Only one of the containers in this type can be used per request. If they are both used, an error will occur.
     /// </summary>
     public partial class PurchaseQuoteLogisticsOptionInput : global::System.IEquatable<PurchaseQuoteLogisticsOptionInput>
@@ -33,6 +34,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// This array is used to update the pickup options and costs that are available to the buyer for order pickup. All available pickup options and costs must be supplied in this array and not just new pickup options or existing pickup options where the cost is being modified.
+        ///
         /// **Note**: If this array is being used, the **shipping** array cannot be used or an error will occur.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<PickupLogisticsOptionInput>? Pickup
@@ -47,6 +49,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// This array is used to update the shipping service options and costs that are available to the buyer for order shipment. All available shipping service options and costs must be supplied in this array and not just new shipping service options or existing shipping service options where the cost is being modified.
+        ///
         /// **Note**: If this array is being used, the **pickup** array cannot be used or an error will occur.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<ShippingLogisticsOptionInput>? Shipping

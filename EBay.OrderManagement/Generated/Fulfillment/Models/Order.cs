@@ -54,13 +54,7 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
         public global::EBay.OrderManagement.Generated.Fulfillment.Models.CancelStatus CancelStatus { get; set; }
 #endif
         /// <summary>The date and time that the order was created. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? CreationDate { get; set; }
-#nullable restore
-#else
-        public string CreationDate { get; set; }
-#endif
+        public DateTimeOffset? CreationDate { get; set; }
         /// <summary>This field is only returned if &lt;code&gt;true&lt;/code&gt; and indicates that eBay will collect tax (US state-mandated sales tax, Federal and Provincial Sales Tax in Canada, &apos;Goods and Services&apos; tax in Canada, Australia, and New Zealand, and VAT collected for UK and EU countries,) for at least one line item in the order, and remit the tax to the taxing authority of the buyer&apos;s residence. If this field is returned, the seller should search for one or more &lt;strong&gt;ebayCollectAndRemitTaxes&lt;/strong&gt; containers at the line item level to get more information about the type of tax and the amount.</summary>
         public bool? EbayCollectAndRemitTax { get; set; }
         /// <summary>This array contains a list of one or more &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-shipping_fulfillment-getshippingfulfillment&quot; target=&quot;_blank&quot;&gt;getShippingFulfillment&lt;/a&gt; call URIs that can be used to retrieve shipping fulfillments that have been set up for the order.</summary>
@@ -80,13 +74,7 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
         public List<global::EBay.OrderManagement.Generated.Fulfillment.Models.FulfillmentStartInstruction> FulfillmentStartInstructions { get; set; }
 #endif
         /// <summary>The date and time that the order was last modified. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? LastModifiedDate { get; set; }
-#nullable restore
-#else
-        public string LastModifiedDate { get; set; }
-#endif
+        public DateTimeOffset? LastModifiedDate { get; set; }
         /// <summary>This array contains the details for all line items that comprise the order.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -191,11 +179,11 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
                 { "buyer", n => { Buyer = n.GetObjectValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.Buyer>(global::EBay.OrderManagement.Generated.Fulfillment.Models.Buyer.CreateFromDiscriminatorValue); } },
                 { "buyerCheckoutNotes", n => { BuyerCheckoutNotes = n.GetStringValue(); } },
                 { "cancelStatus", n => { CancelStatus = n.GetObjectValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.CancelStatus>(global::EBay.OrderManagement.Generated.Fulfillment.Models.CancelStatus.CreateFromDiscriminatorValue); } },
-                { "creationDate", n => { CreationDate = n.GetStringValue(); } },
+                { "creationDate", n => { CreationDate = n.GetDateTimeOffsetValue(); } },
                 { "ebayCollectAndRemitTax", n => { EbayCollectAndRemitTax = n.GetBoolValue(); } },
                 { "fulfillmentHrefs", n => { FulfillmentHrefs = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "fulfillmentStartInstructions", n => { FulfillmentStartInstructions = n.GetCollectionOfObjectValues<global::EBay.OrderManagement.Generated.Fulfillment.Models.FulfillmentStartInstruction>(global::EBay.OrderManagement.Generated.Fulfillment.Models.FulfillmentStartInstruction.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "lastModifiedDate", n => { LastModifiedDate = n.GetStringValue(); } },
+                { "lastModifiedDate", n => { LastModifiedDate = n.GetDateTimeOffsetValue(); } },
                 { "lineItems", n => { LineItems = n.GetCollectionOfObjectValues<global::EBay.OrderManagement.Generated.Fulfillment.Models.LineItem>(global::EBay.OrderManagement.Generated.Fulfillment.Models.LineItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "orderFulfillmentStatus", n => { OrderFulfillmentStatus = n.GetEnumValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.OrderFulfillmentStatus>(); } },
                 { "orderId", n => { OrderId = n.GetStringValue(); } },
@@ -219,11 +207,11 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
             writer.WriteObjectValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.Buyer>("buyer", Buyer);
             writer.WriteStringValue("buyerCheckoutNotes", BuyerCheckoutNotes);
             writer.WriteObjectValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.CancelStatus>("cancelStatus", CancelStatus);
-            writer.WriteStringValue("creationDate", CreationDate);
+            writer.WriteDateTimeOffsetValue("creationDate", CreationDate);
             writer.WriteBoolValue("ebayCollectAndRemitTax", EbayCollectAndRemitTax);
             writer.WriteCollectionOfPrimitiveValues<string>("fulfillmentHrefs", FulfillmentHrefs);
             writer.WriteCollectionOfObjectValues<global::EBay.OrderManagement.Generated.Fulfillment.Models.FulfillmentStartInstruction>("fulfillmentStartInstructions", FulfillmentStartInstructions);
-            writer.WriteStringValue("lastModifiedDate", LastModifiedDate);
+            writer.WriteDateTimeOffsetValue("lastModifiedDate", LastModifiedDate);
             writer.WriteCollectionOfObjectValues<global::EBay.OrderManagement.Generated.Fulfillment.Models.LineItem>("lineItems", LineItems);
             writer.WriteEnumValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.OrderFulfillmentStatus>("orderFulfillmentStatus", OrderFulfillmentStatus);
             writer.WriteStringValue("orderId", OrderId);

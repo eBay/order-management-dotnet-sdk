@@ -26,9 +26,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface ISellerOrderReturnsResult
     {
         /// <summary>
-        /// The **sellerOrderReturns** query retrieves a list of order returns for the seller, with filtering and sorting options.
-        ///
-        /// Sellers can use this query to view and manage returns requiring action by the seller, buyer, or eBay, as well as filter results by date range or other supported return attributes.
+        /// The **sellerOrderReturns** query retrieves a list of order returns for the seller, with filtering and sorting options. Sellers can use this query to view and manage returns requiring action by the seller, buyer, or eBay, as well as filter results by date range or other supported return attributes.
         /// </summary>
         public ISellerOrderReturns_SellerOrderReturns SellerOrderReturns { get; }
     }
@@ -44,9 +42,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The **sellerOrderReturns** query retrieves a list of order returns for the seller, with filtering and sorting options.
-        ///
-        /// Sellers can use this query to view and manage returns requiring action by the seller, buyer, or eBay, as well as filter results by date range or other supported return attributes.
+        /// The **sellerOrderReturns** query retrieves a list of order returns for the seller, with filtering and sorting options. Sellers can use this query to view and manage returns requiring action by the seller, buyer, or eBay, as well as filter results by date range or other supported return attributes.
         /// </summary>
         public ISellerOrderReturns_SellerOrderReturns SellerOrderReturns { get; }
 
@@ -124,7 +120,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable error message. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
     }
@@ -135,13 +131,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface ISellerOrderReturns_SellerOrderReturns_ReturnInvalidDateRangeError : ISellerOrderReturns_SellerOrderReturns
     {
         /// <summary>
-        /// A machine-readable error code: `RTRN_INVALID_DATE_RANGE`
+        /// A machine-readable error code: `RTRN_INVALID_DATE_RANGE`.
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
         /// A human-readable error message. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
     }
@@ -152,25 +148,25 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface ISellerOrderReturns_SellerOrderReturns_ReturnInvalidPageSizeError : ISellerOrderReturns_SellerOrderReturns
     {
         /// <summary>
-        /// A machine-readable error code: `RTRN_INVALID_PAGE_SIZE`
+        /// A machine-readable error code: `RTRN_INVALID_PAGE_SIZE`.
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
         /// A human-readable error message. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
         /// <summary>
-        /// Maximum allowed page size.
+        /// The maximum allowed page size.
         /// </summary>
         public int MaxAllowedPageSize { get; }
         /// <summary>
-        /// Minimum allowed page size.
+        /// The minimum allowed page size.
         /// </summary>
         public int MinAllowedPageSize { get; }
         /// <summary>
-        /// Requested page size.
+        /// The requested page size.
         /// </summary>
         public int RequestedPageSize { get; }
     }
@@ -181,13 +177,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface ISellerOrderReturns_SellerOrderReturns_ReturnInvalidSearchInputError : ISellerOrderReturns_SellerOrderReturns
     {
         /// <summary>
-        /// A machine-readable error code: `RTRN_INVALID_SEARCH_INPUT`
+        /// A machine-readable error code: `RTRN_INVALID_SEARCH_INPUT`.
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
         /// A human-readable error message. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
     }
@@ -201,24 +197,26 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code providing the return status. The format is alphanumeric with underscores. For example: `REQUESTED`, `OPEN`, `DECLINED`, `CANCELLED`, `CLOSED`
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
         /// <summary>
         /// A human-readable description providing the return status. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
     }
 
     /// <summary>
-    /// This type indicates that the return was closed without completion and is considered cancelled. Instances when this status applies:
+    /// This type indicates that the return was closed without completion and is considered cancelled.
+    ///
+    /// Instances when this status applies:
     /// - the buyer closes the return request without shipping the item back
     /// - eBay closes the return due to timeout occurring due to the following:
-    ///   - an approved return was not shipped back by the buyer within the allowed time
-    ///   - a requested return was not approved by the seller, and the buyer did not ask eBay to step in and assist
-    /// - eBay closes the return because the buyer filed an external payment dispute
+    /// 	- an approved return was not shipped back by the buyer within the allowed time
+    /// 	- a requested return was not approved by the seller, and the buyer did not ask eBay to step in and assist
+    /// 	- eBay closes the return because the buyer filed an external payment dispute
     /// </summary>
     public partial interface ISellerOrderReturns_SellerOrderReturns_OrderReturns_Status_ReturnCancelled : ISellerOrderReturns_SellerOrderReturns_OrderReturns_Status
     {
@@ -226,9 +224,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
     /// <summary>
     /// This type indicate the return is closed (is at an end state). This typically indicates that the return lifecycle completed successfully.
+    ///
+    /// Instances when this status applies:
     /// - the buyer keeps the item and receives a full refund
     /// - the buyer ships the item back and receives a full refund
     /// - the buyer keeps the item and receives a partial refund after negotiating with seller
+    ///
     /// The refund object provides the refund amount and breakdown, and the return shipment section provides package or shipment details.
     /// </summary>
     public partial interface ISellerOrderReturns_SellerOrderReturns_OrderReturns_Status_ReturnClosed : ISellerOrderReturns_SellerOrderReturns_OrderReturns_Status
@@ -250,7 +251,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type indicates the return is requested by the buyer or eBay administration, is pending approval, in both code and a human-readable description.
+    /// This type indicates the return is requested by the buyer or eBay administration and is pending approval, in both code and a human-readable description.
     /// </summary>
     public partial interface ISellerOrderReturns_SellerOrderReturns_OrderReturns_Status_ReturnRequested : ISellerOrderReturns_SellerOrderReturns_OrderReturns_Status
     {
@@ -264,13 +265,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
     }
@@ -367,7 +368,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type indicates that  item is being returned for other reasons not listed here, and displays as **Other**.
+    /// This type indicates that item is being returned for other reasons not listed here, and displays as **Other**.
     /// </summary>
     public partial interface ISellerOrderReturns_SellerOrderReturns_OrderReturns_ReturnLineItems_ReturnReason_OtherReturnReason : ISellerOrderReturns_SellerOrderReturns_OrderReturns_ReturnLineItems_ReturnReason
     {
@@ -416,7 +417,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This interface type represents the status of a post-purchase relist task. This tracks the lifecycle state of automatic relisting operations that occur after purchase-related events like cancellations or returns.
     ///
-    /// **Note:** Additional interface types may be added in the future; clients should handle unrecognized types gracefully.
+    /// **Note**: Additional interface types may be added in the future; clients should handle unrecognized types gracefully.
     /// </summary>
     public partial interface ISellerOrderReturns_SellerOrderReturns_OrderReturns_ReturnLineItems_ListingRestockTasks_RelistStatus
     {
@@ -427,7 +428,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable relist task status. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
     }
@@ -454,33 +455,19 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// ListingReference is a reference to a listing.
-    /// This should be used by subgraphs who wish to extend ListingV2 or resolve ListingV2 type based on the listingID.
-    /// Using ListingV2 interface for resolving the listing details has its limitations so we strongly recommend using this type instead.
-    /// When ULP providers needs to extend Listing schema to add more fields in listing, it can be done in 2 ways.
-    /// 1. Define the ListingV2 interface as InterfaceObject and add fields to it. But this approach has its limitations as the subgraph will not be able to
-    /// refer to concrete types like SingleSkuListing and VariationListing in their schema. So the subgraph will not be able to add fields to these concrete types.
-    /// 2. Extend the concrete types like SingleSkuListing and VariationListing and add fields to it.
-    /// We strongly recommend using the second approach as it will allow the subgraph to add fields to concrete types like SingleSkuListing and VariationListing.
+    /// This type is a reference to a listing, and is used to extend ListingV2 or resolve ListingV2 type based on the **listingID**.
     /// </summary>
     public partial interface ISellerOrderReturns_SellerOrderReturns_OrderReturns_ReturnLineItems_ListingRestockTasks_RelistedListing
     {
         public string __typename { get; }
         /// <summary>
-        /// ID of the listing
+        /// The unique identifier of the listing.
         /// </summary>
         public string ListingId { get; }
     }
 
     /// <summary>
-    /// ListingReference is a reference to a listing.
-    /// This should be used by subgraphs who wish to extend ListingV2 or resolve ListingV2 type based on the listingID.
-    /// Using ListingV2 interface for resolving the listing details has its limitations so we strongly recommend using this type instead.
-    /// When ULP providers needs to extend Listing schema to add more fields in listing, it can be done in 2 ways.
-    /// 1. Define the ListingV2 interface as InterfaceObject and add fields to it. But this approach has its limitations as the subgraph will not be able to
-    /// refer to concrete types like SingleSkuListing and VariationListing in their schema. So the subgraph will not be able to add fields to these concrete types.
-    /// 2. Extend the concrete types like SingleSkuListing and VariationListing and add fields to it.
-    /// We strongly recommend using the second approach as it will allow the subgraph to add fields to concrete types like SingleSkuListing and VariationListing.
+    /// This type is a reference to a listing, and is used to extend ListingV2 or resolve ListingV2 type based on the **listingID**.
     /// </summary>
     public partial interface ISellerOrderReturns_SellerOrderReturns_OrderReturns_ReturnLineItems_ListingRestockTasks_RelistedListing_ListingReference : ISellerOrderReturns_SellerOrderReturns_OrderReturns_ReturnLineItems_ListingRestockTasks_RelistedListing
     {
@@ -507,7 +494,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface ISellerOrderReturns_SellerOrderReturns_OrderReturns_ReturnLineItems
     {
         /// <summary>
-        ///  The unique identifier of the return line item
+        /// The unique identifier of the return line item.
         /// </summary>
         public string ReturnLineItemId { get; }
         /// <summary>
@@ -515,7 +502,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// </summary>
         public int? RequestedQuantity { get; }
         /// <summary>
-        /// The return reason, which could change based on the return request and category of items. As new return reasons can be added in future, code so clients can handle this field gracefully. In countries where the return reason is not mandatory to provide, it will be returned as UNDISCLOSED.
+        /// The return reason, which could change based on the return request and category of items. As new return reasons can be added in future, code so clients can handle this field gracefully. In countries where the return reason is not mandatory to provide, it will be returned as `UNDISCLOSED`.
         /// </summary>
         public ISellerOrderReturns_SellerOrderReturns_OrderReturns_ReturnLineItems_ReturnReason ReturnReason { get; }
         /// <summary>
@@ -523,7 +510,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// </summary>
         public string? ReturnNote { get; }
         /// <summary>
-        /// The OrderLineItem purchased.
+        /// The order line item that is part of the return request.
         /// </summary>
         public ISellerOrderReturns_SellerOrderReturns_OrderReturns_ReturnLineItems_OrderLineItem OrderLineItem { get; }
         /// <summary>
@@ -548,14 +535,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return offer status. For example, `PENDING`, `ACCEPTED`, `DECLINED`, `EXPIRED`.
         ///
-        /// **Format:** Alphanumeric with underscores
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
         /// <summary>
         /// Human readable text for return offer status. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
     }
@@ -591,7 +577,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This union type represents all possible return offer terms.
     ///
-    /// **Note:** This union is forward-compatible. New types may be added without notice.
+    /// **Note**: This union is forward-compatible. New types may be added without notice.
     /// </summary>
     public partial interface ISellerOrderReturns_SellerOrderReturns_OrderReturns_ReturnNegotiation_LatestReturnOffer_ProposedTerm
     {
@@ -599,22 +585,24 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial interface ISellerOrderReturns_SellerOrderReturns_OrderReturns_ReturnNegotiation_LatestReturnOffer_ProposedTerm_RefundAmount_Original
     {
         /// <summary>
-        /// The monetary amount, in the currency specified by the **currency** field.
+        /// The numerical value of the monetary amount in the currency specified through the **currency** field.
         /// </summary>
         public decimal Value { get; }
         /// <summary>
-        /// A three-letter ISO 4217 code that indicates the currency of the amount in the **value** field.
+        /// The three-letter ISO 4217 currency code associated with this monetary amount.
+        ///
+        /// **Format**: Three-letter uppercase alphabetic code (for example, `USD`, `EUR`, `GBP`)
         /// </summary>
         public CurrencyAlpha3Code? Currency { get; }
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial interface ISellerOrderReturns_SellerOrderReturns_OrderReturns_ReturnNegotiation_LatestReturnOffer_ProposedTerm_RefundAmount_Original_Amount : ISellerOrderReturns_SellerOrderReturns_OrderReturns_ReturnNegotiation_LatestReturnOffer_ProposedTerm_RefundAmount_Original
     {
@@ -629,22 +617,24 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial interface ISellerOrderReturns_SellerOrderReturns_OrderReturns_ReturnNegotiation_LatestReturnOffer_ProposedTerm_RefundAmount_ExchangeScenario_Amount
     {
         /// <summary>
-        /// The monetary amount, in the currency specified by the **currency** field.
+        /// The numerical value of the monetary amount in the currency specified through the **currency** field.
         /// </summary>
         public decimal Value { get; }
         /// <summary>
-        /// A three-letter ISO 4217 code that indicates the currency of the amount in the **value** field.
+        /// The three-letter ISO 4217 currency code associated with this monetary amount.
+        ///
+        /// **Format**: Three-letter uppercase alphabetic code (for example, `USD`, `EUR`, `GBP`)
         /// </summary>
         public CurrencyAlpha3Code? Currency { get; }
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial interface ISellerOrderReturns_SellerOrderReturns_OrderReturns_ReturnNegotiation_LatestReturnOffer_ProposedTerm_RefundAmount_ExchangeScenario_Amount_Amount : ISellerOrderReturns_SellerOrderReturns_OrderReturns_ReturnNegotiation_LatestReturnOffer_ProposedTerm_RefundAmount_ExchangeScenario_Amount
     {
@@ -670,7 +660,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// The timestamp indicates when the currency conversion happened at the rate found in the **exchangeRate** field.
         ///
-        /// **Note**: Will be null if currency conversion has not happened or if the the timestamp is unavailable.
+        /// **Note**: Will be null if currency conversion has not happened or if the timestamp is unavailable.
         /// </summary>
         public global::System.DateTimeOffset? ExchangeAt { get; }
     }
@@ -681,7 +671,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface ISellerOrderReturns_SellerOrderReturns_OrderReturns_ReturnNegotiation_LatestReturnOffer_ProposedTerm_RefundAmount_ExchangeScenario_InvalidExchangeScenarioInputError : ISellerOrderReturns_SellerOrderReturns_OrderReturns_ReturnNegotiation_LatestReturnOffer_ProposedTerm_RefundAmount_ExchangeScenario
     {
         /// <summary>
-        /// The unique identifier of the error, which will be INVALID_EXCHANGE_SCENARIO_INPUT when the input is invalid.
+        /// The unique identifier of the error, which will be `INVALID_EXCHANGE_SCENARIO_INPUT` when the input is invalid.
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
@@ -700,7 +690,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// </summary>
         public ISellerOrderReturns_SellerOrderReturns_OrderReturns_ReturnNegotiation_LatestReturnOffer_ProposedTerm_RefundAmount_Original Original { get; }
         /// <summary>
-        /// This enumeration value indicates that the monetary amount shown in the **exchangeScenarioByName** container is in the buyer's or seller's currency.
+        /// This enumeration value indicates that the monetary amount shown in the **exchangeScenarioByName** object is in the buyer's or seller's currency.
         /// </summary>
         public ISellerOrderReturns_SellerOrderReturns_OrderReturns_ReturnNegotiation_LatestReturnOffer_ProposedTerm_RefundAmount_ExchangeScenario? ExchangeScenario { get; }
     }
@@ -737,11 +727,11 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface ISellerOrderReturns_SellerOrderReturns_OrderReturns_ReturnNegotiation_LatestReturnOffer
     {
         /// <summary>
-        /// The status of return offer that was made in the negotiation.
+        /// The current status of the return offer that was made in the negotiation.
         /// </summary>
         public ISellerOrderReturns_SellerOrderReturns_OrderReturns_ReturnNegotiation_LatestReturnOffer_Status Status { get; }
         /// <summary>
-        /// Offer terms proposed in the return negotiation.
+        /// This object shows proposed offer terms in the return negotiation.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<ISellerOrderReturns_SellerOrderReturns_OrderReturns_ReturnNegotiation_LatestReturnOffer_ProposedTerm> ProposedTerm { get; }
     }
@@ -774,7 +764,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This type represents the return of an item back to the seller or eBay. A return is a post-purchase event allowing a buyer to return an item to the seller or eBay, for a refund or exchange.
     ///
-    /// **Note:** Returns are handled at order line item level. Each return is associated with a single line item (not the entire order).
+    /// **Note**: Returns are handled at the order line item level. Each return is associated with a single line item (not the entire order).
     /// </summary>
     public partial interface ISellerOrderReturns_SellerOrderReturns_OrderReturns
     {
@@ -783,18 +773,18 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// </summary>
         public string ReturnId { get; }
         /// <summary>
-        ///  This value indicates which party (such as the buyer or the seller) initiated the return. Applicable values:
-        /// * `BUYER` Buyer requested the return
-        /// * `SELLER` Used for in-store returns
-        /// * `EBAY` Indicates returns initiated by eBay Partner (Authentication Provider, Logistic Partner, eBay Admin, Customer Support, or similar)
+        /// This value indicates which party (such as the buyer or the seller) initiated the return. Applicable values:
+        /// * `BUYER`: Buyer requested the return
+        /// * `SELLER`: Used for in-store returns
+        /// * `EBAY`: Indicates returns initiated by eBay Partner (Authentication Provider, Logistic Partner, eBay Admin, Customer Support, or similar)
         /// </summary>
         public PostPurchaseActorRole Requester { get; }
         /// <summary>
-        /// The date when the return was requested.
+        /// This timestamp indicates when the return was requested.
         /// </summary>
         public global::System.DateTimeOffset RequestedAt { get; }
         /// <summary>
-        /// The date the return request was resolved and closed.
+        /// This timestamp indicates when the return request was closed. This field is only returned when the return request is closed.
         /// </summary>
         public global::System.DateTimeOffset? ClosedAt { get; }
         /// <summary>
@@ -814,7 +804,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This type represents the return of an item back to the seller or eBay. A return is a post-purchase event allowing a buyer to return an item to the seller or eBay, for a refund or exchange.
     ///
-    /// **Note:** Returns are handled at order line item level. Each return is associated with a single line item (not the entire order).
+    /// **Note**: Returns are handled at the order line item level. Each return is associated with a single line item (not the entire order).
     /// </summary>
     public partial interface ISellerOrderReturns_SellerOrderReturns_OrderReturns_OrderReturn : ISellerOrderReturns_SellerOrderReturns_OrderReturns
     {
@@ -883,7 +873,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable error message. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
 
@@ -966,14 +956,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// A machine-readable error code: `RTRN_INVALID_DATE_RANGE`
+        /// A machine-readable error code: `RTRN_INVALID_DATE_RANGE`.
         /// </summary>
         public string ErrorCode { get; }
 
         /// <summary>
         /// A human-readable error message. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
 
@@ -1059,29 +1049,29 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// A machine-readable error code: `RTRN_INVALID_PAGE_SIZE`
+        /// A machine-readable error code: `RTRN_INVALID_PAGE_SIZE`.
         /// </summary>
         public string ErrorCode { get; }
 
         /// <summary>
         /// A human-readable error message. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
 
         /// <summary>
-        /// Maximum allowed page size.
+        /// The maximum allowed page size.
         /// </summary>
         public int MaxAllowedPageSize { get; }
 
         /// <summary>
-        /// Minimum allowed page size.
+        /// The minimum allowed page size.
         /// </summary>
         public int MinAllowedPageSize { get; }
 
         /// <summary>
-        /// Requested page size.
+        /// The requested page size.
         /// </summary>
         public int RequestedPageSize { get; }
 
@@ -1170,14 +1160,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// A machine-readable error code: `RTRN_INVALID_SEARCH_INPUT`
+        /// A machine-readable error code: `RTRN_INVALID_SEARCH_INPUT`.
         /// </summary>
         public string ErrorCode { get; }
 
         /// <summary>
         /// A human-readable error message. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
 
@@ -1246,12 +1236,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type indicates that the return was closed without completion and is considered cancelled. Instances when this status applies:
+    /// This type indicates that the return was closed without completion and is considered cancelled.
+    ///
+    /// Instances when this status applies:
     /// - the buyer closes the return request without shipping the item back
     /// - eBay closes the return due to timeout occurring due to the following:
-    ///   - an approved return was not shipped back by the buyer within the allowed time
-    ///   - a requested return was not approved by the seller, and the buyer did not ask eBay to step in and assist
-    /// - eBay closes the return because the buyer filed an external payment dispute
+    /// 	- an approved return was not shipped back by the buyer within the allowed time
+    /// 	- a requested return was not approved by the seller, and the buyer did not ask eBay to step in and assist
+    /// 	- eBay closes the return because the buyer filed an external payment dispute
     /// </summary>
     public partial class SellerOrderReturns_SellerOrderReturns_OrderReturns_Status_ReturnCancelled : global::System.IEquatable<SellerOrderReturns_SellerOrderReturns_OrderReturns_Status_ReturnCancelled>, ISellerOrderReturns_SellerOrderReturns_OrderReturns_Status_ReturnCancelled
     {
@@ -1267,14 +1259,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code providing the return status. The format is alphanumeric with underscores. For example: `REQUESTED`, `OPEN`, `DECLINED`, `CANCELLED`, `CLOSED`
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable description providing the return status. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -1344,9 +1336,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
     /// <summary>
     /// This type indicate the return is closed (is at an end state). This typically indicates that the return lifecycle completed successfully.
+    ///
+    /// Instances when this status applies:
     /// - the buyer keeps the item and receives a full refund
     /// - the buyer ships the item back and receives a full refund
     /// - the buyer keeps the item and receives a partial refund after negotiating with seller
+    ///
     /// The refund object provides the refund amount and breakdown, and the return shipment section provides package or shipment details.
     /// </summary>
     public partial class SellerOrderReturns_SellerOrderReturns_OrderReturns_Status_ReturnClosed : global::System.IEquatable<SellerOrderReturns_SellerOrderReturns_OrderReturns_Status_ReturnClosed>, ISellerOrderReturns_SellerOrderReturns_OrderReturns_Status_ReturnClosed
@@ -1363,14 +1358,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code providing the return status. The format is alphanumeric with underscores. For example: `REQUESTED`, `OPEN`, `DECLINED`, `CANCELLED`, `CLOSED`
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable description providing the return status. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -1455,14 +1450,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code providing the return status. The format is alphanumeric with underscores. For example: `REQUESTED`, `OPEN`, `DECLINED`, `CANCELLED`, `CLOSED`
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable description providing the return status. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -1547,14 +1542,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code providing the return status. The format is alphanumeric with underscores. For example: `REQUESTED`, `OPEN`, `DECLINED`, `CANCELLED`, `CLOSED`
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable description providing the return status. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -1623,7 +1618,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type indicates the return is requested by the buyer or eBay administration, is pending approval, in both code and a human-readable description.
+    /// This type indicates the return is requested by the buyer or eBay administration and is pending approval, in both code and a human-readable description.
     /// </summary>
     public partial class SellerOrderReturns_SellerOrderReturns_OrderReturns_Status_ReturnRequested : global::System.IEquatable<SellerOrderReturns_SellerOrderReturns_OrderReturns_Status_ReturnRequested>, ISellerOrderReturns_SellerOrderReturns_OrderReturns_Status_ReturnRequested
     {
@@ -1639,14 +1634,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code providing the return status. The format is alphanumeric with underscores. For example: `REQUESTED`, `OPEN`, `DECLINED`, `CANCELLED`, `CLOSED`
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable description providing the return status. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -1728,14 +1723,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -1812,14 +1807,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -1896,14 +1891,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -1980,14 +1975,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -2064,14 +2059,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -2148,14 +2143,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -2232,14 +2227,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -2316,14 +2311,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -2400,14 +2395,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -2484,14 +2479,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -2568,14 +2563,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -2652,14 +2647,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -2736,14 +2731,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -2807,7 +2802,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type indicates that  item is being returned for other reasons not listed here, and displays as **Other**.
+    /// This type indicates that item is being returned for other reasons not listed here, and displays as **Other**.
     /// </summary>
     public partial class SellerOrderReturns_SellerOrderReturns_OrderReturns_ReturnLineItems_ReturnReason_OtherReturnReason : global::System.IEquatable<SellerOrderReturns_SellerOrderReturns_OrderReturns_ReturnLineItems_ReturnReason_OtherReturnReason>, ISellerOrderReturns_SellerOrderReturns_OrderReturns_ReturnLineItems_ReturnReason_OtherReturnReason
     {
@@ -2820,14 +2815,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -2904,14 +2899,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -2988,14 +2983,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -3146,7 +3141,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable relist task status. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -3228,7 +3223,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable relist task status. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -3310,7 +3305,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable relist task status. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -3374,14 +3369,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// ListingReference is a reference to a listing.
-    /// This should be used by subgraphs who wish to extend ListingV2 or resolve ListingV2 type based on the listingID.
-    /// Using ListingV2 interface for resolving the listing details has its limitations so we strongly recommend using this type instead.
-    /// When ULP providers needs to extend Listing schema to add more fields in listing, it can be done in 2 ways.
-    /// 1. Define the ListingV2 interface as InterfaceObject and add fields to it. But this approach has its limitations as the subgraph will not be able to
-    /// refer to concrete types like SingleSkuListing and VariationListing in their schema. So the subgraph will not be able to add fields to these concrete types.
-    /// 2. Extend the concrete types like SingleSkuListing and VariationListing and add fields to it.
-    /// We strongly recommend using the second approach as it will allow the subgraph to add fields to concrete types like SingleSkuListing and VariationListing.
+    /// This type is a reference to a listing, and is used to extend ListingV2 or resolve ListingV2 type based on the **listingID**.
     /// </summary>
     public partial class SellerOrderReturns_SellerOrderReturns_OrderReturns_ReturnLineItems_ListingRestockTasks_RelistedListing_ListingReference : global::System.IEquatable<SellerOrderReturns_SellerOrderReturns_OrderReturns_ReturnLineItems_ListingRestockTasks_RelistedListing_ListingReference>, ISellerOrderReturns_SellerOrderReturns_OrderReturns_ReturnLineItems_ListingRestockTasks_RelistedListing_ListingReference
     {
@@ -3394,7 +3382,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// ID of the listing
+        /// The unique identifier of the listing.
         /// </summary>
         public string ListingId { get; }
 
@@ -3561,7 +3549,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        ///  The unique identifier of the return line item
+        /// The unique identifier of the return line item.
         /// </summary>
         public string ReturnLineItemId { get; }
 
@@ -3571,7 +3559,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public int? RequestedQuantity { get; }
 
         /// <summary>
-        /// The return reason, which could change based on the return request and category of items. As new return reasons can be added in future, code so clients can handle this field gracefully. In countries where the return reason is not mandatory to provide, it will be returned as UNDISCLOSED.
+        /// The return reason, which could change based on the return request and category of items. As new return reasons can be added in future, code so clients can handle this field gracefully. In countries where the return reason is not mandatory to provide, it will be returned as `UNDISCLOSED`.
         /// </summary>
         public ISellerOrderReturns_SellerOrderReturns_OrderReturns_ReturnLineItems_ReturnReason ReturnReason { get; }
 
@@ -3581,7 +3569,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string? ReturnNote { get; }
 
         /// <summary>
-        /// The OrderLineItem purchased.
+        /// The order line item that is part of the return request.
         /// </summary>
         public ISellerOrderReturns_SellerOrderReturns_OrderReturns_ReturnLineItems_OrderLineItem OrderLineItem { get; }
 
@@ -3683,15 +3671,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return offer status. For example, `PENDING`, `ACCEPTED`, `DECLINED`, `EXPIRED`.
         ///
-        /// **Format:** Alphanumeric with underscores
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// Human readable text for return offer status. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -3776,15 +3763,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return offer status. For example, `PENDING`, `ACCEPTED`, `DECLINED`, `EXPIRED`.
         ///
-        /// **Format:** Alphanumeric with underscores
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// Human readable text for return offer status. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -3869,15 +3855,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return offer status. For example, `PENDING`, `ACCEPTED`, `DECLINED`, `EXPIRED`.
         ///
-        /// **Format:** Alphanumeric with underscores
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// Human readable text for return offer status. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -3962,15 +3947,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return offer status. For example, `PENDING`, `ACCEPTED`, `DECLINED`, `EXPIRED`.
         ///
-        /// **Format:** Alphanumeric with underscores
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// Human readable text for return offer status. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -4039,7 +4023,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial class SellerOrderReturns_SellerOrderReturns_OrderReturns_ReturnNegotiation_LatestReturnOffer_ProposedTerm_RefundAmount_Original_Amount : global::System.IEquatable<SellerOrderReturns_SellerOrderReturns_OrderReturns_ReturnNegotiation_LatestReturnOffer_ProposedTerm_RefundAmount_Original_Amount>, ISellerOrderReturns_SellerOrderReturns_OrderReturns_ReturnNegotiation_LatestReturnOffer_ProposedTerm_RefundAmount_Original_Amount
     {
@@ -4050,12 +4034,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The monetary amount, in the currency specified by the **currency** field.
+        /// The numerical value of the monetary amount in the currency specified through the **currency** field.
         /// </summary>
         public decimal Value { get; }
 
         /// <summary>
-        /// A three-letter ISO 4217 code that indicates the currency of the amount in the **value** field.
+        /// The three-letter ISO 4217 currency code associated with this monetary amount.
+        ///
+        /// **Format**: Three-letter uppercase alphabetic code (for example, `USD`, `EUR`, `GBP`)
         /// </summary>
         public CurrencyAlpha3Code? Currency { get; }
 
@@ -4116,7 +4102,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial class SellerOrderReturns_SellerOrderReturns_OrderReturns_ReturnNegotiation_LatestReturnOffer_ProposedTerm_RefundAmount_ExchangeScenario_Amount_Amount : global::System.IEquatable<SellerOrderReturns_SellerOrderReturns_OrderReturns_ReturnNegotiation_LatestReturnOffer_ProposedTerm_RefundAmount_ExchangeScenario_Amount_Amount>, ISellerOrderReturns_SellerOrderReturns_OrderReturns_ReturnNegotiation_LatestReturnOffer_ProposedTerm_RefundAmount_ExchangeScenario_Amount_Amount
     {
@@ -4127,12 +4113,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The monetary amount, in the currency specified by the **currency** field.
+        /// The numerical value of the monetary amount in the currency specified through the **currency** field.
         /// </summary>
         public decimal Value { get; }
 
         /// <summary>
-        /// A three-letter ISO 4217 code that indicates the currency of the amount in the **value** field.
+        /// The three-letter ISO 4217 currency code associated with this monetary amount.
+        ///
+        /// **Format**: Three-letter uppercase alphabetic code (for example, `USD`, `EUR`, `GBP`)
         /// </summary>
         public CurrencyAlpha3Code? Currency { get; }
 
@@ -4224,7 +4212,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// The timestamp indicates when the currency conversion happened at the rate found in the **exchangeRate** field.
         ///
-        /// **Note**: Will be null if currency conversion has not happened or if the the timestamp is unavailable.
+        /// **Note**: Will be null if currency conversion has not happened or if the timestamp is unavailable.
         /// </summary>
         public global::System.DateTimeOffset? ExchangeAt { get; }
 
@@ -4312,7 +4300,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// The unique identifier of the error, which will be INVALID_EXCHANGE_SCENARIO_INPUT when the input is invalid.
+        /// The unique identifier of the error, which will be `INVALID_EXCHANGE_SCENARIO_INPUT` when the input is invalid.
         /// </summary>
         public string ErrorCode { get; }
 
@@ -4402,7 +4390,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public ISellerOrderReturns_SellerOrderReturns_OrderReturns_ReturnNegotiation_LatestReturnOffer_ProposedTerm_RefundAmount_Original Original { get; }
 
         /// <summary>
-        /// This enumeration value indicates that the monetary amount shown in the **exchangeScenarioByName** container is in the buyer's or seller's currency.
+        /// This enumeration value indicates that the monetary amount shown in the **exchangeScenarioByName** object is in the buyer's or seller's currency.
         /// </summary>
         public ISellerOrderReturns_SellerOrderReturns_OrderReturns_ReturnNegotiation_LatestReturnOffer_ProposedTerm_RefundAmount_ExchangeScenario? ExchangeScenario { get; }
 
@@ -4576,12 +4564,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The status of return offer that was made in the negotiation.
+        /// The current status of the return offer that was made in the negotiation.
         /// </summary>
         public ISellerOrderReturns_SellerOrderReturns_OrderReturns_ReturnNegotiation_LatestReturnOffer_Status Status { get; }
 
         /// <summary>
-        /// Offer terms proposed in the return negotiation.
+        /// This object shows proposed offer terms in the return negotiation.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<ISellerOrderReturns_SellerOrderReturns_OrderReturns_ReturnNegotiation_LatestReturnOffer_ProposedTerm> ProposedTerm { get; }
 
@@ -4713,7 +4701,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This type represents the return of an item back to the seller or eBay. A return is a post-purchase event allowing a buyer to return an item to the seller or eBay, for a refund or exchange.
     ///
-    /// **Note:** Returns are handled at order line item level. Each return is associated with a single line item (not the entire order).
+    /// **Note**: Returns are handled at the order line item level. Each return is associated with a single line item (not the entire order).
     /// </summary>
     public partial class SellerOrderReturns_SellerOrderReturns_OrderReturns_OrderReturn : global::System.IEquatable<SellerOrderReturns_SellerOrderReturns_OrderReturns_OrderReturn>, ISellerOrderReturns_SellerOrderReturns_OrderReturns_OrderReturn
     {
@@ -4734,20 +4722,20 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string ReturnId { get; }
 
         /// <summary>
-        ///  This value indicates which party (such as the buyer or the seller) initiated the return. Applicable values:
-        /// * `BUYER` Buyer requested the return
-        /// * `SELLER` Used for in-store returns
-        /// * `EBAY` Indicates returns initiated by eBay Partner (Authentication Provider, Logistic Partner, eBay Admin, Customer Support, or similar)
+        /// This value indicates which party (such as the buyer or the seller) initiated the return. Applicable values:
+        /// * `BUYER`: Buyer requested the return
+        /// * `SELLER`: Used for in-store returns
+        /// * `EBAY`: Indicates returns initiated by eBay Partner (Authentication Provider, Logistic Partner, eBay Admin, Customer Support, or similar)
         /// </summary>
         public PostPurchaseActorRole Requester { get; }
 
         /// <summary>
-        /// The date when the return was requested.
+        /// This timestamp indicates when the return was requested.
         /// </summary>
         public global::System.DateTimeOffset RequestedAt { get; }
 
         /// <summary>
-        /// The date the return request was resolved and closed.
+        /// This timestamp indicates when the return request was closed. This field is only returned when the return request is closed.
         /// </summary>
         public global::System.DateTimeOffset? ClosedAt { get; }
 

@@ -118,13 +118,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// Status of the rule. Only rules with the status `ENABLED` are executed.
-        /// Available values: `ENABLED`, `DISABLED`
+        ///
+        /// **Available values**: `ENABLED`, `DISABLED`
         /// </summary>
         public string Code { get; }
         /// <summary>
-        ///    A human readable rule status. This alphanumeric string is not localized and may change without notice.
+        /// A human readable rule status. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
     }
@@ -137,7 +138,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type indicates the rules with ENABLED status are active and evaluated.
+    /// This type indicates the rules with `ENABLED` status are active and evaluated.
     /// </summary>
     public partial interface IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_Status_ReturnRuleEnabledStatus : IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_Status
     {
@@ -152,14 +153,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the rule response strategy
         ///
-        /// **Format:** Alphanumeric with underscores
-        /// **Maximum length:** 50 characters
+        /// **Maximum length**: 50 characters
         /// </summary>
         public string Code { get; }
         /// <summary>
         /// A human-readable description of the rule outcome. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
     }
@@ -192,7 +192,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_Categories
     {
         /// <summary>
-        /// Category Id (replaced by categoryId)
+        /// Unique identifier of eBay category. Deprecated field. Do not use.
         /// </summary>
         public string Id { get; }
     }
@@ -212,7 +212,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A list of one or more categories referenced by this condition.
         ///
-        /// **Note:** These needs to be eBay leaf category IDs.
+        /// **Note**: These need to be eBay leaf category IDs.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_Categories> Categories { get; }
     }
@@ -223,7 +223,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_ReturnItemLocationCountryCondition : IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions
     {
         /// <summary>
-        /// Location to where the seller ships the item to the buyer.
+        /// The list of countries in which the seller has a return rule based on item condition.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<CountryAlpha2Code> ItemLocationCountries { get; }
     }
@@ -234,9 +234,9 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_ReturnListingGroupCondition : IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions
     {
         /// <summary>
-        ///    A listing group ID referenced by this condition:
+        /// A listing group ID referenced by this condition:
         /// - a group can have a specified number of listings
-        ///    - only one group can be defined per condition
+        /// - only one group can be defined per condition
         /// </summary>
         public string ReturnRuleListingGroupId { get; }
     }
@@ -249,13 +249,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
     }
@@ -352,7 +352,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type indicates that  item is being returned for other reasons not listed here, and displays as **Other**.
+    /// This type indicates that item is being returned for other reasons not listed here, and displays as **Other**.
     /// </summary>
     public partial interface IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_ReturnReasonList_OtherReturnReason : IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_ReturnReasonList
     {
@@ -378,50 +378,54 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_ReturnReasonCondition : IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions
     {
         /// <summary>
-        /// One or more return reasons.
+        /// An array of one or more allowed return reasons.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_ReturnReasonList> ReturnReasonList { get; }
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial interface IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_MaxRefundAmount
     {
         /// <summary>
-        /// A three-letter ISO 4217 code that indicates the currency of the amount in the **value** field.
+        /// The three-letter ISO 4217 currency code associated with this monetary amount.
+        ///
+        /// **Format**: Three-letter uppercase alphabetic code (for example, `USD`, `EUR`, `GBP`)
         /// </summary>
         public CurrencyAlpha3Code? Currency { get; }
         /// <summary>
-        /// The monetary amount, in the currency specified by the **currency** field.
+        /// The numerical value of the monetary amount in the currency specified through the **currency** field.
         /// </summary>
         public decimal Value { get; }
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial interface IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_MaxRefundAmount_Amount : IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_MaxRefundAmount
     {
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial interface IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_MinRefundAmount
     {
         /// <summary>
-        /// A three-letter ISO 4217 code that indicates the currency of the amount in the **value** field.
+        /// The three-letter ISO 4217 currency code associated with this monetary amount.
+        ///
+        /// **Format**: Three-letter uppercase alphabetic code (for example, `USD`, `EUR`, `GBP`)
         /// </summary>
         public CurrencyAlpha3Code? Currency { get; }
         /// <summary>
-        /// The monetary amount, in the currency specified by the **currency** field.
+        /// The numerical value of the monetary amount in the currency specified through the **currency** field.
         /// </summary>
         public decimal Value { get; }
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial interface IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_MinRefundAmount_Amount : IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_MinRefundAmount
     {
@@ -436,11 +440,11 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_ReturnRefundRangeCondition : IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions
     {
         /// <summary>
-        /// The maximum refund amount.
+        /// This object shows the maximum refund amount allowed.
         /// </summary>
         public IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_MaxRefundAmount? MaxRefundAmount { get; }
         /// <summary>
-        /// The minimum refund amount.
+        /// This object shows the minimum refund amount allowed.
         /// </summary>
         public IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_MinRefundAmount MinRefundAmount { get; }
     }
@@ -451,7 +455,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_ReturnShipmentOriginCountryCondition : IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions
     {
         /// <summary>
-        /// Buyer's country from which the return is initiated (initially shipped).
+        /// Teh buyer's country from which the return is initiated (initially shipped).
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<CountryAlpha2Code> ReturnShipmentOriginCountries { get; }
     }
@@ -488,26 +492,25 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ReturnResponseRule : IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus
     {
         /// <summary>
-        /// The unique identifier for the rule.
+        /// The unique identifier for the return rule.
         /// </summary>
         public string RuleId { get; }
         /// <summary>
         /// The unique name for the rule. No two rules can have the same name.
-        /// Allowed characters: [A-Z, a-z, 0-9, hyphen(-), underscore(_), period(.), colon(:), comma(,), apostrophe(')]
-        /// **Maximum length:** 100 characters
-        /// Format: Alphanumeric
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Name { get; }
         /// <summary>
         /// The rules are processed by ascending priority value (the lowest priority number first). Evaluation stops at the first matching rule. This means that a rule with priority 1 will always be considered before a rule with priority 5.
         ///
-        /// **Note:** Each rule must have a unique priority number.
+        /// **Note**: Each rule must have a unique priority number.
         /// </summary>
         public int Priority { get; }
         /// <summary>
         /// The current status of the rule.
         ///
-        /// **Note:** Only rules with `ENABLED` status are applied.
+        /// **Note**: Only rules with `ENABLED` status are applied.
         /// </summary>
         public IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_Status Status { get; }
         /// <summary>
@@ -523,7 +526,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This error type indicates that the return rules feature is not enabled for the seller.
     ///
-    /// **Note:** The seller is authenticated but does not have the required feature capability enabled ramped for them.
+    /// **Note**: The seller is authenticated but does not have the required feature capability enabled ramped for them.
     /// </summary>
     public partial interface IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ReturnRuleFeatureNotEnabledError : IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus
     {
@@ -534,7 +537,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable error message. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
     }
@@ -551,11 +554,11 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable error message that the rule was not found. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
         /// <summary>
-        /// The **ruleId** which was not found.
+        /// The unique identifier of the return rule which was not found.
         /// </summary>
         public string RequestedRuleId { get; }
     }
@@ -576,7 +579,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// </summary>
         public string ErrorMessage { get; }
         /// <summary>
-        /// The **ruleId** which was not found.
+        /// The unique identifier of the return rule which was not found.
         /// </summary>
         public string RequestedRuleId { get; }
     }
@@ -588,13 +591,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// Status of the rule. Only rules with the status `ENABLED` are executed.
-        /// Available values: `ENABLED`, `DISABLED`
+        ///
+        /// **Available values**: `ENABLED`, `DISABLED`
         /// </summary>
         public string Code { get; }
         /// <summary>
-        ///    A human readable rule status. This alphanumeric string is not localized and may change without notice.
+        /// A human readable rule status. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
     }
@@ -607,7 +611,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type indicates the rules with ENABLED status are active and evaluated.
+    /// This type indicates the rules with `ENABLED` status are active and evaluated.
     /// </summary>
     public partial interface IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_Status_ReturnRuleEnabledStatus_1 : IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_Status_1
     {
@@ -622,14 +626,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return address routing strategy .
         ///
-        /// **Format:** Alphanumeric with underscores
-        /// **Maximum length:** 50 characters
+        /// **Maximum length**: 50 characters
         /// </summary>
         public string Code { get; }
         /// <summary>
         /// A human-readable text of the return address routing strategy. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
     }
@@ -655,6 +658,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The unique public identifier of the address. This field is used primarily for Return Address records and for sharing a reference that is stable across requests.
+        ///
         /// **Example:** 'RA-9c4b2f58-1f4e-4e72-9a4c-702d5e2b74e1'
         /// </summary>
         public string? AddressId { get; }
@@ -738,7 +742,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A list of one or more categories referenced by this condition.
         ///
-        /// **Note:** These needs to be eBay leaf category IDs.
+        /// **Note**: These need to be eBay leaf category IDs.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_Categories_1> Categories { get; }
     }
@@ -749,7 +753,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_ReturnItemLocationCountryCondition_1 : IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_1
     {
         /// <summary>
-        /// Location to where the seller ships the item to the buyer.
+        /// The list of countries in which the seller has a return rule based on item condition.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<CountryAlpha2Code> ItemLocationCountries { get; }
     }
@@ -760,9 +764,9 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_ReturnListingGroupCondition_1 : IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_1
     {
         /// <summary>
-        ///    A listing group ID referenced by this condition:
+        /// A listing group ID referenced by this condition:
         /// - a group can have a specified number of listings
-        ///    - only one group can be defined per condition
+        /// - only one group can be defined per condition
         /// </summary>
         public string ReturnRuleListingGroupId { get; }
     }
@@ -775,13 +779,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
     }
@@ -878,7 +882,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type indicates that  item is being returned for other reasons not listed here, and displays as **Other**.
+    /// This type indicates that item is being returned for other reasons not listed here, and displays as **Other**.
     /// </summary>
     public partial interface IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_ReturnReasonList_OtherReturnReason_1 : IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_ReturnReasonList_1
     {
@@ -904,50 +908,54 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_ReturnReasonCondition_1 : IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_1
     {
         /// <summary>
-        /// One or more return reasons.
+        /// An array of one or more allowed return reasons.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_ReturnReasonList_1> ReturnReasonList { get; }
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial interface IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_MaxRefundAmount_1
     {
         /// <summary>
-        /// A three-letter ISO 4217 code that indicates the currency of the amount in the **value** field.
+        /// The three-letter ISO 4217 currency code associated with this monetary amount.
+        ///
+        /// **Format**: Three-letter uppercase alphabetic code (for example, `USD`, `EUR`, `GBP`)
         /// </summary>
         public CurrencyAlpha3Code? Currency { get; }
         /// <summary>
-        /// The monetary amount, in the currency specified by the **currency** field.
+        /// The numerical value of the monetary amount in the currency specified through the **currency** field.
         /// </summary>
         public decimal Value { get; }
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial interface IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_MaxRefundAmount_Amount_1 : IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_MaxRefundAmount_1
     {
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial interface IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_MinRefundAmount_1
     {
         /// <summary>
-        /// A three-letter ISO 4217 code that indicates the currency of the amount in the **value** field.
+        /// The three-letter ISO 4217 currency code associated with this monetary amount.
+        ///
+        /// **Format**: Three-letter uppercase alphabetic code (for example, `USD`, `EUR`, `GBP`)
         /// </summary>
         public CurrencyAlpha3Code? Currency { get; }
         /// <summary>
-        /// The monetary amount, in the currency specified by the **currency** field.
+        /// The numerical value of the monetary amount in the currency specified through the **currency** field.
         /// </summary>
         public decimal Value { get; }
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial interface IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_MinRefundAmount_Amount_1 : IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_MinRefundAmount_1
     {
@@ -962,11 +970,11 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_ReturnRefundRangeCondition_1 : IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_1
     {
         /// <summary>
-        /// The maximum refund amount.
+        /// This object shows the maximum refund amount allowed.
         /// </summary>
         public IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_MaxRefundAmount_1? MaxRefundAmount { get; }
         /// <summary>
-        /// The minimum refund amount.
+        /// This object shows the minimum refund amount allowed.
         /// </summary>
         public IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_MinRefundAmount_1 MinRefundAmount { get; }
     }
@@ -977,7 +985,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_ReturnShipmentOriginCountryCondition_1 : IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_1
     {
         /// <summary>
-        /// Buyer's country from which the return is initiated (initially shipped).
+        /// Teh buyer's country from which the return is initiated (initially shipped).
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<CountryAlpha2Code> ReturnShipmentOriginCountries { get; }
     }
@@ -1012,29 +1020,27 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ReturnToAddressRule : IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus
     {
         /// <summary>
-        /// The unique identifier for the rule.
+        /// The unique identifier for the return rule.
         /// </summary>
         public string RuleId { get; }
         /// <summary>
         /// The unique name for the rule. No two rules can have the same name.
         ///
-        /// **Format:** Alphanumeric
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Name { get; }
         /// <summary>
-        /// The rule's priority determines its evaluation order; lower numbers are evaluated first.
-        /// Each rule must have a unique priority value.
+        /// The rule's priority determines its evaluation order; lower numbers are evaluated first. Each rule must have a unique priority value.
         /// </summary>
         public int Priority { get; }
         /// <summary>
         /// The status of the rule: `ENABLED` or `DISABLED`
         ///
-        /// **Note:** Only `ENABLED` rules are applied.
+        /// **Note**: Only `ENABLED` rules are applied.
         /// </summary>
         public IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_Status_1 Status { get; }
         /// <summary>
-        /// Strategy for selecting the return address route
+        /// The strategy for selecting the return address route.
         /// </summary>
         public IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_AddressRoutingStrategy AddressRoutingStrategy { get; }
         /// <summary>
@@ -1056,14 +1062,15 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// Status of the rule. Only rules with the status `ENABLED` are executed.
-        /// Available values: `ENABLED`, `DISABLED`
+        ///
+        /// **Available values**: `ENABLED`, `DISABLED`
         /// </summary>
         public string Code { get; }
 
         /// <summary>
-        ///    A human readable rule status. This alphanumeric string is not localized and may change without notice.
+        /// A human readable rule status. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -1127,7 +1134,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type indicates the rules with ENABLED status are active and evaluated.
+    /// This type indicates the rules with `ENABLED` status are active and evaluated.
     /// </summary>
     public partial class UpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_Status_ReturnRuleEnabledStatus : global::System.IEquatable<UpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_Status_ReturnRuleEnabledStatus>, IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_Status_ReturnRuleEnabledStatus
     {
@@ -1139,14 +1146,15 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// Status of the rule. Only rules with the status `ENABLED` are executed.
-        /// Available values: `ENABLED`, `DISABLED`
+        ///
+        /// **Available values**: `ENABLED`, `DISABLED`
         /// </summary>
         public string Code { get; }
 
         /// <summary>
-        ///    A human readable rule status. This alphanumeric string is not localized and may change without notice.
+        /// A human readable rule status. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -1223,15 +1231,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the rule response strategy
         ///
-        /// **Format:** Alphanumeric with underscores
-        /// **Maximum length:** 50 characters
+        /// **Maximum length**: 50 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable description of the rule outcome. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -1308,15 +1315,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the rule response strategy
         ///
-        /// **Format:** Alphanumeric with underscores
-        /// **Maximum length:** 50 characters
+        /// **Maximum length**: 50 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable description of the rule outcome. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -1390,7 +1396,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Category Id (replaced by categoryId)
+        /// Unique identifier of eBay category. Deprecated field. Do not use.
         /// </summary>
         public string Id { get; }
 
@@ -1464,7 +1470,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A list of one or more categories referenced by this condition.
         ///
-        /// **Note:** These needs to be eBay leaf category IDs.
+        /// **Note**: These need to be eBay leaf category IDs.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_Categories> Categories { get; }
 
@@ -1538,7 +1544,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// Location to where the seller ships the item to the buyer.
+        /// The list of countries in which the seller has a return rule based on item condition.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<CountryAlpha2Code> ItemLocationCountries { get; }
 
@@ -1612,9 +1618,9 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        ///    A listing group ID referenced by this condition:
+        /// A listing group ID referenced by this condition:
         /// - a group can have a specified number of listings
-        ///    - only one group can be defined per condition
+        /// - only one group can be defined per condition
         /// </summary>
         public string ReturnRuleListingGroupId { get; }
 
@@ -1691,14 +1697,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -1775,14 +1781,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -1859,14 +1865,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -1943,14 +1949,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -2027,14 +2033,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -2111,14 +2117,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -2195,14 +2201,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -2279,14 +2285,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -2363,14 +2369,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -2447,14 +2453,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -2531,14 +2537,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -2615,14 +2621,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -2699,14 +2705,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -2770,7 +2776,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type indicates that  item is being returned for other reasons not listed here, and displays as **Other**.
+    /// This type indicates that item is being returned for other reasons not listed here, and displays as **Other**.
     /// </summary>
     public partial class UpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_ReturnReasonList_OtherReturnReason : global::System.IEquatable<UpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_ReturnReasonList_OtherReturnReason>, IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_ReturnReasonList_OtherReturnReason
     {
@@ -2783,14 +2789,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -2867,14 +2873,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -2951,14 +2957,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -3035,7 +3041,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// One or more return reasons.
+        /// An array of one or more allowed return reasons.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_ReturnReasonList> ReturnReasonList { get; }
 
@@ -3096,7 +3102,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial class UpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_MaxRefundAmount_Amount : global::System.IEquatable<UpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_MaxRefundAmount_Amount>, IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_MaxRefundAmount_Amount
     {
@@ -3107,12 +3113,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// A three-letter ISO 4217 code that indicates the currency of the amount in the **value** field.
+        /// The three-letter ISO 4217 currency code associated with this monetary amount.
+        ///
+        /// **Format**: Three-letter uppercase alphabetic code (for example, `USD`, `EUR`, `GBP`)
         /// </summary>
         public CurrencyAlpha3Code? Currency { get; }
 
         /// <summary>
-        /// The monetary amount, in the currency specified by the **currency** field.
+        /// The numerical value of the monetary amount in the currency specified through the **currency** field.
         /// </summary>
         public decimal Value { get; }
 
@@ -3173,7 +3181,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial class UpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_MinRefundAmount_Amount : global::System.IEquatable<UpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_MinRefundAmount_Amount>, IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_MinRefundAmount_Amount
     {
@@ -3184,12 +3192,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// A three-letter ISO 4217 code that indicates the currency of the amount in the **value** field.
+        /// The three-letter ISO 4217 currency code associated with this monetary amount.
+        ///
+        /// **Format**: Three-letter uppercase alphabetic code (for example, `USD`, `EUR`, `GBP`)
         /// </summary>
         public CurrencyAlpha3Code? Currency { get; }
 
         /// <summary>
-        /// The monetary amount, in the currency specified by the **currency** field.
+        /// The numerical value of the monetary amount in the currency specified through the **currency** field.
         /// </summary>
         public decimal Value { get; }
 
@@ -3267,12 +3277,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// The maximum refund amount.
+        /// This object shows the maximum refund amount allowed.
         /// </summary>
         public IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_MaxRefundAmount? MaxRefundAmount { get; }
 
         /// <summary>
-        /// The minimum refund amount.
+        /// This object shows the minimum refund amount allowed.
         /// </summary>
         public IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_MinRefundAmount MinRefundAmount { get; }
 
@@ -3354,7 +3364,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// Buyer's country from which the return is initiated (initially shipped).
+        /// Teh buyer's country from which the return is initiated (initially shipped).
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<CountryAlpha2Code> ReturnShipmentOriginCountries { get; }
 
@@ -3511,29 +3521,28 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// The unique identifier for the rule.
+        /// The unique identifier for the return rule.
         /// </summary>
         public string RuleId { get; }
 
         /// <summary>
         /// The unique name for the rule. No two rules can have the same name.
-        /// Allowed characters: [A-Z, a-z, 0-9, hyphen(-), underscore(_), period(.), colon(:), comma(,), apostrophe(')]
-        /// **Maximum length:** 100 characters
-        /// Format: Alphanumeric
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Name { get; }
 
         /// <summary>
         /// The rules are processed by ascending priority value (the lowest priority number first). Evaluation stops at the first matching rule. This means that a rule with priority 1 will always be considered before a rule with priority 5.
         ///
-        /// **Note:** Each rule must have a unique priority number.
+        /// **Note**: Each rule must have a unique priority number.
         /// </summary>
         public int Priority { get; }
 
         /// <summary>
         /// The current status of the rule.
         ///
-        /// **Note:** Only rules with `ENABLED` status are applied.
+        /// **Note**: Only rules with `ENABLED` status are applied.
         /// </summary>
         public IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_Status Status { get; }
 
@@ -3631,7 +3640,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This error type indicates that the return rules feature is not enabled for the seller.
     ///
-    /// **Note:** The seller is authenticated but does not have the required feature capability enabled ramped for them.
+    /// **Note**: The seller is authenticated but does not have the required feature capability enabled ramped for them.
     /// </summary>
     public partial class UpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ReturnRuleFeatureNotEnabledError : global::System.IEquatable<UpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ReturnRuleFeatureNotEnabledError>, IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ReturnRuleFeatureNotEnabledError
     {
@@ -3652,7 +3661,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable error message. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
 
@@ -3743,12 +3752,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable error message that the rule was not found. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
 
         /// <summary>
-        /// The **ruleId** which was not found.
+        /// The unique identifier of the return rule which was not found.
         /// </summary>
         public string RequestedRuleId { get; }
 
@@ -3849,7 +3858,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string ErrorMessage { get; }
 
         /// <summary>
-        /// The **ruleId** which was not found.
+        /// The unique identifier of the return rule which was not found.
         /// </summary>
         public string RequestedRuleId { get; }
 
@@ -3935,14 +3944,15 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// Status of the rule. Only rules with the status `ENABLED` are executed.
-        /// Available values: `ENABLED`, `DISABLED`
+        ///
+        /// **Available values**: `ENABLED`, `DISABLED`
         /// </summary>
         public string Code { get; }
 
         /// <summary>
-        ///    A human readable rule status. This alphanumeric string is not localized and may change without notice.
+        /// A human readable rule status. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -4006,7 +4016,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type indicates the rules with ENABLED status are active and evaluated.
+    /// This type indicates the rules with `ENABLED` status are active and evaluated.
     /// </summary>
     public partial class UpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_Status_ReturnRuleEnabledStatus_1 : global::System.IEquatable<UpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_Status_ReturnRuleEnabledStatus_1>, IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_Status_ReturnRuleEnabledStatus_1
     {
@@ -4018,14 +4028,15 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// Status of the rule. Only rules with the status `ENABLED` are executed.
-        /// Available values: `ENABLED`, `DISABLED`
+        ///
+        /// **Available values**: `ENABLED`, `DISABLED`
         /// </summary>
         public string Code { get; }
 
         /// <summary>
-        ///    A human readable rule status. This alphanumeric string is not localized and may change without notice.
+        /// A human readable rule status. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -4105,15 +4116,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return address routing strategy .
         ///
-        /// **Format:** Alphanumeric with underscores
-        /// **Maximum length:** 50 characters
+        /// **Maximum length**: 50 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable text of the return address routing strategy. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -4198,15 +4208,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return address routing strategy .
         ///
-        /// **Format:** Alphanumeric with underscores
-        /// **Maximum length:** 50 characters
+        /// **Maximum length**: 50 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable text of the return address routing strategy. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -4292,6 +4301,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The unique public identifier of the address. This field is used primarily for Return Address records and for sharing a reference that is stable across requests.
+        ///
         /// **Example:** 'RA-9c4b2f58-1f4e-4e72-9a4c-702d5e2b74e1'
         /// </summary>
         public string? AddressId { get; }
@@ -4430,15 +4440,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return address routing strategy .
         ///
-        /// **Format:** Alphanumeric with underscores
-        /// **Maximum length:** 50 characters
+        /// **Maximum length**: 50 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable text of the return address routing strategy. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -4601,7 +4610,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A list of one or more categories referenced by this condition.
         ///
-        /// **Note:** These needs to be eBay leaf category IDs.
+        /// **Note**: These need to be eBay leaf category IDs.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_Categories_1> Categories { get; }
 
@@ -4675,7 +4684,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// Location to where the seller ships the item to the buyer.
+        /// The list of countries in which the seller has a return rule based on item condition.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<CountryAlpha2Code> ItemLocationCountries { get; }
 
@@ -4749,9 +4758,9 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        ///    A listing group ID referenced by this condition:
+        /// A listing group ID referenced by this condition:
         /// - a group can have a specified number of listings
-        ///    - only one group can be defined per condition
+        /// - only one group can be defined per condition
         /// </summary>
         public string ReturnRuleListingGroupId { get; }
 
@@ -4828,14 +4837,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -4912,14 +4921,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -4996,14 +5005,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -5080,14 +5089,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -5164,14 +5173,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -5248,14 +5257,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -5332,14 +5341,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -5416,14 +5425,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -5500,14 +5509,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -5584,14 +5593,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -5668,14 +5677,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -5752,14 +5761,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -5836,14 +5845,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -5907,7 +5916,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type indicates that  item is being returned for other reasons not listed here, and displays as **Other**.
+    /// This type indicates that item is being returned for other reasons not listed here, and displays as **Other**.
     /// </summary>
     public partial class UpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_ReturnReasonList_OtherReturnReason_1 : global::System.IEquatable<UpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_ReturnReasonList_OtherReturnReason_1>, IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_ReturnReasonList_OtherReturnReason_1
     {
@@ -5920,14 +5929,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -6004,14 +6013,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -6088,14 +6097,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return reason. Examples include: `DID_NOT_LIKE_ITEM`, `ORDERED_ACCIDENTALLY`, `ORDERED_WRONG_SIZE`, and similar codes in alphanumeric format with underscores.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable return reason that is intended for display only. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters.
+        /// **Maximum length**: 100 characters.
         /// </summary>
         public string DisplayText { get; }
 
@@ -6172,7 +6181,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// One or more return reasons.
+        /// An array of one or more allowed return reasons.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_ReturnReasonList_1> ReturnReasonList { get; }
 
@@ -6233,7 +6242,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial class UpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_MaxRefundAmount_Amount_1 : global::System.IEquatable<UpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_MaxRefundAmount_Amount_1>, IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_MaxRefundAmount_Amount_1
     {
@@ -6244,12 +6253,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// A three-letter ISO 4217 code that indicates the currency of the amount in the **value** field.
+        /// The three-letter ISO 4217 currency code associated with this monetary amount.
+        ///
+        /// **Format**: Three-letter uppercase alphabetic code (for example, `USD`, `EUR`, `GBP`)
         /// </summary>
         public CurrencyAlpha3Code? Currency { get; }
 
         /// <summary>
-        /// The monetary amount, in the currency specified by the **currency** field.
+        /// The numerical value of the monetary amount in the currency specified through the **currency** field.
         /// </summary>
         public decimal Value { get; }
 
@@ -6310,7 +6321,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial class UpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_MinRefundAmount_Amount_1 : global::System.IEquatable<UpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_MinRefundAmount_Amount_1>, IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_MinRefundAmount_Amount_1
     {
@@ -6321,12 +6332,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// A three-letter ISO 4217 code that indicates the currency of the amount in the **value** field.
+        /// The three-letter ISO 4217 currency code associated with this monetary amount.
+        ///
+        /// **Format**: Three-letter uppercase alphabetic code (for example, `USD`, `EUR`, `GBP`)
         /// </summary>
         public CurrencyAlpha3Code? Currency { get; }
 
         /// <summary>
-        /// The monetary amount, in the currency specified by the **currency** field.
+        /// The numerical value of the monetary amount in the currency specified through the **currency** field.
         /// </summary>
         public decimal Value { get; }
 
@@ -6404,12 +6417,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// The maximum refund amount.
+        /// This object shows the maximum refund amount allowed.
         /// </summary>
         public IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_MaxRefundAmount_1? MaxRefundAmount { get; }
 
         /// <summary>
-        /// The minimum refund amount.
+        /// This object shows the minimum refund amount allowed.
         /// </summary>
         public IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_ConditionSet_Conditions_MinRefundAmount_1 MinRefundAmount { get; }
 
@@ -6491,7 +6504,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// Buyer's country from which the return is initiated (initially shipped).
+        /// Teh buyer's country from which the return is initiated (initially shipped).
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<CountryAlpha2Code> ReturnShipmentOriginCountries { get; }
 
@@ -6646,33 +6659,31 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// The unique identifier for the rule.
+        /// The unique identifier for the return rule.
         /// </summary>
         public string RuleId { get; }
 
         /// <summary>
         /// The unique name for the rule. No two rules can have the same name.
         ///
-        /// **Format:** Alphanumeric
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Name { get; }
 
         /// <summary>
-        /// The rule's priority determines its evaluation order; lower numbers are evaluated first.
-        /// Each rule must have a unique priority value.
+        /// The rule's priority determines its evaluation order; lower numbers are evaluated first. Each rule must have a unique priority value.
         /// </summary>
         public int Priority { get; }
 
         /// <summary>
         /// The status of the rule: `ENABLED` or `DISABLED`
         ///
-        /// **Note:** Only `ENABLED` rules are applied.
+        /// **Note**: Only `ENABLED` rules are applied.
         /// </summary>
         public IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_Status_1 Status { get; }
 
         /// <summary>
-        /// Strategy for selecting the return address route
+        /// The strategy for selecting the return address route.
         /// </summary>
         public IUpdateSellerReturnRuleStatus_UpdateSellerReturnRuleStatus_AddressRoutingStrategy AddressRoutingStrategy { get; }
 

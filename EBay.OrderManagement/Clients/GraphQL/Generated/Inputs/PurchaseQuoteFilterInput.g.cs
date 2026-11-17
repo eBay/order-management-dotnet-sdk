@@ -22,6 +22,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 {
     /// <summary>
     /// This input type includes the filters that can be used for a **purchaseQuotes** query. The **listingId** field can be used to retrieve purchase quote(s) for a specific listing, or one or more of the boolean fields can be used to retrieve purchase quotes in certain states.
+    ///
     /// **Note**: The default value for the **includeActive** boolean field is 'true', but the default value for all other boolean fields is 'false'.
     /// </summary>
     public partial class PurchaseQuoteFilterInput : global::System.IEquatable<PurchaseQuoteFilterInput>
@@ -43,6 +44,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// Include this field and set to 'true' (or omit field) to include active purchase quotes in the output, or set to 'false' to exclude active purchase quotes.
+        ///
         /// **Default**: true
         /// </summary>
         public bool? IncludeActive
@@ -57,6 +59,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// Include this field and set to 'true' to include cancelled purchase quotes in the output, or set to 'false' (or omit field) to exclude cancelled purchase quotes.
+        ///
         /// **Default**: false
         /// </summary>
         public bool? IncludeCancelled
@@ -71,6 +74,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// Include this field and set to 'true' to include completed purchase quotes in the output, or set to 'false' (or omit field) to exclude completed purchase quotes.
+        ///
         /// **Default**: false
         /// </summary>
         public bool? IncludeCompleted
@@ -85,6 +89,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// Include this field and set to 'true' to include invalid purchase quotes in the output, or set to 'false' (or omit field) to exclude invalid purchase quotes.
+        ///
         /// **Default**: false
         /// </summary>
         public bool? IncludeInvalid
@@ -99,6 +104,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// Include this field and set to 'true' to include locked purchase quotes in the output, or set to 'false' (or omit field) to exclude locked purchase quotes.
+        ///
         /// **Default**: false
         /// </summary>
         public bool? IncludeLocked
@@ -113,6 +119,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// Include this field and set to 'true' to include purchase quotes that have been requested by the buyer in the output, or set to 'false' (or omit field) to exclude purchase quotes that have been requested by the buyer.
+        ///
         /// **Default**: false
         /// </summary>
         public bool? IncludeRequested

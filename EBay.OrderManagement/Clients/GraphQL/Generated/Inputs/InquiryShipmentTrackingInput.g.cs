@@ -31,7 +31,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         private bool _set_trackingNumber;
 
         /// <summary>
-        /// The standardized carrier code associated with the shipment (e.g., 'UPS', 'USPS', 'FEDEX').
+        /// The standardized carrier code associated with the shipment (e.g., `UPS`, `USPS`, `FEDEX`).
         /// </summary>
         public InquiryShipmentCarrierInput ShippingCarrier
         {
@@ -45,9 +45,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The tracking number provided by the shipping carrier.
-        /// **Minimum length**: 1
+        ///
         /// **Maximum length**: 500
-        /// **Format**: Alphanumeric
         /// </summary>
         public string TrackingNumber
         {

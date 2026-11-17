@@ -29,6 +29,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// The **processReturnRefund** mutation processes a refund for a return in accordance with the applicable refund policy. This mutation initiates refund processing for the specified return and backend steps such as distributing the buyer funds and collecting the funds from seller without exposing these steps as synchronously or asynchronously.
         ///
         /// If the returned item is used, altered, or damaged, eligible sellers may withhold a portion of the refund to account for loss in value, as permitted by the refund policy. All such deductions are validated and applied according to platform rules.
+        ///
+        /// &lt;div class="msgbox_note"&gt;&lt;strong&gt;Important!&lt;/strong&gt; Due to EU &amp;amp; UK Payments regulatory requirements, an additional security verification via Digital Signatures is required for certain API calls that are made on behalf of EU/UK sellers, including calls with the &lt;strong&gt;processReturnRefund&lt;/strong&gt; mutation . Please refer to &lt;a href="https://developer.ebay.com/develop/guides/digital-signatures-for-apis"&gt;Digital Signatures&lt;/a&gt; for APIs to learn more and the process to create signatures to be included in the HTTP payload.&lt;/div&gt;
         /// </summary>
         public IProcessReturnRefund_ProcessReturnRefund ProcessReturnRefund { get; }
     }
@@ -47,6 +49,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// The **processReturnRefund** mutation processes a refund for a return in accordance with the applicable refund policy. This mutation initiates refund processing for the specified return and backend steps such as distributing the buyer funds and collecting the funds from seller without exposing these steps as synchronously or asynchronously.
         ///
         /// If the returned item is used, altered, or damaged, eligible sellers may withhold a portion of the refund to account for loss in value, as permitted by the refund policy. All such deductions are validated and applied according to platform rules.
+        ///
+        /// &lt;div class="msgbox_note"&gt;&lt;strong&gt;Important!&lt;/strong&gt; Due to EU &amp;amp; UK Payments regulatory requirements, an additional security verification via Digital Signatures is required for certain API calls that are made on behalf of EU/UK sellers, including calls with the &lt;strong&gt;processReturnRefund&lt;/strong&gt; mutation . Please refer to &lt;a href="https://developer.ebay.com/develop/guides/digital-signatures-for-apis"&gt;Digital Signatures&lt;/a&gt; for APIs to learn more and the process to create signatures to be included in the HTTP payload.&lt;/div&gt;
         /// </summary>
         public IProcessReturnRefund_ProcessReturnRefund ProcessReturnRefund { get; }
 
@@ -124,7 +128,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable error message. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
         /// <summary>
@@ -146,24 +150,26 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code providing the return status. The format is alphanumeric with underscores. For example: `REQUESTED`, `OPEN`, `DECLINED`, `CANCELLED`, `CLOSED`
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
         /// <summary>
         /// A human-readable description providing the return status. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
     }
 
     /// <summary>
-    /// This type indicates that the return was closed without completion and is considered cancelled. Instances when this status applies:
+    /// This type indicates that the return was closed without completion and is considered cancelled.
+    ///
+    /// Instances when this status applies:
     /// - the buyer closes the return request without shipping the item back
     /// - eBay closes the return due to timeout occurring due to the following:
-    ///   - an approved return was not shipped back by the buyer within the allowed time
-    ///   - a requested return was not approved by the seller, and the buyer did not ask eBay to step in and assist
-    /// - eBay closes the return because the buyer filed an external payment dispute
+    /// 	- an approved return was not shipped back by the buyer within the allowed time
+    /// 	- a requested return was not approved by the seller, and the buyer did not ask eBay to step in and assist
+    /// 	- eBay closes the return because the buyer filed an external payment dispute
     /// </summary>
     public partial interface IProcessReturnRefund_ProcessReturnRefund_Status_ReturnCancelled : IProcessReturnRefund_ProcessReturnRefund_Status
     {
@@ -171,9 +177,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
     /// <summary>
     /// This type indicate the return is closed (is at an end state). This typically indicates that the return lifecycle completed successfully.
+    ///
+    /// Instances when this status applies:
     /// - the buyer keeps the item and receives a full refund
     /// - the buyer ships the item back and receives a full refund
     /// - the buyer keeps the item and receives a partial refund after negotiating with seller
+    ///
     /// The refund object provides the refund amount and breakdown, and the return shipment section provides package or shipment details.
     /// </summary>
     public partial interface IProcessReturnRefund_ProcessReturnRefund_Status_ReturnClosed : IProcessReturnRefund_ProcessReturnRefund_Status
@@ -195,7 +204,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type indicates the return is requested by the buyer or eBay administration, is pending approval, in both code and a human-readable description.
+    /// This type indicates the return is requested by the buyer or eBay administration and is pending approval, in both code and a human-readable description.
     /// </summary>
     public partial interface IProcessReturnRefund_ProcessReturnRefund_Status_ReturnRequested : IProcessReturnRefund_ProcessReturnRefund_Status
     {
@@ -204,7 +213,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This type represents the return of an item back to the seller or eBay. A return is a post-purchase event allowing a buyer to return an item to the seller or eBay, for a refund or exchange.
     ///
-    /// **Note:** Returns are handled at order line item level. Each return is associated with a single line item (not the entire order).
+    /// **Note**: Returns are handled at the order line item level. Each return is associated with a single line item (not the entire order).
     /// </summary>
     public partial interface IProcessReturnRefund_ProcessReturnRefund_OrderReturn : IProcessReturnRefund_ProcessReturnRefund
     {
@@ -235,7 +244,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable message describing the process return refund input violation. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string DisplayMessage { get; }
     }
@@ -246,11 +255,11 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IProcessReturnRefund_ProcessReturnRefund_Violations_Constraint_AllowedPercentageRange
     {
         /// <summary>
-        /// Minimum allowed value for percentage.
+        /// The minimum allowed value for percentage.
         /// </summary>
         public int MinValue { get; }
         /// <summary>
-        /// Maximum allowed value for percentage.
+        /// The maximum allowed value for percentage.
         /// </summary>
         public int MaxValue { get; }
     }
@@ -286,7 +295,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IProcessReturnRefund_ProcessReturnRefund_Violations_ItemPriceRefundWithholdViolation : IProcessReturnRefund_ProcessReturnRefund_Violations
     {
         /// <summary>
-        /// Indicates the constraints defined for item price refund withhold input.
+        /// The constraints defined for item price refund withhold input.
         /// </summary>
         public IProcessReturnRefund_ProcessReturnRefund_Violations_Constraint Constraint { get; }
     }
@@ -310,7 +319,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable error message describing the issue.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
         /// <summary>
@@ -326,13 +335,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The error code associated with the error.
-        /// **Note:** In this case, this field will return 'RFND_AUTHORIZATION_FAILED_ERROR'.
+        ///
+        /// **Note**: In this case, this field will return `RFND_AUTHORIZATION_FAILED_ERROR`.
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
         /// The human-readable error message for the refund error.
+        ///
         /// **Maximum length**: 512 characters
-        /// **Format**: Alphanumeric
         /// </summary>
         public string ErrorMessage { get; }
     }
@@ -344,13 +354,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The error code associated with the error.
-        /// **Note:** In this case, this field will return 'RFND_BLOCKED_BY_PAYMENT_DISPUTE_ERROR'.
+        ///
+        /// **Note**: In this case, this field will return `RFND_BLOCKED_BY_PAYMENT_DISPUTE_ERROR`.
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
         /// The human-readable error message for the refund error.
+        ///
         /// **Maximum length**: 512 characters
-        /// **Format**: Alphanumeric
         /// </summary>
         public string ErrorMessage { get; }
     }
@@ -362,13 +373,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The error code associated with the error.
-        /// **Note:** In this case, this field will return 'RFND_INSTRUMENT_DECLINED_ERROR'.
+        ///
+        /// **Note**: In this case, this field will return `RFND_INSTRUMENT_DECLINED_ERROR`.
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
         /// The human-readable error message for the refund error.
+        ///
         /// **Maximum length**: 512 characters
-        /// **Format**: Alphanumeric
         /// </summary>
         public string ErrorMessage { get; }
     }
@@ -380,13 +392,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The error code associated with the error.
-        /// **Note:** In this case, this field will return 'RFND_INSTRUMENT_INSUFFICIENT_FUNDS_ERROR'.
+        ///
+        /// **Note**: In this case, this field will return `RFND_INSTRUMENT_INSUFFICIENT_FUNDS_ERROR`.
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
         /// The human-readable error message for the refund error.
+        ///
         /// **Maximum length**: 512 characters
-        /// **Format**: Alphanumeric
         /// </summary>
         public string ErrorMessage { get; }
     }
@@ -398,13 +411,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The error code associated with the error.
-        /// **Note:** In this case, this field will return 'RFND_INSTRUMENT_INVALID_ERROR'.
+        ///
+        /// **Note**: In this case, this field will return `RFND_INSTRUMENT_INVALID_ERROR`.
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
         /// The human-readable error message for the refund error.
+        ///
         /// **Maximum length**: 512 characters
-        /// **Format**: Alphanumeric
         /// </summary>
         public string ErrorMessage { get; }
     }
@@ -416,20 +430,23 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The error code associated with the error.
-        /// **Note:** In this case, this field will return 'RFND_PROCESSING_ERROR'.
+        ///
+        /// **Note**: In this case, this field will return `RFND_PROCESSING_ERROR`.
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
         /// The human-readable error message for the refund error.
+        ///
         /// **Maximum length**: 512 characters
-        /// **Format**: Alphanumeric
         /// </summary>
         public string ErrorMessage { get; }
     }
 
     /// <summary>
     /// This interface represents various return actions that can be taken by an actor (for example, the buyer or the seller).
+    ///
     /// **Seller:** Actions include sending a message, submitting an offer, approving a return, declining a return, providing shipment information, recording the returned item received, issuing a refund, and similar actions.
+    ///
     /// **Buyer:** Actions include sending a message, accept an offer, providing shipment information, recording the item as shipped, and similar actions.
     /// </summary>
     public partial interface IProcessReturnRefund_ProcessReturnRefund_AvailableActions
@@ -437,20 +454,19 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return action. For example: `SEND_MESSAGE`, `APPROVE_RETURN`, `DECLINE_RETURN`, `PROCESS_RETURN_REFUND`, and similar action codes.
         ///
-        /// **Format:** Alphanumeric with underscores
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
         /// <summary>
         /// Human-readable text for return action. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
     }
 
     /// <summary>
-    /// This action type is used by a seller approving a return request.
+    /// This type is used by a seller approving a return request.
     /// </summary>
     public partial interface IProcessReturnRefund_ProcessReturnRefund_AvailableActions_ApproveReturnAction : IProcessReturnRefund_ProcessReturnRefund_AvailableActions
     {
@@ -471,7 +487,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This action type is used by a seller issuing a refund for a completed return.
+    /// This type is used by a seller issuing a refund for a completed return.
     /// </summary>
     public partial interface IProcessReturnRefund_ProcessReturnRefund_AvailableActions_ProcessReturnRefundAction : IProcessReturnRefund_ProcessReturnRefund_AvailableActions
     {
@@ -485,7 +501,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This action type is used by a seller to provide tracking information or shipping details for a return.
+    /// This type is used by a seller to provide tracking information or shipping details for a return.
     /// </summary>
     public partial interface IProcessReturnRefund_ProcessReturnRefund_AvailableActions_ProvideShipmentInfoReturnAction : IProcessReturnRefund_ProcessReturnRefund_AvailableActions
     {
@@ -499,14 +515,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This action type represents the action to refer a return case (escalate or appeal) to eBay for help or further review. The action becomes available when the participant is eligible to escalate the return, and includes the list of valid referral reasons that can be selected during submission.
+    /// This type represents the action to refer a return case (escalate or appeal) to eBay for help or further review. The action becomes available when the participant is eligible to escalate the return, and includes the list of valid referral reasons that can be selected during submission.
     /// </summary>
     public partial interface IProcessReturnRefund_ProcessReturnRefund_AvailableActions_ReturnReferralAction : IProcessReturnRefund_ProcessReturnRefund_AvailableActions
     {
     }
 
     /// <summary>
-    /// This action type is used for sending a message in a return conversation between the buyer and the seller.
+    /// This type is used for sending a message in a return conversation between the buyer and the seller.
     /// </summary>
     public partial interface IProcessReturnRefund_ProcessReturnRefund_AvailableActions_SendMessageReturnAction : IProcessReturnRefund_ProcessReturnRefund_AvailableActions
     {
@@ -524,7 +540,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable error message. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
         /// <summary>
@@ -545,12 +561,11 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable error message.
         ///
-        /// **Maximum length:** 512 characters
-        /// **Format:** Alphanumeric
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
         /// <summary>
-        ///  The requested line item was not found.
+        /// The unique identifier of the line item that was requested but not found.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<string> RequestedLineItemIds { get; }
     }
@@ -569,7 +584,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// </summary>
         public string ErrorMessage { get; }
         /// <summary>
-        /// The requested Return Id that was not found.
+        /// The unique identifier of the return request that was not found.
         /// </summary>
         public string RequestedReturnId { get; }
     }
@@ -598,7 +613,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable error message. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
 
@@ -681,12 +696,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type indicates that the return was closed without completion and is considered cancelled. Instances when this status applies:
+    /// This type indicates that the return was closed without completion and is considered cancelled.
+    ///
+    /// Instances when this status applies:
     /// - the buyer closes the return request without shipping the item back
     /// - eBay closes the return due to timeout occurring due to the following:
-    ///   - an approved return was not shipped back by the buyer within the allowed time
-    ///   - a requested return was not approved by the seller, and the buyer did not ask eBay to step in and assist
-    /// - eBay closes the return because the buyer filed an external payment dispute
+    /// 	- an approved return was not shipped back by the buyer within the allowed time
+    /// 	- a requested return was not approved by the seller, and the buyer did not ask eBay to step in and assist
+    /// 	- eBay closes the return because the buyer filed an external payment dispute
     /// </summary>
     public partial class ProcessReturnRefund_ProcessReturnRefund_Status_ReturnCancelled : global::System.IEquatable<ProcessReturnRefund_ProcessReturnRefund_Status_ReturnCancelled>, IProcessReturnRefund_ProcessReturnRefund_Status_ReturnCancelled
     {
@@ -702,14 +719,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code providing the return status. The format is alphanumeric with underscores. For example: `REQUESTED`, `OPEN`, `DECLINED`, `CANCELLED`, `CLOSED`
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable description providing the return status. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -779,9 +796,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
     /// <summary>
     /// This type indicate the return is closed (is at an end state). This typically indicates that the return lifecycle completed successfully.
+    ///
+    /// Instances when this status applies:
     /// - the buyer keeps the item and receives a full refund
     /// - the buyer ships the item back and receives a full refund
     /// - the buyer keeps the item and receives a partial refund after negotiating with seller
+    ///
     /// The refund object provides the refund amount and breakdown, and the return shipment section provides package or shipment details.
     /// </summary>
     public partial class ProcessReturnRefund_ProcessReturnRefund_Status_ReturnClosed : global::System.IEquatable<ProcessReturnRefund_ProcessReturnRefund_Status_ReturnClosed>, IProcessReturnRefund_ProcessReturnRefund_Status_ReturnClosed
@@ -798,14 +818,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code providing the return status. The format is alphanumeric with underscores. For example: `REQUESTED`, `OPEN`, `DECLINED`, `CANCELLED`, `CLOSED`
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable description providing the return status. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -890,14 +910,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code providing the return status. The format is alphanumeric with underscores. For example: `REQUESTED`, `OPEN`, `DECLINED`, `CANCELLED`, `CLOSED`
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable description providing the return status. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -982,14 +1002,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code providing the return status. The format is alphanumeric with underscores. For example: `REQUESTED`, `OPEN`, `DECLINED`, `CANCELLED`, `CLOSED`
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable description providing the return status. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -1058,7 +1078,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type indicates the return is requested by the buyer or eBay administration, is pending approval, in both code and a human-readable description.
+    /// This type indicates the return is requested by the buyer or eBay administration and is pending approval, in both code and a human-readable description.
     /// </summary>
     public partial class ProcessReturnRefund_ProcessReturnRefund_Status_ReturnRequested : global::System.IEquatable<ProcessReturnRefund_ProcessReturnRefund_Status_ReturnRequested>, IProcessReturnRefund_ProcessReturnRefund_Status_ReturnRequested
     {
@@ -1074,14 +1094,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code providing the return status. The format is alphanumeric with underscores. For example: `REQUESTED`, `OPEN`, `DECLINED`, `CANCELLED`, `CLOSED`
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable description providing the return status. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -1152,7 +1172,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This type represents the return of an item back to the seller or eBay. A return is a post-purchase event allowing a buyer to return an item to the seller or eBay, for a refund or exchange.
     ///
-    /// **Note:** Returns are handled at order line item level. Each return is associated with a single line item (not the entire order).
+    /// **Note**: Returns are handled at the order line item level. Each return is associated with a single line item (not the entire order).
     /// </summary>
     public partial class ProcessReturnRefund_ProcessReturnRefund_OrderReturn : global::System.IEquatable<ProcessReturnRefund_ProcessReturnRefund_OrderReturn>, IProcessReturnRefund_ProcessReturnRefund_OrderReturn
     {
@@ -1251,12 +1271,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Minimum allowed value for percentage.
+        /// The minimum allowed value for percentage.
         /// </summary>
         public int MinValue { get; }
 
         /// <summary>
-        /// Maximum allowed value for percentage.
+        /// The maximum allowed value for percentage.
         /// </summary>
         public int MaxValue { get; }
 
@@ -1405,12 +1425,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable message describing the process return refund input violation. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string DisplayMessage { get; }
 
         /// <summary>
-        /// Indicates the constraints defined for item price refund withhold input.
+        /// The constraints defined for item price refund withhold input.
         /// </summary>
         public IProcessReturnRefund_ProcessReturnRefund_Violations_Constraint Constraint { get; }
 
@@ -1505,7 +1525,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable message describing the process return refund input violation. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string DisplayMessage { get; }
 
@@ -1596,7 +1616,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable error message describing the issue.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
 
@@ -1687,14 +1707,15 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The error code associated with the error.
-        /// **Note:** In this case, this field will return 'RFND_AUTHORIZATION_FAILED_ERROR'.
+        ///
+        /// **Note**: In this case, this field will return `RFND_AUTHORIZATION_FAILED_ERROR`.
         /// </summary>
         public string ErrorCode { get; }
 
         /// <summary>
         /// The human-readable error message for the refund error.
+        ///
         /// **Maximum length**: 512 characters
-        /// **Format**: Alphanumeric
         /// </summary>
         public string ErrorMessage { get; }
 
@@ -1778,14 +1799,15 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The error code associated with the error.
-        /// **Note:** In this case, this field will return 'RFND_BLOCKED_BY_PAYMENT_DISPUTE_ERROR'.
+        ///
+        /// **Note**: In this case, this field will return `RFND_BLOCKED_BY_PAYMENT_DISPUTE_ERROR`.
         /// </summary>
         public string ErrorCode { get; }
 
         /// <summary>
         /// The human-readable error message for the refund error.
+        ///
         /// **Maximum length**: 512 characters
-        /// **Format**: Alphanumeric
         /// </summary>
         public string ErrorMessage { get; }
 
@@ -1869,14 +1891,15 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The error code associated with the error.
-        /// **Note:** In this case, this field will return 'RFND_INSTRUMENT_DECLINED_ERROR'.
+        ///
+        /// **Note**: In this case, this field will return `RFND_INSTRUMENT_DECLINED_ERROR`.
         /// </summary>
         public string ErrorCode { get; }
 
         /// <summary>
         /// The human-readable error message for the refund error.
+        ///
         /// **Maximum length**: 512 characters
-        /// **Format**: Alphanumeric
         /// </summary>
         public string ErrorMessage { get; }
 
@@ -1960,14 +1983,15 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The error code associated with the error.
-        /// **Note:** In this case, this field will return 'RFND_INSTRUMENT_INSUFFICIENT_FUNDS_ERROR'.
+        ///
+        /// **Note**: In this case, this field will return `RFND_INSTRUMENT_INSUFFICIENT_FUNDS_ERROR`.
         /// </summary>
         public string ErrorCode { get; }
 
         /// <summary>
         /// The human-readable error message for the refund error.
+        ///
         /// **Maximum length**: 512 characters
-        /// **Format**: Alphanumeric
         /// </summary>
         public string ErrorMessage { get; }
 
@@ -2051,14 +2075,15 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The error code associated with the error.
-        /// **Note:** In this case, this field will return 'RFND_INSTRUMENT_INVALID_ERROR'.
+        ///
+        /// **Note**: In this case, this field will return `RFND_INSTRUMENT_INVALID_ERROR`.
         /// </summary>
         public string ErrorCode { get; }
 
         /// <summary>
         /// The human-readable error message for the refund error.
+        ///
         /// **Maximum length**: 512 characters
-        /// **Format**: Alphanumeric
         /// </summary>
         public string ErrorMessage { get; }
 
@@ -2142,14 +2167,15 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The error code associated with the error.
-        /// **Note:** In this case, this field will return 'RFND_PROCESSING_ERROR'.
+        ///
+        /// **Note**: In this case, this field will return `RFND_PROCESSING_ERROR`.
         /// </summary>
         public string ErrorCode { get; }
 
         /// <summary>
         /// The human-readable error message for the refund error.
+        ///
         /// **Maximum length**: 512 characters
-        /// **Format**: Alphanumeric
         /// </summary>
         public string ErrorMessage { get; }
 
@@ -2218,7 +2244,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This action type is used by a seller approving a return request.
+    /// This type is used by a seller approving a return request.
     /// </summary>
     public partial class ProcessReturnRefund_ProcessReturnRefund_AvailableActions_ApproveReturnAction : global::System.IEquatable<ProcessReturnRefund_ProcessReturnRefund_AvailableActions_ApproveReturnAction>, IProcessReturnRefund_ProcessReturnRefund_AvailableActions_ApproveReturnAction
     {
@@ -2231,15 +2257,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return action. For example: `SEND_MESSAGE`, `APPROVE_RETURN`, `DECLINE_RETURN`, `PROCESS_RETURN_REFUND`, and similar action codes.
         ///
-        /// **Format:** Alphanumeric with underscores
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// Human-readable text for return action. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -2316,15 +2341,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return action. For example: `SEND_MESSAGE`, `APPROVE_RETURN`, `DECLINE_RETURN`, `PROCESS_RETURN_REFUND`, and similar action codes.
         ///
-        /// **Format:** Alphanumeric with underscores
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// Human-readable text for return action. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -2401,15 +2425,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return action. For example: `SEND_MESSAGE`, `APPROVE_RETURN`, `DECLINE_RETURN`, `PROCESS_RETURN_REFUND`, and similar action codes.
         ///
-        /// **Format:** Alphanumeric with underscores
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// Human-readable text for return action. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -2473,7 +2496,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This action type is used by a seller issuing a refund for a completed return.
+    /// This type is used by a seller issuing a refund for a completed return.
     /// </summary>
     public partial class ProcessReturnRefund_ProcessReturnRefund_AvailableActions_ProcessReturnRefundAction : global::System.IEquatable<ProcessReturnRefund_ProcessReturnRefund_AvailableActions_ProcessReturnRefundAction>, IProcessReturnRefund_ProcessReturnRefund_AvailableActions_ProcessReturnRefundAction
     {
@@ -2486,15 +2509,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return action. For example: `SEND_MESSAGE`, `APPROVE_RETURN`, `DECLINE_RETURN`, `PROCESS_RETURN_REFUND`, and similar action codes.
         ///
-        /// **Format:** Alphanumeric with underscores
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// Human-readable text for return action. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -2571,15 +2593,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return action. For example: `SEND_MESSAGE`, `APPROVE_RETURN`, `DECLINE_RETURN`, `PROCESS_RETURN_REFUND`, and similar action codes.
         ///
-        /// **Format:** Alphanumeric with underscores
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// Human-readable text for return action. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -2643,7 +2664,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This action type is used by a seller to provide tracking information or shipping details for a return.
+    /// This type is used by a seller to provide tracking information or shipping details for a return.
     /// </summary>
     public partial class ProcessReturnRefund_ProcessReturnRefund_AvailableActions_ProvideShipmentInfoReturnAction : global::System.IEquatable<ProcessReturnRefund_ProcessReturnRefund_AvailableActions_ProvideShipmentInfoReturnAction>, IProcessReturnRefund_ProcessReturnRefund_AvailableActions_ProvideShipmentInfoReturnAction
     {
@@ -2656,15 +2677,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return action. For example: `SEND_MESSAGE`, `APPROVE_RETURN`, `DECLINE_RETURN`, `PROCESS_RETURN_REFUND`, and similar action codes.
         ///
-        /// **Format:** Alphanumeric with underscores
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// Human-readable text for return action. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -2741,15 +2761,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return action. For example: `SEND_MESSAGE`, `APPROVE_RETURN`, `DECLINE_RETURN`, `PROCESS_RETURN_REFUND`, and similar action codes.
         ///
-        /// **Format:** Alphanumeric with underscores
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// Human-readable text for return action. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -2813,7 +2832,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This action type represents the action to refer a return case (escalate or appeal) to eBay for help or further review. The action becomes available when the participant is eligible to escalate the return, and includes the list of valid referral reasons that can be selected during submission.
+    /// This type represents the action to refer a return case (escalate or appeal) to eBay for help or further review. The action becomes available when the participant is eligible to escalate the return, and includes the list of valid referral reasons that can be selected during submission.
     /// </summary>
     public partial class ProcessReturnRefund_ProcessReturnRefund_AvailableActions_ReturnReferralAction : global::System.IEquatable<ProcessReturnRefund_ProcessReturnRefund_AvailableActions_ReturnReferralAction>, IProcessReturnRefund_ProcessReturnRefund_AvailableActions_ReturnReferralAction
     {
@@ -2826,15 +2845,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return action. For example: `SEND_MESSAGE`, `APPROVE_RETURN`, `DECLINE_RETURN`, `PROCESS_RETURN_REFUND`, and similar action codes.
         ///
-        /// **Format:** Alphanumeric with underscores
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// Human-readable text for return action. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -2898,7 +2916,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This action type is used for sending a message in a return conversation between the buyer and the seller.
+    /// This type is used for sending a message in a return conversation between the buyer and the seller.
     /// </summary>
     public partial class ProcessReturnRefund_ProcessReturnRefund_AvailableActions_SendMessageReturnAction : global::System.IEquatable<ProcessReturnRefund_ProcessReturnRefund_AvailableActions_SendMessageReturnAction>, IProcessReturnRefund_ProcessReturnRefund_AvailableActions_SendMessageReturnAction
     {
@@ -2911,15 +2929,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A machine-readable code identifying the return action. For example: `SEND_MESSAGE`, `APPROVE_RETURN`, `DECLINE_RETURN`, `PROCESS_RETURN_REFUND`, and similar action codes.
         ///
-        /// **Format:** Alphanumeric with underscores
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// Human-readable text for return action. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -3005,7 +3022,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable error message. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
 
@@ -3103,13 +3120,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable error message.
         ///
-        /// **Maximum length:** 512 characters
-        /// **Format:** Alphanumeric
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
 
         /// <summary>
-        ///  The requested line item was not found.
+        /// The unique identifier of the line item that was requested but not found.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<string> RequestedLineItemIds { get; }
 
@@ -3205,7 +3221,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string ErrorMessage { get; }
 
         /// <summary>
-        /// The requested Return Id that was not found.
+        /// The unique identifier of the return request that was not found.
         /// </summary>
         public string RequestedReturnId { get; }
 

@@ -38,13 +38,7 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
         public List<global::EBay.OrderManagement.Generated.Fulfillment.Models.LineItemReference> LineItems { get; set; }
 #endif
         /// <summary>This is the actual date and time that the fulfillment package was shipped. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. The seller should use the actual date/time that the package was shipped, but if this field is omitted, it will default to the current date/time.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;&lt;br&gt;&lt;br&gt;&lt;strong&gt;Default:&lt;/strong&gt; The current date and time.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? ShippedDate { get; set; }
-#nullable restore
-#else
-        public string ShippedDate { get; set; }
-#endif
+        public DateTimeOffset? ShippedDate { get; set; }
         /// <summary>The unique identifier of the shipping carrier being used to ship the line item(s). Technically, the &lt;strong&gt;shippingCarrierCode&lt;/strong&gt; and &lt;strong&gt;trackingNumber&lt;/strong&gt; fields are optional, but generally these fields will be provided if the shipping carrier and tracking number are known. &lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; Use the Trading API&apos;s &lt;strong&gt;GeteBayDetails&lt;/strong&gt; call to retrieve the latest shipping carrier enumeration values. When making the &lt;a href=&quot;https://developer.ebay.com/devzone/xml/docs/reference/ebay/GeteBayDetails.html&quot; target=&quot;_blank&quot;&gt;GeteBayDetails&lt;/a&gt; call, include the &lt;strong&gt;DetailName&lt;/strong&gt; field in the request payload and set its value to &lt;code&gt;ShippingCarrierDetails&lt;/code&gt;. Each valid shipping carrier enumeration value is returned in a &lt;strong&gt;ShippingCarrierDetails.ShippingCarrier&lt;/strong&gt; field in the response payload.&lt;/span&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -87,7 +81,7 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "lineItems", n => { LineItems = n.GetCollectionOfObjectValues<global::EBay.OrderManagement.Generated.Fulfillment.Models.LineItemReference>(global::EBay.OrderManagement.Generated.Fulfillment.Models.LineItemReference.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "shippedDate", n => { ShippedDate = n.GetStringValue(); } },
+                { "shippedDate", n => { ShippedDate = n.GetDateTimeOffsetValue(); } },
                 { "shippingCarrierCode", n => { ShippingCarrierCode = n.GetStringValue(); } },
                 { "trackingNumber", n => { TrackingNumber = n.GetStringValue(); } },
             };
@@ -100,7 +94,7 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::EBay.OrderManagement.Generated.Fulfillment.Models.LineItemReference>("lineItems", LineItems);
-            writer.WriteStringValue("shippedDate", ShippedDate);
+            writer.WriteDateTimeOffsetValue("shippedDate", ShippedDate);
             writer.WriteStringValue("shippingCarrierCode", ShippingCarrierCode);
             writer.WriteStringValue("trackingNumber", TrackingNumber);
             writer.WriteAdditionalData(AdditionalData);

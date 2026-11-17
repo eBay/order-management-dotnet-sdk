@@ -21,21 +21,21 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum FulfillmentInstructionsType
     {
-        [EnumMember(Value = "DIGITAL")]
+        [EnumMember(Value = "SHIP_TO")]
         #pragma warning disable CS1591
-        DIGITAL,
+        SHIP_TO,
         #pragma warning restore CS1591
         [EnumMember(Value = "PREPARE_FOR_PICKUP")]
         #pragma warning disable CS1591
         PREPARE_FOR_PICKUP,
         #pragma warning restore CS1591
+        [EnumMember(Value = "DIGITAL")]
+        #pragma warning disable CS1591
+        DIGITAL,
+        #pragma warning restore CS1591
         [EnumMember(Value = "SELLER_DEFINED")]
         #pragma warning disable CS1591
         SELLER_DEFINED,
-        #pragma warning restore CS1591
-        [EnumMember(Value = "SHIP_TO")]
-        #pragma warning disable CS1591
-        SHIP_TO,
         #pragma warning restore CS1591
         [EnumMember(Value = "FULFILLED_BY_EBAY")]
         #pragma warning disable CS1591

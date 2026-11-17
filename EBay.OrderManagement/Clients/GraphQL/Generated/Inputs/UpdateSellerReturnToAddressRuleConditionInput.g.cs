@@ -21,9 +21,7 @@ using EBay.OrderManagement.Clients.GraphQL;
 namespace EBay.OrderManagement.Generated.GraphQL
 {
     /// <summary>
-    /// This input type defines the payload for the **updateSellerReturnToAddressRuleCondition** mutation, which creates a single automation return rule.
-    ///
-    /// **Note:** The **ruleName** field is optional, but can be used to change the name of existing rule. If not provided, existing name will remain (unchanged).
+    /// This input type defines the payload for the **updateSellerReturnToAddressRuleCondition** mutation, which creates or updates a single automation return rule.
     /// </summary>
     public partial class UpdateSellerReturnToAddressRuleConditionInput : global::System.IEquatable<UpdateSellerReturnToAddressRuleConditionInput>
     {
@@ -37,7 +35,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         private bool _set_ruleId;
 
         /// <summary>
-        /// Address routing strategy for returns.
+        /// This object is used to set or modify the address routing strategy for the return-to-address rule.
         /// </summary>
         public ReturnToAddressRouteInput AddressRoute
         {
@@ -50,8 +48,9 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Conditions that, when met, trigger the rule.
-        /// All conditions provided here will replace existing conditions.
+        /// This object is used to set the various conditions that an item and return request must meet to trigger the rule.
+        ///
+        /// **Note**: For an existing return-to-address rule, all specified conditions provided in each of the fields will overwrite existing conditions for the rule.
         /// </summary>
         public ReturnRuleConditionSetInput ConditionSet
         {
@@ -64,16 +63,15 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The unique name of the rule. This optional field can be used to change name of existing rule.
+        /// This optional seller-defined field can be used to set or modify the name of the rule.
         ///
-        /// **Note:** If a rule name is not provided, the existing name will remain (unchanged).
+        /// **Note**: If a rule name is not provided, the existing name will remain (unchanged).
         ///
         /// **Requirements:**
         /// - the name must be unique. No two rules can have the same name
-        /// - the name must use characters fromteh following set: [A-Z, a-z, 0-9, hyphen(-), underscore(_), period(.), colon(:), comma(,), apostrophe(')]
+        /// - the name must use characters from the following set: [A-Z, a-z, 0-9, hyphen(-), underscore(_), period(.), colon(:), comma(,), apostrophe(')]
         ///
-        /// **Format:** Alphanumeric
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string? Name
         {
@@ -86,7 +84,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The unique identifier of the rule to be updated.
+        /// The unique identifier of the return rule to be updated.
         /// </summary>
         public string RuleId
         {

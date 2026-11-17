@@ -33,7 +33,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// Use this object to provide the filter and sorting parameters for retrieving the first page of results. Call using this field first to obtain a cursor before making any pagination requests.
         ///
-        /// **Note:** Do not use both this field and `cursor` in a single request.
+        /// **Note**: Do not use both this field and `cursor` in a single request.
         /// </summary>
         public OrderReturnInitialPageInput? InitialPage
         {
@@ -50,7 +50,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         ///
         /// The filter and sorting parameters use the same filters and sorting as the initial request (**OrderReturnInitialPageInput** parameters in a previous **initialPage** request). This object requires the opaque `cursor` returned in **Pagination.nextCursor** or **Pagination.previousCursor**.
         ///
-        /// **Note:** Do not use both this field and the `initialPage` field in a single request. Call using **initialPage** before calling using **cursor**.
+        /// **Note**: Do not use both this field and the `initialPage` field in a single request. Call using **initialPage** before calling using **cursor**.
         /// </summary>
         public PageInfoInput? Pagination
         {

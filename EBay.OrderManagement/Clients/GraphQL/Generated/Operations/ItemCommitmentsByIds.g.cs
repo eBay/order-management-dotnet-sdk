@@ -27,12 +27,6 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// This query is used to retrieve detailed information on up to 100 of an authenticated user's item commitments.
-        ///
-        /// PossibleErrors:
-        /// | Code                  |  Message                                                                     |
-        /// |-----------------------|------------------------------------------------------------------------------|
-        /// | BAD_INPUT_VALUE       |  Input size is 0 or over the limit. Please provide valid input.              |
-        /// | INTERNAL_SERVER_ERROR |  System failure.                                                             |
         /// </summary>
         public IItemCommitmentsByIds_ItemCommitmentsByIds ItemCommitmentsByIds { get; }
     }
@@ -49,12 +43,6 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// This query is used to retrieve detailed information on up to 100 of an authenticated user's item commitments.
-        ///
-        /// PossibleErrors:
-        /// | Code                  |  Message                                                                     |
-        /// |-----------------------|------------------------------------------------------------------------------|
-        /// | BAD_INPUT_VALUE       |  Input size is 0 or over the limit. Please provide valid input.              |
-        /// | INTERNAL_SERVER_ERROR |  System failure.                                                             |
         /// </summary>
         public IItemCommitmentsByIds_ItemCommitmentsByIds ItemCommitmentsByIds { get; }
 
@@ -121,7 +109,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type displays the unique identifiers of all item commitments that were not successully retrieved, and the error(s) that caused them not to be retrieved.
+    /// This type displays the unique identifiers of all item commitments that were not successfully retrieved, and the error(s) that caused them not to be retrieved.
     /// </summary>
     public partial interface IItemCommitmentsByIds_ItemCommitmentsByIds_Failures
     {
@@ -140,13 +128,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// </summary>
         public string InputItemCommitmentId { get; }
         /// <summary>
-        /// This boolean indicates whether or not the user should try to retrieve the corresponding item commitment again. If this field is returned as 'true', the user can make another attempt to retrieve the item commitment.
+        /// This boolean indicates whether or not the user should try to retrieve the corresponding item commitment again. If this field is returned as `true`, the user can make another attempt to retrieve the item commitment.
         /// </summary>
         public bool Retryable { get; }
     }
 
     /// <summary>
-    /// This type displays the unique identifiers of all item commitments that were not successully retrieved, and the error(s) that caused them not to be retrieved.
+    /// This type displays the unique identifiers of all item commitments that were not successfully retrieved, and the error(s) that caused them not to be retrieved.
     /// </summary>
     public partial interface IItemCommitmentsByIds_ItemCommitmentsByIds_Failures_ItemCommitmentsByIdsError : IItemCommitmentsByIds_ItemCommitmentsByIds_Failures
     {
@@ -158,11 +146,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IItemCommitmentsByIds_ItemCommitmentsByIds_ItemCommitmentsByIdsCompleteFailure : IItemCommitmentsByIds_ItemCommitmentsByIds
     {
         /// <summary>
-        /// This array contains the unique identifiers of all item commitments that were not successully retrieved, and the error(s) that caused them not to be retrieved.
+        /// This array contains the unique identifiers of all item commitments that were not successfully retrieved, and the error(s) that caused them not to be retrieved.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IItemCommitmentsByIds_ItemCommitmentsByIds_Failures> Failures { get; }
         /// <summary>
         /// The unique identifier of the error.
+        ///
         /// **Note**: Currently this field will always show ITEM_COMMITMENTS_BY_IDS_COMPLETE_FAILURE.
         /// </summary>
         public string ErrorCode { get; }
@@ -183,12 +172,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string ItemCommitmentId { get; }
         /// <summary>
         /// The exact date and time when the item commitment was initially created in the system. This marks the start of the item commitment lifecycle.
-        /// **Note**: Guaranteed to be non-null.
+        ///
+        /// **Note**: This object will never be returned `null`.
         /// </summary>
         public global::System.DateTimeOffset CreatedAt { get; }
         /// <summary>
-        /// The exact date and time when the item commitment was last modified or updated in the system. This timestamp captures any changes made to the item  commitment after initial creation, including change in state.
-        /// **Note**: Guaranteed to be non-null.
+        /// This object provides the exact date and time when the item commitment was last modified or updated in the system. This timestamp captures any changes made to the item  commitment after initial creation, including change in state.
+        ///
+        /// **Note**: This object is guaranteed to be non-null.
         /// </summary>
         public global::System.DateTimeOffset UpdatedAt { get; }
     }
@@ -201,7 +192,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type displays the unique identifiers of all item commitments that were not successully retrieved, and the error(s) that caused them not to be retrieved.
+    /// This type displays the unique identifiers of all item commitments that were not successfully retrieved, and the error(s) that caused them not to be retrieved.
     /// </summary>
     public partial interface IItemCommitmentsByIds_ItemCommitmentsByIds_Failures_1
     {
@@ -220,13 +211,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// </summary>
         public string InputItemCommitmentId { get; }
         /// <summary>
-        /// This boolean indicates whether or not the user should try to retrieve the corresponding item commitment again. If this field is returned as 'true', the user can make another attempt to retrieve the item commitment.
+        /// This boolean indicates whether or not the user should try to retrieve the corresponding item commitment again. If this field is returned as `true`, the user can make another attempt to retrieve the item commitment.
         /// </summary>
         public bool Retryable { get; }
     }
 
     /// <summary>
-    /// This type displays the unique identifiers of all item commitments that were not successully retrieved, and the error(s) that caused them not to be retrieved.
+    /// This type displays the unique identifiers of all item commitments that were not successfully retrieved, and the error(s) that caused them not to be retrieved.
     /// </summary>
     public partial interface IItemCommitmentsByIds_ItemCommitmentsByIds_Failures_ItemCommitmentsByIdsError_1 : IItemCommitmentsByIds_ItemCommitmentsByIds_Failures_1
     {
@@ -242,12 +233,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IItemCommitmentsByIds_ItemCommitmentsByIds_ItemCommitments>? ItemCommitments { get; }
         /// <summary>
-        /// This array contains the unique identifiers of all item commitments that were not successully retrieved, and the error(s) that caused them not to be retrieved.
+        /// This array contains the unique identifiers of all item commitments that were not successfully retrieved, and the error(s) that caused them not to be retrieved.
+        ///
         /// **Note**: There will always be at one object in this array.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IItemCommitmentsByIds_ItemCommitmentsByIds_Failures_1> Failures { get; }
         /// <summary>
         /// The unique identifier of the error.
+        ///
         /// **Note**: Currently this field will always show ITEM_COMMITMENTS_BY_IDS_PARTIAL_FAILURE.
         /// </summary>
         public string ErrorCode { get; }
@@ -271,8 +264,9 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IItemCommitmentsByIds_ItemCommitmentsByIds_ItemCommitments_State_ItemCommitmentAbandoned : IItemCommitmentsByIds_ItemCommitmentsByIds_ItemCommitments_State
     {
         /// <summary>
-        /// The human-readable label representing an abandoned item commitment (e.g. "Abandoned").
-        /// **Maximum length**: 100 characters.
+        /// The human-readable label representing an abandoned item commitment (e.g. `Abandoned`).
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Label { get; }
     }
@@ -344,7 +338,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The human-readable label representing a fulfillment that has completed (e.g. "Completed").
-        /// **Maximum length**: 100 characters.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Label { get; }
         /// <summary>
@@ -354,13 +349,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type indicates that fulfillment is currently in progress.
+    /// This type indicates that the fulfillment is currently in progress.
     /// </summary>
     public partial interface IItemCommitmentsByIds_ItemCommitmentsByIds_ItemCommitments_State_FulfillmentState_FulfillmentInProgress : IItemCommitmentsByIds_ItemCommitmentsByIds_ItemCommitments_State_FulfillmentState
     {
         /// <summary>
         /// The human-readable label representing a fulfillment that is in progress (e.g. "In Progress").
-        /// **Maximum length**: 100 characters.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Label { get; }
         /// <summary>
@@ -376,7 +372,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The human-readable label representing a fulfillment that has not started (e.g. "Not Started").
-        /// **Maximum length**: 100 characters.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Label { get; }
     }
@@ -402,8 +399,9 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IItemCommitmentsByIds_ItemCommitmentsByIds_ItemCommitments_State_CancelState_ContractCancelCompleted : IItemCommitmentsByIds_ItemCommitmentsByIds_ItemCommitments_State_CancelState
     {
         /// <summary>
-        /// The human-readable label representing this state (e.g. 'Process Completed').
-        /// **Maximum length**: 100 characters.
+        /// The human-readable label representing this state (e.g. `Process Completed`).
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Label { get; }
         /// <summary>
@@ -423,6 +421,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The human-readable label representing this state (e.g. 'System Processing').
+        ///
         /// **Maximum length**: 100 characters.
         /// </summary>
         public string Label { get; }
@@ -439,7 +438,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The human-readable label representing this state (e.g. 'Seller Rejected').
-        /// **Maximum length**: 100 characters.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Label { get; }
         /// <summary>
@@ -448,6 +448,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public global::System.DateTimeOffset? RejectedAt { get; }
         /// <summary>
         /// This field shows the reason why the cancellation was rejected.
+        ///
         /// **Note**: This field is returned if a reason was given.
         /// </summary>
         public string? Reason { get; }
@@ -460,7 +461,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The human-readable label representing this state (e.g. 'Buyer Requested').
-        /// **Maximum length**: 100 characters.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Label { get; }
         /// <summary>
@@ -484,6 +486,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The human-readable label representing the state of the return request.
+        ///
         /// **Maximum length**: 100 characters.
         /// </summary>
         public string Label { get; }
@@ -496,6 +499,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The human-readable label representing the state of the return request.
+        ///
         /// **Maximum length**: 100 characters.
         /// </summary>
         public string Label { get; }
@@ -507,26 +511,29 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IItemCommitmentsByIds_ItemCommitmentsByIds_ItemCommitments_State_ItemCommitmentActive : IItemCommitmentsByIds_ItemCommitmentsByIds_ItemCommitments_State
     {
         /// <summary>
-        /// The human-readable label representing an active item commitment (e.g. "Active").
+        /// The human-readable label representing an active item commitment (e.g. `Active`).
+        ///
         /// **Maximum length**: 100 characters.
         /// </summary>
         public string Label { get; }
         /// <summary>
-        /// This container indicates the current payment status of the item commitment.
+        /// This object indicates the current payment status of the item commitment.
         /// </summary>
         public IItemCommitmentsByIds_ItemCommitmentsByIds_ItemCommitments_State_FundingState FundingState { get; }
         /// <summary>
-        /// This container indicates the current fulfillment status of the item commitment.
+        /// This object indicates the current fulfillment status of the item commitment.
         /// </summary>
         public IItemCommitmentsByIds_ItemCommitmentsByIds_ItemCommitments_State_FulfillmentState FulfillmentState { get; }
         /// <summary>
-        /// This container indicates the current cancellation status of the item commitment.
-        /// **Note**: This container is only applicable and returned if the item commitment is associated with a cancellation request.
+        /// This object indicates the current cancellation status of the item commitment.
+        ///
+        /// **Note**: This object is only applicable and returned if the item commitment is associated with a cancellation request.
         /// </summary>
         public IItemCommitmentsByIds_ItemCommitmentsByIds_ItemCommitments_State_CancelState? CancelState { get; }
         /// <summary>
-        /// This container indicates the current return status of the item commitment.
-        /// **Note**: This container is only applicable and returned if the item commitment is associated with a return request.
+        /// This object indicates the current return status of the item commitment.
+        ///
+        /// **Note**: This object is only applicable and returned if the item commitment is associated with a return request.
         /// </summary>
         public IItemCommitmentsByIds_ItemCommitmentsByIds_ItemCommitments_State_ReturnState? ReturnState { get; }
     }
@@ -545,8 +552,9 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IItemCommitmentsByIds_ItemCommitmentsByIds_ItemCommitments_State_CancelState_ContractCancelCompleted_1 : IItemCommitmentsByIds_ItemCommitmentsByIds_ItemCommitments_State_CancelState_1
     {
         /// <summary>
-        /// The human-readable label representing this state (e.g. 'Process Completed').
-        /// **Maximum length**: 100 characters.
+        /// The human-readable label representing this state (e.g. `Process Completed`).
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Label { get; }
         /// <summary>
@@ -566,6 +574,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The human-readable label representing this state (e.g. 'System Processing').
+        ///
         /// **Maximum length**: 100 characters.
         /// </summary>
         public string Label { get; }
@@ -582,7 +591,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The human-readable label representing this state (e.g. 'Seller Rejected').
-        /// **Maximum length**: 100 characters.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Label { get; }
         /// <summary>
@@ -591,6 +601,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public global::System.DateTimeOffset? RejectedAt { get; }
         /// <summary>
         /// This field shows the reason why the cancellation was rejected.
+        ///
         /// **Note**: This field is returned if a reason was given.
         /// </summary>
         public string? Reason { get; }
@@ -603,7 +614,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The human-readable label representing this state (e.g. 'Buyer Requested').
-        /// **Maximum length**: 100 characters.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Label { get; }
         /// <summary>
@@ -619,21 +631,24 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The human-readable label representing a cancelled item commitment (e.g. "Cancelled").
+        ///
         /// **Maximum length**: 100 characters.
         /// </summary>
         public string Label { get; }
         /// <summary>
         /// This timestamp indicates the date and time when the item commitment was cancelled.
+        ///
         /// **Note**: This field is only returned for completed cancellations.
         /// </summary>
         public global::System.DateTimeOffset CancelledAt { get; }
         /// <summary>
         /// This field shows the reason provided for the cancellation. This may be system-generated or user-specified.
+        ///
         /// **Note**: May not be returned if no reason was given or generated.
         /// </summary>
         public string? Reason { get; }
         /// <summary>
-        /// This container provides details on the cancellation state of the item commitment.
+        /// This object provides details on the cancellation state of the item commitment.
         /// </summary>
         public IItemCommitmentsByIds_ItemCommitmentsByIds_ItemCommitments_State_CancelState_1? CancelState { get; }
     }
@@ -644,7 +659,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IItemCommitmentsByIds_ItemCommitmentsByIds_ItemCommitments_State_ItemCommitmentCompleted : IItemCommitmentsByIds_ItemCommitmentsByIds_ItemCommitments_State
     {
         /// <summary>
-        /// The human-readable label representing a completed item commitment (e.g. "Completed").
+        /// The human-readable label representing a completed item commitment (e.g. `Completed`).
+        ///
         /// **Maximum length**: 100 characters.
         /// </summary>
         public string Label { get; }
@@ -652,12 +668,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
     /// <summary>
     /// This type is used to express the state of a locked item commitment.
+    ///
     /// **Note**: An item commitment may enter a locked state during checkout when the item commitment is being validated, authorized for payment, or undergoing internal processing. The item commitment may be individually locked or indirectly locked as part of a purchase quote that is in checkout progress.
     /// </summary>
     public partial interface IItemCommitmentsByIds_ItemCommitmentsByIds_ItemCommitments_State_ItemCommitmentLocked : IItemCommitmentsByIds_ItemCommitmentsByIds_ItemCommitments_State
     {
         /// <summary>
-        /// The human-readable label representing a locked item commitment (e.g. "Locked").
+        /// The human-readable label representing a locked item commitment (e.g. `Locked`).
+        ///
         /// **Maximum length**: 100 characters.
         /// </summary>
         public string Label { get; }
@@ -674,16 +692,18 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string ItemCommitmentId { get; }
         /// <summary>
         /// The exact date and time when the item commitment was initially created in the system. This marks the start of the item commitment lifecycle.
-        /// **Note**: Guaranteed to be non-null.
+        ///
+        /// **Note**: This object will never be returned `null`.
         /// </summary>
         public global::System.DateTimeOffset CreatedAt { get; }
         /// <summary>
-        /// The exact date and time when the item commitment was last modified or updated in the system. This timestamp captures any changes made to the item  commitment after initial creation, including change in state.
-        /// **Note**: Guaranteed to be non-null.
+        /// This object provides the exact date and time when the item commitment was last modified or updated in the system. This timestamp captures any changes made to the item  commitment after initial creation, including change in state.
+        ///
+        /// **Note**: This object is guaranteed to be non-null.
         /// </summary>
         public global::System.DateTimeOffset UpdatedAt { get; }
         /// <summary>
-        /// This container provides Information on the current state of the item commitment. The information that one will see here will be dependent on the state of the item commitment.
+        /// This object provides information on the current state of the item commitment. The information that one will see here will be dependent on the state of the item commitment.
         /// </summary>
         public IItemCommitmentsByIds_ItemCommitmentsByIds_ItemCommitments_State State { get; }
     }
@@ -707,7 +727,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type displays the unique identifiers of all item commitments that were not successully retrieved, and the error(s) that caused them not to be retrieved.
+    /// This type displays the unique identifiers of all item commitments that were not successfully retrieved, and the error(s) that caused them not to be retrieved.
     /// </summary>
     public partial class ItemCommitmentsByIds_ItemCommitmentsByIds_Failures_ItemCommitmentsByIdsError : global::System.IEquatable<ItemCommitmentsByIds_ItemCommitmentsByIds_Failures_ItemCommitmentsByIdsError>, IItemCommitmentsByIds_ItemCommitmentsByIds_Failures_ItemCommitmentsByIdsError
     {
@@ -737,7 +757,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string InputItemCommitmentId { get; }
 
         /// <summary>
-        /// This boolean indicates whether or not the user should try to retrieve the corresponding item commitment again. If this field is returned as 'true', the user can make another attempt to retrieve the item commitment.
+        /// This boolean indicates whether or not the user should try to retrieve the corresponding item commitment again. If this field is returned as `true`, the user can make another attempt to retrieve the item commitment.
         /// </summary>
         public bool Retryable { get; }
 
@@ -823,12 +843,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// This array contains the unique identifiers of all item commitments that were not successully retrieved, and the error(s) that caused them not to be retrieved.
+        /// This array contains the unique identifiers of all item commitments that were not successfully retrieved, and the error(s) that caused them not to be retrieved.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IItemCommitmentsByIds_ItemCommitmentsByIds_Failures> Failures { get; }
 
         /// <summary>
         /// The unique identifier of the error.
+        ///
         /// **Note**: Currently this field will always show ITEM_COMMITMENTS_BY_IDS_COMPLETE_FAILURE.
         /// </summary>
         public string ErrorCode { get; }
@@ -923,13 +944,15 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The exact date and time when the item commitment was initially created in the system. This marks the start of the item commitment lifecycle.
-        /// **Note**: Guaranteed to be non-null.
+        ///
+        /// **Note**: This object will never be returned `null`.
         /// </summary>
         public global::System.DateTimeOffset CreatedAt { get; }
 
         /// <summary>
-        /// The exact date and time when the item commitment was last modified or updated in the system. This timestamp captures any changes made to the item  commitment after initial creation, including change in state.
-        /// **Note**: Guaranteed to be non-null.
+        /// This object provides the exact date and time when the item commitment was last modified or updated in the system. This timestamp captures any changes made to the item  commitment after initial creation, including change in state.
+        ///
+        /// **Note**: This object is guaranteed to be non-null.
         /// </summary>
         public global::System.DateTimeOffset UpdatedAt { get; }
 
@@ -992,7 +1015,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type displays the unique identifiers of all item commitments that were not successully retrieved, and the error(s) that caused them not to be retrieved.
+    /// This type displays the unique identifiers of all item commitments that were not successfully retrieved, and the error(s) that caused them not to be retrieved.
     /// </summary>
     public partial class ItemCommitmentsByIds_ItemCommitmentsByIds_Failures_ItemCommitmentsByIdsError_1 : global::System.IEquatable<ItemCommitmentsByIds_ItemCommitmentsByIds_Failures_ItemCommitmentsByIdsError_1>, IItemCommitmentsByIds_ItemCommitmentsByIds_Failures_ItemCommitmentsByIdsError_1
     {
@@ -1022,7 +1045,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string InputItemCommitmentId { get; }
 
         /// <summary>
-        /// This boolean indicates whether or not the user should try to retrieve the corresponding item commitment again. If this field is returned as 'true', the user can make another attempt to retrieve the item commitment.
+        /// This boolean indicates whether or not the user should try to retrieve the corresponding item commitment again. If this field is returned as `true`, the user can make another attempt to retrieve the item commitment.
         /// </summary>
         public bool Retryable { get; }
 
@@ -1114,13 +1137,15 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public global::System.Collections.Generic.IReadOnlyList<IItemCommitmentsByIds_ItemCommitmentsByIds_ItemCommitments>? ItemCommitments { get; }
 
         /// <summary>
-        /// This array contains the unique identifiers of all item commitments that were not successully retrieved, and the error(s) that caused them not to be retrieved.
+        /// This array contains the unique identifiers of all item commitments that were not successfully retrieved, and the error(s) that caused them not to be retrieved.
+        ///
         /// **Note**: There will always be at one object in this array.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IItemCommitmentsByIds_ItemCommitmentsByIds_Failures_1> Failures { get; }
 
         /// <summary>
         /// The unique identifier of the error.
+        ///
         /// **Note**: Currently this field will always show ITEM_COMMITMENTS_BY_IDS_PARTIAL_FAILURE.
         /// </summary>
         public string ErrorCode { get; }
@@ -1212,8 +1237,9 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// The human-readable label representing an abandoned item commitment (e.g. "Abandoned").
-        /// **Maximum length**: 100 characters.
+        /// The human-readable label representing an abandoned item commitment (e.g. `Abandoned`).
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Label { get; }
 
@@ -1600,7 +1626,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The human-readable label representing a fulfillment that has completed (e.g. "Completed").
-        /// **Maximum length**: 100 characters.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Label { get; }
 
@@ -1674,7 +1701,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type indicates that fulfillment is currently in progress.
+    /// This type indicates that the fulfillment is currently in progress.
     /// </summary>
     public partial class ItemCommitmentsByIds_ItemCommitmentsByIds_ItemCommitments_State_FulfillmentState_FulfillmentInProgress : global::System.IEquatable<ItemCommitmentsByIds_ItemCommitmentsByIds_ItemCommitments_State_FulfillmentState_FulfillmentInProgress>, IItemCommitmentsByIds_ItemCommitmentsByIds_ItemCommitments_State_FulfillmentState_FulfillmentInProgress
     {
@@ -1689,7 +1716,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The human-readable label representing a fulfillment that is in progress (e.g. "In Progress").
-        /// **Maximum length**: 100 characters.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Label { get; }
 
@@ -1774,7 +1802,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The human-readable label representing a fulfillment that has not started (e.g. "Not Started").
-        /// **Maximum length**: 100 characters.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Label { get; }
 
@@ -1919,8 +1948,9 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// The human-readable label representing this state (e.g. 'Process Completed').
-        /// **Maximum length**: 100 characters.
+        /// The human-readable label representing this state (e.g. `Process Completed`).
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Label { get; }
 
@@ -2016,6 +2046,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The human-readable label representing this state (e.g. 'System Processing').
+        ///
         /// **Maximum length**: 100 characters.
         /// </summary>
         public string Label { get; }
@@ -2103,7 +2134,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The human-readable label representing this state (e.g. 'Seller Rejected').
-        /// **Maximum length**: 100 characters.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Label { get; }
 
@@ -2114,6 +2146,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// This field shows the reason why the cancellation was rejected.
+        ///
         /// **Note**: This field is returned if a reason was given.
         /// </summary>
         public string? Reason { get; }
@@ -2203,7 +2236,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The human-readable label representing this state (e.g. 'Buyer Requested').
-        /// **Maximum length**: 100 characters.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Label { get; }
 
@@ -2291,6 +2325,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The human-readable label representing the state of the return request.
+        ///
         /// **Maximum length**: 100 characters.
         /// </summary>
         public string Label { get; }
@@ -2369,6 +2404,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The human-readable label representing the state of the return request.
+        ///
         /// **Maximum length**: 100 characters.
         /// </summary>
         public string Label { get; }
@@ -2450,30 +2486,33 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// The human-readable label representing an active item commitment (e.g. "Active").
+        /// The human-readable label representing an active item commitment (e.g. `Active`).
+        ///
         /// **Maximum length**: 100 characters.
         /// </summary>
         public string Label { get; }
 
         /// <summary>
-        /// This container indicates the current payment status of the item commitment.
+        /// This object indicates the current payment status of the item commitment.
         /// </summary>
         public IItemCommitmentsByIds_ItemCommitmentsByIds_ItemCommitments_State_FundingState FundingState { get; }
 
         /// <summary>
-        /// This container indicates the current fulfillment status of the item commitment.
+        /// This object indicates the current fulfillment status of the item commitment.
         /// </summary>
         public IItemCommitmentsByIds_ItemCommitmentsByIds_ItemCommitments_State_FulfillmentState FulfillmentState { get; }
 
         /// <summary>
-        /// This container indicates the current cancellation status of the item commitment.
-        /// **Note**: This container is only applicable and returned if the item commitment is associated with a cancellation request.
+        /// This object indicates the current cancellation status of the item commitment.
+        ///
+        /// **Note**: This object is only applicable and returned if the item commitment is associated with a cancellation request.
         /// </summary>
         public IItemCommitmentsByIds_ItemCommitmentsByIds_ItemCommitments_State_CancelState? CancelState { get; }
 
         /// <summary>
-        /// This container indicates the current return status of the item commitment.
-        /// **Note**: This container is only applicable and returned if the item commitment is associated with a return request.
+        /// This object indicates the current return status of the item commitment.
+        ///
+        /// **Note**: This object is only applicable and returned if the item commitment is associated with a return request.
         /// </summary>
         public IItemCommitmentsByIds_ItemCommitmentsByIds_ItemCommitments_State_ReturnState? ReturnState { get; }
 
@@ -2572,8 +2611,9 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// The human-readable label representing this state (e.g. 'Process Completed').
-        /// **Maximum length**: 100 characters.
+        /// The human-readable label representing this state (e.g. `Process Completed`).
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Label { get; }
 
@@ -2669,6 +2709,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The human-readable label representing this state (e.g. 'System Processing').
+        ///
         /// **Maximum length**: 100 characters.
         /// </summary>
         public string Label { get; }
@@ -2756,7 +2797,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The human-readable label representing this state (e.g. 'Seller Rejected').
-        /// **Maximum length**: 100 characters.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Label { get; }
 
@@ -2767,6 +2809,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// This field shows the reason why the cancellation was rejected.
+        ///
         /// **Note**: This field is returned if a reason was given.
         /// </summary>
         public string? Reason { get; }
@@ -2856,7 +2899,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The human-readable label representing this state (e.g. 'Buyer Requested').
-        /// **Maximum length**: 100 characters.
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Label { get; }
 
@@ -2947,24 +2991,27 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The human-readable label representing a cancelled item commitment (e.g. "Cancelled").
+        ///
         /// **Maximum length**: 100 characters.
         /// </summary>
         public string Label { get; }
 
         /// <summary>
         /// This timestamp indicates the date and time when the item commitment was cancelled.
+        ///
         /// **Note**: This field is only returned for completed cancellations.
         /// </summary>
         public global::System.DateTimeOffset CancelledAt { get; }
 
         /// <summary>
         /// This field shows the reason provided for the cancellation. This may be system-generated or user-specified.
+        ///
         /// **Note**: May not be returned if no reason was given or generated.
         /// </summary>
         public string? Reason { get; }
 
         /// <summary>
-        /// This container provides details on the cancellation state of the item commitment.
+        /// This object provides details on the cancellation state of the item commitment.
         /// </summary>
         public IItemCommitmentsByIds_ItemCommitmentsByIds_ItemCommitments_State_CancelState_1? CancelState { get; }
 
@@ -3053,7 +3100,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// The human-readable label representing a completed item commitment (e.g. "Completed").
+        /// The human-readable label representing a completed item commitment (e.g. `Completed`).
+        ///
         /// **Maximum length**: 100 characters.
         /// </summary>
         public string Label { get; }
@@ -3119,6 +3167,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
     /// <summary>
     /// This type is used to express the state of a locked item commitment.
+    ///
     /// **Note**: An item commitment may enter a locked state during checkout when the item commitment is being validated, authorized for payment, or undergoing internal processing. The item commitment may be individually locked or indirectly locked as part of a purchase quote that is in checkout progress.
     /// </summary>
     public partial class ItemCommitmentsByIds_ItemCommitmentsByIds_ItemCommitments_State_ItemCommitmentLocked : global::System.IEquatable<ItemCommitmentsByIds_ItemCommitmentsByIds_ItemCommitments_State_ItemCommitmentLocked>, IItemCommitmentsByIds_ItemCommitmentsByIds_ItemCommitments_State_ItemCommitmentLocked
@@ -3132,7 +3181,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// The human-readable label representing a locked item commitment (e.g. "Locked").
+        /// The human-readable label representing a locked item commitment (e.g. `Locked`).
+        ///
         /// **Maximum length**: 100 characters.
         /// </summary>
         public string Label { get; }
@@ -3216,18 +3266,20 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The exact date and time when the item commitment was initially created in the system. This marks the start of the item commitment lifecycle.
-        /// **Note**: Guaranteed to be non-null.
+        ///
+        /// **Note**: This object will never be returned `null`.
         /// </summary>
         public global::System.DateTimeOffset CreatedAt { get; }
 
         /// <summary>
-        /// The exact date and time when the item commitment was last modified or updated in the system. This timestamp captures any changes made to the item  commitment after initial creation, including change in state.
-        /// **Note**: Guaranteed to be non-null.
+        /// This object provides the exact date and time when the item commitment was last modified or updated in the system. This timestamp captures any changes made to the item  commitment after initial creation, including change in state.
+        ///
+        /// **Note**: This object is guaranteed to be non-null.
         /// </summary>
         public global::System.DateTimeOffset UpdatedAt { get; }
 
         /// <summary>
-        /// This container provides Information on the current state of the item commitment. The information that one will see here will be dependent on the state of the item commitment.
+        /// This object provides information on the current state of the item commitment. The information that one will see here will be dependent on the state of the item commitment.
         /// </summary>
         public IItemCommitmentsByIds_ItemCommitmentsByIds_ItemCommitments_State State { get; }
 

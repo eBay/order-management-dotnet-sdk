@@ -33,7 +33,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         private bool _set_relistItem;
 
         /// <summary>
-        ///  An enumerated value that indicates the reason for canceling the commitment (for example, `OUT_OF_STOCK` or `BUYER_REQUESTED`).
+        /// An enumerated value that indicates the reason for canceling the commitment (for example, `OUT_OF_STOCK` or `BUYER_REQUESTED`).
         /// </summary>
         public ContractCancellationSellerReasonInput ContractCancellationReason
         {
@@ -46,7 +46,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        ///  The ID of the item commitment to be cancelled.
+        /// The unique identifier of the item commitment to be cancelled.
         /// </summary>
         public string ItemCommitmentId
         {
@@ -59,11 +59,11 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        ///  Whether to relist all items from the canceled item commitment.
+        /// This boolean field is used to indicate whether or not the line item(s) in the cancellation request should be relisted.
         ///
-        /// **Note:** Must be `false` if the **contractCancellationReason** is set to `OUT_OF_STOCK`.
+        /// **Note**: The value of this field must be `false` if the **contractCancellationReason** is `OUT_OF_STOCK`.
         ///
-        /// **Default:** `false`
+        /// **Default**: `false`
         /// </summary>
         public bool? RelistItem
         {

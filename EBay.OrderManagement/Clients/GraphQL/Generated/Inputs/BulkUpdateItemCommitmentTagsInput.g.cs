@@ -21,7 +21,7 @@ using EBay.OrderManagement.Clients.GraphQL;
 namespace EBay.OrderManagement.Generated.GraphQL
 {
     /// <summary>
-    /// This type is used to add or delete one or more custom tags for up to 100 item commitments.
+    /// This type is used to add or delete an item commitment tag for up to 100 item commitments.
     /// </summary>
     public partial class BulkUpdateItemCommitmentTagsInput : global::System.IEquatable<BulkUpdateItemCommitmentTagsInput>
     {
@@ -29,8 +29,9 @@ namespace EBay.OrderManagement.Generated.GraphQL
         private bool _set_itemCommitmentTagUpdates;
 
         /// <summary>
-        /// This array is used to add or delete one or more custom tags for up to 100 item commitments.
-        /// **Max items**: 100
+        /// This array is used to add or delete an item commitment tag for up to 100 item commitments.
+        ///
+        /// **Maximum number of item commitments**: 100
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<UpdateItemCommitmentTagInput> ItemCommitmentTagUpdates
         {

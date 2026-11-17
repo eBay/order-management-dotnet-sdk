@@ -48,7 +48,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This enumerated value is the marketplace where the item is **listed/published** (for example, EBAY_US, EBAY_DE, EBAY_UK). All listings published on this marketplace inherit these preferences.
+        /// This enumerated value is the marketplace where the item is **listed/published** (for example, EBAY_US, EBAY_DE, EBAY_GB). All listings published on this marketplace inherit these preferences.
         /// </summary>
         public ListingMarketplace ListingMarketplace
         {
@@ -65,10 +65,10 @@ namespace EBay.OrderManagement.Generated.GraphQL
         ///
         /// **Requirements:**
         /// - the name must be unique. No two rules can have the same name.
-        /// - the name must use characters fromteh following set: [A-Z, a-z, 0-9, hyphen(-), underscore(_), period(.), colon(:), comma(,), apostrophe(')]
+        /// - the name must use characters from the following set: [A-Z, a-z, 0-9, hyphen(-), underscore(_), period(.), colon(:), comma(,), apostrophe(')]
         ///
-        /// **Format:** Alphanumeric
-        /// **Maximum length:** 100 characters
+        /// **Format**: Alphanumeric
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Name
         {

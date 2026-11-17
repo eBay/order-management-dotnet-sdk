@@ -27,13 +27,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// This mutation allows a seller to create a new purchase quote containing multiple item commitments with price details and optional shipping estimates.
-        /// **Note**: This operation is not available to buyers.
         ///
-        /// PossibleErrors:
-        /// | Code                  |  Message                                                                     |
-        /// |-----------------------|------------------------------------------------------------------------------|
-        /// | BAD_INPUT_VALUE       |  Input size is 0 or over the limit. Please provide valid input.              |
-        /// | INTERNAL_SERVER_ERROR |  System failure.                                                             |
+        /// **Note**: This operation is not available to buyers.
         /// </summary>
         public ICreatePurchaseQuote_CreatePurchaseQuote CreatePurchaseQuote { get; }
     }
@@ -50,13 +45,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// This mutation allows a seller to create a new purchase quote containing multiple item commitments with price details and optional shipping estimates.
-        /// **Note**: This operation is not available to buyers.
         ///
-        /// PossibleErrors:
-        /// | Code                  |  Message                                                                     |
-        /// |-----------------------|------------------------------------------------------------------------------|
-        /// | BAD_INPUT_VALUE       |  Input size is 0 or over the limit. Please provide valid input.              |
-        /// | INTERNAL_SERVER_ERROR |  System failure.                                                             |
+        /// **Note**: This operation is not available to buyers.
         /// </summary>
         public ICreatePurchaseQuote_CreatePurchaseQuote CreatePurchaseQuote { get; }
 
@@ -129,18 +119,20 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The unique identifier of the specific error. This code can be used by clients to programmatically identify and handle different types of errors without relying on error messages, which may change over time.
+        ///
         /// **Maximum length**: 40 characters
         /// **Format**: Alphanumeric characters and underscores, in UPPER_CASE format
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
         /// A human-readable message describing the error. This message is intended for developers and should not be displayed directly to end users. It provides additional context about what went wrong and may include suggestions for how to resolve the issue.
+        ///
         /// **Maximum length**: 500 characters
         /// **Format**: Alphanumeric characters, spaces, and common punctuation
         /// </summary>
         public string ErrorMessage { get; }
         /// <summary>
-        /// This boolean indicates whether or not the user should try to create the purchase quote again. If this field is returned as 'true', the user can make another attempt to create the purchase quote.
+        /// This boolean indicates whether or not the user should try to create the purchase quote again. If this field is returned as `true`, the user can make another attempt to create the purchase quote.
         /// </summary>
         public bool Retryable { get; }
     }
@@ -169,7 +161,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface ICreatePurchaseQuote_CreatePurchaseQuote_CreatePurchaseQuoteSuccess : ICreatePurchaseQuote_CreatePurchaseQuote
     {
         /// <summary>
-        /// This container shows the successfully created purchase quote.
+        /// This object shows the successfully created purchase quote.
         /// </summary>
         public ICreatePurchaseQuote_CreatePurchaseQuote_PurchaseQuote? PurchaseQuote { get; }
     }
@@ -191,6 +183,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The unique identifier of the specific error. This code can be used by clients to programmatically identify and handle different types of errors without relying on error messages, which may change over time.
+        ///
         /// **Maximum length**: 40 characters
         /// **Format**: Alphanumeric characters and underscores, in UPPER_CASE format
         /// </summary>
@@ -198,13 +191,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// A human-readable message describing the error. This message is intended for developers and should not be displayed directly to end users. It provides additional context about what went wrong and may include suggestions for how to resolve the issue.
+        ///
         /// **Maximum length**: 500 characters
         /// **Format**: Alphanumeric characters, spaces, and common punctuation
         /// </summary>
         public string ErrorMessage { get; }
 
         /// <summary>
-        /// This boolean indicates whether or not the user should try to create the purchase quote again. If this field is returned as 'true', the user can make another attempt to create the purchase quote.
+        /// This boolean indicates whether or not the user should try to create the purchase quote again. If this field is returned as `true`, the user can make another attempt to create the purchase quote.
         /// </summary>
         public bool Retryable { get; }
 
@@ -357,7 +351,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// This container shows the successfully created purchase quote.
+        /// This object shows the successfully created purchase quote.
         /// </summary>
         public ICreatePurchaseQuote_CreatePurchaseQuote_PurchaseQuote? PurchaseQuote { get; }
 

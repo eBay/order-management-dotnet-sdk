@@ -31,7 +31,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
         private bool _set_shippingDiscount;
 
         /// <summary>
-        /// This container is used if the seller is adding or modifying additional charges for handling/processing fees for the purchase quote. The amount entered will increase the total cost for the purchase quote by this amount.
+        /// This object is used if the seller is adding or modifying additional charges for handling/processing fees for the purchase quote. The amount entered will increase the total cost for the purchase quote by this amount.
+        ///
         /// **Note**: The default currency of the eBay listing marketplace should be used.
         /// </summary>
         public AmountInput? AdditionalCharge
@@ -45,9 +46,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used if the seller agrees to offer a new shipping discount to the buyer for the purchase quote or to adjust an existing shipping discount for the purchase quote. The amount entered will reduce the cumulative shipping cost for all item commitments in the purchase quote by this amount.
+        /// This object is used if the seller agrees to offer a new shipping discount to the buyer for the purchase quote or to adjust an existing shipping discount for the purchase quote. The amount entered will reduce the cumulative shipping cost for all item commitments in the purchase quote by this amount.
+        ///
         /// **Note**: Any shipping discount applied at the purchase quote level will override any shipping discounts applied at the item commitment level.
+        ///
         /// **Note**: This shipping discount must be equal to or less than the the cost for the cheapest available shipping option.
+        ///
         /// **Note**: The default currency of the eBay listing marketplace should be used.
         /// </summary>
         public AmountInput? ShippingDiscount

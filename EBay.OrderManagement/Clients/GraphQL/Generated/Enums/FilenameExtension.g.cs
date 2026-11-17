@@ -21,7 +21,7 @@ using EBay.OrderManagement.Clients.GraphQL;
 namespace EBay.OrderManagement.Generated.GraphQL
 {
     /// <summary>
-    /// This enumerated types defines the the supported document file extensions for uploads related to the inquiry process. Examples include evidence documents or shipping proofs. Only the listed formats are supported.
+    /// This enumerated types defines the supported document file extensions for uploads related to the inquiry process. Examples include evidence documents or shipping proofs. Only the listed formats are supported.
     /// </summary>
     public enum FilenameExtension
     {
@@ -34,11 +34,11 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// </summary>
         Docx,
         /// <summary>
-        /// This enum value indicates that theGIF image format is supported.
+        /// This enum value indicates that the GIF image format is supported.
         /// </summary>
         Gif,
         /// <summary>
-        /// This enum value indicates that theJPEG image format is supported.
+        /// This enum value indicates that the JPEG image format is supported.
         /// </summary>
         Jpg,
         /// <summary>

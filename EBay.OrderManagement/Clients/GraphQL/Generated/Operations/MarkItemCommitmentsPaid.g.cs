@@ -27,14 +27,10 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// This mutation allows a seller to mark up to 100 item commitments as paid.
-        /// **Note**: This action is irreversible.
-        /// **Note**: This operation is not applicable to buyers.
         ///
-        /// Execution Errors:
-        /// | Code                  |  Message                                                                     |
-        /// |-----------------------|------------------------------------------------------------------------------|
-        /// | BAD_INPUT_VALUE       |  Input size is 0 or over the limit. Please provide valid input.              |
-        /// | INTERNAL_SERVER_ERROR |  System failure.                                                             |
+        /// **Note**: This action is irreversible.
+        ///
+        /// **Note**: This operation is not applicable to buyers.
         /// </summary>
         public IMarkItemCommitmentsPaid_MarkItemCommitmentsPaid MarkItemCommitmentsPaid { get; }
     }
@@ -51,14 +47,10 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// This mutation allows a seller to mark up to 100 item commitments as paid.
-        /// **Note**: This action is irreversible.
-        /// **Note**: This operation is not applicable to buyers.
         ///
-        /// Execution Errors:
-        /// | Code                  |  Message                                                                     |
-        /// |-----------------------|------------------------------------------------------------------------------|
-        /// | BAD_INPUT_VALUE       |  Input size is 0 or over the limit. Please provide valid input.              |
-        /// | INTERNAL_SERVER_ERROR |  System failure.                                                             |
+        /// **Note**: This action is irreversible.
+        ///
+        /// **Note**: This operation is not applicable to buyers.
         /// </summary>
         public IMarkItemCommitmentsPaid_MarkItemCommitmentsPaid MarkItemCommitmentsPaid { get; }
 
@@ -125,21 +117,21 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// Represents details about an error that occurred while updating an item commitment.
+    /// This type provides details about an error that occurred while updating an item commitment.
     /// </summary>
     public partial interface IMarkItemCommitmentsPaid_MarkItemCommitmentsPaid_Failures
     {
         /// <summary>
-        /// The ID of the item commitment that failed to be updated with a mutation.
+        /// The unique identifier of the item commitment that failed to be updated with a mutation.
         /// </summary>
         public string InputItemCommitmentId { get; }
         /// <summary>
         /// The unique identifier of the error. Below are the five errors that may occur:
-        /// - INVALID_INPUT: This error indicates that the item commitment ID is not recognized.
-        /// - NOT_AUTHORIZED: This error indicates that the item commitment doesn't belong to the authenticated eBay user, so this action cannot be taken.
-        /// - VERSION_LOCKED: This error indicates that the latest version of item commitment is locked, possibly because the item commitment was being modified by another process. With this error, the user can make another attempt to update the item commitment.
-        /// - TEMPORARILY_NOT_AVAILABLE: This error indicates that a system error occurred. This error may occur with a complete failure, and the user can try again after a short period of time.
-        /// - DEPENDENCY_TIME_OUT: — This error indicates that a timeout occurred. With this error, the user can try again after a short period of time.
+        /// - `INVALID_INPUT`: This error indicates that the item commitment ID is not recognized.
+        /// - `NOT_AUTHORIZED`: This error indicates that the item commitment doesn't belong to the authenticated eBay user, so this action cannot be taken.
+        /// - `VERSION_LOCKED`: This error indicates that the latest version of item commitment is locked, possibly because the item commitment was being modified by another process. With this error, the user can make another attempt to update the item commitment.
+        /// - `TEMPORARILY_NOT_AVAILABLE`: This error indicates that a system error occurred. This error may occur with a complete failure, and the user can try again after a short period of time.
+        /// - `DEPENDENCY_TIME_OUT`: — This error indicates that a timeout occurred. With this error, the user can try again after a short period of time.
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
@@ -147,13 +139,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// </summary>
         public string DisplayMessage { get; }
         /// <summary>
-        /// This boolean indicates whether or not the user should retry a mutation to update the corresponding item commitment again. If this field is returned as 'true', the user can make another attempt to update the item commitment.
+        /// This boolean indicates whether or not the user should retry a mutation to update the corresponding item commitment again. If this field is returned as `true`, the user can make another attempt to update the item commitment.
         /// </summary>
         public bool Retryable { get; }
     }
 
     /// <summary>
-    /// Represents details about an error that occurred while updating an item commitment.
+    /// This type provides details about an error that occurred while updating an item commitment.
     /// </summary>
     public partial interface IMarkItemCommitmentsPaid_MarkItemCommitmentsPaid_Failures_UpdateItemCommitmentError : IMarkItemCommitmentsPaid_MarkItemCommitmentsPaid_Failures
     {
@@ -166,7 +158,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The unique identifier of the error.
-        /// **Note**: Currently this field will always show MARK_ITEM_COMMITMENTS_PAID_COMPLETE_FAILURE.
+        ///
+        /// **Note**: Currently this field will always show `MARK_ITEM_COMMITMENTS_PAID_COMPLETE_FAILURE`.
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
@@ -198,21 +191,21 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// Represents details about an error that occurred while updating an item commitment.
+    /// This type provides details about an error that occurred while updating an item commitment.
     /// </summary>
     public partial interface IMarkItemCommitmentsPaid_MarkItemCommitmentsPaid_Failures_1
     {
         /// <summary>
-        /// The ID of the item commitment that failed to be updated with a mutation.
+        /// The unique identifier of the item commitment that failed to be updated with a mutation.
         /// </summary>
         public string InputItemCommitmentId { get; }
         /// <summary>
         /// The unique identifier of the error. Below are the five errors that may occur:
-        /// - INVALID_INPUT: This error indicates that the item commitment ID is not recognized.
-        /// - NOT_AUTHORIZED: This error indicates that the item commitment doesn't belong to the authenticated eBay user, so this action cannot be taken.
-        /// - VERSION_LOCKED: This error indicates that the latest version of item commitment is locked, possibly because the item commitment was being modified by another process. With this error, the user can make another attempt to update the item commitment.
-        /// - TEMPORARILY_NOT_AVAILABLE: This error indicates that a system error occurred. This error may occur with a complete failure, and the user can try again after a short period of time.
-        /// - DEPENDENCY_TIME_OUT: — This error indicates that a timeout occurred. With this error, the user can try again after a short period of time.
+        /// - `INVALID_INPUT`: This error indicates that the item commitment ID is not recognized.
+        /// - `NOT_AUTHORIZED`: This error indicates that the item commitment doesn't belong to the authenticated eBay user, so this action cannot be taken.
+        /// - `VERSION_LOCKED`: This error indicates that the latest version of item commitment is locked, possibly because the item commitment was being modified by another process. With this error, the user can make another attempt to update the item commitment.
+        /// - `TEMPORARILY_NOT_AVAILABLE`: This error indicates that a system error occurred. This error may occur with a complete failure, and the user can try again after a short period of time.
+        /// - `DEPENDENCY_TIME_OUT`: — This error indicates that a timeout occurred. With this error, the user can try again after a short period of time.
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
@@ -220,13 +213,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// </summary>
         public string DisplayMessage { get; }
         /// <summary>
-        /// This boolean indicates whether or not the user should retry a mutation to update the corresponding item commitment again. If this field is returned as 'true', the user can make another attempt to update the item commitment.
+        /// This boolean indicates whether or not the user should retry a mutation to update the corresponding item commitment again. If this field is returned as `true`, the user can make another attempt to update the item commitment.
         /// </summary>
         public bool Retryable { get; }
     }
 
     /// <summary>
-    /// Represents details about an error that occurred while updating an item commitment.
+    /// This type provides details about an error that occurred while updating an item commitment.
     /// </summary>
     public partial interface IMarkItemCommitmentsPaid_MarkItemCommitmentsPaid_Failures_UpdateItemCommitmentError_1 : IMarkItemCommitmentsPaid_MarkItemCommitmentsPaid_Failures_1
     {
@@ -239,7 +232,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The unique identifier of the error.
-        /// **Note**: Currently this field will always show MARK_ITEM_COMMITMENTS_PAID_PARTIAL_FAILURE.
+        ///
+        /// **Note**: Currently this field will always show `MARK_ITEM_COMMITMENTS_PAID_PARTIAL_FAILURE`.
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
@@ -286,7 +280,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// Represents details about an error that occurred while updating an item commitment.
+    /// This type provides details about an error that occurred while updating an item commitment.
     /// </summary>
     public partial class MarkItemCommitmentsPaid_MarkItemCommitmentsPaid_Failures_UpdateItemCommitmentError : global::System.IEquatable<MarkItemCommitmentsPaid_MarkItemCommitmentsPaid_Failures_UpdateItemCommitmentError>, IMarkItemCommitmentsPaid_MarkItemCommitmentsPaid_Failures_UpdateItemCommitmentError
     {
@@ -299,17 +293,17 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The ID of the item commitment that failed to be updated with a mutation.
+        /// The unique identifier of the item commitment that failed to be updated with a mutation.
         /// </summary>
         public string InputItemCommitmentId { get; }
 
         /// <summary>
         /// The unique identifier of the error. Below are the five errors that may occur:
-        /// - INVALID_INPUT: This error indicates that the item commitment ID is not recognized.
-        /// - NOT_AUTHORIZED: This error indicates that the item commitment doesn't belong to the authenticated eBay user, so this action cannot be taken.
-        /// - VERSION_LOCKED: This error indicates that the latest version of item commitment is locked, possibly because the item commitment was being modified by another process. With this error, the user can make another attempt to update the item commitment.
-        /// - TEMPORARILY_NOT_AVAILABLE: This error indicates that a system error occurred. This error may occur with a complete failure, and the user can try again after a short period of time.
-        /// - DEPENDENCY_TIME_OUT: — This error indicates that a timeout occurred. With this error, the user can try again after a short period of time.
+        /// - `INVALID_INPUT`: This error indicates that the item commitment ID is not recognized.
+        /// - `NOT_AUTHORIZED`: This error indicates that the item commitment doesn't belong to the authenticated eBay user, so this action cannot be taken.
+        /// - `VERSION_LOCKED`: This error indicates that the latest version of item commitment is locked, possibly because the item commitment was being modified by another process. With this error, the user can make another attempt to update the item commitment.
+        /// - `TEMPORARILY_NOT_AVAILABLE`: This error indicates that a system error occurred. This error may occur with a complete failure, and the user can try again after a short period of time.
+        /// - `DEPENDENCY_TIME_OUT`: — This error indicates that a timeout occurred. With this error, the user can try again after a short period of time.
         /// </summary>
         public string ErrorCode { get; }
 
@@ -319,7 +313,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string DisplayMessage { get; }
 
         /// <summary>
-        /// This boolean indicates whether or not the user should retry a mutation to update the corresponding item commitment again. If this field is returned as 'true', the user can make another attempt to update the item commitment.
+        /// This boolean indicates whether or not the user should retry a mutation to update the corresponding item commitment again. If this field is returned as `true`, the user can make another attempt to update the item commitment.
         /// </summary>
         public bool Retryable { get; }
 
@@ -406,7 +400,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The unique identifier of the error.
-        /// **Note**: Currently this field will always show MARK_ITEM_COMMITMENTS_PAID_COMPLETE_FAILURE.
+        ///
+        /// **Note**: Currently this field will always show `MARK_ITEM_COMMITMENTS_PAID_COMPLETE_FAILURE`.
         /// </summary>
         public string ErrorCode { get; }
 
@@ -556,7 +551,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// Represents details about an error that occurred while updating an item commitment.
+    /// This type provides details about an error that occurred while updating an item commitment.
     /// </summary>
     public partial class MarkItemCommitmentsPaid_MarkItemCommitmentsPaid_Failures_UpdateItemCommitmentError_1 : global::System.IEquatable<MarkItemCommitmentsPaid_MarkItemCommitmentsPaid_Failures_UpdateItemCommitmentError_1>, IMarkItemCommitmentsPaid_MarkItemCommitmentsPaid_Failures_UpdateItemCommitmentError_1
     {
@@ -569,17 +564,17 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The ID of the item commitment that failed to be updated with a mutation.
+        /// The unique identifier of the item commitment that failed to be updated with a mutation.
         /// </summary>
         public string InputItemCommitmentId { get; }
 
         /// <summary>
         /// The unique identifier of the error. Below are the five errors that may occur:
-        /// - INVALID_INPUT: This error indicates that the item commitment ID is not recognized.
-        /// - NOT_AUTHORIZED: This error indicates that the item commitment doesn't belong to the authenticated eBay user, so this action cannot be taken.
-        /// - VERSION_LOCKED: This error indicates that the latest version of item commitment is locked, possibly because the item commitment was being modified by another process. With this error, the user can make another attempt to update the item commitment.
-        /// - TEMPORARILY_NOT_AVAILABLE: This error indicates that a system error occurred. This error may occur with a complete failure, and the user can try again after a short period of time.
-        /// - DEPENDENCY_TIME_OUT: — This error indicates that a timeout occurred. With this error, the user can try again after a short period of time.
+        /// - `INVALID_INPUT`: This error indicates that the item commitment ID is not recognized.
+        /// - `NOT_AUTHORIZED`: This error indicates that the item commitment doesn't belong to the authenticated eBay user, so this action cannot be taken.
+        /// - `VERSION_LOCKED`: This error indicates that the latest version of item commitment is locked, possibly because the item commitment was being modified by another process. With this error, the user can make another attempt to update the item commitment.
+        /// - `TEMPORARILY_NOT_AVAILABLE`: This error indicates that a system error occurred. This error may occur with a complete failure, and the user can try again after a short period of time.
+        /// - `DEPENDENCY_TIME_OUT`: — This error indicates that a timeout occurred. With this error, the user can try again after a short period of time.
         /// </summary>
         public string ErrorCode { get; }
 
@@ -589,7 +584,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string DisplayMessage { get; }
 
         /// <summary>
-        /// This boolean indicates whether or not the user should retry a mutation to update the corresponding item commitment again. If this field is returned as 'true', the user can make another attempt to update the item commitment.
+        /// This boolean indicates whether or not the user should retry a mutation to update the corresponding item commitment again. If this field is returned as `true`, the user can make another attempt to update the item commitment.
         /// </summary>
         public bool Retryable { get; }
 
@@ -677,7 +672,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The unique identifier of the error.
-        /// **Note**: Currently this field will always show MARK_ITEM_COMMITMENTS_PAID_PARTIAL_FAILURE.
+        ///
+        /// **Note**: Currently this field will always show `MARK_ITEM_COMMITMENTS_PAID_PARTIAL_FAILURE`.
         /// </summary>
         public string ErrorCode { get; }
 
