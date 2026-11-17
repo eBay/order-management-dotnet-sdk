@@ -1,6 +1,6 @@
 # eBay Order Management SDK for .NET
 
-Process and fulfill orders, buy shipping labels, and handle post-order cases. This SDK wraps the eBay Fulfillment API, Logistics API, Post-Order API and eBay GraphQL behind one client, `OrderManagementClient`.
+Process and fulfill orders, buy shipping labels, and handle post-order cases. This SDK wraps the eBay Fulfillment API, Logistics API and eBay GraphQL behind one client, `OrderManagementClient`.
 
 - **Target frameworks:** .NET Framework 4.7.2, .NET 8, .NET 9 and .NET 10
 - **C#:** usable from C# 7.3 and later
@@ -69,24 +69,23 @@ foreach (var order in result?.SellerOrders.Orders ?? [])
 |---|---|---|---|
 | `Fulfillment` | Fulfillment API | `https://apiz.ebay.com/sell/fulfillment/v1` | User (some operations: application) |
 | `Logistics` | Logistics API | `https://api.ebay.com/sell/logistics/v1_beta` | User |
-| `PostOrderApi` | Post-Order API | `https://api.ebay.com/post-order/v2` | User |
 | `GraphQL` | eBay GraphQL | `https://api.ebay.com/graphql` | See eBay's GraphQL docs |
 
 "Access token" is what eBay's OpenAPI spec declares: an application token (client credentials) or a user token (authorization code). Scopes are listed per API below.
 
 <details>
-<summary><b>Fulfillment</b>: Fulfillment API, 15 operations</summary>
+<summary><b>Fulfillment</b>: Fulfillment API, 16 operations</summary>
 
 Scopes: `eBayUser`, `https://api.ebay.com/oauth/api_scope/sell.finances`, `https://api.ebay.com/oauth/api_scope/sell.fulfillment`, `https://api.ebay.com/oauth/api_scope/sell.fulfillment.readonly`, `https://api.ebay.com/oauth/api_scope/sell.payment.dispute`
 
 | Method | Description |
 |---|---|
-| `GetOrderAsync` | Use this call to retrieve the contents of an order based on its unique identifier, orderId. |
-| `GetOrdersAsync` | Use this method to search for and retrieve one or more orders based on their creation date, last modification date, or fulfillment status using the filter parameter. |
+| `GetOrderAsync` | Get a seller order by ID |
+| `GetOrdersAsync` | Search for seller orders |
 | `IssueRefundAsync` | Issues a full or partial refund to a buyer on behalf of the seller. |
-| `GetShippingFulfillmentsAsync` | Use this call to retrieve the contents of all fulfillments currently defined for a specified order based on the order's unique identifier, orderId. |
-| `CreateShippingFulfillmentAsync` | When you group an order's line items into one or more packages, each package requires a corresponding plan for handling, addressing, and shipping; this is shipping fulfillment. |
-| `GetShippingFulfillmentAsync` | Use this call to retrieve the contents of a fulfillment based on its unique identifier, fulfillmentId (combined with the associated order's orderId). |
+| `GetShippingFulfillmentsAsync` | Get all shipping fulfillments for an order |
+| `CreateShippingFulfillmentAsync` | Create a shipping fulfillment for an order |
+| `GetShippingFulfillmentAsync` | Get a specific shipping fulfillment |
 | `GetPaymentDisputeAsync` | Get Payment Dispute Details |
 | `FetchEvidenceContentAsync` | Get Payment Dispute Evidence File |
 | `GetActivitiesAsync` | Get Payment Dispute Activity |
@@ -96,6 +95,7 @@ Scopes: `eBayUser`, `https://api.ebay.com/oauth/api_scope/sell.finances`, `https
 | `UploadEvidenceFileAsync` | Upload an Evidence File |
 | `AddEvidenceAsync` | Add an Evidence File |
 | `UpdateEvidenceAsync` | Update evidence |
+| `CreateAdditionalShippingFulfillmentAsync` | Create an additional shipping fulfillment for an order |
 
 </details>
 
@@ -118,90 +118,38 @@ Scopes: `https://api.ebay.com/oauth/api_scope/sell.logistics`
 </details>
 
 <details>
-<summary><b>PostOrderApi</b>: Post-Order API, 38 operations</summary>
+<summary><b>GraphQL</b>: eBay GraphQL, 52 operations</summary>
 
-Scopes: `https://api.ebay.com/oauth/scope/sell@user`
-
-| Method | Description |
-|---|---|
-| `CheckCancellationEligibilityAsync` | Check Cancellation Eligibility |
-| `GetCancellationAsync` | Get Cancellation |
-| `CreateCancellationRequestAsync` | Create Cancellation Request |
-| `ConfirmAsync` | Confirm Cancellation Refund |
-| `SearchCancellationsAsync` | Search Cancellations |
-| `ApproveCancellationAsync` | Approve Cancellation |
-| `RejectCancellationAsync` | Reject Cancellation |
-| `AppealCaseDecisionAsync` | Appeal Case Decision |
-| `GetCaseAsync` | Get Case |
-| `IssueCaseRefundAsync` | Issue Case Refund |
-| `ProvideCaseReturnAddressAsync` | Provides Return Address |
-| `CloseCaseAsync` | Close Case |
-| `ProvideCaseShipmentInfoAsync` | Provide Case Shipment Info |
-| `SearchCasesAsync` | Search Cases |
-| `CreateInquiryAsync` | Create Inquiry |
-| `SendInquiryMessageAsync` | Send Inquiry Message |
-| `EscalateInquiryAsync` | Escalate Inquiry |
-| `CloseInquiryAsync` | Close Inquiry |
-| `ConfirmInquiryRefundAsync` | Confirm Inquiry Refund |
-| `GetInquiryAsync` | Get Inquiry |
-| `IssueInquiryRefundAsync` | Issue Inquiry Refund |
-| `ProvideInquiryShipmentInfoAsync` | Provide Inquiry Shipment Info |
-| `SearchInquiriesAsync` | Search Inquiries |
-| `ProvideInquiryRefundInfoAsync` | Provide Inquiry Refund Info |
-| `CreateReturnRequestAsync` | Create Return Request |
-| `GetReturnAsync` | Get Return |
-| `SearchReturnsAsync` | Search Returns |
-| `EscalateReturnAsync` | Escalate Return |
-| `ProcessReturnRequestAsync` | Process Return Request |
-| `MarkItemReceivedAsync` | Mark Return Received |
-| `IssueReturnRefundAsync` | Issue Return Refund |
-| `GetShipmentTrackingInfoAsync` | Get Shipment Tracking Info |
-| `SendReturnMessageAsync` | Send Return Message |
-| `AddShippingLabelInfoAsync` | Add Shipping Label Info |
-| `UploadReturnFileAsync` | Upload Return File |
-| `GetReturnFilesAsync` | Get Return Files |
-| `GetReturnPreferencesAsync` | Get Return Preferences |
-| `SetReturnPreferencesAsync` | Set Return Preferences |
-
-</details>
-
-<details>
-<summary><b>GraphQL</b>: eBay GraphQL, 57 operations</summary>
-
-Scopes (any operation may need any of these): `https://api.ebay.com/oauth/api_scope/buy.cancellation`, `https://api.ebay.com/oauth/api_scope/buy.cancellation.read`, `https://api.ebay.com/oauth/api_scope/buy.commitment`, `https://api.ebay.com/oauth/api_scope/buy.commitment.read`, `https://api.ebay.com/oauth/api_scope/buy.inquiry`, `https://api.ebay.com/oauth/api_scope/buy.inquiry.read`, `https://api.ebay.com/oauth/api_scope/buy.order`, `https://api.ebay.com/oauth/api_scope/buy.order.read`, `https://api.ebay.com/oauth/api_scope/buy.purchase.quote`, `https://api.ebay.com/oauth/api_scope/buy.purchase.quote.read`, `https://api.ebay.com/oauth/api_scope/buy.return`, `https://api.ebay.com/oauth/api_scope/buy.return.read`, `https://api.ebay.com/oauth/api_scope/sell.cancellation`, `https://api.ebay.com/oauth/api_scope/sell.cancellation.read`, `https://api.ebay.com/oauth/api_scope/sell.commitment`, `https://api.ebay.com/oauth/api_scope/sell.commitment.read`, `https://api.ebay.com/oauth/api_scope/sell.inquiry`, `https://api.ebay.com/oauth/api_scope/sell.inquiry.read`, `https://api.ebay.com/oauth/api_scope/sell.order`, `https://api.ebay.com/oauth/api_scope/sell.order.read`, `https://api.ebay.com/oauth/api_scope/sell.purchase.quote`, `https://api.ebay.com/oauth/api_scope/sell.purchase.quote.read`, `https://api.ebay.com/oauth/api_scope/sell.return`, `https://api.ebay.com/oauth/api_scope/sell.return.instore@partner`, `https://api.ebay.com/oauth/api_scope/sell.return.preference`, `https://api.ebay.com/oauth/api_scope/sell.return.preference.rules_group.read@partner`, `https://api.ebay.com/oauth/api_scope/sell.return.preference.rules_group@partner`, `https://api.ebay.com/oauth/api_scope/sell.return.read`
+Scopes (any operation may need any of these): `https://api.ebay.com/oauth/api_scope/buy.commitment`, `https://api.ebay.com/oauth/api_scope/buy.purchase.quote`, `https://api.ebay.com/oauth/api_scope/sell.cancellation`, `https://api.ebay.com/oauth/api_scope/sell.commitment`, `https://api.ebay.com/oauth/api_scope/sell.inquiry`, `https://api.ebay.com/oauth/api_scope/sell.order`, `https://api.ebay.com/oauth/api_scope/sell.purchase.quote`, `https://api.ebay.com/oauth/api_scope/sell.return`, `https://api.ebay.com/oauth/api_scope/sell.return.preference`
 
 | Method | Description |
 |---|---|
-| `AddListingsToReturnRuleListingGroupAsync` | The **addListingsToReturnRuleListingGroup** mutation appends items to an existing listing group to be used in seller's return automation rules. |
 | `AppendSellerReturnResponseRuleAsync` | The **appendSellerReturnResponseRule** mutation adds a new return-respond automation rule. |
 | `AppendSellerReturnToAddressRuleAsync` | The **appendSellerReturnToAddressRule** mutation adds a new return-to-address automation rule. |
 | `ApproveContractCancellationAsync` | The **approveContractCancellation** mutation approves a contract cancellation using an existing cancellation entity. |
 | `ApproveReturnAsync` | The **approveReturn** mutation allows a seller to approve a return request. |
 | `AttachReturnShipmentLabelAsync` | The **attachReturnShipmentLabel** mutation attaches a return shipment label to the specified return. |
-| `BulkUpdateItemCommitmentTagsAsync` | This mutation allows a seller to add and/or delete up to five custom item commitment tags for up to 100 item commitments per operation. |
-| `BulkUpdateOrderTagsAsync` | The **bulkUpdateOrderTags** mutation updates tags for up to 100 orders in a single operation. |
+| `BulkUpdateItemCommitmentTagsAsync` | This mutation allows a seller to update the acknowledgment status of up to 100 item commitments per operation. |
+| `BulkUpdateOrderTagsAsync` | The **bulkUpdateOrderTags** mutation allows a seller to update the acknowledgment status for up to 100 orders in a single operation. |
 | `BulkUpdatePurchaseQuotesAsync` | This mutation allows a seller to update up to 100 existing purchase quotes in a single request. |
 | `CommitToPurchaseAsync` | This mutation is used to create an item commitment on a listing, where a buyer commits to purchase an item and pay for it at a later date. |
 | `ContractCancellationAsync` | The **contractCancellation** query retrieves details about a contract cancellation by its ID. |
-| `CreateInStoreReturnAsync` | The **createInStoreReturn** mutation initiates a return. |
 | `CreateItemCommitmentCancellationAsync` | The **createItemCommitmentCancellation** mutation creates a cancellation on an item commitment. |
 | `CreateOrderCancellationAsync` | The **createOrderCancellation** mutation creates a cancellation on an order. |
 | `CreatePurchaseQuoteAsync` | This mutation allows a seller to create a new purchase quote containing multiple item commitments with price details and optional shipping estimates. |
 | `CreatePurchaseQuoteCancellationAsync` | The **createPurchaseQuoteCancellation** mutation creates a cancellation on a purchase quote for item commitments which are part of a **PurchaseQuote**. |
-| `CreateReturnRuleListingGroupAsync` | The **createReturnRuleListingGroup** mutation creates a group of listings that can be used in seller's return automation rules. |
 | `DeclineContractCancellationAsync` | The **declineContractCancellation** mutation declines a contract cancellation using an existing cancellation entity. |
 | `DeclineReturnAsync` | The **declineReturn** mutation declines a return request and can include a message. |
-| `DeleteReturnRuleListingGroupAsync` | The **deleteReturnRuleListingGroup** mutation deletes a seller created listing group for return automation rules. |
 | `DeleteSellerReturnRuleAsync` | The **deleteSellerReturnRule** mutation allows the seller to delete the specified existing return automation rule. |
-| `ItemCommitmentsAsync` | The output for the **itemCommitmentsByIds** query. |
+| `ItemCommitmentsAsync` | This query can be used to retrieve item commitments associated with a user. |
 | `ItemCommitmentsByIdsAsync` | This query is used to retrieve detailed information on up to 100 of an authenticated user's item commitments. |
 | `MarkItemCommitmentsPaidAsync` | This mutation allows a seller to mark up to 100 item commitments as paid. |
-| `MarkOrdersPaidAsync` | The **markOrdersPaid** mutation marks up to 100 specified orders as payment received and is available only for the authorized user (the seller of the orders). |
+| `MarkOrdersPaidAsync` | This mutation can be used to mark up to 100 specified orders as payment received and is available only for the authorized user (the seller of the orders). |
 | `OrderInquiryAsync` | This query can be used to retrieve full inquiry details for an inquiry, specified by its inquiry ID. |
-| `OrderLineItemsByIdsAsync` | The **orderLineItemsByIds** query retrieves one or more line items from orders using their unique IDs. |
+| `OrderLineItemsByIdsAsync` | This query can be used to retrieve one or more line items from orders using their unique IDs. |
 | `OrderReturnAsync` | The **orderReturn** query retrieves information on a specific return by return ID. |
-| `OrdersAsync` | Entry point for the **authenticated user's** order data. |
-| `OrdersByIdsAsync` | The **ordersByIds** query retrieves one or more orders by their unique IDs. |
+| `OrdersAsync` | This query can be used to retrieve detailed information about one or more of a user's orders. |
+| `OrdersByIdsAsync` | This query can be used to retrieve one or more orders by their unique IDs. |
 | `ProcessOrderInquiryRefundAsync` | This mutation can be used to issue a full refund for an inquiry. |
 | `ProcessReturnRefundAsync` | The **processReturnRefund** mutation processes a refund for a return in accordance with the applicable refund policy. |
 | `ProposeKeepItemWithPartialRefundAsync` | The **proposeKeepItemWithPartialRefund** mutation proposes a keep-item-with-partial-refund offer on one or more items in an existing return. |
@@ -213,7 +161,6 @@ Scopes (any operation may need any of these): `https://api.ebay.com/oauth/api_sc
 | `RecordReturnLabelSentOfflineAsync` | The **recordReturnLabelSentOffline** mutation records that a return shipment label has been sent to the buyer for the specified return |
 | `RecordReturnReceivedAsync` | The **recordReturnReceived** mutation is an optional step to notify eBay that the returned item has been received. |
 | `RequestPurchaseQuoteAsync` | This mutation allows a buyer to submit a new purchase quote request to the seller. |
-| `ReturnRuleListingGroupAsync` | The **returnRuleListingGroup** query retrieves listing group detail that can be used in return automation rules. |
 | `SellerContractCancellationsAsync` | The **sellerContractCancellations** query retrieves a list of contract cancellations with optional filtering. |
 | `SellerOrderInquiriesAsync` | This query can be used to retrieve a paginated list of order inquiries visible to the seller. |
 | `SellerOrderReturnsAsync` | The **sellerOrderReturns** query retrieves a list of order returns for the seller, with filtering and sorting options. |
@@ -263,7 +210,6 @@ A token is only ever sent to trusted hosts, see below.
 |---|---|---|---|
 | `FulfillmentBaseUrl` | `string` | `https://apiz.ebay.com/sell/fulfillment/v1` | Base URL of the Fulfillment API. |
 | `LogisticsBaseUrl` | `string` | `https://api.ebay.com/sell/logistics/v1_beta` | Base URL of the Logistics API. |
-| `PostOrderApiBaseUrl` | `string` | `https://api.ebay.com/post-order/v2` | Base URL of the Post-Order API. |
 | `GraphQLBaseUrl` | `string` | `https://api.ebay.com/graphql` | Base URL of the GraphQL endpoint. |
 | `AccessToken` | `string?` |  | Fallback bearer token used when no per-call accessToken is supplied. |
 | `DiagnosticLogging` | `bool` | `false` | When true, logs the HTTP method, URL, status code, and response reason phrase for all non-success responses to stderr. |
@@ -283,7 +229,6 @@ var sandboxConfig = new OrderManagementConfiguration
     AccessToken = Environment.GetEnvironmentVariable("EBAY_SANDBOX_ACCESS_TOKEN"),
     FulfillmentBaseUrl = "https://apiz.sandbox.ebay.com/sell/fulfillment/v1",
     LogisticsBaseUrl = "https://api.sandbox.ebay.com/sell/logistics/v1_beta",
-    PostOrderApiBaseUrl = "https://api.sandbox.ebay.com/post-order/v2",
     GraphQLBaseUrl = "https://graphqlapi.sandbox.ebay.com/graphql",
 };
 ```
