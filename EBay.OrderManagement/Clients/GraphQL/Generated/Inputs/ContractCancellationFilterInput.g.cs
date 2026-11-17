@@ -23,7 +23,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This input type represents filters to narrow the set of contract cancellations returned.
     ///
-    /// **Note:** All filters are combined with logical AND.
+    /// **Note**: All filters are combined with logical AND.
     /// </summary>
     public partial class ContractCancellationFilterInput : global::System.IEquatable<ContractCancellationFilterInput>
     {
@@ -35,7 +35,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// Filter by creation date range.
         ///
-        /// **Default:** last 30 days
+        /// **Default**: last 30 days
         /// </summary>
         public DateTimeRangeInput? CreatedBetween
         {
@@ -50,7 +50,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// Filter by contract cancellation status types.
         ///
-        /// **Default:** `[AWAITING_ACTION_FROM_SELLER]`, to highlight open cancellations
+        /// **Default**: `[AWAITING_ACTION_FROM_SELLER]`, to highlight open cancellations
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<ContractCancellationStatusFilterPreset>? Statuses
         {

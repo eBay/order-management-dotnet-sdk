@@ -21,7 +21,7 @@ using EBay.OrderManagement.Clients.GraphQL;
 namespace EBay.OrderManagement.Generated.GraphQL
 {
     /// <summary>
-    /// This input represents the filters that can be used when searching for order inquiries.
+    /// This input type represents the filters that can be used when searching for order inquiries.
     /// </summary>
     public partial class OrderInquiryFilterInput : global::System.IEquatable<OrderInquiryFilterInput>
     {
@@ -36,6 +36,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// Filters the response to only include inquiries in a specified creation date range. This filter defaults to the last 30 days if it is not provided.
+        ///
         /// **Note**: Only inquiries created within the last 18 months are supported.
         /// </summary>
         public DateTimeRangeInput? CreatedBetween
@@ -50,6 +51,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// Filters the response to only include inquiries with a specific listing ID.
+        ///
         /// **Note**: If an invalid or ineligible listing ID is provided, the search will return an empty result.
         /// </summary>
         public string? ListingId
@@ -64,6 +66,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// Filters the response to only include inquiries with a specific order ID.
+        ///
         /// **Note**: If an invalid or ineligible order ID is provided (e.g., the order doesn't belong to the requester), the search will return an empty result.
         /// </summary>
         public string? OrderId
@@ -78,7 +81,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// Filters the response by preset filters to narrow down the order inquiries.
-        /// **Default**: 'AWAITING_SELLER_ACTION', where immediate action is required by seller.
+        ///
+        /// **Default**: `AWAITING_SELLER_ACTION`, where immediate action is required by seller
         /// </summary>
         public OrderInquiryFilterPreset? Presets
         {

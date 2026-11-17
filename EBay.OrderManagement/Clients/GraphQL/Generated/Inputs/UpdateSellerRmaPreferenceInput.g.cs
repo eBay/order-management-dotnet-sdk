@@ -44,7 +44,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// If enabled, a RMA is required for returns. This setting is marketplace specific.
+        /// If enabled, an RMA is required for returns. This setting is marketplace specific.
         /// </summary>
         public RmaPreferenceInput RmaPreference
         {

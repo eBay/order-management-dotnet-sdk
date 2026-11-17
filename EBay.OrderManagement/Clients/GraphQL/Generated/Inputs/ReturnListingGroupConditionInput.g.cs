@@ -29,9 +29,9 @@ namespace EBay.OrderManagement.Generated.GraphQL
         private bool _set_returnRuleListingGroupId;
 
         /// <summary>
-        /// Specifies the ID of the listing group used by this condition in an automation return rule template.
+        /// This field specifies the unique identifier of the listing group used by this condition in an automation return rule template.
         ///
-        /// **Note:** Only one listing group can be specified per condition.
+        /// **Note**: Only one listing group can be specified per condition.
         /// </summary>
         public string ReturnRuleListingGroupId
         {

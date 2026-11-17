@@ -21,7 +21,7 @@ using EBay.OrderManagement.Clients.GraphQL;
 namespace EBay.OrderManagement.Generated.GraphQL
 {
     /// <summary>
-    ///  This input type defines the payload for the **createOrderCancellation** mutation, identifying the order to cancel, providing a reason, and whether to relist all items.
+    /// This input type defines the payload for the **createOrderCancellation** mutation, identifying the order to cancel, providing a reason, and whether to relist all items.
     /// </summary>
     public partial class CreateOrderCancellationInput : global::System.IEquatable<CreateOrderCancellationInput>
     {
@@ -33,7 +33,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         private bool _set_relistAllItems;
 
         /// <summary>
-        ///  The reason for canceling the order (for example, `OUT_OF_STOCK` or `BUYER_REQUESTED`).
+        /// The reason for canceling the order (for example, `OUT_OF_STOCK` or `BUYER_REQUESTED`).
         /// </summary>
         public ContractCancellationSellerReasonInput ContractCancellationReason
         {
@@ -46,7 +46,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        ///  The order ID of the order to cancel.
+        /// The unique identifier of the order to cancel.
         /// </summary>
         public string OrderId
         {
@@ -59,11 +59,11 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Whether to relist all items from the canceled order.
+        /// This boolean field controls whether or not to relist all line items from the canceled order.
         ///
-        /// **Note:** Must be `false` if the **contractCancellationReason** is set to `OUT_OF_STOCK`.
+        /// **Note**: This value must be `false` if the **contractCancellationReason** is set to `OUT_OF_STOCK`.
         ///
-        /// **Default:** `false`
+        /// **Default**: `false`
         /// </summary>
         public bool? RelistAllItems
         {

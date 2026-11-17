@@ -31,7 +31,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
         private bool _set_shippingServiceCode;
 
         /// <summary>
-        /// This container is used to specify the shipping cost to ship the order if the shipping service option specified in the corresponding **shippingServiceCode** field is used. To offer a shipping service option as free to the buyer, the value of this field is set to '0.0'.
+        /// This object is used to specify the shipping cost to ship the order if the shipping service option specified in the corresponding **shippingServiceCode** field is used. To offer a shipping service option as free to the buyer, the value of this field is set to '0.0'.
+        ///
         /// **Note**: The default currency of the eBay listing marketplace should be used.
         /// </summary>
         public AmountInput Cost
@@ -46,6 +47,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The enumeration value associated with the shipping service. In listing and Business Policy APIs, the enumeration values of shipping services are specified to set the shipping services that are available to ship the item.
+        ///
         /// **Example**: UK_RoyalMailSecondClassStandard
         /// </summary>
         public string ShippingServiceCode

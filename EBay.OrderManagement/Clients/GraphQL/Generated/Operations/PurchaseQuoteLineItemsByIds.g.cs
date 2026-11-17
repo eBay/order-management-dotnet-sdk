@@ -27,13 +27,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// This query is used to retrieve detailed information on up to 100 of an authenticated user's purchase quote line items. Each returned purchase quote line item includes pricing details, available logistics options, and serves as the source of truth during checkout.
-        /// **Note**: If an purchase quote line item is not found, it will not be included in the output.
         ///
-        /// PossibleErrors:
-        /// | Code                  |  Message                                                                     |
-        /// |-----------------------|------------------------------------------------------------------------------|
-        /// | BAD_INPUT_VALUE       |  Input size is 0 or over the limit. Please provide valid input.              |
-        /// | INTERNAL_SERVER_ERROR |  System failure.                                                             |
+        /// **Note**: If an purchase quote line item is not found, it will not be included in the output.
         /// </summary>
         public IPurchaseQuoteLineItemsByIds_PurchaseQuoteLineItemsByIds PurchaseQuoteLineItemsByIds { get; }
     }
@@ -50,13 +45,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// This query is used to retrieve detailed information on up to 100 of an authenticated user's purchase quote line items. Each returned purchase quote line item includes pricing details, available logistics options, and serves as the source of truth during checkout.
-        /// **Note**: If an purchase quote line item is not found, it will not be included in the output.
         ///
-        /// PossibleErrors:
-        /// | Code                  |  Message                                                                     |
-        /// |-----------------------|------------------------------------------------------------------------------|
-        /// | BAD_INPUT_VALUE       |  Input size is 0 or over the limit. Please provide valid input.              |
-        /// | INTERNAL_SERVER_ERROR |  System failure.                                                             |
+        /// **Note**: If an purchase quote line item is not found, it will not be included in the output.
         /// </summary>
         public IPurchaseQuoteLineItemsByIds_PurchaseQuoteLineItemsByIds PurchaseQuoteLineItemsByIds { get; }
 
@@ -123,14 +113,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type displays the unique identifiers of all purchase quote line items that were not successully retrieved, and the error(s) that caused them not to be retrieved.
+    /// This type displays the unique identifiers of all purchase quote line items that were not successfully retrieved, and the error(s) that caused them not to be retrieved.
     /// </summary>
     public partial interface IPurchaseQuoteLineItemsByIds_PurchaseQuoteLineItemsByIds_Failures
     {
         /// <summary>
         /// The unique identifier of the error. Below are the three errors that may occur:
-        /// - INVALID_INPUT: This error indicates that the purchase quote line item ID is not recognized or it doesn't belong to the authenticated eBay user.
-        /// - TEMPORARILY_NOT_AVAILABLE: This error indicates that a system error occurred. This error may occur with a complete failure, and the user can try again after a short period of time.
+        /// - `INVALID_INPUT`: This error indicates that the purchase quote line item ID is not recognized or it doesn't belong to the authenticated eBay user.
+        /// - `TEMPORARILY_NOT_AVAILABLE`: This error indicates that a system error occurred. This error may occur with a complete failure, and the user can try again after a short period of time.
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
@@ -142,13 +132,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// </summary>
         public string InputPurchaseQuoteLineItemId { get; }
         /// <summary>
-        /// This boolean indicates whether or not the user should try to retrieve the corresponding purchase quote line item again. If this field is returned as 'true', the user can make another attempt to retrieve the purchase quote line item.
+        /// This boolean indicates whether or not the user should try to retrieve the corresponding purchase quote line item again. If this field is returned as `true`, the user can make another attempt to retrieve the purchase quote line item.
         /// </summary>
         public bool Retryable { get; }
     }
 
     /// <summary>
-    /// This type displays the unique identifiers of all purchase quote line items that were not successully retrieved, and the error(s) that caused them not to be retrieved.
+    /// This type displays the unique identifiers of all purchase quote line items that were not successfully retrieved, and the error(s) that caused them not to be retrieved.
     /// </summary>
     public partial interface IPurchaseQuoteLineItemsByIds_PurchaseQuoteLineItemsByIds_Failures_PurchaseQuoteLineItemsByIdsError : IPurchaseQuoteLineItemsByIds_PurchaseQuoteLineItemsByIds_Failures
     {
@@ -165,6 +155,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public global::System.Collections.Generic.IReadOnlyList<IPurchaseQuoteLineItemsByIds_PurchaseQuoteLineItemsByIds_Failures> Failures { get; }
         /// <summary>
         /// The unique identifier of the error.
+        ///
         /// **Note**: Currently this field will always show PURCHASE_QUOTE_LINE_ITEMS_BY_IDS_COMPLETE_FAILURE.
         /// </summary>
         public string ErrorCode { get; }
@@ -193,14 +184,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type displays the unique identifiers of all purchase quote line items that were not successully retrieved, and the error(s) that caused them not to be retrieved.
+    /// This type displays the unique identifiers of all purchase quote line items that were not successfully retrieved, and the error(s) that caused them not to be retrieved.
     /// </summary>
     public partial interface IPurchaseQuoteLineItemsByIds_PurchaseQuoteLineItemsByIds_Failures_1
     {
         /// <summary>
         /// The unique identifier of the error. Below are the three errors that may occur:
-        /// - INVALID_INPUT: This error indicates that the purchase quote line item ID is not recognized or it doesn't belong to the authenticated eBay user.
-        /// - TEMPORARILY_NOT_AVAILABLE: This error indicates that a system error occurred. This error may occur with a complete failure, and the user can try again after a short period of time.
+        /// - `INVALID_INPUT`: This error indicates that the purchase quote line item ID is not recognized or it doesn't belong to the authenticated eBay user.
+        /// - `TEMPORARILY_NOT_AVAILABLE`: This error indicates that a system error occurred. This error may occur with a complete failure, and the user can try again after a short period of time.
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
@@ -212,13 +203,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// </summary>
         public string InputPurchaseQuoteLineItemId { get; }
         /// <summary>
-        /// This boolean indicates whether or not the user should try to retrieve the corresponding purchase quote line item again. If this field is returned as 'true', the user can make another attempt to retrieve the purchase quote line item.
+        /// This boolean indicates whether or not the user should try to retrieve the corresponding purchase quote line item again. If this field is returned as `true`, the user can make another attempt to retrieve the purchase quote line item.
         /// </summary>
         public bool Retryable { get; }
     }
 
     /// <summary>
-    /// This type displays the unique identifiers of all purchase quote line items that were not successully retrieved, and the error(s) that caused them not to be retrieved.
+    /// This type displays the unique identifiers of all purchase quote line items that were not successfully retrieved, and the error(s) that caused them not to be retrieved.
     /// </summary>
     public partial interface IPurchaseQuoteLineItemsByIds_PurchaseQuoteLineItemsByIds_Failures_PurchaseQuoteLineItemsByIdsError_1 : IPurchaseQuoteLineItemsByIds_PurchaseQuoteLineItemsByIds_Failures_1
     {
@@ -243,7 +234,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string ErrorMessage { get; }
         /// <summary>
         /// The unique identifier of the error.
-        /// **Note**: Currently this field will always show PURCHASE_QUOTE_LINE_ITEMS_BY_IDS_PARTIAL_FAILURE.
+        ///
+        /// **Note**: Currently this field will always show `PURCHASE_QUOTE_LINE_ITEMS_BY_IDS_PARTIAL_FAILURE`.
         /// </summary>
         public string ErrorCode { get; }
     }
@@ -268,22 +260,24 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial interface IPurchaseQuoteLineItemsByIds_PurchaseQuoteLineItemsByIds_PurchaseQuoteLineItems_Totals_Total_Original
     {
         /// <summary>
-        /// The monetary amount, in the currency specified by the **currency** field.
+        /// The numerical value of the monetary amount in the currency specified through the **currency** field.
         /// </summary>
         public decimal Value { get; }
         /// <summary>
-        /// A three-letter ISO 4217 code that indicates the currency of the amount in the **value** field.
+        /// The three-letter ISO 4217 currency code associated with this monetary amount.
+        ///
+        /// **Format**: Three-letter uppercase alphabetic code (for example, `USD`, `EUR`, `GBP`)
         /// </summary>
         public CurrencyAlpha3Code? Currency { get; }
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial interface IPurchaseQuoteLineItemsByIds_PurchaseQuoteLineItemsByIds_PurchaseQuoteLineItems_Totals_Total_Original_Amount : IPurchaseQuoteLineItemsByIds_PurchaseQuoteLineItemsByIds_PurchaseQuoteLineItems_Totals_Total_Original
     {
@@ -313,7 +307,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IPurchaseQuoteLineItemsByIds_PurchaseQuoteLineItemsByIds_PurchaseQuoteLineItems_Totals
     {
         /// <summary>
-        /// This container shows the total cost for the purchase quote, including cost for all items, taxes, shipping discounts, and additional charges.
+        /// This object shows the total cost for the purchase quote, including cost for all items, taxes, shipping discounts, and additional charges.
+        ///
         /// **Note**: If the authenticated user uses a different currency than the default currency used by the eBay marketplace, this amount will also be shown in that user's currency.
         /// </summary>
         public IPurchaseQuoteLineItemsByIds_PurchaseQuoteLineItemsByIds_PurchaseQuoteLineItems_Totals_Total Total { get; }
@@ -336,11 +331,11 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// </summary>
         public string PurchaseQuoteLineItemId { get; }
         /// <summary>
-        /// This container shows the source of the purchase quote line item.
+        /// This object shows the source of the purchase quote line item.
         /// </summary>
         public IPurchaseQuoteLineItemsByIds_PurchaseQuoteLineItemsByIds_PurchaseQuoteLineItems_LineItemSource LineItemSource { get; }
         /// <summary>
-        /// This container shows cost breakdown details for a purchase quote line item, including total cost, taxes, shipping discounts, and additional charges.
+        /// This object shows cost breakdown details for a purchase quote line item, including total cost, taxes, shipping discounts, and additional charges.
         /// </summary>
         public IPurchaseQuoteLineItemsByIds_PurchaseQuoteLineItemsByIds_PurchaseQuoteLineItems_Totals Totals { get; }
     }
@@ -364,7 +359,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type displays the unique identifiers of all purchase quote line items that were not successully retrieved, and the error(s) that caused them not to be retrieved.
+    /// This type displays the unique identifiers of all purchase quote line items that were not successfully retrieved, and the error(s) that caused them not to be retrieved.
     /// </summary>
     public partial class PurchaseQuoteLineItemsByIds_PurchaseQuoteLineItemsByIds_Failures_PurchaseQuoteLineItemsByIdsError : global::System.IEquatable<PurchaseQuoteLineItemsByIds_PurchaseQuoteLineItemsByIds_Failures_PurchaseQuoteLineItemsByIdsError>, IPurchaseQuoteLineItemsByIds_PurchaseQuoteLineItemsByIds_Failures_PurchaseQuoteLineItemsByIdsError
     {
@@ -378,8 +373,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The unique identifier of the error. Below are the three errors that may occur:
-        /// - INVALID_INPUT: This error indicates that the purchase quote line item ID is not recognized or it doesn't belong to the authenticated eBay user.
-        /// - TEMPORARILY_NOT_AVAILABLE: This error indicates that a system error occurred. This error may occur with a complete failure, and the user can try again after a short period of time.
+        /// - `INVALID_INPUT`: This error indicates that the purchase quote line item ID is not recognized or it doesn't belong to the authenticated eBay user.
+        /// - `TEMPORARILY_NOT_AVAILABLE`: This error indicates that a system error occurred. This error may occur with a complete failure, and the user can try again after a short period of time.
         /// </summary>
         public string ErrorCode { get; }
 
@@ -394,7 +389,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string InputPurchaseQuoteLineItemId { get; }
 
         /// <summary>
-        /// This boolean indicates whether or not the user should try to retrieve the corresponding purchase quote line item again. If this field is returned as 'true', the user can make another attempt to retrieve the purchase quote line item.
+        /// This boolean indicates whether or not the user should try to retrieve the corresponding purchase quote line item again. If this field is returned as `true`, the user can make another attempt to retrieve the purchase quote line item.
         /// </summary>
         public bool Retryable { get; }
 
@@ -486,6 +481,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The unique identifier of the error.
+        ///
         /// **Note**: Currently this field will always show PURCHASE_QUOTE_LINE_ITEMS_BY_IDS_COMPLETE_FAILURE.
         /// </summary>
         public string ErrorCode { get; }
@@ -631,7 +627,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type displays the unique identifiers of all purchase quote line items that were not successully retrieved, and the error(s) that caused them not to be retrieved.
+    /// This type displays the unique identifiers of all purchase quote line items that were not successfully retrieved, and the error(s) that caused them not to be retrieved.
     /// </summary>
     public partial class PurchaseQuoteLineItemsByIds_PurchaseQuoteLineItemsByIds_Failures_PurchaseQuoteLineItemsByIdsError_1 : global::System.IEquatable<PurchaseQuoteLineItemsByIds_PurchaseQuoteLineItemsByIds_Failures_PurchaseQuoteLineItemsByIdsError_1>, IPurchaseQuoteLineItemsByIds_PurchaseQuoteLineItemsByIds_Failures_PurchaseQuoteLineItemsByIdsError_1
     {
@@ -645,8 +641,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The unique identifier of the error. Below are the three errors that may occur:
-        /// - INVALID_INPUT: This error indicates that the purchase quote line item ID is not recognized or it doesn't belong to the authenticated eBay user.
-        /// - TEMPORARILY_NOT_AVAILABLE: This error indicates that a system error occurred. This error may occur with a complete failure, and the user can try again after a short period of time.
+        /// - `INVALID_INPUT`: This error indicates that the purchase quote line item ID is not recognized or it doesn't belong to the authenticated eBay user.
+        /// - `TEMPORARILY_NOT_AVAILABLE`: This error indicates that a system error occurred. This error may occur with a complete failure, and the user can try again after a short period of time.
         /// </summary>
         public string ErrorCode { get; }
 
@@ -661,7 +657,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string InputPurchaseQuoteLineItemId { get; }
 
         /// <summary>
-        /// This boolean indicates whether or not the user should try to retrieve the corresponding purchase quote line item again. If this field is returned as 'true', the user can make another attempt to retrieve the purchase quote line item.
+        /// This boolean indicates whether or not the user should try to retrieve the corresponding purchase quote line item again. If this field is returned as `true`, the user can make another attempt to retrieve the purchase quote line item.
         /// </summary>
         public bool Retryable { get; }
 
@@ -764,7 +760,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The unique identifier of the error.
-        /// **Note**: Currently this field will always show PURCHASE_QUOTE_LINE_ITEMS_BY_IDS_PARTIAL_FAILURE.
+        ///
+        /// **Note**: Currently this field will always show `PURCHASE_QUOTE_LINE_ITEMS_BY_IDS_PARTIAL_FAILURE`.
         /// </summary>
         public string ErrorCode { get; }
 
@@ -914,7 +911,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial class PurchaseQuoteLineItemsByIds_PurchaseQuoteLineItemsByIds_PurchaseQuoteLineItems_Totals_Total_Original_Amount : global::System.IEquatable<PurchaseQuoteLineItemsByIds_PurchaseQuoteLineItemsByIds_PurchaseQuoteLineItems_Totals_Total_Original_Amount>, IPurchaseQuoteLineItemsByIds_PurchaseQuoteLineItemsByIds_PurchaseQuoteLineItems_Totals_Total_Original_Amount
     {
@@ -925,12 +922,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The monetary amount, in the currency specified by the **currency** field.
+        /// The numerical value of the monetary amount in the currency specified through the **currency** field.
         /// </summary>
         public decimal Value { get; }
 
         /// <summary>
-        /// A three-letter ISO 4217 code that indicates the currency of the amount in the **value** field.
+        /// The three-letter ISO 4217 currency code associated with this monetary amount.
+        ///
+        /// **Format**: Three-letter uppercase alphabetic code (for example, `USD`, `EUR`, `GBP`)
         /// </summary>
         public CurrencyAlpha3Code? Currency { get; }
 
@@ -1070,7 +1069,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container shows the total cost for the purchase quote, including cost for all items, taxes, shipping discounts, and additional charges.
+        /// This object shows the total cost for the purchase quote, including cost for all items, taxes, shipping discounts, and additional charges.
+        ///
         /// **Note**: If the authenticated user uses a different currency than the default currency used by the eBay marketplace, this amount will also be shown in that user's currency.
         /// </summary>
         public IPurchaseQuoteLineItemsByIds_PurchaseQuoteLineItemsByIds_PurchaseQuoteLineItems_Totals_Total Total { get; }
@@ -1147,12 +1147,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string PurchaseQuoteLineItemId { get; }
 
         /// <summary>
-        /// This container shows the source of the purchase quote line item.
+        /// This object shows the source of the purchase quote line item.
         /// </summary>
         public IPurchaseQuoteLineItemsByIds_PurchaseQuoteLineItemsByIds_PurchaseQuoteLineItems_LineItemSource LineItemSource { get; }
 
         /// <summary>
-        /// This container shows cost breakdown details for a purchase quote line item, including total cost, taxes, shipping discounts, and additional charges.
+        /// This object shows cost breakdown details for a purchase quote line item, including total cost, taxes, shipping discounts, and additional charges.
         /// </summary>
         public IPurchaseQuoteLineItemsByIds_PurchaseQuoteLineItemsByIds_PurchaseQuoteLineItems_Totals Totals { get; }
 

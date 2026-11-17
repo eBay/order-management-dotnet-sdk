@@ -21,7 +21,7 @@ using EBay.OrderManagement.Clients.GraphQL;
 namespace EBay.OrderManagement.Generated.GraphQL
 {
     /// <summary>
-    /// This type is used to add or delete one or more custom tags for up to 100 item commitments.
+    /// This type is used to add or delete an item commitment tag for the corresponding item commitment.
     /// </summary>
     public partial class UpdateItemCommitmentTagInput : global::System.IEquatable<UpdateItemCommitmentTagInput>
     {
@@ -33,9 +33,9 @@ namespace EBay.OrderManagement.Generated.GraphQL
         private bool _set_tags;
 
         /// <summary>
-        /// The enumeration value here controls whether the provided custom tags in the **tags** array are tags to add or delete. The supported values are:
-        /// - ADD
-        /// - DELETE
+        /// The enumeration value here controls whether the provided item commitment tags in the **tags** array are tags to add or delete. The supported values are:
+        /// - `ADD`
+        /// - `DELETE`
         /// </summary>
         public TagUpdateAction Action
         {
@@ -61,10 +61,9 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This array is used to specify from one to five custom tags to add or delete. Each custom tag should be delimited with a comma.
-        /// **Note**: When deleting one or more custom tags, the user must make sure the custom tag(s) to delete are exact matches. An error will occur if that is not the case.
-        /// **Maximum length**: 10 characters (each tag)
-        /// **Maximum items**: 5
+        /// This array is used to specify the tag to either add or delete for the corresponding item commitment.
+        ///
+        /// **Note**: One tag value per item commitment. Supported values are `acknowledged` and `unacknowledged`.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<string> Tags
         {

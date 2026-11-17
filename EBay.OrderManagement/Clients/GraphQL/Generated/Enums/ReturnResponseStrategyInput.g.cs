@@ -26,11 +26,11 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public enum ReturnResponseStrategyInput
     {
         /// <summary>
-        /// This value automatically refunds the buyer without requiring the item to be shipped back to the seller. This is typically used when the item value is low, return shipping is impractical, or the seller opts to provide a goodwill refund.
+        /// This enum value automatically refunds the buyer without requiring the item to be shipped back to the seller. This is typically used when the item value is low, return shipping is impractical, or the seller opts to provide a goodwill refund.
         /// </summary>
         ApproveKeepTheItem,
         /// <summary>
-        /// This value automatically approves the buyer's return request and requires the item to be shipped back to the seller before a refund is issued. This outcome accelerates the approval flow while still enforcing return-shipment requirements.
+        /// This enum value automatically approves the buyer's return request and requires the item to be shipped back to the seller before a refund is issued. This outcome accelerates the approval flow while still enforcing return-shipment requirements.
         /// </summary>
         ApproveReturnTheItem
     }

@@ -31,9 +31,9 @@ namespace EBay.OrderManagement.Generated.GraphQL
         private bool _set_pageInfo;
 
         /// <summary>
-        /// Use this container to provide the filter and sorting parameters for retrieving the first page of results. Call using this field first to obtain a cursor before making any pagination requests.
+        /// Use This object to provide the filter and sorting parameters for retrieving the first page of results. Call using this field first to obtain a cursor before making any pagination requests.
         ///
-        /// **Note:** Do not use both this field and `cursor` in a single request.
+        /// **Note**: Do not use both this field and `cursor` in a single request.
         /// </summary>
         public ContractCancellationInitialPageInput? InitialPage
         {
@@ -46,11 +46,11 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Use this container to provide the maximum page size and the cursor parameters for fetching additional (subsequent) pages of results. Use after returning the first page at least once.
+        /// Use This object to provide the maximum page size and the cursor parameters for fetching additional (subsequent) pages of results. Use after returning the first page at least once.
         ///
-        /// The filter and sorting parameters use the same filters and sorting as the initial request (**OrderReturnInitialPageInput** parameters in a previous **initialPage** request). This container requires the opaque `cursor` returned in **Pagination.nextCursor** or **Pagination.previousCursor**.
+        /// The filter and sorting parameters use the same filters and sorting as the initial request (**OrderReturnInitialPageInput** parameters in a previous **initialPage** request). This object requires the opaque `cursor` returned in **Pagination.nextCursor** or **Pagination.previousCursor**.
         ///
-        /// **Note:** Do not use both this field and the `initialPage` field in a single request. Call using **initialPage** before calling using **cursor**.
+        /// **Note**: Do not use both this field and the `initialPage` field in a single request. Call using **initialPage** before calling using **cursor**.
         /// </summary>
         public PageInfoInput? PageInfo
         {

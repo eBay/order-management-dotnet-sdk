@@ -21,20 +21,16 @@ using EBay.OrderManagement.Clients.GraphQL;
 namespace EBay.OrderManagement.Generated.GraphQL
 {
     /// <summary>
-    /// Specifies the type of tag update operation to perform.
+    /// This enuerated type contains the action values that can be used in an **bulkUpdateItemCommitmentTags** or **bulkUpdateOrderTags** mutation.
     /// </summary>
     public enum TagUpdateAction
     {
         /// <summary>
-        /// Add the provided tags to the existing tag list.
-        ///
-        /// **Note:** Tags that already exist will be ignored.
+        /// This enum value is used if the authenticated user wishes to add one or more tags to the existing tag list.
         /// </summary>
         Add,
         /// <summary>
-        /// Remove the provided tags from the existing tag list.
-        ///
-        /// **Note:** Tags that do not exist will be ignored.
+        /// This enum value is used if the authenticated user wishes to delete one or more tags from the existing tag list.
         /// </summary>
         Delete
     }

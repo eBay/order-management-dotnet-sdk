@@ -28,7 +28,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// The **createOrderCancellation** mutation creates a cancellation on an order.
         ///
-        /// **Note:** An order is a contract between a buyer and a seller, where the buyer agrees to purchase goods or services, and the seller agrees to provide them. The cancellation of an order involves terminating this contract, which may involve reversing any transactions or agreements made during the order process.
+        /// **Note**: An order is a contract between a buyer and a seller, where the buyer agrees to purchase goods or services, and the seller agrees to provide them. The cancellation of an order involves terminating this contract, which may involve reversing any transactions or agreements made during the order process.
         /// </summary>
         public ICreateOrderCancellation_CreateOrderCancellation CreateOrderCancellation { get; }
     }
@@ -46,7 +46,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// The **createOrderCancellation** mutation creates a cancellation on an order.
         ///
-        /// **Note:** An order is a contract between a buyer and a seller, where the buyer agrees to purchase goods or services, and the seller agrees to provide them. The cancellation of an order involves terminating this contract, which may involve reversing any transactions or agreements made during the order process.
+        /// **Note**: An order is a contract between a buyer and a seller, where the buyer agrees to purchase goods or services, and the seller agrees to provide them. The cancellation of an order involves terminating this contract, which may involve reversing any transactions or agreements made during the order process.
         /// </summary>
         public ICreateOrderCancellation_CreateOrderCancellation CreateOrderCancellation { get; }
 
@@ -107,7 +107,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This union type defines the response payload for the **createOrderCancellation** mutation. On success, the response includes a **CreateOrderCancellationSuccess** type object and any warnings; on failure it returns an error indicating the reason that the create order cancellation failed.
     ///
-    /// **Note:** Additional types may be added to this union in the future; clients should handle unrecognized types gracefully.
+    /// **Note**: Additional types may be added to this union in the future; clients should handle unrecognized types gracefully.
     /// </summary>
     public partial interface ICreateOrderCancellation_CreateOrderCancellation
     {
@@ -117,18 +117,18 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This interface provide the status for the contract cancellation on the contract.
     ///
-    /// **Note:** Additional interface types may be added in the future; clients should handle unrecognized types gracefully.
+    /// **Note**: Additional interface types may be added in the future; clients should handle unrecognized types gracefully.
     /// </summary>
     public partial interface ICreateOrderCancellation_CreateOrderCancellation_OrderCancellation_Status
     {
         /// <summary>
-        /// Implementations should provide a single stable code that will never change. Clients can use code or __typename interchangeably, but __typename is preferred.
+        /// Implementations should provide a single stable code that will never change. Clients can use `code` or `__typename` interchangeably, but `__typename` is preferred.
         /// </summary>
         public string Code { get; }
         /// <summary>
         /// A human-readable description of the cancellation status. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
     }
@@ -148,12 +148,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type indicates that the cancellation was declined and the workflow is in an end state. The cancellation did not complete successfully. Typical causes include:
+    /// This type indicates that the cancellation was declined and the workflow is in an end state. The cancellation did not complete successfully.
+    ///
+    /// Typical causes include:
     /// - Seller explicitly rejected the cancellation
     /// - System auto-declined (for example, if the item already shipped)
     /// - Refund attempts failed or were exhausted within cancellation life cycle
     ///
-    /// **Note:** The cancellation did not complete successfully and the cancellation is at end state; no further cancellation actions can successfully complete from this state.
+    /// **Note**: The cancellation did not complete successfully and the cancellation is at end state; no further cancellation actions can successfully complete from this state.
     /// </summary>
     public partial interface ICreateOrderCancellation_CreateOrderCancellation_OrderCancellation_Status_ContractCancellationDeclined : ICreateOrderCancellation_CreateOrderCancellation_OrderCancellation_Status
     {
@@ -169,16 +171,16 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This type represents the cancellation of an order contract.
     ///
-    /// **Note:** The `lineItems` field contains a field named `orderLineItem` that the represents the original order line item.
+    /// **Note**: The `lineItems` field contains a field named `orderLineItem` that the represents the original order line item.
     /// </summary>
     public partial interface ICreateOrderCancellation_CreateOrderCancellation_OrderCancellation
     {
         /// <summary>
-        ///  The unique identifier of this order cancellation.
+        /// The unique identifier of this order cancellation.
         /// </summary>
         public string CancellationId { get; }
         /// <summary>
-        ///  The present status of this order cancellation.
+        /// The current status of the order cancellation.
         /// </summary>
         public ICreateOrderCancellation_CreateOrderCancellation_OrderCancellation_Status Status { get; }
     }
@@ -186,7 +188,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This type represents the cancellation of an order contract.
     ///
-    /// **Note:** The `lineItems` field contains a field named `orderLineItem` that the represents the original order line item.
+    /// **Note**: The `lineItems` field contains a field named `orderLineItem` that the represents the original order line item.
     /// </summary>
     public partial interface ICreateOrderCancellation_CreateOrderCancellation_OrderCancellation_OrderCancellation : ICreateOrderCancellation_CreateOrderCancellation_OrderCancellation
     {
@@ -206,7 +208,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This interface type represents reasons at the order level cancellation ineligible, thereby blocking the creation of a cancellation.
     ///
-    /// **Note:** Additional interfaces may be added to this union in the future; clients should handle unrecognized interfaces gracefully.
+    /// **Note**: Additional interfaces may be added to this union in the future; clients should handle unrecognized interfaces gracefully.
     /// </summary>
     public partial interface ICreateOrderCancellation_CreateOrderCancellation_IneligibilityReasons
     {
@@ -218,11 +220,11 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable failure ineligible reason for display purposes. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string DisplayMessage { get; }
         /// <summary>
-        /// The order ID whose cancellation was blocked by line item level eligibility rules.
+        /// The unique identifier of the order whose cancellation was blocked by line item level eligibility rule(s).
         /// </summary>
         public string OrderId { get; }
     }
@@ -251,7 +253,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This interface provides the cancellation reason during contract cancellation creation.
     ///
-    /// **Note:** Additional reasons may be added in the future; clients should handle unrecognized types gracefully.
+    /// **Note**: Additional reasons may be added in the future; clients should handle unrecognized types gracefully.
     /// </summary>
     public partial interface ICreateOrderCancellation_CreateOrderCancellation_IneligibilityReasons_AvailableReasons
     {
@@ -262,7 +264,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the cancellation reason. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
     }
@@ -352,7 +354,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents the reason used by seller when there are issues with the buyer's shipping address.
+    /// This type represents the reason used by the seller when there are issues with the buyer's shipping address.
     /// </summary>
     public partial interface ICreateOrderCancellation_CreateOrderCancellation_IneligibilityReasons_AvailableReasons_ShippingAddressIssuesCancellation : ICreateOrderCancellation_CreateOrderCancellation_IneligibilityReasons_AvailableReasons
     {
@@ -366,7 +368,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents the reason used by seller when the buyer has not completed payment after the maximum waiting period defined by eBay's policy for resolving unpaid items. For more details, refer to the policy: https://www.ebay.com/help/selling/getting-paid/resolving-unpaid-items-buyers?id=4137
+    /// This type represents the reason used by the seller when the buyer has not completed payment after the maximum waiting period defined by eBay's policy for resolving unpaid items. For more details, refer to the policy: https://www.ebay.com/help/selling/getting-paid/resolving-unpaid-items-buyers?id=4137
     /// </summary>
     public partial interface ICreateOrderCancellation_CreateOrderCancellation_IneligibilityReasons_AvailableReasons_UnpaidContractCancellation : ICreateOrderCancellation_CreateOrderCancellation_IneligibilityReasons_AvailableReasons
     {
@@ -378,7 +380,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface ICreateOrderCancellation_CreateOrderCancellation_IneligibilityReasons_OrderCancellationReasonNotAllowed : ICreateOrderCancellation_CreateOrderCancellation_IneligibilityReasons
     {
         /// <summary>
-        /// Applicable cancellation reasons for current actor.
+        /// A list of applicable cancellation reasons for current actor.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<ICreateOrderCancellation_CreateOrderCancellation_IneligibilityReasons_AvailableReasons?> AvailableReasons { get; }
     }
@@ -386,7 +388,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This type represents order-level ineligibility reasons that prevent cancellation. The `ineligibilityReasons` field lists the order‑level reasons the cancellation cannot be performed at this time.
     ///
-    /// **Note:** Clients should use **errorCode** and **ineligibilityReasons** for programmatic handling; **errorMessage** is intended for display.
+    /// **Note**: Clients should use **errorCode** and **ineligibilityReasons** for programmatic handling; **errorMessage** is intended for display.
     /// </summary>
     public partial interface ICreateOrderCancellation_CreateOrderCancellation_OrderCancellationEligibilityError : ICreateOrderCancellation_CreateOrderCancellation
     {
@@ -397,7 +399,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the error message. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
         /// <summary>
@@ -409,7 +411,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This interface represents reasons at the order line item level that make a cancellation ineligible, thereby blocking the creation of a cancellation.
     ///
-    /// **Note:** Additional interfaces may be added to this union in the future; clients should handle unrecognized interfaces gracefully.
+    /// **Note**: Additional interfaces may be added to this union in the future; clients should handle unrecognized interfaces gracefully.
     /// </summary>
     public partial interface ICreateOrderCancellation_CreateOrderCancellation_IneligibilityReasons_1
     {
@@ -420,7 +422,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable failure reason for display purposes. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string DisplayMessage { get; }
         /// <summary>
@@ -474,7 +476,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This type represents ineligibility reasons at different dimensions that prevent cancellation of order line item(s). The `ineligibilityReasons` field lists the order line item level reasons the cancellation cannot be performed at this time.
     ///
-    /// **Note:** Clients should use **errorCode** and **ineligibilityReasons** for programmatic handling; **errorMessage** is intended for display.
+    /// **Note**: Clients should use **errorCode** and **ineligibilityReasons** for programmatic handling; **errorMessage** is intended for display.
     /// </summary>
     public partial interface ICreateOrderCancellation_CreateOrderCancellation_OrderLineItemCancellationEligibilityError : ICreateOrderCancellation_CreateOrderCancellation
     {
@@ -485,7 +487,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the error message. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
         /// <summary>
@@ -500,17 +502,17 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface ICreateOrderCancellation_CreateOrderCancellation_OrderNotFoundError : ICreateOrderCancellation_CreateOrderCancellation
     {
         /// <summary>
-        /// Globally unique error code for the business error type. Always returns: `ORDER_NOT_FOUND`.
+        /// The globally unique error code for the business error type. This field always returns: `ORDER_NOT_FOUND`.
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
         /// A human-readable description of the error message. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
         /// <summary>
-        /// The order ID that was not found.
+        /// The unique identifier of the order that was not found.
         /// </summary>
         public string OrderId { get; }
     }
@@ -522,13 +524,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The error code associated with the error.
-        /// **Note:** In this case, this field will return 'RFND_AUTHORIZATION_FAILED_ERROR'.
+        ///
+        /// **Note**: In this case, this field will return `RFND_AUTHORIZATION_FAILED_ERROR`.
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
         /// The human-readable error message for the refund error.
+        ///
         /// **Maximum length**: 512 characters
-        /// **Format**: Alphanumeric
         /// </summary>
         public string ErrorMessage { get; }
     }
@@ -540,13 +543,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The error code associated with the error.
-        /// **Note:** In this case, this field will return 'RFND_BLOCKED_BY_PAYMENT_DISPUTE_ERROR'.
+        ///
+        /// **Note**: In this case, this field will return `RFND_BLOCKED_BY_PAYMENT_DISPUTE_ERROR`.
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
         /// The human-readable error message for the refund error.
+        ///
         /// **Maximum length**: 512 characters
-        /// **Format**: Alphanumeric
         /// </summary>
         public string ErrorMessage { get; }
     }
@@ -558,13 +562,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The error code associated with the error.
-        /// **Note:** In this case, this field will return 'RFND_INSTRUMENT_DECLINED_ERROR'.
+        ///
+        /// **Note**: In this case, this field will return `RFND_INSTRUMENT_DECLINED_ERROR`.
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
         /// The human-readable error message for the refund error.
+        ///
         /// **Maximum length**: 512 characters
-        /// **Format**: Alphanumeric
         /// </summary>
         public string ErrorMessage { get; }
     }
@@ -576,13 +581,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The error code associated with the error.
-        /// **Note:** In this case, this field will return 'RFND_INSTRUMENT_INSUFFICIENT_FUNDS_ERROR'.
+        ///
+        /// **Note**: In this case, this field will return `RFND_INSTRUMENT_INSUFFICIENT_FUNDS_ERROR`.
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
         /// The human-readable error message for the refund error.
+        ///
         /// **Maximum length**: 512 characters
-        /// **Format**: Alphanumeric
         /// </summary>
         public string ErrorMessage { get; }
     }
@@ -594,13 +600,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The error code associated with the error.
-        /// **Note:** In this case, this field will return 'RFND_INSTRUMENT_INVALID_ERROR'.
+        ///
+        /// **Note**: In this case, this field will return `RFND_INSTRUMENT_INVALID_ERROR`.
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
         /// The human-readable error message for the refund error.
+        ///
         /// **Maximum length**: 512 characters
-        /// **Format**: Alphanumeric
         /// </summary>
         public string ErrorMessage { get; }
     }
@@ -612,13 +619,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The error code associated with the error.
-        /// **Note:** In this case, this field will return 'RFND_PROCESSING_ERROR'.
+        ///
+        /// **Note**: In this case, this field will return `RFND_PROCESSING_ERROR`.
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
         /// The human-readable error message for the refund error.
+        ///
         /// **Maximum length**: 512 characters
-        /// **Format**: Alphanumeric
         /// </summary>
         public string ErrorMessage { get; }
     }
@@ -635,14 +643,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Implementations should provide a single stable code that will never change. Clients can use code or __typename interchangeably, but __typename is preferred.
+        /// Implementations should provide a single stable code that will never change. Clients can use `code` or `__typename` interchangeably, but `__typename` is preferred.
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable description of the cancellation status. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -717,14 +725,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Implementations should provide a single stable code that will never change. Clients can use code or __typename interchangeably, but __typename is preferred.
+        /// Implementations should provide a single stable code that will never change. Clients can use `code` or `__typename` interchangeably, but `__typename` is preferred.
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable description of the cancellation status. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -788,12 +796,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type indicates that the cancellation was declined and the workflow is in an end state. The cancellation did not complete successfully. Typical causes include:
+    /// This type indicates that the cancellation was declined and the workflow is in an end state. The cancellation did not complete successfully.
+    ///
+    /// Typical causes include:
     /// - Seller explicitly rejected the cancellation
     /// - System auto-declined (for example, if the item already shipped)
     /// - Refund attempts failed or were exhausted within cancellation life cycle
     ///
-    /// **Note:** The cancellation did not complete successfully and the cancellation is at end state; no further cancellation actions can successfully complete from this state.
+    /// **Note**: The cancellation did not complete successfully and the cancellation is at end state; no further cancellation actions can successfully complete from this state.
     /// </summary>
     public partial class CreateOrderCancellation_CreateOrderCancellation_OrderCancellation_Status_ContractCancellationDeclined : global::System.IEquatable<CreateOrderCancellation_CreateOrderCancellation_OrderCancellation_Status_ContractCancellationDeclined>, ICreateOrderCancellation_CreateOrderCancellation_OrderCancellation_Status_ContractCancellationDeclined
     {
@@ -804,14 +814,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Implementations should provide a single stable code that will never change. Clients can use code or __typename interchangeably, but __typename is preferred.
+        /// Implementations should provide a single stable code that will never change. Clients can use `code` or `__typename` interchangeably, but `__typename` is preferred.
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable description of the cancellation status. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -886,14 +896,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Implementations should provide a single stable code that will never change. Clients can use code or __typename interchangeably, but __typename is preferred.
+        /// Implementations should provide a single stable code that will never change. Clients can use `code` or `__typename` interchangeably, but `__typename` is preferred.
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable description of the cancellation status. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -959,7 +969,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This type represents the cancellation of an order contract.
     ///
-    /// **Note:** The `lineItems` field contains a field named `orderLineItem` that the represents the original order line item.
+    /// **Note**: The `lineItems` field contains a field named `orderLineItem` that the represents the original order line item.
     /// </summary>
     public partial class CreateOrderCancellation_CreateOrderCancellation_OrderCancellation_OrderCancellation : global::System.IEquatable<CreateOrderCancellation_CreateOrderCancellation_OrderCancellation_OrderCancellation>, ICreateOrderCancellation_CreateOrderCancellation_OrderCancellation_OrderCancellation
     {
@@ -970,12 +980,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        ///  The unique identifier of this order cancellation.
+        /// The unique identifier of this order cancellation.
         /// </summary>
         public string CancellationId { get; }
 
         /// <summary>
-        ///  The present status of this order cancellation.
+        /// The current status of the order cancellation.
         /// </summary>
         public ICreateOrderCancellation_CreateOrderCancellation_OrderCancellation_Status Status { get; }
 
@@ -1138,12 +1148,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable failure ineligible reason for display purposes. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string DisplayMessage { get; }
 
         /// <summary>
-        /// The order ID whose cancellation was blocked by line item level eligibility rules.
+        /// The unique identifier of the order whose cancellation was blocked by line item level eligibility rule(s).
         /// </summary>
         public string OrderId { get; }
 
@@ -1239,12 +1249,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable failure ineligible reason for display purposes. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string DisplayMessage { get; }
 
         /// <summary>
-        /// The order ID whose cancellation was blocked by line item level eligibility rules.
+        /// The unique identifier of the order whose cancellation was blocked by line item level eligibility rule(s).
         /// </summary>
         public string OrderId { get; }
 
@@ -1340,12 +1350,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable failure ineligible reason for display purposes. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string DisplayMessage { get; }
 
         /// <summary>
-        /// The order ID whose cancellation was blocked by line item level eligibility rules.
+        /// The unique identifier of the order whose cancellation was blocked by line item level eligibility rule(s).
         /// </summary>
         public string OrderId { get; }
 
@@ -1437,7 +1447,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the cancellation reason. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -1519,7 +1529,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the cancellation reason. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -1601,7 +1611,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the cancellation reason. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -1683,7 +1693,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the cancellation reason. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -1765,7 +1775,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the cancellation reason. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -1847,7 +1857,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the cancellation reason. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -1929,7 +1939,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the cancellation reason. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -2011,7 +2021,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the cancellation reason. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -2093,7 +2103,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the cancellation reason. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -2175,7 +2185,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the cancellation reason. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -2257,7 +2267,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the cancellation reason. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -2339,7 +2349,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the cancellation reason. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -2403,7 +2413,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents the reason used by seller when there are issues with the buyer's shipping address.
+    /// This type represents the reason used by the seller when there are issues with the buyer's shipping address.
     /// </summary>
     public partial class CreateOrderCancellation_CreateOrderCancellation_IneligibilityReasons_AvailableReasons_ShippingAddressIssuesCancellation : global::System.IEquatable<CreateOrderCancellation_CreateOrderCancellation_IneligibilityReasons_AvailableReasons_ShippingAddressIssuesCancellation>, ICreateOrderCancellation_CreateOrderCancellation_IneligibilityReasons_AvailableReasons_ShippingAddressIssuesCancellation
     {
@@ -2421,7 +2431,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the cancellation reason. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -2503,7 +2513,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the cancellation reason. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -2567,7 +2577,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents the reason used by seller when the buyer has not completed payment after the maximum waiting period defined by eBay's policy for resolving unpaid items. For more details, refer to the policy: https://www.ebay.com/help/selling/getting-paid/resolving-unpaid-items-buyers?id=4137
+    /// This type represents the reason used by the seller when the buyer has not completed payment after the maximum waiting period defined by eBay's policy for resolving unpaid items. For more details, refer to the policy: https://www.ebay.com/help/selling/getting-paid/resolving-unpaid-items-buyers?id=4137
     /// </summary>
     public partial class CreateOrderCancellation_CreateOrderCancellation_IneligibilityReasons_AvailableReasons_UnpaidContractCancellation : global::System.IEquatable<CreateOrderCancellation_CreateOrderCancellation_IneligibilityReasons_AvailableReasons_UnpaidContractCancellation>, ICreateOrderCancellation_CreateOrderCancellation_IneligibilityReasons_AvailableReasons_UnpaidContractCancellation
     {
@@ -2585,7 +2595,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the cancellation reason. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -2672,17 +2682,17 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable failure ineligible reason for display purposes. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string DisplayMessage { get; }
 
         /// <summary>
-        /// The order ID whose cancellation was blocked by line item level eligibility rules.
+        /// The unique identifier of the order whose cancellation was blocked by line item level eligibility rule(s).
         /// </summary>
         public string OrderId { get; }
 
         /// <summary>
-        /// Applicable cancellation reasons for current actor.
+        /// A list of applicable cancellation reasons for current actor.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<ICreateOrderCancellation_CreateOrderCancellation_IneligibilityReasons_AvailableReasons?> AvailableReasons { get; }
 
@@ -2760,7 +2770,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This type represents order-level ineligibility reasons that prevent cancellation. The `ineligibilityReasons` field lists the order‑level reasons the cancellation cannot be performed at this time.
     ///
-    /// **Note:** Clients should use **errorCode** and **ineligibilityReasons** for programmatic handling; **errorMessage** is intended for display.
+    /// **Note**: Clients should use **errorCode** and **ineligibilityReasons** for programmatic handling; **errorMessage** is intended for display.
     /// </summary>
     public partial class CreateOrderCancellation_CreateOrderCancellation_OrderCancellationEligibilityError : global::System.IEquatable<CreateOrderCancellation_CreateOrderCancellation_OrderCancellationEligibilityError>, ICreateOrderCancellation_CreateOrderCancellation_OrderCancellationEligibilityError
     {
@@ -2782,7 +2792,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the error message. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
 
@@ -2877,7 +2887,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable failure reason for display purposes. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string DisplayMessage { get; }
 
@@ -2967,7 +2977,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable failure reason for display purposes. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string DisplayMessage { get; }
 
@@ -3057,7 +3067,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable failure reason for display purposes. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string DisplayMessage { get; }
 
@@ -3147,7 +3157,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable failure reason for display purposes. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string DisplayMessage { get; }
 
@@ -3237,7 +3247,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable failure reason for display purposes. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string DisplayMessage { get; }
 
@@ -3327,7 +3337,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable failure reason for display purposes. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string DisplayMessage { get; }
 
@@ -3400,7 +3410,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This type represents ineligibility reasons at different dimensions that prevent cancellation of order line item(s). The `ineligibilityReasons` field lists the order line item level reasons the cancellation cannot be performed at this time.
     ///
-    /// **Note:** Clients should use **errorCode** and **ineligibilityReasons** for programmatic handling; **errorMessage** is intended for display.
+    /// **Note**: Clients should use **errorCode** and **ineligibilityReasons** for programmatic handling; **errorMessage** is intended for display.
     /// </summary>
     public partial class CreateOrderCancellation_CreateOrderCancellation_OrderLineItemCancellationEligibilityError : global::System.IEquatable<CreateOrderCancellation_CreateOrderCancellation_OrderLineItemCancellationEligibilityError>, ICreateOrderCancellation_CreateOrderCancellation_OrderLineItemCancellationEligibilityError
     {
@@ -3422,7 +3432,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the error message. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
 
@@ -3513,19 +3523,19 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// Globally unique error code for the business error type. Always returns: `ORDER_NOT_FOUND`.
+        /// The globally unique error code for the business error type. This field always returns: `ORDER_NOT_FOUND`.
         /// </summary>
         public string ErrorCode { get; }
 
         /// <summary>
         /// A human-readable description of the error message. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
 
         /// <summary>
-        /// The order ID that was not found.
+        /// The unique identifier of the order that was not found.
         /// </summary>
         public string OrderId { get; }
 
@@ -3614,14 +3624,15 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The error code associated with the error.
-        /// **Note:** In this case, this field will return 'RFND_AUTHORIZATION_FAILED_ERROR'.
+        ///
+        /// **Note**: In this case, this field will return `RFND_AUTHORIZATION_FAILED_ERROR`.
         /// </summary>
         public string ErrorCode { get; }
 
         /// <summary>
         /// The human-readable error message for the refund error.
+        ///
         /// **Maximum length**: 512 characters
-        /// **Format**: Alphanumeric
         /// </summary>
         public string ErrorMessage { get; }
 
@@ -3705,14 +3716,15 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The error code associated with the error.
-        /// **Note:** In this case, this field will return 'RFND_BLOCKED_BY_PAYMENT_DISPUTE_ERROR'.
+        ///
+        /// **Note**: In this case, this field will return `RFND_BLOCKED_BY_PAYMENT_DISPUTE_ERROR`.
         /// </summary>
         public string ErrorCode { get; }
 
         /// <summary>
         /// The human-readable error message for the refund error.
+        ///
         /// **Maximum length**: 512 characters
-        /// **Format**: Alphanumeric
         /// </summary>
         public string ErrorMessage { get; }
 
@@ -3796,14 +3808,15 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The error code associated with the error.
-        /// **Note:** In this case, this field will return 'RFND_INSTRUMENT_DECLINED_ERROR'.
+        ///
+        /// **Note**: In this case, this field will return `RFND_INSTRUMENT_DECLINED_ERROR`.
         /// </summary>
         public string ErrorCode { get; }
 
         /// <summary>
         /// The human-readable error message for the refund error.
+        ///
         /// **Maximum length**: 512 characters
-        /// **Format**: Alphanumeric
         /// </summary>
         public string ErrorMessage { get; }
 
@@ -3887,14 +3900,15 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The error code associated with the error.
-        /// **Note:** In this case, this field will return 'RFND_INSTRUMENT_INSUFFICIENT_FUNDS_ERROR'.
+        ///
+        /// **Note**: In this case, this field will return `RFND_INSTRUMENT_INSUFFICIENT_FUNDS_ERROR`.
         /// </summary>
         public string ErrorCode { get; }
 
         /// <summary>
         /// The human-readable error message for the refund error.
+        ///
         /// **Maximum length**: 512 characters
-        /// **Format**: Alphanumeric
         /// </summary>
         public string ErrorMessage { get; }
 
@@ -3978,14 +3992,15 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The error code associated with the error.
-        /// **Note:** In this case, this field will return 'RFND_INSTRUMENT_INVALID_ERROR'.
+        ///
+        /// **Note**: In this case, this field will return `RFND_INSTRUMENT_INVALID_ERROR`.
         /// </summary>
         public string ErrorCode { get; }
 
         /// <summary>
         /// The human-readable error message for the refund error.
+        ///
         /// **Maximum length**: 512 characters
-        /// **Format**: Alphanumeric
         /// </summary>
         public string ErrorMessage { get; }
 
@@ -4069,14 +4084,15 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The error code associated with the error.
-        /// **Note:** In this case, this field will return 'RFND_PROCESSING_ERROR'.
+        ///
+        /// **Note**: In this case, this field will return `RFND_PROCESSING_ERROR`.
         /// </summary>
         public string ErrorCode { get; }
 
         /// <summary>
         /// The human-readable error message for the refund error.
+        ///
         /// **Maximum length**: 512 characters
-        /// **Format**: Alphanumeric
         /// </summary>
         public string ErrorMessage { get; }
 

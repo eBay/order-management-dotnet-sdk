@@ -26,7 +26,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public enum ReturnRuleLogicalOperator
     {
         /// <summary>
-        /// Conditions will combined using a logical **AND**. All child conditions must be true.
+        /// This enum value indicates that conditions will combined using a logical **AND**. All child conditions must be true.
         /// </summary>
         And
     }

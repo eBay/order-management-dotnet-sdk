@@ -31,8 +31,9 @@ namespace EBay.OrderManagement.Generated.GraphQL
         private bool _set_sort;
 
         /// <summary>
-        /// This container can be used to specify optional filters to further narrow down the results.
-        /// **Default**: all open order inquiries created in the last 30 days.
+        /// This object can be used to specify optional filters to further narrow down the results.
+        ///
+        /// **Default**: all open order inquiries created in the last 30 days
         /// </summary>
         public OrderInquiryFilterInput Filter
         {
@@ -45,8 +46,9 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container can be used to specify sorting options for order inquiries.
-        /// **Default**: Sort by `CREATED_AT` in ascending order.
+        /// This object can be used to specify sorting options for order inquiries.
+        ///
+        /// **Default**: Sort by `CREATED_AT` in ascending order
         /// </summary>
         public OrderInquirySortInput Sort
         {

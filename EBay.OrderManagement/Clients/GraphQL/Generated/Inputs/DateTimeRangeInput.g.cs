@@ -32,8 +32,11 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// An ISO 8601 standard timestamp, using UTC time zone. All item commitments created or updated on this or before this date, and after or on the date in the **startDateTime** field are retrieved.
+        ///
         /// **Note**: This date must be a later date than the date in the **startDateTime** field or an error will occur.
+        ///
         /// **Format**: YYYY-MM-DDTHH:MM:SSZ
+        ///
         /// **Example**: 2025-12-16T14:30:00Z
         /// </summary>
         public global::System.DateTimeOffset EndDateTime
@@ -48,8 +51,11 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// An ISO 8601 standard timestamp, using UTC time zone. All item commitments created or updated on this or after this date, and before or on the date in the **endDateTime** field are retrieved.
+        ///
         /// **Note**: This date must be an earlier date than the date in the **endDateTime** field or an error will occur.
+        ///
         /// **Format**: YYYY-MM-DDTHH:MM:SSZ
+        ///
         /// **Example**: 2025-12-12T14:30:00Z
         /// </summary>
         public global::System.DateTimeOffset StartDateTime

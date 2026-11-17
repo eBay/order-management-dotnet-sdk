@@ -70,10 +70,10 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
         /// <summary>This array is returned if one or more errors or warnings occur with the call request.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::EBay.OrderManagement.Generated.Fulfillment.Models.ErrorDetailV3>? Warnings { get; set; }
+        public List<global::EBay.OrderManagement.Generated.Fulfillment.Models.ErrorDetail>? Warnings { get; set; }
 #nullable restore
 #else
-        public List<global::EBay.OrderManagement.Generated.Fulfillment.Models.ErrorDetailV3> Warnings { get; set; }
+        public List<global::EBay.OrderManagement.Generated.Fulfillment.Models.ErrorDetail> Warnings { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.OrderManagement.Generated.Fulfillment.Models.OrderSearchPagedCollection"/> and sets the default values.
@@ -107,7 +107,7 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
                 { "orders", n => { Orders = n.GetCollectionOfObjectValues<global::EBay.OrderManagement.Generated.Fulfillment.Models.Order>(global::EBay.OrderManagement.Generated.Fulfillment.Models.Order.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "prev", n => { Prev = n.GetStringValue(); } },
                 { "total", n => { Total = n.GetIntValue(); } },
-                { "warnings", n => { Warnings = n.GetCollectionOfObjectValues<global::EBay.OrderManagement.Generated.Fulfillment.Models.ErrorDetailV3>(global::EBay.OrderManagement.Generated.Fulfillment.Models.ErrorDetailV3.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "warnings", n => { Warnings = n.GetCollectionOfObjectValues<global::EBay.OrderManagement.Generated.Fulfillment.Models.ErrorDetail>(global::EBay.OrderManagement.Generated.Fulfillment.Models.ErrorDetail.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -124,7 +124,7 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
             writer.WriteCollectionOfObjectValues<global::EBay.OrderManagement.Generated.Fulfillment.Models.Order>("orders", Orders);
             writer.WriteStringValue("prev", Prev);
             writer.WriteIntValue("total", Total);
-            writer.WriteCollectionOfObjectValues<global::EBay.OrderManagement.Generated.Fulfillment.Models.ErrorDetailV3>("warnings", Warnings);
+            writer.WriteCollectionOfObjectValues<global::EBay.OrderManagement.Generated.Fulfillment.Models.ErrorDetail>("warnings", Warnings);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

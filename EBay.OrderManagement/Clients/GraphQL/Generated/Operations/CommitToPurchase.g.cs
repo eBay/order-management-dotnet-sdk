@@ -27,16 +27,9 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// This mutation is used to create an item commitment on a listing, where a buyer commits to purchase an item and pay for it at a later date. Commitments can only be made for supported items; items that require immediate payment cannot be purchased through this mutation. The item ID value must be specified to identify the listing for which an item commitment is being created. The mutation also requires the price and quantity of the item the buyer wishes to commit to purchase. This mutation is only supported for fixed-priced listings and auction listings with Buy it Now enabled. If the mutation succeeds, a new item commitment with a unique **itemCommitmentId** is created. If the mutation fails, an array of errors indicating why the item commitment could not be created is returned.
-        /// **SubgraphName**: Commitment
         ///
         /// ### HTTP Headers
-        /// - **X-EBAY-C-MARKETPLACE-ID**: Determines the site/marketplace id associated with the purchase. Defaults to EBAY-US.
-        ///
-        /// **PossibleErrors**:
-        /// | Code                                       | Message                                                          |
-        /// |--------------------------------------------|------------------------------------------------------------------|
-        /// | COMMT_BUSINESS_RULES_VIOLATED              | Business rule violations occurred while creating the commitment. |
-        /// | REFERENCE_ARGUMENTS_NOT_FOUND              | The resources referenced by the input arguments were not found.  |
+        ///   - **X-EBAY-C-MARKETPLACE-ID**: Determines the site/marketplace id associated with the purchase. Defaults to EBAY-US.
         /// </summary>
         public ICommitToPurchase_CommitToPurchase CommitToPurchase { get; }
     }
@@ -53,16 +46,9 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// This mutation is used to create an item commitment on a listing, where a buyer commits to purchase an item and pay for it at a later date. Commitments can only be made for supported items; items that require immediate payment cannot be purchased through this mutation. The item ID value must be specified to identify the listing for which an item commitment is being created. The mutation also requires the price and quantity of the item the buyer wishes to commit to purchase. This mutation is only supported for fixed-priced listings and auction listings with Buy it Now enabled. If the mutation succeeds, a new item commitment with a unique **itemCommitmentId** is created. If the mutation fails, an array of errors indicating why the item commitment could not be created is returned.
-        /// **SubgraphName**: Commitment
         ///
         /// ### HTTP Headers
-        /// - **X-EBAY-C-MARKETPLACE-ID**: Determines the site/marketplace id associated with the purchase. Defaults to EBAY-US.
-        ///
-        /// **PossibleErrors**:
-        /// | Code                                       | Message                                                          |
-        /// |--------------------------------------------|------------------------------------------------------------------|
-        /// | COMMT_BUSINESS_RULES_VIOLATED              | Business rule violations occurred while creating the commitment. |
-        /// | REFERENCE_ARGUMENTS_NOT_FOUND              | The resources referenced by the input arguments were not found.  |
+        ///   - **X-EBAY-C-MARKETPLACE-ID**: Determines the site/marketplace id associated with the purchase. Defaults to EBAY-US.
         /// </summary>
         public ICommitToPurchase_CommitToPurchase CommitToPurchase { get; }
 
@@ -121,7 +107,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// The union type for the **commitToPurchase** mutation. This type covers two possible scenarios: success or failure. If the **commitToPurchase** mutation succeeds, an **itemCommitment** container that returns the unique identifier of a successfully created item commitment will be returned. If the **commitToPurchase** mutation fails, an array of blocking errors detailing why the mutation failed will be returned, and the item commitment will not be created. If a mutation fails, there will always be at least one blocking error.
+    /// The union type for the **commitToPurchase** mutation. This type covers two possible scenarios: success or failure. If the **commitToPurchase** mutation succeeds, an **itemCommitment** object that returns the unique identifier of a successfully created item commitment will be returned. If the **commitToPurchase** mutation fails, an array of blocking errors detailing why the mutation failed will be returned, and the item commitment will not be created. If a mutation fails, there will always be at least one blocking error.
     /// </summary>
     public partial interface ICommitToPurchase_CommitToPurchase
     {
@@ -129,7 +115,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// The interface for commitment business rule violations. Clients can handle known violations specifically by checking '__typename', and fall back to these interface fields for unknown violations.
+    /// The interface for commitment business rule violations. Clients can handle known violations specifically by checking `__typename`, and fall back to these interface fields for unknown violations.
     /// Possible implementations include:
     /// - CommitmentPriceMismatchViolation
     /// - CommitmentSelfPurchaseViolation
@@ -155,10 +141,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface ICommitToPurchase_CommitToPurchase_Violations
     {
         /// <summary>
-        ///  The human-readable description of the business rule that was violated.
-        ///  **Example**: "Item names must be at least 3 characters"
+        /// The human-readable description of the business rule that was violated.
+        ///
+        /// **Example**: "Item names must be at least 3 characters"
+        ///
         /// **Note**: This message is intended for developers and should not be displayed directly to end users.
-        ///  **Maximum Length**: 250 characters
+        ///
+        /// **Maximum Length**: 250 characters
         /// </summary>
         public string RuleDescription { get; }
     }
@@ -221,6 +210,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
     /// <summary>
     /// This type defines the error returned when the user validation fails.
+    ///
     /// Possible reasons include:
     /// - User account is on hold.
     /// - User account is suspended.
@@ -253,7 +243,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type defines the error returned when the item is not eligible for Commitment.
+    /// This type defines the error returned when the item is not eligible for commitment.
     /// </summary>
     public partial interface ICommitToPurchase_CommitToPurchase_Violations_CommitmentItemNotEligibleViolation : ICommitToPurchase_CommitToPurchase_Violations
     {
@@ -321,12 +311,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface ICommitToPurchase_CommitToPurchase_CommitToPurchaseBusinessRulesViolated : ICommitToPurchase_CommitToPurchase
     {
         /// <summary>
-        /// The globally unique error code for the 'COMMT_BUSINESS_RULES_VIOLATED' business error type.
+        /// The globally unique error code for the `COMMT_BUSINESS_RULES_VIOLATED` business error type.
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
         /// A human-readable message describing the error. This message is intended for developers and should not be displayed directly to end users. It provides additional context about what went wrong and may include suggestions for how to resolve the issue.
-        ///    **Maximum length**: 500 characters
+        ///
+        /// **Maximum length**: 500 characters
         /// </summary>
         public string ErrorMessage { get; }
         /// <summary>
@@ -370,19 +361,23 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface ICommitToPurchase_CommitToPurchase_ReferenceArgumentsNotFound : ICommitToPurchase_CommitToPurchase
     {
         /// <summary>
-        /// The names of the input arguments that contain references to data that could not be found. These correspond to the field names in the input type.
+        /// The names of the input fields that contain references to data that could not be found.
+        ///
         /// **Maximum length per item**: 100 characters
+        ///
         /// **Format**: Alphanumeric characters and underscores, matching GraphQL field names
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<string> ArgumentNames { get; }
         /// <summary>
-        /// The globally unique error code for this business error type. This field always returns: 'REFERENCE_ARGUMENTS_NOT_FOUND'.
+        /// A unique identifier for this specific error type. This code can be used by clients to programmatically identify and handle different types of errors without relying on error messages, which may change over time. Each error type will always return the same **errorCode** value.
+        ///
+        /// **Maximum length**: 40 characters
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
-        /// The developer-friendly message explaining the error.
+        /// A human-readable message describing the error. This message is intended for developers and should not be displayed directly to end users. It provides additional context about what went wrong and may include suggestions for how to resolve the issue.
+        ///
         /// **Maximum length**: 500 characters
-        /// **Format**: Alphanumeric characters, spaces, and common punctuation
         /// </summary>
         public string ErrorMessage { get; }
     }
@@ -398,10 +393,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        ///  The human-readable description of the business rule that was violated.
-        ///  **Example**: "Item names must be at least 3 characters"
+        /// The human-readable description of the business rule that was violated.
+        ///
+        /// **Example**: "Item names must be at least 3 characters"
+        ///
         /// **Note**: This message is intended for developers and should not be displayed directly to end users.
-        ///  **Maximum Length**: 250 characters
+        ///
+        /// **Maximum Length**: 250 characters
         /// </summary>
         public string RuleDescription { get; }
 
@@ -470,10 +468,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        ///  The human-readable description of the business rule that was violated.
-        ///  **Example**: "Item names must be at least 3 characters"
+        /// The human-readable description of the business rule that was violated.
+        ///
+        /// **Example**: "Item names must be at least 3 characters"
+        ///
         /// **Note**: This message is intended for developers and should not be displayed directly to end users.
-        ///  **Maximum Length**: 250 characters
+        ///
+        /// **Maximum Length**: 250 characters
         /// </summary>
         public string RuleDescription { get; }
 
@@ -542,10 +543,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        ///  The human-readable description of the business rule that was violated.
-        ///  **Example**: "Item names must be at least 3 characters"
+        /// The human-readable description of the business rule that was violated.
+        ///
+        /// **Example**: "Item names must be at least 3 characters"
+        ///
         /// **Note**: This message is intended for developers and should not be displayed directly to end users.
-        ///  **Maximum Length**: 250 characters
+        ///
+        /// **Maximum Length**: 250 characters
         /// </summary>
         public string RuleDescription { get; }
 
@@ -614,10 +618,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        ///  The human-readable description of the business rule that was violated.
-        ///  **Example**: "Item names must be at least 3 characters"
+        /// The human-readable description of the business rule that was violated.
+        ///
+        /// **Example**: "Item names must be at least 3 characters"
+        ///
         /// **Note**: This message is intended for developers and should not be displayed directly to end users.
-        ///  **Maximum Length**: 250 characters
+        ///
+        /// **Maximum Length**: 250 characters
         /// </summary>
         public string RuleDescription { get; }
 
@@ -686,10 +693,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        ///  The human-readable description of the business rule that was violated.
-        ///  **Example**: "Item names must be at least 3 characters"
+        /// The human-readable description of the business rule that was violated.
+        ///
+        /// **Example**: "Item names must be at least 3 characters"
+        ///
         /// **Note**: This message is intended for developers and should not be displayed directly to end users.
-        ///  **Maximum Length**: 250 characters
+        ///
+        /// **Maximum Length**: 250 characters
         /// </summary>
         public string RuleDescription { get; }
 
@@ -758,10 +768,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        ///  The human-readable description of the business rule that was violated.
-        ///  **Example**: "Item names must be at least 3 characters"
+        /// The human-readable description of the business rule that was violated.
+        ///
+        /// **Example**: "Item names must be at least 3 characters"
+        ///
         /// **Note**: This message is intended for developers and should not be displayed directly to end users.
-        ///  **Maximum Length**: 250 characters
+        ///
+        /// **Maximum Length**: 250 characters
         /// </summary>
         public string RuleDescription { get; }
 
@@ -830,10 +843,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        ///  The human-readable description of the business rule that was violated.
-        ///  **Example**: "Item names must be at least 3 characters"
+        /// The human-readable description of the business rule that was violated.
+        ///
+        /// **Example**: "Item names must be at least 3 characters"
+        ///
         /// **Note**: This message is intended for developers and should not be displayed directly to end users.
-        ///  **Maximum Length**: 250 characters
+        ///
+        /// **Maximum Length**: 250 characters
         /// </summary>
         public string RuleDescription { get; }
 
@@ -902,10 +918,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        ///  The human-readable description of the business rule that was violated.
-        ///  **Example**: "Item names must be at least 3 characters"
+        /// The human-readable description of the business rule that was violated.
+        ///
+        /// **Example**: "Item names must be at least 3 characters"
+        ///
         /// **Note**: This message is intended for developers and should not be displayed directly to end users.
-        ///  **Maximum Length**: 250 characters
+        ///
+        /// **Maximum Length**: 250 characters
         /// </summary>
         public string RuleDescription { get; }
 
@@ -965,6 +984,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
     /// <summary>
     /// This type defines the error returned when the user validation fails.
+    ///
     /// Possible reasons include:
     /// - User account is on hold.
     /// - User account is suspended.
@@ -979,10 +999,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        ///  The human-readable description of the business rule that was violated.
-        ///  **Example**: "Item names must be at least 3 characters"
+        /// The human-readable description of the business rule that was violated.
+        ///
+        /// **Example**: "Item names must be at least 3 characters"
+        ///
         /// **Note**: This message is intended for developers and should not be displayed directly to end users.
-        ///  **Maximum Length**: 250 characters
+        ///
+        /// **Maximum Length**: 250 characters
         /// </summary>
         public string RuleDescription { get; }
 
@@ -1051,10 +1074,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        ///  The human-readable description of the business rule that was violated.
-        ///  **Example**: "Item names must be at least 3 characters"
+        /// The human-readable description of the business rule that was violated.
+        ///
+        /// **Example**: "Item names must be at least 3 characters"
+        ///
         /// **Note**: This message is intended for developers and should not be displayed directly to end users.
-        ///  **Maximum Length**: 250 characters
+        ///
+        /// **Maximum Length**: 250 characters
         /// </summary>
         public string RuleDescription { get; }
 
@@ -1123,10 +1149,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        ///  The human-readable description of the business rule that was violated.
-        ///  **Example**: "Item names must be at least 3 characters"
+        /// The human-readable description of the business rule that was violated.
+        ///
+        /// **Example**: "Item names must be at least 3 characters"
+        ///
         /// **Note**: This message is intended for developers and should not be displayed directly to end users.
-        ///  **Maximum Length**: 250 characters
+        ///
+        /// **Maximum Length**: 250 characters
         /// </summary>
         public string RuleDescription { get; }
 
@@ -1195,10 +1224,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        ///  The human-readable description of the business rule that was violated.
-        ///  **Example**: "Item names must be at least 3 characters"
+        /// The human-readable description of the business rule that was violated.
+        ///
+        /// **Example**: "Item names must be at least 3 characters"
+        ///
         /// **Note**: This message is intended for developers and should not be displayed directly to end users.
-        ///  **Maximum Length**: 250 characters
+        ///
+        /// **Maximum Length**: 250 characters
         /// </summary>
         public string RuleDescription { get; }
 
@@ -1257,7 +1289,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type defines the error returned when the item is not eligible for Commitment.
+    /// This type defines the error returned when the item is not eligible for commitment.
     /// </summary>
     public partial class CommitToPurchase_CommitToPurchase_Violations_CommitmentItemNotEligibleViolation : global::System.IEquatable<CommitToPurchase_CommitToPurchase_Violations_CommitmentItemNotEligibleViolation>, ICommitToPurchase_CommitToPurchase_Violations_CommitmentItemNotEligibleViolation
     {
@@ -1267,10 +1299,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        ///  The human-readable description of the business rule that was violated.
-        ///  **Example**: "Item names must be at least 3 characters"
+        /// The human-readable description of the business rule that was violated.
+        ///
+        /// **Example**: "Item names must be at least 3 characters"
+        ///
         /// **Note**: This message is intended for developers and should not be displayed directly to end users.
-        ///  **Maximum Length**: 250 characters
+        ///
+        /// **Maximum Length**: 250 characters
         /// </summary>
         public string RuleDescription { get; }
 
@@ -1339,10 +1374,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        ///  The human-readable description of the business rule that was violated.
-        ///  **Example**: "Item names must be at least 3 characters"
+        /// The human-readable description of the business rule that was violated.
+        ///
+        /// **Example**: "Item names must be at least 3 characters"
+        ///
         /// **Note**: This message is intended for developers and should not be displayed directly to end users.
-        ///  **Maximum Length**: 250 characters
+        ///
+        /// **Maximum Length**: 250 characters
         /// </summary>
         public string RuleDescription { get; }
 
@@ -1411,10 +1449,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        ///  The human-readable description of the business rule that was violated.
-        ///  **Example**: "Item names must be at least 3 characters"
+        /// The human-readable description of the business rule that was violated.
+        ///
+        /// **Example**: "Item names must be at least 3 characters"
+        ///
         /// **Note**: This message is intended for developers and should not be displayed directly to end users.
-        ///  **Maximum Length**: 250 characters
+        ///
+        /// **Maximum Length**: 250 characters
         /// </summary>
         public string RuleDescription { get; }
 
@@ -1483,10 +1524,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        ///  The human-readable description of the business rule that was violated.
-        ///  **Example**: "Item names must be at least 3 characters"
+        /// The human-readable description of the business rule that was violated.
+        ///
+        /// **Example**: "Item names must be at least 3 characters"
+        ///
         /// **Note**: This message is intended for developers and should not be displayed directly to end users.
-        ///  **Maximum Length**: 250 characters
+        ///
+        /// **Maximum Length**: 250 characters
         /// </summary>
         public string RuleDescription { get; }
 
@@ -1555,10 +1599,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        ///  The human-readable description of the business rule that was violated.
-        ///  **Example**: "Item names must be at least 3 characters"
+        /// The human-readable description of the business rule that was violated.
+        ///
+        /// **Example**: "Item names must be at least 3 characters"
+        ///
         /// **Note**: This message is intended for developers and should not be displayed directly to end users.
-        ///  **Maximum Length**: 250 characters
+        ///
+        /// **Maximum Length**: 250 characters
         /// </summary>
         public string RuleDescription { get; }
 
@@ -1627,10 +1674,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        ///  The human-readable description of the business rule that was violated.
-        ///  **Example**: "Item names must be at least 3 characters"
+        /// The human-readable description of the business rule that was violated.
+        ///
+        /// **Example**: "Item names must be at least 3 characters"
+        ///
         /// **Note**: This message is intended for developers and should not be displayed directly to end users.
-        ///  **Maximum Length**: 250 characters
+        ///
+        /// **Maximum Length**: 250 characters
         /// </summary>
         public string RuleDescription { get; }
 
@@ -1699,10 +1749,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        ///  The human-readable description of the business rule that was violated.
-        ///  **Example**: "Item names must be at least 3 characters"
+        /// The human-readable description of the business rule that was violated.
+        ///
+        /// **Example**: "Item names must be at least 3 characters"
+        ///
         /// **Note**: This message is intended for developers and should not be displayed directly to end users.
-        ///  **Maximum Length**: 250 characters
+        ///
+        /// **Maximum Length**: 250 characters
         /// </summary>
         public string RuleDescription { get; }
 
@@ -1771,10 +1824,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        ///  The human-readable description of the business rule that was violated.
-        ///  **Example**: "Item names must be at least 3 characters"
+        /// The human-readable description of the business rule that was violated.
+        ///
+        /// **Example**: "Item names must be at least 3 characters"
+        ///
         /// **Note**: This message is intended for developers and should not be displayed directly to end users.
-        ///  **Maximum Length**: 250 characters
+        ///
+        /// **Maximum Length**: 250 characters
         /// </summary>
         public string RuleDescription { get; }
 
@@ -1843,10 +1899,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        ///  The human-readable description of the business rule that was violated.
-        ///  **Example**: "Item names must be at least 3 characters"
+        /// The human-readable description of the business rule that was violated.
+        ///
+        /// **Example**: "Item names must be at least 3 characters"
+        ///
         /// **Note**: This message is intended for developers and should not be displayed directly to end users.
-        ///  **Maximum Length**: 250 characters
+        ///
+        /// **Maximum Length**: 250 characters
         /// </summary>
         public string RuleDescription { get; }
 
@@ -1920,13 +1979,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// The globally unique error code for the 'COMMT_BUSINESS_RULES_VIOLATED' business error type.
+        /// The globally unique error code for the `COMMT_BUSINESS_RULES_VIOLATED` business error type.
         /// </summary>
         public string ErrorCode { get; }
 
         /// <summary>
         /// A human-readable message describing the error. This message is intended for developers and should not be displayed directly to end users. It provides additional context about what went wrong and may include suggestions for how to resolve the issue.
-        ///    **Maximum length**: 500 characters
+        ///
+        /// **Maximum length**: 500 characters
         /// </summary>
         public string ErrorMessage { get; }
 
@@ -2163,21 +2223,25 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// The names of the input arguments that contain references to data that could not be found. These correspond to the field names in the input type.
+        /// The names of the input fields that contain references to data that could not be found.
+        ///
         /// **Maximum length per item**: 100 characters
+        ///
         /// **Format**: Alphanumeric characters and underscores, matching GraphQL field names
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<string> ArgumentNames { get; }
 
         /// <summary>
-        /// The globally unique error code for this business error type. This field always returns: 'REFERENCE_ARGUMENTS_NOT_FOUND'.
+        /// A unique identifier for this specific error type. This code can be used by clients to programmatically identify and handle different types of errors without relying on error messages, which may change over time. Each error type will always return the same **errorCode** value.
+        ///
+        /// **Maximum length**: 40 characters
         /// </summary>
         public string ErrorCode { get; }
 
         /// <summary>
-        /// The developer-friendly message explaining the error.
+        /// A human-readable message describing the error. This message is intended for developers and should not be displayed directly to end users. It provides additional context about what went wrong and may include suggestions for how to resolve the issue.
+        ///
         /// **Maximum length**: 500 characters
-        /// **Format**: Alphanumeric characters, spaces, and common punctuation
         /// </summary>
         public string ErrorMessage { get; }
 

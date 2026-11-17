@@ -23,7 +23,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This input type defines the payload for the **appendSellerReturnToAddressRule** mutation and is used to create a single return location rule. The status of new rule will be `ENABLED` by default.
     ///
-    /// **Note:** Any *ReturnToAddress* rules must include **returnAddressRoute**.
+    /// **Note**: Any *ReturnToAddress* rules must include **returnAddressRoute**.
     /// </summary>
     public partial class AppendSellerReturnToAddressRuleInput : global::System.IEquatable<AppendSellerReturnToAddressRuleInput>
     {
@@ -80,10 +80,10 @@ namespace EBay.OrderManagement.Generated.GraphQL
         ///
         /// **Requirements:**
         /// - the name must be unique. No two rules can have the same name.
-        /// - the name must use characters fromteh following set: [A-Z, a-z, 0-9, hyphen(-), underscore(_), period(.), colon(:), comma(,), apostrophe(')]
+        /// - the name must use characters from the following set: [A-Z, a-z, 0-9, hyphen(-), underscore(_), period(.), colon(:), comma(,), apostrophe(')]
         ///
-        /// **Format:** Alphanumeric
-        /// **Maximum length:** 100 characters
+        /// **Format**: Alphanumeric
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Name
         {

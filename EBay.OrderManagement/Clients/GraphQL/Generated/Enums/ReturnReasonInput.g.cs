@@ -26,55 +26,55 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public enum ReturnReasonInput
     {
         /// <summary>
-        /// The item is returned because it is counterfeit.
+        /// This enum value indicates that the item is being returned because it is counterfeit.
         /// </summary>
         Counterfeit,
         /// <summary>
-        /// The item is returned because it was damaged when received.
+        /// This enum value indicates that the item is being returned because it was damaged when received.
         /// </summary>
         DamagedItemReceived,
         /// <summary>
-        /// The item is returned because it is defective.
+        /// This enum value indicates that the item is being returned because it is defective.
         /// </summary>
         Defective,
         /// <summary>
-        /// The buyer is returning the item due to personal preference (they did not like the item).
+        /// This enum value indicates that the buyer is returning the item due to personal preference (they did not like the item).
         /// </summary>
         DidNotLikeItem,
         /// <summary>
-        /// The item is being returned because it did not fit the vehicle.
+        /// This enum value indicates that the item is being returned because it did not fit the vehicle.
         /// </summary>
         FitCompatibilityIssue,
         /// <summary>
-        /// The item is returned because the buyer found a better price.
+        /// This enum value indicates that the item is being returned because the buyer found a better price.
         /// </summary>
         FoundBetterPrice,
         /// <summary>
-        /// The item is returned because one or more parts of the item were missing.
+        /// This enum value indicates that the item is being returned because one or more parts of the item were missing.
         /// </summary>
         MissingParts,
         /// <summary>
-        /// The item is returned because it was not as described.
+        /// This enum value indicates that the item is being returned because it was not as described.
         /// </summary>
         NotAsDescribed,
         /// <summary>
-        /// The item is returned as the item is no longer needed.
+        /// This enum value indicates that the item is being returned as the item is no longer needed.
         /// </summary>
         NoLongerNeedItem,
         /// <summary>
-        /// The item is returned because the buyer purchased it accidentally.
+        /// This enum value indicates that the item is being returned because the buyer purchased it accidentally.
         /// </summary>
         OrderedAccidentally,
         /// <summary>
-        /// The item is returned because the buyer purchased the wrong size.
+        /// This enum value indicates that the item is being returned because the buyer purchased the wrong size.
         /// </summary>
         OrderedWrongSize,
         /// <summary>
-        /// The customer did not disclose the reason for the return.
+        /// This enum value indicates that the customer did not disclose the reason for the return.
         /// </summary>
         Undisclosed,
         /// <summary>
-        /// The item is returned as the wrong item was received instead of the one that was purchased.
+        /// This enum value indicates that the item is being returned as the wrong item was received instead of the one that was purchased.
         /// </summary>
         WrongItemReceived
     }

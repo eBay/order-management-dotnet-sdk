@@ -23,7 +23,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This input type provides filtering and sorting parameters for the first page of an orders query.
     ///
-    /// **Note:** The same filters and sort order are also used when returning subsequent pages using cursor-based pagination.
+    /// **Note**: The same filters and sort order are also used when returning subsequent pages using cursor-based pagination.
     /// </summary>
     public partial class OrdersFirstPageInput : global::System.IEquatable<OrdersFirstPageInput>
     {
@@ -47,7 +47,9 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The number of orders to return in the first page.
-        /// Must be between 1 and 200 inclusive.
+        ///
+        /// **Minimum value**: 1
+        /// **Maximum value**: 200
         /// </summary>
         public int MaxPageSize
         {

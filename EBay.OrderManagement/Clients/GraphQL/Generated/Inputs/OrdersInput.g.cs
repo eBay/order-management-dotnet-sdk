@@ -46,7 +46,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// This field contains parameters for fetching subsequent pages using a cursor.
         ///
-        /// **Note:** The **maxPageSize** field in **PageInfoInput** must be between 1 and 100, inclusive.
+        /// **Note**: The **maxPageSize** field in **PageInfoInput** must be between 1 and 100, inclusive.
         /// </summary>
         public PageInfoInput? OrdersPage
         {

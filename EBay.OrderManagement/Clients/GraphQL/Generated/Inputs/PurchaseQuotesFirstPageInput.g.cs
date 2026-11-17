@@ -31,7 +31,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         private bool _set_maxPageSize;
 
         /// <summary>
-        /// This container is used to provide one or more filters for the query, including a **listingId** filter, a date range filter, and filters based on states. Sort parameters are also available.
+        /// This object is used to provide one or more filters for the query, including a **listingId** filter, a date range filter, and filters based on states. Sort parameters are also available.
         /// </summary>
         public PurchaseQuoteFirstFilterInput Filter
         {
@@ -45,6 +45,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// This field is used to control the amount of purchase quotes that are returned per page of results. If this field is not used, up to 200 purchase quotes are returned per page.
+        ///
         /// **Minimum value**: 1
         /// **Maximum value**: 200
         /// </summary>

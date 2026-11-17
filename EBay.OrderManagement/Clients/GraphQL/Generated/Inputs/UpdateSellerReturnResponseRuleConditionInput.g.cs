@@ -21,9 +21,9 @@ using EBay.OrderManagement.Clients.GraphQL;
 namespace EBay.OrderManagement.Generated.GraphQL
 {
     /// <summary>
-    /// This is the base request type for the **updateSellerReturnResponseRuleCondition** mutation, used to create a single automation return rule.
+    /// This is the base request type for the **updateSellerReturnResponseRuleCondition** mutation used to create or update a single automation return rule.
     ///
-    /// **Note:** The rule **name** is optional, but can be used to change the name of existing rule. If not provided, existing name will remain (unchanged).
+    /// **Note**: The rule **name** is optional, but can be used to change the name of existing rule. If not provided, existing name will remain (unchanged).
     /// </summary>
     public partial class UpdateSellerReturnResponseRuleConditionInput : global::System.IEquatable<UpdateSellerReturnResponseRuleConditionInput>
     {
@@ -35,8 +35,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         private bool _set_ruleId;
 
         /// <summary>
-        /// Conditions that, when met, trigger the rule.
-        /// All conditions provided here will replace existing conditions.
+        /// This object is used to set the various conditions that an item and return request must meet to trigger the rule.
         /// </summary>
         public ReturnRuleConditionSetInput ConditionSet
         {
@@ -49,16 +48,15 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The unique name of the rule. This optional field can be used to change name of existing rule.
+        /// This optional seller-defined field can be used to set or modify the name of the rule.
         ///
-        /// **Note:** If a rule name is not provided, the existing name will remain (unchanged).
+        /// **Note**: If a rule name is not provided, the existing name will remain (unchanged).
         ///
         /// **Requirements:**
         /// - the name must be unique. No two rules can have the same name
         /// - the name must use characters fromteh following set: [A-Z, a-z, 0-9, hyphen(-), underscore(_), period(.), colon(:), comma(,), apostrophe(')]
         ///
-        /// **Format:** Alphanumeric
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string? Name
         {
@@ -71,7 +69,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The unique identifier of the rule to be updated.
+        /// The unique identifier of the return rule to be updated.
         /// </summary>
         public string RuleId
         {

@@ -26,13 +26,11 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IBulkUpdateOrderTagsResult
     {
         /// <summary>
-        /// The **bulkUpdateOrderTags** mutation updates tags for up to 100 orders in a single operation.
+        /// The **bulkUpdateOrderTags** mutation allows a seller to update the acknowledgment status for up to 100 orders in a single operation.
         ///
-        /// Possible Errors:
-        /// | Code                  |  Message                                                                     |
-        /// |-----------------------|------------------------------------------------------------------------------|
-        /// | BAD_INPUT_VALUE       |  Input size is 0 or over the limit. Please provide valid input.              |
-        /// | INTERNAL_SERVER_ERROR |  System failure.                                                             |
+        /// Supported values in the tags array are **acknowledged** and **unacknowledged**.
+        ///
+        /// **Note**: Order tag updates are currently limited to these two values; other tag values are not yet supported.
         /// </summary>
         public IBulkUpdateOrderTags_BulkUpdateOrderTags BulkUpdateOrderTags { get; }
     }
@@ -48,13 +46,11 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The **bulkUpdateOrderTags** mutation updates tags for up to 100 orders in a single operation.
+        /// The **bulkUpdateOrderTags** mutation allows a seller to update the acknowledgment status for up to 100 orders in a single operation.
         ///
-        /// Possible Errors:
-        /// | Code                  |  Message                                                                     |
-        /// |-----------------------|------------------------------------------------------------------------------|
-        /// | BAD_INPUT_VALUE       |  Input size is 0 or over the limit. Please provide valid input.              |
-        /// | INTERNAL_SERVER_ERROR |  System failure.                                                             |
+        /// Supported values in the tags array are **acknowledged** and **unacknowledged**.
+        ///
+        /// **Note**: Order tag updates are currently limited to these two values; other tag values are not yet supported.
         /// </summary>
         public IBulkUpdateOrderTags_BulkUpdateOrderTags BulkUpdateOrderTags { get; }
 
@@ -128,7 +124,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the error message. This string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string DisplayMessage { get; }
         /// <summary>
@@ -140,11 +136,11 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
-        /// The ID of the order that failed to update.
+        /// The unique identifier of the order that failed to update.
         /// </summary>
         public string InputOrderId { get; }
         /// <summary>
-        /// When `true`, the operation can be retried and may succeed. When `false`, a retry will not succeed.
+        /// When this boolean field is returned as `true`, the operation can be retried and may succeed. When returned as `false`, a retry will not succeed.
         /// </summary>
         public bool Retryable { get; }
     }
@@ -159,7 +155,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This type represents a complete failure for a **bulkUpdateOrderTags** mutation. The return includes the orders that could not be updated with the tags specified in the request.
     ///
-    /// **Note:** No order's tag was successfully updated.
+    /// **Note**: No order's tag was successfully updated.
     /// </summary>
     public partial interface IBulkUpdateOrderTags_BulkUpdateOrderTags_BulkUpdateOrderTagsCompleteFailure : IBulkUpdateOrderTags_BulkUpdateOrderTags
     {
@@ -170,13 +166,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the error message. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
         /// <summary>
         /// This array lists one or more orders that could not be updated.
         ///
-        /// **Note:** This list is never empty.
+        /// **Note**: This list is never empty.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IBulkUpdateOrderTags_BulkUpdateOrderTags_Failures> Failures { get; }
     }
@@ -189,7 +185,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the error message. This string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string DisplayMessage { get; }
         /// <summary>
@@ -201,11 +197,11 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
-        /// The ID of the order that failed to update.
+        /// The unique identifier of the order that failed to update.
         /// </summary>
         public string InputOrderId { get; }
         /// <summary>
-        /// When `true`, the operation can be retried and may succeed. When `false`, a retry will not succeed.
+        /// When this boolean field is returned as `true`, the operation can be retried and may succeed. When returned as `false`, a retry will not succeed.
         /// </summary>
         public bool Retryable { get; }
     }
@@ -218,31 +214,33 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type shows any custom tags added by the seller to the purchase contract.
-    /// **Note**: Custom tags can only be added by seller.
+    /// This type shows any item commitment tags added by the seller to the purchase contract.
+    ///
+    /// **Note**: Item commitment tags can only be added by seller.
     /// </summary>
     public partial interface IBulkUpdateOrderTags_BulkUpdateOrderTags_UpdatedOrders_OrderTags
     {
         /// <summary>
-        /// This array shows the list of custom tags that have been added to the purchase contract. Up to five custom tags may be added per purchase contract.
+        /// This array shows the list of item commitment tags that have been added to the purchase contract.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<string>? Tags { get; }
         /// <summary>
-        /// This boolean field indicates whether or not the seller has acknowledged the custom tags.
+        /// This boolean field indicates whether or not the seller has acknowledged the item commitment tags.
         /// </summary>
         public bool? SellerAcknowledged { get; }
     }
 
     /// <summary>
-    /// This type shows any custom tags added by the seller to the purchase contract.
-    /// **Note**: Custom tags can only be added by seller.
+    /// This type shows any item commitment tags added by the seller to the purchase contract.
+    ///
+    /// **Note**: Item commitment tags can only be added by seller.
     /// </summary>
     public partial interface IBulkUpdateOrderTags_BulkUpdateOrderTags_UpdatedOrders_OrderTags_PurchaseTags : IBulkUpdateOrderTags_BulkUpdateOrderTags_UpdatedOrders_OrderTags
     {
     }
 
     /// <summary>
-    /// This type defines the unique identifier of an order, which is an confirmed request by a customer to purchase one or more products or services through an e-commerce platform. It contains all relevant details required to process, fulfill, and track the transaction, including customer information, items purchased, payment details, shipping data, and state updates.
+    /// This type defines the unique identifier of an order, which is a confirmed request by a customer to purchase one or more products or services through an e-commerce platform. It contains all relevant details required to process, fulfill, and track the transaction, including customer information, items purchased, payment details, shipping data, and state updates.
     /// </summary>
     public partial interface IBulkUpdateOrderTags_BulkUpdateOrderTags_UpdatedOrders
     {
@@ -251,13 +249,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// </summary>
         public string? OrderId { get; }
         /// <summary>
-        /// All tags associated with the order.
+        /// This object contains all tags associated with the order.
         /// </summary>
         public IBulkUpdateOrderTags_BulkUpdateOrderTags_UpdatedOrders_OrderTags? OrderTags { get; }
     }
 
     /// <summary>
-    /// This type defines the unique identifier of an order, which is an confirmed request by a customer to purchase one or more products or services through an e-commerce platform. It contains all relevant details required to process, fulfill, and track the transaction, including customer information, items purchased, payment details, shipping data, and state updates.
+    /// This type defines the unique identifier of an order, which is a confirmed request by a customer to purchase one or more products or services through an e-commerce platform. It contains all relevant details required to process, fulfill, and track the transaction, including customer information, items purchased, payment details, shipping data, and state updates.
     /// </summary>
     public partial interface IBulkUpdateOrderTags_BulkUpdateOrderTags_UpdatedOrders_Order : IBulkUpdateOrderTags_BulkUpdateOrderTags_UpdatedOrders
     {
@@ -275,13 +273,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the error message. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
         /// <summary>
         /// This array lists one or more orders that could not be updated.
         ///
-        /// **Note:** This list is never empty.
+        /// **Note**: This list is never empty.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IBulkUpdateOrderTags_BulkUpdateOrderTags_Failures_1> Failures { get; }
         /// <summary>
@@ -291,31 +289,33 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type shows any custom tags added by the seller to the purchase contract.
-    /// **Note**: Custom tags can only be added by seller.
+    /// This type shows any item commitment tags added by the seller to the purchase contract.
+    ///
+    /// **Note**: Item commitment tags can only be added by seller.
     /// </summary>
     public partial interface IBulkUpdateOrderTags_BulkUpdateOrderTags_UpdatedOrders_OrderTags_1
     {
         /// <summary>
-        /// This boolean field indicates whether or not the seller has acknowledged the custom tags.
+        /// This boolean field indicates whether or not the seller has acknowledged the item commitment tags.
         /// </summary>
         public bool? SellerAcknowledged { get; }
         /// <summary>
-        /// This array shows the list of custom tags that have been added to the purchase contract. Up to five custom tags may be added per purchase contract.
+        /// This array shows the list of item commitment tags that have been added to the purchase contract.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<string>? Tags { get; }
     }
 
     /// <summary>
-    /// This type shows any custom tags added by the seller to the purchase contract.
-    /// **Note**: Custom tags can only be added by seller.
+    /// This type shows any item commitment tags added by the seller to the purchase contract.
+    ///
+    /// **Note**: Item commitment tags can only be added by seller.
     /// </summary>
     public partial interface IBulkUpdateOrderTags_BulkUpdateOrderTags_UpdatedOrders_OrderTags_PurchaseTags_1 : IBulkUpdateOrderTags_BulkUpdateOrderTags_UpdatedOrders_OrderTags_1
     {
     }
 
     /// <summary>
-    /// This type defines the unique identifier of an order, which is an confirmed request by a customer to purchase one or more products or services through an e-commerce platform. It contains all relevant details required to process, fulfill, and track the transaction, including customer information, items purchased, payment details, shipping data, and state updates.
+    /// This type defines the unique identifier of an order, which is a confirmed request by a customer to purchase one or more products or services through an e-commerce platform. It contains all relevant details required to process, fulfill, and track the transaction, including customer information, items purchased, payment details, shipping data, and state updates.
     /// </summary>
     public partial interface IBulkUpdateOrderTags_BulkUpdateOrderTags_UpdatedOrders_1
     {
@@ -324,13 +324,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// </summary>
         public string? OrderId { get; }
         /// <summary>
-        /// All tags associated with the order.
+        /// This object contains all tags associated with the order.
         /// </summary>
         public IBulkUpdateOrderTags_BulkUpdateOrderTags_UpdatedOrders_OrderTags_1? OrderTags { get; }
     }
 
     /// <summary>
-    /// This type defines the unique identifier of an order, which is an confirmed request by a customer to purchase one or more products or services through an e-commerce platform. It contains all relevant details required to process, fulfill, and track the transaction, including customer information, items purchased, payment details, shipping data, and state updates.
+    /// This type defines the unique identifier of an order, which is a confirmed request by a customer to purchase one or more products or services through an e-commerce platform. It contains all relevant details required to process, fulfill, and track the transaction, including customer information, items purchased, payment details, shipping data, and state updates.
     /// </summary>
     public partial interface IBulkUpdateOrderTags_BulkUpdateOrderTags_UpdatedOrders_Order_1 : IBulkUpdateOrderTags_BulkUpdateOrderTags_UpdatedOrders_1
     {
@@ -363,7 +363,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the error message. This string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string DisplayMessage { get; }
 
@@ -377,12 +377,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string ErrorCode { get; }
 
         /// <summary>
-        /// The ID of the order that failed to update.
+        /// The unique identifier of the order that failed to update.
         /// </summary>
         public string InputOrderId { get; }
 
         /// <summary>
-        /// When `true`, the operation can be retried and may succeed. When `false`, a retry will not succeed.
+        /// When this boolean field is returned as `true`, the operation can be retried and may succeed. When returned as `false`, a retry will not succeed.
         /// </summary>
         public bool Retryable { get; }
 
@@ -455,7 +455,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This type represents a complete failure for a **bulkUpdateOrderTags** mutation. The return includes the orders that could not be updated with the tags specified in the request.
     ///
-    /// **Note:** No order's tag was successfully updated.
+    /// **Note**: No order's tag was successfully updated.
     /// </summary>
     public partial class BulkUpdateOrderTags_BulkUpdateOrderTags_BulkUpdateOrderTagsCompleteFailure : global::System.IEquatable<BulkUpdateOrderTags_BulkUpdateOrderTags_BulkUpdateOrderTagsCompleteFailure>, IBulkUpdateOrderTags_BulkUpdateOrderTags_BulkUpdateOrderTagsCompleteFailure
     {
@@ -477,14 +477,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the error message. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
 
         /// <summary>
         /// This array lists one or more orders that could not be updated.
         ///
-        /// **Note:** This list is never empty.
+        /// **Note**: This list is never empty.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IBulkUpdateOrderTags_BulkUpdateOrderTags_Failures> Failures { get; }
 
@@ -570,7 +570,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the error message. This string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string DisplayMessage { get; }
 
@@ -584,12 +584,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string ErrorCode { get; }
 
         /// <summary>
-        /// The ID of the order that failed to update.
+        /// The unique identifier of the order that failed to update.
         /// </summary>
         public string InputOrderId { get; }
 
         /// <summary>
-        /// When `true`, the operation can be retried and may succeed. When `false`, a retry will not succeed.
+        /// When this boolean field is returned as `true`, the operation can be retried and may succeed. When returned as `false`, a retry will not succeed.
         /// </summary>
         public bool Retryable { get; }
 
@@ -660,8 +660,9 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type shows any custom tags added by the seller to the purchase contract.
-    /// **Note**: Custom tags can only be added by seller.
+    /// This type shows any item commitment tags added by the seller to the purchase contract.
+    ///
+    /// **Note**: Item commitment tags can only be added by seller.
     /// </summary>
     public partial class BulkUpdateOrderTags_BulkUpdateOrderTags_UpdatedOrders_OrderTags_PurchaseTags : global::System.IEquatable<BulkUpdateOrderTags_BulkUpdateOrderTags_UpdatedOrders_OrderTags_PurchaseTags>, IBulkUpdateOrderTags_BulkUpdateOrderTags_UpdatedOrders_OrderTags_PurchaseTags
     {
@@ -672,12 +673,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This array shows the list of custom tags that have been added to the purchase contract. Up to five custom tags may be added per purchase contract.
+        /// This array shows the list of item commitment tags that have been added to the purchase contract.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<string>? Tags { get; }
 
         /// <summary>
-        /// This boolean field indicates whether or not the seller has acknowledged the custom tags.
+        /// This boolean field indicates whether or not the seller has acknowledged the item commitment tags.
         /// </summary>
         public bool? SellerAcknowledged { get; }
 
@@ -738,7 +739,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type defines the unique identifier of an order, which is an confirmed request by a customer to purchase one or more products or services through an e-commerce platform. It contains all relevant details required to process, fulfill, and track the transaction, including customer information, items purchased, payment details, shipping data, and state updates.
+    /// This type defines the unique identifier of an order, which is a confirmed request by a customer to purchase one or more products or services through an e-commerce platform. It contains all relevant details required to process, fulfill, and track the transaction, including customer information, items purchased, payment details, shipping data, and state updates.
     /// </summary>
     public partial class BulkUpdateOrderTags_BulkUpdateOrderTags_UpdatedOrders_Order : global::System.IEquatable<BulkUpdateOrderTags_BulkUpdateOrderTags_UpdatedOrders_Order>, IBulkUpdateOrderTags_BulkUpdateOrderTags_UpdatedOrders_Order
     {
@@ -754,7 +755,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string? OrderId { get; }
 
         /// <summary>
-        /// All tags associated with the order.
+        /// This object contains all tags associated with the order.
         /// </summary>
         public IBulkUpdateOrderTags_BulkUpdateOrderTags_UpdatedOrders_OrderTags? OrderTags { get; }
 
@@ -841,14 +842,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the error message. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
 
         /// <summary>
         /// This array lists one or more orders that could not be updated.
         ///
-        /// **Note:** This list is never empty.
+        /// **Note**: This list is never empty.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IBulkUpdateOrderTags_BulkUpdateOrderTags_Failures_1> Failures { get; }
 
@@ -926,8 +927,9 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type shows any custom tags added by the seller to the purchase contract.
-    /// **Note**: Custom tags can only be added by seller.
+    /// This type shows any item commitment tags added by the seller to the purchase contract.
+    ///
+    /// **Note**: Item commitment tags can only be added by seller.
     /// </summary>
     public partial class BulkUpdateOrderTags_BulkUpdateOrderTags_UpdatedOrders_OrderTags_PurchaseTags_1 : global::System.IEquatable<BulkUpdateOrderTags_BulkUpdateOrderTags_UpdatedOrders_OrderTags_PurchaseTags_1>, IBulkUpdateOrderTags_BulkUpdateOrderTags_UpdatedOrders_OrderTags_PurchaseTags_1
     {
@@ -938,12 +940,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This boolean field indicates whether or not the seller has acknowledged the custom tags.
+        /// This boolean field indicates whether or not the seller has acknowledged the item commitment tags.
         /// </summary>
         public bool? SellerAcknowledged { get; }
 
         /// <summary>
-        /// This array shows the list of custom tags that have been added to the purchase contract. Up to five custom tags may be added per purchase contract.
+        /// This array shows the list of item commitment tags that have been added to the purchase contract.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<string>? Tags { get; }
 
@@ -1004,7 +1006,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type defines the unique identifier of an order, which is an confirmed request by a customer to purchase one or more products or services through an e-commerce platform. It contains all relevant details required to process, fulfill, and track the transaction, including customer information, items purchased, payment details, shipping data, and state updates.
+    /// This type defines the unique identifier of an order, which is a confirmed request by a customer to purchase one or more products or services through an e-commerce platform. It contains all relevant details required to process, fulfill, and track the transaction, including customer information, items purchased, payment details, shipping data, and state updates.
     /// </summary>
     public partial class BulkUpdateOrderTags_BulkUpdateOrderTags_UpdatedOrders_Order_1 : global::System.IEquatable<BulkUpdateOrderTags_BulkUpdateOrderTags_UpdatedOrders_Order_1>, IBulkUpdateOrderTags_BulkUpdateOrderTags_UpdatedOrders_Order_1
     {
@@ -1020,7 +1022,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string? OrderId { get; }
 
         /// <summary>
-        /// All tags associated with the order.
+        /// This object contains all tags associated with the order.
         /// </summary>
         public IBulkUpdateOrderTags_BulkUpdateOrderTags_UpdatedOrders_OrderTags_1? OrderTags { get; }
 

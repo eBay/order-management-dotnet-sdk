@@ -21,7 +21,7 @@ using EBay.OrderManagement.Clients.GraphQL;
 namespace EBay.OrderManagement.Generated.GraphQL
 {
     /// <summary>
-    ///  This input type defines the payload for the **createPurchaseQuoteCancellation** mutation, identifying the purchase quote to cancel, providing a reason, and whether to relist all items.
+    /// This input type defines the payload for the **createPurchaseQuoteCancellation** mutation, identifying the purchase quote to cancel, providing a reason, and whether to relist all items.
     /// </summary>
     public partial class CreatePurchaseQuoteCancellationInput : global::System.IEquatable<CreatePurchaseQuoteCancellationInput>
     {
@@ -46,7 +46,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The purchase quote ID to cancel.
+        /// The unique identifier of the purchase quote to cancel.
         /// </summary>
         public string PurchaseQuoteId
         {
@@ -59,11 +59,11 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Whether to relist all items from the canceled purchase quote.
+        /// This boolean field controls whether or not to relist all line items from the canceled purchase quote.
         ///
-        /// **Note:** Must be `false` if the **contractCancellationReason** is set to `OUT_OF_STOCK`.
+        /// **Note**: This value must be `false` if the **contractCancellationReason** is set to `OUT_OF_STOCK`.
         ///
-        /// **Default:** `false`
+        /// **Default**: `false`
         /// </summary>
         public bool? RelistAllItems
         {

@@ -26,9 +26,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface ISellerReturnPreferenceResult
     {
         /// <summary>
-        /// The **sellerReturnPreference** query retrieves the return preferences set by a seller on a specified marketplace.
-        ///
-        /// Sellers can use this query to view the preferences that control or automate steps in the return process. If a marketplace is not provided in the query, preferences for `EBAY_US` are returned.
+        /// The **sellerReturnPreference** query retrieves the return preferences set by a seller on a specified marketplace. Sellers can use this query to view the preferences that control or automate steps in the return process. If a marketplace is not provided in the query, preferences for `EBAY_US` are returned.
         /// </summary>
         public ISellerReturnPreference_SellerReturnPreference SellerReturnPreference { get; }
     }
@@ -44,9 +42,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The **sellerReturnPreference** query retrieves the return preferences set by a seller on a specified marketplace.
-        ///
-        /// Sellers can use this query to view the preferences that control or automate steps in the return process. If a marketplace is not provided in the query, preferences for `EBAY_US` are returned.
+        /// The **sellerReturnPreference** query retrieves the return preferences set by a seller on a specified marketplace. Sellers can use this query to view the preferences that control or automate steps in the return process. If a marketplace is not provided in the query, preferences for `EBAY_US` are returned.
         /// </summary>
         public ISellerReturnPreference_SellerReturnPreference SellerReturnPreference { get; }
 
@@ -105,8 +101,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This base response union type for the **sellerReturnPreference** query includes the result of the query and any errors encountered.
-    /// Additional error types may be added to this union.
+    /// The base response union type for the **sellerReturnPreference** query. This includes the result of the query and any errors encountered. Additional error types may be added to this union.
     /// </summary>
     public partial interface ISellerReturnPreference_SellerReturnPreference
     {
@@ -125,7 +120,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable error message. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
     }
@@ -136,7 +131,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface ISellerReturnPreference_SellerReturnPreference_RmaPreference
     {
         /// <summary>
-        /// Whether the preference status is enabled (`true`) or disabled (`false`).
+        /// This boolean indicates whether the preference status is enabled (`true`) or disabled (`false`).
         /// </summary>
         public ReturnPreferenceStatus PreferenceStatus { get; }
     }
@@ -187,7 +182,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable error message. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
 
@@ -266,7 +261,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Whether the preference status is enabled (`true`) or disabled (`false`).
+        /// This boolean indicates whether the preference status is enabled (`true`) or disabled (`false`).
         /// </summary>
         public ReturnPreferenceStatus PreferenceStatus { get; }
 

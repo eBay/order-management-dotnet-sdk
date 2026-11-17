@@ -54,13 +54,7 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
         public string ShipmentTrackingNumber { get; set; }
 #endif
         /// <summary>The date and time that the fulfillment package was shipped. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field should only be returned if the package has been shipped.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? ShippedDate { get; set; }
-#nullable restore
-#else
-        public string ShippedDate { get; set; }
-#endif
+        public DateTimeOffset? ShippedDate { get; set; }
         /// <summary>The eBay code identifying the shipping carrier for this fulfillment. This field is returned if available. &lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The Trading API&apos;s &lt;strong&gt;ShippingCarrierCodeType&lt;/strong&gt; enumeration type contains the most current list of eBay shipping carrier codes and the countries served by each carrier. See &lt;a href=&quot;https://developer.ebay.com/Devzone/XML/docs/Reference/eBay/types/ShippingCarrierCodeType.html &quot; target=&quot;_blank&quot;&gt;ShippingCarrierCodeType&lt;/a&gt;.&lt;/span&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -97,7 +91,7 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
                 { "fulfillmentId", n => { FulfillmentId = n.GetStringValue(); } },
                 { "lineItems", n => { LineItems = n.GetCollectionOfObjectValues<global::EBay.OrderManagement.Generated.Fulfillment.Models.LineItemReference>(global::EBay.OrderManagement.Generated.Fulfillment.Models.LineItemReference.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "shipmentTrackingNumber", n => { ShipmentTrackingNumber = n.GetStringValue(); } },
-                { "shippedDate", n => { ShippedDate = n.GetStringValue(); } },
+                { "shippedDate", n => { ShippedDate = n.GetDateTimeOffsetValue(); } },
                 { "shippingCarrierCode", n => { ShippingCarrierCode = n.GetStringValue(); } },
             };
         }
@@ -111,7 +105,7 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
             writer.WriteStringValue("fulfillmentId", FulfillmentId);
             writer.WriteCollectionOfObjectValues<global::EBay.OrderManagement.Generated.Fulfillment.Models.LineItemReference>("lineItems", LineItems);
             writer.WriteStringValue("shipmentTrackingNumber", ShipmentTrackingNumber);
-            writer.WriteStringValue("shippedDate", ShippedDate);
+            writer.WriteDateTimeOffsetValue("shippedDate", ShippedDate);
             writer.WriteStringValue("shippingCarrierCode", ShippingCarrierCode);
             writer.WriteAdditionalData(AdditionalData);
         }

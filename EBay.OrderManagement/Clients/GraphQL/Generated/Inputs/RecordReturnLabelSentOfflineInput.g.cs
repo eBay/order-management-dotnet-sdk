@@ -46,7 +46,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The unique identifier of the Return for which the return label is being marked as sent. This must be a valid return ID that the user has permission to access.
+        /// The unique identifier of the return request for which the return label is being marked as sent. This must be a valid return ID that the user has permission to access.
         /// </summary>
         public string ReturnId
         {

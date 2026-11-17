@@ -26,11 +26,11 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public enum ReturnPreferenceStatus
     {
         /// <summary>
-        /// This value indicates the seller's RMA requirement is inactive (returns do not require an RMA).
+        /// This enum value indicates the seller's RMA requirement is inactive (returns do not require an RMA).
         /// </summary>
         Disabled,
         /// <summary>
-        /// This value indicates the seller's RMA requirement is active (returns require an RMA).
+        /// This enum value indicates the seller's RMA requirement is active (returns require an RMA).
         /// </summary>
         Enabled
     }

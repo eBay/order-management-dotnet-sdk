@@ -77,7 +77,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// Whether to include abandoned orders.
         ///
-        /// **Default:** `false`.
+        /// **Default**: `false`.
         /// </summary>
         public bool? IncludeAbandoned
         {
@@ -92,7 +92,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// Whether to include canceled orders.
         ///
-        /// **Default:** `false`.
+        /// **Default**: `false`.
         /// </summary>
         public bool? IncludeCancelled
         {
@@ -107,7 +107,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// Whether to include confirmed orders.
         ///
-        /// **Default:** `true`.
+        /// **Default**: `true`.
         /// </summary>
         public bool? IncludeConfirmed
         {
@@ -122,7 +122,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// Whether to include orders that have been placed but not yet confirmed.
         ///
-        /// **Default:** `false`
+        /// **Default**: `false`
         /// </summary>
         public bool? IncludePlaced
         {

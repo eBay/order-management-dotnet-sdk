@@ -34,7 +34,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// The optional text to include in the reply (from the sender to the buyer) regarding the overall decline. The message is stored as provided and not localized.
         ///
         /// **Minimum length:** 1 character
-        /// **Maximum length:** 500 characters
+        ///
+        /// **Maximum length**: 500 characters
         /// </summary>
         public string? DeclinationNote
         {
@@ -47,7 +48,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The unique identifier of the Return to decline. This must be a valid return ID that the seller has permission to access.
+        /// The unique identifier of the return request to decline. This must be a valid return ID that the seller has permission to access.
         /// </summary>
         public string ReturnId
         {

@@ -26,15 +26,15 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public enum WithholdReturnRefundReasonInput
     {
         /// <summary>
-        /// The item was returned in a damaged condition, which has resulted in a loss of value.
+        /// This enumeration value indicates that item was returned in a damaged condition, which has resulted in a loss of value.
         /// </summary>
         ReturnedInDamagedCondition,
         /// <summary>
-        /// The item was returned in a used condition, which has resulted in a loss of value.
+        /// This enumeration value indicates that item was returned in a used condition, which has resulted in a loss of value.
         /// </summary>
         ReturnedInUsedCondition,
         /// <summary>
-        /// The item was returned with missing parts, which has resulted in a loss of value.
+        /// This enumeration value indicates that item was returned with missing parts, which has resulted in a loss of value.
         /// </summary>
         ReturnedWithMissingParts
     }

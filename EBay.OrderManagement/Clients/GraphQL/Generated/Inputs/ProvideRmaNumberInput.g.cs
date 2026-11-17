@@ -48,7 +48,6 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// The human-readable string containing return merchandise authorization (RMA) number that needs to be included in the return package slip.
         ///
-        /// **Format**: Alphanumeric
         /// **Maximum length**: 100 characters
         /// </summary>
         public string? RmaNumber

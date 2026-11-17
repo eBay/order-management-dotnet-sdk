@@ -38,6 +38,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// This boolean field is used to control whether or not the seller should receive an email copy of the new purchase quote sent to the buyer. If this field is included and set to 'true', the seller will receive a copy of the new purchase quote in their eBay Inbox.
+        ///
         /// **Default value**: false
         /// </summary>
         public bool? EmailCopyToSeller
@@ -64,7 +65,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to add or modify available shipping or pickup logistics options provided by the seller.
+        /// This object is used to add or modify available shipping or pickup logistics options provided by the seller.
         /// </summary>
         public PurchaseQuoteLogisticsOptionInput LogisticsOptions
         {
@@ -78,7 +79,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// This field allows the seller to provide a custom message to the buyer regarding the new purchase quote.
-        /// **Minimum length**: 1 character
+        ///
         /// **Maximum length**: 512 characters
         /// </summary>
         public string? MessageToBuyer
@@ -92,7 +93,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to add or modify handling charges and/or a shipping discount for a purchase quote.
+        /// This object is used to add or modify handling charges and/or a shipping discount for a purchase quote.
         /// </summary>
         public PurchaseQuoteTotalsInput? Total
         {

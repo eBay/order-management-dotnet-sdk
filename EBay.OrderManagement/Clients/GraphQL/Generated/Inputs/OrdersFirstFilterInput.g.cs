@@ -59,7 +59,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container specifies sorting options for preferences for the returned order list.
+        /// This object specifies sorting options for preferences for the returned order list.
         /// </summary>
         public OrdersSortInput Sort
         {

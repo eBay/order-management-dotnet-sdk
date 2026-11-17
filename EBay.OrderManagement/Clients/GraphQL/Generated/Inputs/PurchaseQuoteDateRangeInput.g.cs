@@ -31,7 +31,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         private bool _set_dateType;
 
         /// <summary>
-        /// This container is used to set the time range. All purchase quotes either created or updated within this time range are retrieved.
+        /// This object is used to set the time range. All purchase quotes either created or updated within this time range are retrieved.
         /// </summary>
         public DateTimeRangeInput? DateTimeRange
         {

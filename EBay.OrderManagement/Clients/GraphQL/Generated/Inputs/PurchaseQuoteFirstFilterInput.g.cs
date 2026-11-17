@@ -33,7 +33,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         private bool _set_sort;
 
         /// <summary>
-        /// This container is used to set a date range filter. Only purchase quotes created or updated within this date range are returned.
+        /// This object is used to set a date range filter. Only purchase quotes created or updated within this date range are returned.
         /// </summary>
         public PurchaseQuoteDateRangeInput DateRange
         {
@@ -46,7 +46,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container includes the filters that can be used for a **purchaseQuotes** query. The **listingId** field can be used to retrieve purchase quote(s) involving a specific listing, or one or more of the boolean fields can be used to retrieve purchase quotes in certain states.
+        /// This object includes the filters that can be used for a **purchaseQuotes** query. The **listingId** field can be used to retrieve purchase quote(s) involving a specific listing, or one or more of the boolean fields can be used to retrieve purchase quotes in certain states.
+        ///
         /// **Note**: The default value for the **includeActive** boolean field is 'true', but the default value for all other boolean fields is 'false'.
         /// </summary>
         public PurchaseQuoteFilterInput? Filter
@@ -60,7 +61,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to control how purchase quotes are sorted in the query response.
+        /// This object is used to control how purchase quotes are sorted in the query response.
         /// </summary>
         public PurchaseQuoteSortInput Sort
         {

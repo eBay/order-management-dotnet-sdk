@@ -23,7 +23,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This input used to search for order inquiries based on specific criteria.
     /// - Do not provide both **initialPage** and **pageInfo**; they are mutually exclusive.
-    /// - If **maxPageSize** is &lt; '1' or &gt; '100', the server defaults to 20 (no error).
+    /// - If **maxPageSize** is &lt; `1` or &gt; `100`, the server defaults to `20` (no error).
     /// - If **pageCursor** is malformed or expired, an empty result is returned.
     /// - When using **pageInfo**, filters and sorting must match the initial request, or the server will return an empty result.
     /// </summary>
@@ -36,7 +36,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The parameters for the **first page** of a query request.
-        /// **Note:** This container cannot be used together with **cursor**.
+        ///
+        /// **Note**: This object cannot be used together with **cursor**.
         /// </summary>
         public OrderInquiryInitialPageInput? InitialPage
         {
@@ -49,8 +50,9 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The parameters for fetching a **subsequent page** of results. This container requires the opaque **cursor** (returned in **Pagination.nextCursor** or `Pagination.previousCursor**). This container must use the same filters and sorting as the initial request.
-        /// **Note:** This container cannot be used together with **initialPage**.
+        /// The parameters for fetching a **subsequent page** of results. This object requires the opaque **cursor** (returned in **Pagination.nextCursor** or `Pagination.previousCursor**). This object must use the same filters and sorting as the initial request.
+        ///
+        /// **Note**: This object cannot be used together with **initialPage**.
         /// </summary>
         public PageInfoInput? PageInfo
         {

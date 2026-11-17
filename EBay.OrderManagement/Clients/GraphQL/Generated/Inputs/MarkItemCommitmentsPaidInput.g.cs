@@ -30,7 +30,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// This array is used to specify up to 100 item commitment IDs to be marked as paid. Each item commitment ID is delimited with a comma.
-        /// **Max items**: 100
+        ///
+        /// **Maximum items**: 100
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<string> ItemCommitmentIds
         {

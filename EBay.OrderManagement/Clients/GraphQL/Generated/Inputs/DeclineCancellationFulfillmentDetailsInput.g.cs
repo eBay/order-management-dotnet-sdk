@@ -21,7 +21,7 @@ using EBay.OrderManagement.Clients.GraphQL;
 namespace EBay.OrderManagement.Generated.GraphQL
 {
     /// <summary>
-    ///  This input type provides the fulfillment details used to support and explain declining the cancellation.
+    /// This input type provides the fulfillment details used to support and explain declining the cancellation.
     /// </summary>
     public partial class DeclineCancellationFulfillmentDetailsInput : global::System.IEquatable<DeclineCancellationFulfillmentDetailsInput>
     {
@@ -31,7 +31,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         private bool _set_shippedAt;
 
         /// <summary>
-        ///  The tracking number provided by the shipping carrier for this fulfillment.
+        /// The tracking number provided by the shipping carrier for this fulfillment.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<DeclineCancellationShipmentTrackingDetailsInput>? ShipmentTrackingDetails
         {
@@ -44,7 +44,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        ///  The optional timestamp when the seller shipped the item.
+        /// The optional timestamp when the seller shipped the item.
         /// </summary>
         public global::System.DateTimeOffset? ShippedAt
         {

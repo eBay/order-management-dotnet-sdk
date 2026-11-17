@@ -27,13 +27,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// This mutation allows a buyer to submit a new purchase quote request to the seller.
-        /// **Note**: This operation is operation is for future use.
         ///
-        /// PossibleErrors:
-        /// | Code                  |  Message                                                                     |
-        /// |-----------------------|------------------------------------------------------------------------------|
-        /// | BAD_INPUT_VALUE       |  Input size is 0 or over the limit. Please provide valid input.              |
-        /// | INTERNAL_SERVER_ERROR |  System failure.                                                             |
+        /// **Note**: This operation is operation is for future use.
         /// </summary>
         public IRequestPurchaseQuote_RequestPurchaseQuote RequestPurchaseQuote { get; }
     }
@@ -50,13 +45,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// This mutation allows a buyer to submit a new purchase quote request to the seller.
-        /// **Note**: This operation is operation is for future use.
         ///
-        /// PossibleErrors:
-        /// | Code                  |  Message                                                                     |
-        /// |-----------------------|------------------------------------------------------------------------------|
-        /// | BAD_INPUT_VALUE       |  Input size is 0 or over the limit. Please provide valid input.              |
-        /// | INTERNAL_SERVER_ERROR |  System failure.                                                             |
+        /// **Note**: This operation is operation is for future use.
         /// </summary>
         public IRequestPurchaseQuote_RequestPurchaseQuote RequestPurchaseQuote { get; }
 
@@ -129,18 +119,18 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The unique identifier of the specific error. This code can be used by clients to programmatically identify and handle different types of errors without relying on error messages, which may change over time.
+        ///
         /// **Maximum length**: 40 characters
-        /// **Format**: Alphanumeric characters and underscores, in UPPER_CASE format
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
         /// A human-readable message describing the error. This message is intended for developers and should not be displayed directly to end users. It provides additional context about what went wrong and may include suggestions for how to resolve the issue.
+        ///
         /// **Maximum length**: 500 characters
-        /// **Format**: Alphanumeric characters, spaces, and common punctuation
         /// </summary>
         public string ErrorMessage { get; }
         /// <summary>
-        /// This boolean indicates whether or not the user should try to request the purchase quote again. If this field is returned as 'true', the user can make another attempt to request the purchase quote.
+        /// This boolean indicates whether or not the user should try to request the purchase quote again. If this field is returned as `true`, the user can make another attempt to request the purchase quote.
         /// </summary>
         public bool Retryable { get; }
     }
@@ -169,7 +159,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IRequestPurchaseQuote_RequestPurchaseQuote_RequestPurchaseQuoteSuccess : IRequestPurchaseQuote_RequestPurchaseQuote
     {
         /// <summary>
-        /// This container shows the successfully requested purchase quote.
+        /// This object shows the successfully requested purchase quote.
         /// </summary>
         public IRequestPurchaseQuote_RequestPurchaseQuote_PurchaseQuote? PurchaseQuote { get; }
     }
@@ -191,20 +181,20 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The unique identifier of the specific error. This code can be used by clients to programmatically identify and handle different types of errors without relying on error messages, which may change over time.
+        ///
         /// **Maximum length**: 40 characters
-        /// **Format**: Alphanumeric characters and underscores, in UPPER_CASE format
         /// </summary>
         public string ErrorCode { get; }
 
         /// <summary>
         /// A human-readable message describing the error. This message is intended for developers and should not be displayed directly to end users. It provides additional context about what went wrong and may include suggestions for how to resolve the issue.
+        ///
         /// **Maximum length**: 500 characters
-        /// **Format**: Alphanumeric characters, spaces, and common punctuation
         /// </summary>
         public string ErrorMessage { get; }
 
         /// <summary>
-        /// This boolean indicates whether or not the user should try to request the purchase quote again. If this field is returned as 'true', the user can make another attempt to request the purchase quote.
+        /// This boolean indicates whether or not the user should try to request the purchase quote again. If this field is returned as `true`, the user can make another attempt to request the purchase quote.
         /// </summary>
         public bool Retryable { get; }
 
@@ -357,7 +347,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// This container shows the successfully requested purchase quote.
+        /// This object shows the successfully requested purchase quote.
         /// </summary>
         public IRequestPurchaseQuote_RequestPurchaseQuote_PurchaseQuote? PurchaseQuote { get; }
 

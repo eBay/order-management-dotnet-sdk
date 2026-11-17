@@ -21,7 +21,7 @@ using EBay.OrderManagement.Clients.GraphQL;
 namespace EBay.OrderManagement.Generated.GraphQL
 {
     /// <summary>
-    /// This input is used to retrieve an inquiry by its unique identifier.
+    /// This input type is used to retrieve an inquiry by its unique identifier.
     /// </summary>
     public partial class OrderInquiryInput : global::System.IEquatable<OrderInquiryInput>
     {

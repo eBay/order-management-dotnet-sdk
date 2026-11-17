@@ -28,7 +28,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// The **createItemCommitmentCancellation** mutation creates a cancellation on an item commitment.
         ///
-        /// **Note:** An item commitment is the agreement to reserve a specific item for a buyer, ensuring its availability for purchase. Cancelling an item commitment releases that reservation. If the seller opts to relist the item by setting **relistItem** to `true`, and the **PostPurchaseListingRelistTask** completes successfully, the item becomes available to other buyers.
+        /// **Note**: An item commitment is the agreement to reserve a specific item for a buyer, ensuring its availability for purchase. Cancelling an item commitment releases that reservation. If the seller opts to relist the item by setting **relistItem** to `true`, and the **PostPurchaseListingRelistTask** completes successfully, the item becomes available to other buyers.
         /// </summary>
         public ICreateItemCommitmentCancellation_CreateItemCommitmentCancellation CreateItemCommitmentCancellation { get; }
     }
@@ -46,7 +46,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// The **createItemCommitmentCancellation** mutation creates a cancellation on an item commitment.
         ///
-        /// **Note:** An item commitment is the agreement to reserve a specific item for a buyer, ensuring its availability for purchase. Cancelling an item commitment releases that reservation. If the seller opts to relist the item by setting **relistItem** to `true`, and the **PostPurchaseListingRelistTask** completes successfully, the item becomes available to other buyers.
+        /// **Note**: An item commitment is the agreement to reserve a specific item for a buyer, ensuring its availability for purchase. Cancelling an item commitment releases that reservation. If the seller opts to relist the item by setting **relistItem** to `true`, and the **PostPurchaseListingRelistTask** completes successfully, the item becomes available to other buyers.
         /// </summary>
         public ICreateItemCommitmentCancellation_CreateItemCommitmentCancellation CreateItemCommitmentCancellation { get; }
 
@@ -107,7 +107,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This union type defines the response payload for the **createItemCommitmentCancellation** mutation. On success, the response includes a **CreateItemCommitmentCancellationSuccess** type object and any warnings; on failure it returns an error indicating the reason that the create order cancellation failed.
     ///
-    /// **Note:** Additional types may be added to this union in the future; clients should handle unrecognized types gracefully.
+    /// **Note**: Additional types may be added to this union in the future; clients should handle unrecognized types gracefully.
     /// </summary>
     public partial interface ICreateItemCommitmentCancellation_CreateItemCommitmentCancellation
     {
@@ -117,18 +117,18 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This interface provide the status for the contract cancellation on the contract.
     ///
-    /// **Note:** Additional interface types may be added in the future; clients should handle unrecognized types gracefully.
+    /// **Note**: Additional interface types may be added in the future; clients should handle unrecognized types gracefully.
     /// </summary>
     public partial interface ICreateItemCommitmentCancellation_CreateItemCommitmentCancellation_ItemCommitmentCancellation_Status
     {
         /// <summary>
-        /// Implementations should provide a single stable code that will never change. Clients can use code or __typename interchangeably, but __typename is preferred.
+        /// Implementations should provide a single stable code that will never change. Clients can use `code` or `__typename` interchangeably, but `__typename` is preferred.
         /// </summary>
         public string Code { get; }
         /// <summary>
         /// A human-readable description of the cancellation status. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
     }
@@ -148,12 +148,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type indicates that the cancellation was declined and the workflow is in an end state. The cancellation did not complete successfully. Typical causes include:
+    /// This type indicates that the cancellation was declined and the workflow is in an end state. The cancellation did not complete successfully.
+    ///
+    /// Typical causes include:
     /// - Seller explicitly rejected the cancellation
     /// - System auto-declined (for example, if the item already shipped)
     /// - Refund attempts failed or were exhausted within cancellation life cycle
     ///
-    /// **Note:** The cancellation did not complete successfully and the cancellation is at end state; no further cancellation actions can successfully complete from this state.
+    /// **Note**: The cancellation did not complete successfully and the cancellation is at end state; no further cancellation actions can successfully complete from this state.
     /// </summary>
     public partial interface ICreateItemCommitmentCancellation_CreateItemCommitmentCancellation_ItemCommitmentCancellation_Status_ContractCancellationDeclined : ICreateItemCommitmentCancellation_CreateItemCommitmentCancellation_ItemCommitmentCancellation_Status
     {
@@ -167,12 +169,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents the cancellation of an **ItemCommitment** contract. The original commitment is available in the `ItemCommitmentCancellation.itemCommitment` field.
+    /// This type represents the cancellation of an **ItemCommitment** contract. The original commitment is available in the **ItemCommitmentCancellation.itemCommitment** field.
     /// </summary>
     public partial interface ICreateItemCommitmentCancellation_CreateItemCommitmentCancellation_ItemCommitmentCancellation
     {
         /// <summary>
-        /// The unique identifier of this item commitment cancellation.
+        /// The unique identifier of the item commitment cancellation.
         /// </summary>
         public string CancellationId { get; }
         /// <summary>
@@ -186,7 +188,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents the cancellation of an **ItemCommitment** contract. The original commitment is available in the `ItemCommitmentCancellation.itemCommitment` field.
+    /// This type represents the cancellation of an **ItemCommitment** contract. The original commitment is available in the **ItemCommitmentCancellation.itemCommitment** field.
     /// </summary>
     public partial interface ICreateItemCommitmentCancellation_CreateItemCommitmentCancellation_ItemCommitmentCancellation_ItemCommitmentCancellation : ICreateItemCommitmentCancellation_CreateItemCommitmentCancellation_ItemCommitmentCancellation
     {
@@ -206,7 +208,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This interface type represents reasons at the item-commitment level that make the cancellation ineligible, thereby blocking creation of a cancellation.
     ///
-    /// **Note:** Additional interfaces may be added to this union in the future; clients should handle unrecognized interfaces gracefully.
+    /// **Note**: Additional interfaces may be added to this union in the future; clients should handle unrecognized interfaces gracefully.
     /// </summary>
     public partial interface ICreateItemCommitmentCancellation_CreateItemCommitmentCancellation_IneligibilityReasons
     {
@@ -218,11 +220,11 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// Human-readable message of the eligibility failure reason. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string DisplayMessage { get; }
         /// <summary>
-        /// Item commitment ID whose cancellation was blocked by a commitment level eligibility rules.
+        /// The unique identifier of the item commitment whose cancellation was blocked by commitment level eligibility rule(s).
         /// </summary>
         public string ItemCommitmentId { get; }
     }
@@ -251,7 +253,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This interface provides the cancellation reason during contract cancellation creation.
     ///
-    /// **Note:** Additional reasons may be added in the future; clients should handle unrecognized types gracefully.
+    /// **Note**: Additional reasons may be added in the future; clients should handle unrecognized types gracefully.
     /// </summary>
     public partial interface ICreateItemCommitmentCancellation_CreateItemCommitmentCancellation_IneligibilityReasons_AvailableReasons
     {
@@ -262,7 +264,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the cancellation reason. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
     }
@@ -352,7 +354,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents the reason used by seller when there are issues with the buyer's shipping address.
+    /// This type represents the reason used by the seller when there are issues with the buyer's shipping address.
     /// </summary>
     public partial interface ICreateItemCommitmentCancellation_CreateItemCommitmentCancellation_IneligibilityReasons_AvailableReasons_ShippingAddressIssuesCancellation : ICreateItemCommitmentCancellation_CreateItemCommitmentCancellation_IneligibilityReasons_AvailableReasons
     {
@@ -366,7 +368,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents the reason used by seller when the buyer has not completed payment after the maximum waiting period defined by eBay's policy for resolving unpaid items. For more details, refer to the policy: https://www.ebay.com/help/selling/getting-paid/resolving-unpaid-items-buyers?id=4137
+    /// This type represents the reason used by the seller when the buyer has not completed payment after the maximum waiting period defined by eBay's policy for resolving unpaid items. For more details, refer to the policy: https://www.ebay.com/help/selling/getting-paid/resolving-unpaid-items-buyers?id=4137
     /// </summary>
     public partial interface ICreateItemCommitmentCancellation_CreateItemCommitmentCancellation_IneligibilityReasons_AvailableReasons_UnpaidContractCancellation : ICreateItemCommitmentCancellation_CreateItemCommitmentCancellation_IneligibilityReasons_AvailableReasons
     {
@@ -378,7 +380,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface ICreateItemCommitmentCancellation_CreateItemCommitmentCancellation_IneligibilityReasons_ItemCommitmentCancellationReasonNotAllowed : ICreateItemCommitmentCancellation_CreateItemCommitmentCancellation_IneligibilityReasons
     {
         /// <summary>
-        /// Applicable cancellation reasons for current actor (user).
+        /// The applicable cancellation reasons for current actor (user).
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<ICreateItemCommitmentCancellation_CreateItemCommitmentCancellation_IneligibilityReasons_AvailableReasons?> AvailableReasons { get; }
     }
@@ -386,7 +388,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This type describes the commitment-level ineligibility reasons that prevented the cancellation of an item commitment. The `ineligibilityReasons` field contains the specific commitment-level failure reasons, explaining why the cancellation cannot be performed at this time.
     ///
-    /// **Note:** Clients should use **errorCode** and **ineligibilityReasons** for programmatic handling; **errorMessage** is intended for display.
+    /// **Note**: Clients should use **errorCode** and **ineligibilityReasons** for programmatic handling; **errorMessage** is intended for display.
     /// </summary>
     public partial interface ICreateItemCommitmentCancellation_CreateItemCommitmentCancellation_ItemCommitmentCancellationEligibilityError : ICreateItemCommitmentCancellation_CreateItemCommitmentCancellation
     {
@@ -397,7 +399,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the error message. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
         /// <summary>
@@ -418,11 +420,11 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the error message. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
         /// <summary>
-        /// The item commitment ID that was not found.
+        /// The unique identifier of the item commitment that was not found.
         /// </summary>
         public string ItemCommitmentId { get; }
     }
@@ -439,14 +441,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Implementations should provide a single stable code that will never change. Clients can use code or __typename interchangeably, but __typename is preferred.
+        /// Implementations should provide a single stable code that will never change. Clients can use `code` or `__typename` interchangeably, but `__typename` is preferred.
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable description of the cancellation status. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -521,14 +523,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Implementations should provide a single stable code that will never change. Clients can use code or __typename interchangeably, but __typename is preferred.
+        /// Implementations should provide a single stable code that will never change. Clients can use `code` or `__typename` interchangeably, but `__typename` is preferred.
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable description of the cancellation status. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -592,12 +594,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type indicates that the cancellation was declined and the workflow is in an end state. The cancellation did not complete successfully. Typical causes include:
+    /// This type indicates that the cancellation was declined and the workflow is in an end state. The cancellation did not complete successfully.
+    ///
+    /// Typical causes include:
     /// - Seller explicitly rejected the cancellation
     /// - System auto-declined (for example, if the item already shipped)
     /// - Refund attempts failed or were exhausted within cancellation life cycle
     ///
-    /// **Note:** The cancellation did not complete successfully and the cancellation is at end state; no further cancellation actions can successfully complete from this state.
+    /// **Note**: The cancellation did not complete successfully and the cancellation is at end state; no further cancellation actions can successfully complete from this state.
     /// </summary>
     public partial class CreateItemCommitmentCancellation_CreateItemCommitmentCancellation_ItemCommitmentCancellation_Status_ContractCancellationDeclined : global::System.IEquatable<CreateItemCommitmentCancellation_CreateItemCommitmentCancellation_ItemCommitmentCancellation_Status_ContractCancellationDeclined>, ICreateItemCommitmentCancellation_CreateItemCommitmentCancellation_ItemCommitmentCancellation_Status_ContractCancellationDeclined
     {
@@ -608,14 +612,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Implementations should provide a single stable code that will never change. Clients can use code or __typename interchangeably, but __typename is preferred.
+        /// Implementations should provide a single stable code that will never change. Clients can use `code` or `__typename` interchangeably, but `__typename` is preferred.
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable description of the cancellation status. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -690,14 +694,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Implementations should provide a single stable code that will never change. Clients can use code or __typename interchangeably, but __typename is preferred.
+        /// Implementations should provide a single stable code that will never change. Clients can use `code` or `__typename` interchangeably, but `__typename` is preferred.
         /// </summary>
         public string Code { get; }
 
         /// <summary>
         /// A human-readable description of the cancellation status. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -761,7 +765,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents the cancellation of an **ItemCommitment** contract. The original commitment is available in the `ItemCommitmentCancellation.itemCommitment` field.
+    /// This type represents the cancellation of an **ItemCommitment** contract. The original commitment is available in the **ItemCommitmentCancellation.itemCommitment** field.
     /// </summary>
     public partial class CreateItemCommitmentCancellation_CreateItemCommitmentCancellation_ItemCommitmentCancellation_ItemCommitmentCancellation : global::System.IEquatable<CreateItemCommitmentCancellation_CreateItemCommitmentCancellation_ItemCommitmentCancellation_ItemCommitmentCancellation>, ICreateItemCommitmentCancellation_CreateItemCommitmentCancellation_ItemCommitmentCancellation_ItemCommitmentCancellation
     {
@@ -773,7 +777,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The unique identifier of this item commitment cancellation.
+        /// The unique identifier of the item commitment cancellation.
         /// </summary>
         public string CancellationId { get; }
 
@@ -951,12 +955,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// Human-readable message of the eligibility failure reason. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string DisplayMessage { get; }
 
         /// <summary>
-        /// Item commitment ID whose cancellation was blocked by a commitment level eligibility rules.
+        /// The unique identifier of the item commitment whose cancellation was blocked by commitment level eligibility rule(s).
         /// </summary>
         public string ItemCommitmentId { get; }
 
@@ -1052,12 +1056,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// Human-readable message of the eligibility failure reason. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string DisplayMessage { get; }
 
         /// <summary>
-        /// Item commitment ID whose cancellation was blocked by a commitment level eligibility rules.
+        /// The unique identifier of the item commitment whose cancellation was blocked by commitment level eligibility rule(s).
         /// </summary>
         public string ItemCommitmentId { get; }
 
@@ -1153,12 +1157,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// Human-readable message of the eligibility failure reason. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string DisplayMessage { get; }
 
         /// <summary>
-        /// Item commitment ID whose cancellation was blocked by a commitment level eligibility rules.
+        /// The unique identifier of the item commitment whose cancellation was blocked by commitment level eligibility rule(s).
         /// </summary>
         public string ItemCommitmentId { get; }
 
@@ -1250,7 +1254,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the cancellation reason. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -1332,7 +1336,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the cancellation reason. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -1414,7 +1418,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the cancellation reason. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -1496,7 +1500,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the cancellation reason. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -1578,7 +1582,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the cancellation reason. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -1660,7 +1664,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the cancellation reason. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -1742,7 +1746,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the cancellation reason. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -1824,7 +1828,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the cancellation reason. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -1906,7 +1910,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the cancellation reason. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -1988,7 +1992,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the cancellation reason. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -2070,7 +2074,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the cancellation reason. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -2152,7 +2156,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the cancellation reason. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -2216,7 +2220,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents the reason used by seller when there are issues with the buyer's shipping address.
+    /// This type represents the reason used by the seller when there are issues with the buyer's shipping address.
     /// </summary>
     public partial class CreateItemCommitmentCancellation_CreateItemCommitmentCancellation_IneligibilityReasons_AvailableReasons_ShippingAddressIssuesCancellation : global::System.IEquatable<CreateItemCommitmentCancellation_CreateItemCommitmentCancellation_IneligibilityReasons_AvailableReasons_ShippingAddressIssuesCancellation>, ICreateItemCommitmentCancellation_CreateItemCommitmentCancellation_IneligibilityReasons_AvailableReasons_ShippingAddressIssuesCancellation
     {
@@ -2234,7 +2238,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the cancellation reason. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -2316,7 +2320,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the cancellation reason. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -2380,7 +2384,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents the reason used by seller when the buyer has not completed payment after the maximum waiting period defined by eBay's policy for resolving unpaid items. For more details, refer to the policy: https://www.ebay.com/help/selling/getting-paid/resolving-unpaid-items-buyers?id=4137
+    /// This type represents the reason used by the seller when the buyer has not completed payment after the maximum waiting period defined by eBay's policy for resolving unpaid items. For more details, refer to the policy: https://www.ebay.com/help/selling/getting-paid/resolving-unpaid-items-buyers?id=4137
     /// </summary>
     public partial class CreateItemCommitmentCancellation_CreateItemCommitmentCancellation_IneligibilityReasons_AvailableReasons_UnpaidContractCancellation : global::System.IEquatable<CreateItemCommitmentCancellation_CreateItemCommitmentCancellation_IneligibilityReasons_AvailableReasons_UnpaidContractCancellation>, ICreateItemCommitmentCancellation_CreateItemCommitmentCancellation_IneligibilityReasons_AvailableReasons_UnpaidContractCancellation
     {
@@ -2398,7 +2402,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the cancellation reason. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 100 characters
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayText { get; }
 
@@ -2485,17 +2489,17 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// Human-readable message of the eligibility failure reason. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string DisplayMessage { get; }
 
         /// <summary>
-        /// Item commitment ID whose cancellation was blocked by a commitment level eligibility rules.
+        /// The unique identifier of the item commitment whose cancellation was blocked by commitment level eligibility rule(s).
         /// </summary>
         public string ItemCommitmentId { get; }
 
         /// <summary>
-        /// Applicable cancellation reasons for current actor (user).
+        /// The applicable cancellation reasons for current actor (user).
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<ICreateItemCommitmentCancellation_CreateItemCommitmentCancellation_IneligibilityReasons_AvailableReasons?> AvailableReasons { get; }
 
@@ -2573,7 +2577,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This type describes the commitment-level ineligibility reasons that prevented the cancellation of an item commitment. The `ineligibilityReasons` field contains the specific commitment-level failure reasons, explaining why the cancellation cannot be performed at this time.
     ///
-    /// **Note:** Clients should use **errorCode** and **ineligibilityReasons** for programmatic handling; **errorMessage** is intended for display.
+    /// **Note**: Clients should use **errorCode** and **ineligibilityReasons** for programmatic handling; **errorMessage** is intended for display.
     /// </summary>
     public partial class CreateItemCommitmentCancellation_CreateItemCommitmentCancellation_ItemCommitmentCancellationEligibilityError : global::System.IEquatable<CreateItemCommitmentCancellation_CreateItemCommitmentCancellation_ItemCommitmentCancellationEligibilityError>, ICreateItemCommitmentCancellation_CreateItemCommitmentCancellation_ItemCommitmentCancellationEligibilityError
     {
@@ -2595,7 +2599,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the error message. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
 
@@ -2693,12 +2697,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable description of the error message. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
 
         /// <summary>
-        /// The item commitment ID that was not found.
+        /// The unique identifier of the item commitment that was not found.
         /// </summary>
         public string ItemCommitmentId { get; }
 

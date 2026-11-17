@@ -23,7 +23,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This input type provides filtering and sorting parameters for the first page of a contract cancellations query.
     ///
-    /// **Note:** The same filters and sort order are also used when returning subsequent pages using cursor-based pagination.
+    /// **Note**: The same filters and sort order are also used when returning subsequent pages using cursor-based pagination.
     /// </summary>
     public partial class ContractCancellationInitialPageInput : global::System.IEquatable<ContractCancellationInitialPageInput>
     {
@@ -33,9 +33,9 @@ namespace EBay.OrderManagement.Generated.GraphQL
         private bool _set_sort;
 
         /// <summary>
-        /// This container specifies filtering options for contract cancellations.
+        /// This object specifies filtering options for contract cancellations.
         ///
-        /// **Default:** Returns all requested cancellations created in the last 30 days
+        /// **Default**: Returns all requested cancellations created in the last 30 days
         /// </summary>
         public ContractCancellationFilterInput Filter
         {
@@ -48,9 +48,9 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container specifies sorting options for contract cancellations. Ascending sorts by `REQUEST_DATE` from oldest to newest.
+        /// This object specifies sorting options for contract cancellations. Ascending sorts by `REQUEST_DATE` from oldest to newest.
         ///
-        /// **Default:** sort by `REQUEST_DATE` in ascending order
+        /// **Default**: sort by `REQUEST_DATE` in ascending order
         /// </summary>
         public ContractCancellationSortInput Sort
         {
