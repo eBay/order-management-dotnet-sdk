@@ -97,13 +97,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         internal void WriteJson(global::System.Text.Json.Utf8JsonWriter writer)
         {
-            // An input object with no fields set is sent as null, not {}.
-            if (!(_set_addressRoute || _set_conditionSet || _set_listingMarketplace || _set_name))
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
+            // Always an object, {} when no field is set. Only a null reference to the input is sent as null.
             writer.WriteStartObject();
             if (_set_addressRoute)
             {
