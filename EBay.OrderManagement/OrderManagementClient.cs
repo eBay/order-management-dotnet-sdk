@@ -17,7 +17,6 @@ using EBay.OrderManagement.Clients.Rest;
 using EBay.OrderManagement.Configuration;
 using EBay.OrderManagement.Generated.Fulfillment;
 using EBay.OrderManagement.Generated.Logistics;
-using EBay.OrderManagement.Generated.PostOrderApi;
 using Microsoft.Kiota.Abstractions.Authentication;
 using Microsoft.Kiota.Http.HttpClientLibrary;
 using System.Collections.Generic;
@@ -37,7 +36,6 @@ public class OrderManagementClient : IDisposable
 
     public FulfillmentClient Fulfillment { get; private set; } = null!;
     public LogisticsClient Logistics { get; private set; } = null!;
-    public PostOrderApiClient PostOrderApi { get; private set; } = null!;
 
     public OrderGraphQLClient GraphQL { get; }
 
@@ -110,8 +108,7 @@ public class OrderManagementClient : IDisposable
     internal static IReadOnlyList<RestEndpoint> RestEndpoints(OrderManagementConfiguration config) =>
     [
         new RestEndpoint("fulfillment", config.RestBaseUrl("fulfillment")),
-        new RestEndpoint("logistics", config.RestBaseUrl("logistics")),
-        new RestEndpoint("post-order-api", config.RestBaseUrl("post-order-api"))
+        new RestEndpoint("logistics", config.RestBaseUrl("logistics"))
     ];
 
     private void InitializeRestClients(
@@ -125,8 +122,6 @@ public class OrderManagementClient : IDisposable
         Fulfillment = new FulfillmentClient(new FulfillmentApiClient(fulfillmentAdapter), config, tokenContext, fulfillmentAdapter);
         var logisticsAdapter = new HttpClientRequestAdapter(auth, httpClient: httpClientFor(endpoints.First(endpoint => endpoint.ApiId == "logistics")));
         Logistics = new LogisticsClient(new LogisticsApiClient(logisticsAdapter), config, tokenContext, logisticsAdapter);
-        var postOrderApiAdapter = new HttpClientRequestAdapter(auth, httpClient: httpClientFor(endpoints.First(endpoint => endpoint.ApiId == "post-order-api")));
-        PostOrderApi = new PostOrderApiClient(new PostOrderApiApiClient(postOrderApiAdapter), config, tokenContext, postOrderApiAdapter);
     }
 
     public void Dispose()

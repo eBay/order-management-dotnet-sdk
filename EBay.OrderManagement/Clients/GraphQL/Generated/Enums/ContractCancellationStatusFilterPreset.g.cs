@@ -23,24 +23,24 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This enumerated type provides values for filtering contract cancellations by status.
     ///
-    /// **Note:** Additional values may be added in the future; clients should handle unrecognized values gracefully.
+    /// **Note**: Additional values may be added in the future; clients should handle unrecognized values gracefully.
     /// </summary>
     public enum ContractCancellationStatusFilterPreset
     {
         /// <summary>
-        /// An open cancellation that is awaiting an action from the seller.
+        /// This valus is used to retrieve open contract cancellations that are awaiting an action from the seller.
         /// </summary>
         AwaitingActionFromSeller,
         /// <summary>
-        /// The cancellation has completed (end state).
+        /// This valus is used to retrieve completed/closed contract cancellations.
         /// </summary>
         Completed,
         /// <summary>
-        /// The cancellation is declined (end state).
+        /// This valus is used to retrieve contract cancellation requests that were declined.
         /// </summary>
         Declined,
         /// <summary>
-        /// An approved cancellation that is awaiting processing or a refund is in progress.
+        /// This valus is used to retrieve approved cancellation requests that are awaiting processing or a refund is in progress.
         /// </summary>
         Pending
     }

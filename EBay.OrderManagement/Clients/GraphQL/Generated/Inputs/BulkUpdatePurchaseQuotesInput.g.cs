@@ -30,6 +30,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// This array is used to provide updates on up to 100 purchase quotes.
+        ///
         /// **Note**: A separate node is required for each purchase quote being updated.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<UpdatePurchaseQuoteInput> Updates

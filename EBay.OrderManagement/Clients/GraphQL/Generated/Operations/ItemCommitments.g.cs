@@ -26,7 +26,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IItemCommitmentsResult
     {
         /// <summary>
-        /// The output for the **itemCommitmentsByIds** query.
+        /// This query can be used to retrieve item commitments associated with a user.
         /// </summary>
         public IItemCommitments_ItemCommitments ItemCommitments { get; }
     }
@@ -42,7 +42,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The output for the **itemCommitmentsByIds** query.
+        /// This query can be used to retrieve item commitments associated with a user.
         /// </summary>
         public IItemCommitments_ItemCommitments ItemCommitments { get; }
 
@@ -114,8 +114,9 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_State_ItemCommitmentAbandoned : IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_State
     {
         /// <summary>
-        /// The human-readable label representing an abandoned item commitment (e.g. "Abandoned").
-        /// **Maximum length**: 100 characters.
+        /// The human-readable label representing an abandoned item commitment (e.g. `Abandoned`).
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Label { get; }
     }
@@ -126,7 +127,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_State_ItemCommitmentActive : IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_State
     {
         /// <summary>
-        /// The human-readable label representing an active item commitment (e.g. "Active").
+        /// The human-readable label representing an active item commitment (e.g. `Active`).
+        ///
         /// **Maximum length**: 100 characters.
         /// </summary>
         public string Label { get; }
@@ -139,16 +141,19 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The human-readable label representing a cancelled item commitment (e.g. "Cancelled").
+        ///
         /// **Maximum length**: 100 characters.
         /// </summary>
         public string Label { get; }
         /// <summary>
         /// This timestamp indicates the date and time when the item commitment was cancelled.
+        ///
         /// **Note**: This field is only returned for completed cancellations.
         /// </summary>
         public global::System.DateTimeOffset CancelledAt { get; }
         /// <summary>
         /// This field shows the reason provided for the cancellation. This may be system-generated or user-specified.
+        ///
         /// **Note**: May not be returned if no reason was given or generated.
         /// </summary>
         public string? Reason { get; }
@@ -160,7 +165,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_State_ItemCommitmentCompleted : IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_State
     {
         /// <summary>
-        /// The human-readable label representing a completed item commitment (e.g. "Completed").
+        /// The human-readable label representing a completed item commitment (e.g. `Completed`).
+        ///
         /// **Maximum length**: 100 characters.
         /// </summary>
         public string Label { get; }
@@ -168,12 +174,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
     /// <summary>
     /// This type is used to express the state of a locked item commitment.
+    ///
     /// **Note**: An item commitment may enter a locked state during checkout when the item commitment is being validated, authorized for payment, or undergoing internal processing. The item commitment may be individually locked or indirectly locked as part of a purchase quote that is in checkout progress.
     /// </summary>
     public partial interface IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_State_ItemCommitmentLocked : IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_State
     {
         /// <summary>
-        /// The human-readable label representing a locked item commitment (e.g. "Locked").
+        /// The human-readable label representing a locked item commitment (e.g. `Locked`).
+        ///
         /// **Maximum length**: 100 characters.
         /// </summary>
         public string Label { get; }
@@ -182,7 +190,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This type represents the line item in an **ItemCommitment** cancellation.
     ///
-    /// **Note:** This type does not expose the contract line item since the root cancellation already references the `itemCommitment`.
+    /// **Note**: This type does not expose the contract line item since the root cancellation already references the `itemCommitment`.
     /// </summary>
     public partial interface IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_Cancellation_LineItems
     {
@@ -191,8 +199,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// </summary>
         public string CancellationLineItemId { get; }
         /// <summary>
-        /// Quantity cancelled for original item commitment.
-        /// Present only when the item commitment cancellation is completed.
+        /// Quantity cancelled for original item commitment. This field is present only when the item commitment cancellation has been completed.
         /// </summary>
         public int? CancelledQuantity { get; }
         /// <summary>
@@ -204,19 +211,19 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This type represents the line item in an **ItemCommitment** cancellation.
     ///
-    /// **Note:** This type does not expose the contract line item since the root cancellation already references the `itemCommitment`.
+    /// **Note**: This type does not expose the contract line item since the root cancellation already references the `itemCommitment`.
     /// </summary>
     public partial interface IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_Cancellation_LineItems_ItemCommitmentCancellationLineItem : IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_Cancellation_LineItems
     {
     }
 
     /// <summary>
-    /// This type represents the cancellation of an **ItemCommitment** contract. The original commitment is available in the `ItemCommitmentCancellation.itemCommitment` field.
+    /// This type represents the cancellation of an **ItemCommitment** contract. The original commitment is available in the **ItemCommitmentCancellation.itemCommitment** field.
     /// </summary>
     public partial interface IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_Cancellation
     {
         /// <summary>
-        /// The unique identifier of this item commitment cancellation.
+        /// The unique identifier of the item commitment cancellation.
         /// </summary>
         public string CancellationId { get; }
         /// <summary>
@@ -226,7 +233,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents the cancellation of an **ItemCommitment** contract. The original commitment is available in the `ItemCommitmentCancellation.itemCommitment` field.
+    /// This type represents the cancellation of an **ItemCommitment** contract. The original commitment is available in the **ItemCommitmentCancellation.itemCommitment** field.
     /// </summary>
     public partial interface IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_Cancellation_ItemCommitmentCancellation : IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_Cancellation
     {
@@ -251,62 +258,64 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// eBay User details
+    /// This type displays information about a registered eBay user. Some sensitive data will be masked/omitted if the eBay user for whom information is being requested is not the user issuing the query. If the person issuing the query has an existing order relationship with the user for whom information is being requested, some additional information will be returned.
     /// </summary>
     public partial interface IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_Buyer
     {
         /// <summary>
         /// The public-facing user ID of the user.
         ///
-        /// **Note:** Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to [Data Handling Compliance](https://developer.ebay.com/api-docs/static/data-handling-update.html).
+        /// **Note**: Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to [Data Handling Compliance](https://developer.ebay.com/api-docs/static/data-handling-update.html).
         /// </summary>
         public string UserId { get; }
     }
 
     /// <summary>
-    /// eBay User details
+    /// This type displays information about a registered eBay user. Some sensitive data will be masked/omitted if the eBay user for whom information is being requested is not the user issuing the query. If the person issuing the query has an existing order relationship with the user for whom information is being requested, some additional information will be returned.
     /// </summary>
     public partial interface IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_Buyer_User : IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_Buyer
     {
     }
 
     /// <summary>
-    /// eBay User details
+    /// This type displays information about a registered eBay user. Some sensitive data will be masked/omitted if the eBay user for whom information is being requested is not the user issuing the query. If the person issuing the query has an existing order relationship with the user for whom information is being requested, some additional information will be returned.
     /// </summary>
     public partial interface IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_Seller
     {
         /// <summary>
         /// The public-facing user ID of the user.
         ///
-        /// **Note:** Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to [Data Handling Compliance](https://developer.ebay.com/api-docs/static/data-handling-update.html).
+        /// **Note**: Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to [Data Handling Compliance](https://developer.ebay.com/api-docs/static/data-handling-update.html).
         /// </summary>
         public string UserId { get; }
     }
 
     /// <summary>
-    /// eBay User details
+    /// This type displays information about a registered eBay user. Some sensitive data will be masked/omitted if the eBay user for whom information is being requested is not the user issuing the query. If the person issuing the query has an existing order relationship with the user for whom information is being requested, some additional information will be returned.
     /// </summary>
     public partial interface IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_Seller_User : IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_Seller
     {
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial interface IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_Totals_CommittedTotal_Original
     {
         /// <summary>
-        /// The monetary amount, in the currency specified by the **currency** field.
+        /// The numerical value of the monetary amount in the currency specified through the **currency** field.
         /// </summary>
         public decimal Value { get; }
         /// <summary>
-        /// A three-letter ISO 4217 code that indicates the currency of the amount in the **value** field.
+        /// The three-letter ISO 4217 currency code associated with this monetary amount.
+        ///
+        /// **Format**: Three-letter uppercase alphabetic code (for example, `USD`, `EUR`, `GBP`)
         /// </summary>
         public CurrencyAlpha3Code? Currency { get; }
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial interface IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_Totals_CommittedTotal_Original_Amount : IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_Totals_CommittedTotal_Original
     {
@@ -349,18 +358,18 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// An Item represents a specific, purchasable configuration within a listing. It includes a unique combination of identifying characteristics such global identifiers, listing terms, availability, price, and regulatory requirements necessary to complete a transaction. Every listing contains at least one item, providing a unified approach that works transparently across simple single-sku listings and complex multi-sku listing.
+    /// This type represents an item, which is a specific, purchasable configuration within a listing. It includes a unique combination of identifying characteristics such global identifiers, listing terms, availability, price, and regulatory requirements necessary to complete a transaction. Every listing contains at least one item, providing a unified approach that works transparently across simple single-sku listings and complex multi-sku listing.
     /// </summary>
     public partial interface IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_LineItem_Item
     {
         /// <summary>
-        /// ID of an item.
+        /// This field identifies a purchasable item in a single-SKU or multiple-SKU listing.
         /// </summary>
         public string ItemId { get; }
     }
 
     /// <summary>
-    /// An Item represents a specific, purchasable configuration within a listing. It includes a unique combination of identifying characteristics such global identifiers, listing terms, availability, price, and regulatory requirements necessary to complete a transaction. Every listing contains at least one item, providing a unified approach that works transparently across simple single-sku listings and complex multi-sku listing.
+    /// This type represents an item, which is a specific, purchasable configuration within a listing. It includes a unique combination of identifying characteristics such global identifiers, listing terms, availability, price, and regulatory requirements necessary to complete a transaction. Every listing contains at least one item, providing a unified approach that works transparently across simple single-sku listings and complex multi-sku listing.
     /// </summary>
     public partial interface IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_LineItem_Item_Item : IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_LineItem_Item
     {
@@ -391,7 +400,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_LineItem_PurchaseFlow_PurchaseFlowBestOffer : IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_LineItem_PurchaseFlow
     {
         /// <summary>
-        /// The human-readable label representing a Best Offer purchase flow . Value: `Best Offer`.
+        /// The human-readable label representing a Best Offer purchase flow. Value: `Best Offer`.
         /// </summary>
         public string Label { get; }
     }
@@ -447,7 +456,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
     {
         /// <summary>
         /// The purchase quantity of the line item associated with this purchase contract.
-        /// **Note**: This value will always be '1' for an auction listing, but can be more for a fixed-price item with multiple quantity available.
+        ///
+        /// **Note**: This value will always be `1` for an auction listing, but can be more for a fixed-price item with multiple quantity available.
         /// </summary>
         public int Quantity { get; }
         /// <summary>
@@ -455,7 +465,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// </summary>
         public IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_LineItem_Item Item { get; }
         /// <summary>
-        /// This container will provide more information on how the item commitment was initiated. For example, the buyer won an auction, the buyer and seller came to terms on a Best Offer or seller-initiated offer, or if a **commitToPurchase** mutation was used on behalf of a buyer.
+        /// This object will provide more information on how the item commitment was initiated. For example, the buyer won an auction, the buyer and seller came to terms on a Best Offer or seller-initiated offer, or if a **commitToPurchase** mutation was used on behalf of a buyer.
         /// </summary>
         public IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_LineItem_PurchaseFlow? PurchaseFlow { get; }
     }
@@ -478,28 +488,30 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string ItemCommitmentId { get; }
         /// <summary>
         /// The exact date and time when the item commitment was initially created in the system. This marks the start of the item commitment lifecycle.
-        /// **Note**: Guaranteed to be non-null.
+        ///
+        /// **Note**: This object will never be returned `null`.
         /// </summary>
         public global::System.DateTimeOffset CreatedAt { get; }
         /// <summary>
-        /// The exact date and time when the item commitment was last modified or updated in the system. This timestamp captures any changes made to the item  commitment after initial creation, including change in state.
-        /// **Note**: Guaranteed to be non-null.
+        /// This object provides the exact date and time when the item commitment was last modified or updated in the system. This timestamp captures any changes made to the item  commitment after initial creation, including change in state.
+        ///
+        /// **Note**: This object is guaranteed to be non-null.
         /// </summary>
         public global::System.DateTimeOffset UpdatedAt { get; }
         /// <summary>
-        /// The unique identfier of the eBay marketplace where the item commitment was created.
+        /// The unique identifier of the eBay marketplace where the item commitment was created.
         /// </summary>
         public Marketplace CommittedMarketplace { get; }
         /// <summary>
-        /// This container provides Information on the current state of the item commitment. The information that one will see here will be dependent on the state of the item commitment.
+        /// This object provides information on the current state of the item commitment. The information that one will see here will be dependent on the state of the item commitment.
         /// </summary>
         public IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_State State { get; }
         /// <summary>
-        /// This container is only returned if the item commitment has been cancelled, and includes the unique identifier of the cancellation.
+        /// This object is only returned if the item commitment has been cancelled, and includes the unique identifier of the cancellation.
         /// </summary>
         public IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_Cancellation? Cancellation { get; }
         /// <summary>
-        /// This container is only returned if there is a refund associated with the item commitment, and includes the unique identifier of the refund.
+        /// This object is only returned if there is a refund associated with the item commitment and includes the unique identifier of the refund.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_Refunds>? Refunds { get; }
         /// <summary>
@@ -507,15 +519,15 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// </summary>
         public IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_Buyer Buyer { get; }
         /// <summary>
-        /// The seller who owns the eBay listing that spawned the item commitment.
+        /// This field represents the seller who owns the eBay listing that originated the item commitment.
         /// </summary>
         public IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_Seller Seller { get; }
         /// <summary>
-        /// This container shows total sales price of the eBay item associated with the item commitment, including any deposit for a motor vehicle. These monetary values will be shown in multiple currencies if the buyer or seller use a different currency than the default currency of the eBay marketplace.
+        /// This object shows total sales price of the eBay item associated with the item commitment, including any deposit for a motor vehicle. These monetary values will be shown in multiple currencies if the buyer or seller use a different currency than the default currency of the eBay marketplace.
         /// </summary>
         public IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_Totals Totals { get; }
         /// <summary>
-        /// This container show details on the line item associated with the item commitment, including the identifier of the item, purchase quantity, how the item was purchased, and SKU value if defined.
+        /// This object show details of the line item associated with the item commitment, including the identifier of the item, purchase quantity, how the item was purchased, and SKU value if defined.
         /// </summary>
         public IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_LineItem LineItem { get; }
     }
@@ -554,46 +566,40 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type is used to display a list of a seller's or a buyer's item commitments that match search criteria for an **itemCommitments** query. The **pagination** container will have string values that can be used to toggle to the next or previous page of results if there are multiple pages of results.
+    /// This type is used to display a list of a seller's or a buyer's item commitments that match search criteria for an **itemCommitments** query. The **pagination** object will have string values that can be used to toggle to the next or previous page of results if there are multiple pages of results.
     /// </summary>
     public partial interface IItemCommitments_ItemCommitments_BuyerItemCommitments
     {
         /// <summary>
-        /// This array has the list of a seller's or a buyer's item commitments that match search criteria. If the **itemCommitments** query produced more than one page of results, the string values in the **pagination** container can be used to toggle to the next or previous page of results in a subsequent query.
+        /// This array returns a list of a seller's or a buyer's item commitments that match search criteria. If the **itemCommitments** query produced more than one page of results, the string values in the **pagination** object can be used to toggle to the next or previous page of results in a subsequent query.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments> ItemCommitments { get; }
         /// <summary>
-        /// This container has the string values that can be used in the **pageCursor** field of a query to retrieve the next or previous page of results if there are multiple pages of results.
+        /// This object has string values that can be used in the **pageCursor** field of a query to retrieve the next or previous page of results if there are multiple pages of results.
         /// </summary>
         public IItemCommitments_ItemCommitments_BuyerItemCommitments_Pagination Pagination { get; }
     }
 
     /// <summary>
-    /// This type is used to display a list of a seller's or a buyer's item commitments that match search criteria for an **itemCommitments** query. The **pagination** container will have string values that can be used to toggle to the next or previous page of results if there are multiple pages of results.
+    /// This type is used to display a list of a seller's or a buyer's item commitments that match search criteria for an **itemCommitments** query. The **pagination** object will have string values that can be used to toggle to the next or previous page of results if there are multiple pages of results.
     /// </summary>
     public partial interface IItemCommitments_ItemCommitments_BuyerItemCommitments_PaginatedItemCommitments : IItemCommitments_ItemCommitments_BuyerItemCommitments
     {
     }
 
     /// <summary>
-    /// This is the base output type used for **itemCommitments** queries. The **sellerItemCommitments** container is used when queries are being made on behalf of an authenticated seller, and the **buyerItemCommitments** container is used when queries are being made on behalf of an authenticated buyer.
+    /// This is the base output type used for **itemCommitments** queries. The **sellerItemCommitments** object is used when queries are being made on behalf of an authenticated seller, and the **buyerItemCommitments** object is used when queries are being made on behalf of an authenticated buyer.
     /// </summary>
     public partial interface IItemCommitments_ItemCommitments
     {
         /// <summary>
-        /// This container shows all item commitments that match the search criteria for an authenticated buyer.
-        ///
-        /// Execution Errors:
-        /// | Code                  |  Message                                                                     |
-        /// |-----------------------|------------------------------------------------------------------------------|
-        /// | BAD_INPUT_VALUE       |  Input value is not correct.                                                 |
-        /// | INTERNAL_SERVER_ERROR |  System failure.                                                             |
+        /// This object shows all item commitments that match the search criteria for an authenticated buyer.
         /// </summary>
         public IItemCommitments_ItemCommitments_BuyerItemCommitments BuyerItemCommitments { get; }
     }
 
     /// <summary>
-    /// This is the base output type used for **itemCommitments** queries. The **sellerItemCommitments** container is used when queries are being made on behalf of an authenticated seller, and the **buyerItemCommitments** container is used when queries are being made on behalf of an authenticated buyer.
+    /// This is the base output type used for **itemCommitments** queries. The **sellerItemCommitments** object is used when queries are being made on behalf of an authenticated seller, and the **buyerItemCommitments** object is used when queries are being made on behalf of an authenticated buyer.
     /// </summary>
     public partial interface IItemCommitments_ItemCommitments_ItemCommitmentsOutput : IItemCommitments_ItemCommitments
     {
@@ -613,8 +619,9 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// The human-readable label representing an abandoned item commitment (e.g. "Abandoned").
-        /// **Maximum length**: 100 characters.
+        /// The human-readable label representing an abandoned item commitment (e.g. `Abandoned`).
+        ///
+        /// **Maximum length**: 100 characters
         /// </summary>
         public string Label { get; }
 
@@ -691,7 +698,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// The human-readable label representing an active item commitment (e.g. "Active").
+        /// The human-readable label representing an active item commitment (e.g. `Active`).
+        ///
         /// **Maximum length**: 100 characters.
         /// </summary>
         public string Label { get; }
@@ -772,18 +780,21 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The human-readable label representing a cancelled item commitment (e.g. "Cancelled").
+        ///
         /// **Maximum length**: 100 characters.
         /// </summary>
         public string Label { get; }
 
         /// <summary>
         /// This timestamp indicates the date and time when the item commitment was cancelled.
+        ///
         /// **Note**: This field is only returned for completed cancellations.
         /// </summary>
         public global::System.DateTimeOffset CancelledAt { get; }
 
         /// <summary>
         /// This field shows the reason provided for the cancellation. This may be system-generated or user-specified.
+        ///
         /// **Note**: May not be returned if no reason was given or generated.
         /// </summary>
         public string? Reason { get; }
@@ -868,7 +879,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// The human-readable label representing a completed item commitment (e.g. "Completed").
+        /// The human-readable label representing a completed item commitment (e.g. `Completed`).
+        ///
         /// **Maximum length**: 100 characters.
         /// </summary>
         public string Label { get; }
@@ -934,6 +946,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
     /// <summary>
     /// This type is used to express the state of a locked item commitment.
+    ///
     /// **Note**: An item commitment may enter a locked state during checkout when the item commitment is being validated, authorized for payment, or undergoing internal processing. The item commitment may be individually locked or indirectly locked as part of a purchase quote that is in checkout progress.
     /// </summary>
     public partial class ItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_State_ItemCommitmentLocked : global::System.IEquatable<ItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_State_ItemCommitmentLocked>, IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_State_ItemCommitmentLocked
@@ -947,7 +960,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// The human-readable label representing a locked item commitment (e.g. "Locked").
+        /// The human-readable label representing a locked item commitment (e.g. `Locked`).
+        ///
         /// **Maximum length**: 100 characters.
         /// </summary>
         public string Label { get; }
@@ -1014,7 +1028,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This type represents the line item in an **ItemCommitment** cancellation.
     ///
-    /// **Note:** This type does not expose the contract line item since the root cancellation already references the `itemCommitment`.
+    /// **Note**: This type does not expose the contract line item since the root cancellation already references the `itemCommitment`.
     /// </summary>
     public partial class ItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_Cancellation_LineItems_ItemCommitmentCancellationLineItem : global::System.IEquatable<ItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_Cancellation_LineItems_ItemCommitmentCancellationLineItem>, IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_Cancellation_LineItems_ItemCommitmentCancellationLineItem
     {
@@ -1031,8 +1045,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string CancellationLineItemId { get; }
 
         /// <summary>
-        /// Quantity cancelled for original item commitment.
-        /// Present only when the item commitment cancellation is completed.
+        /// Quantity cancelled for original item commitment. This field is present only when the item commitment cancellation has been completed.
         /// </summary>
         public int? CancelledQuantity { get; }
 
@@ -1103,7 +1116,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents the cancellation of an **ItemCommitment** contract. The original commitment is available in the `ItemCommitmentCancellation.itemCommitment` field.
+    /// This type represents the cancellation of an **ItemCommitment** contract. The original commitment is available in the **ItemCommitmentCancellation.itemCommitment** field.
     /// </summary>
     public partial class ItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_Cancellation_ItemCommitmentCancellation : global::System.IEquatable<ItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_Cancellation_ItemCommitmentCancellation>, IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_Cancellation_ItemCommitmentCancellation
     {
@@ -1114,7 +1127,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The unique identifier of this item commitment cancellation.
+        /// The unique identifier of the item commitment cancellation.
         /// </summary>
         public string CancellationId { get; }
 
@@ -1249,7 +1262,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// eBay User details
+    /// This type displays information about a registered eBay user. Some sensitive data will be masked/omitted if the eBay user for whom information is being requested is not the user issuing the query. If the person issuing the query has an existing order relationship with the user for whom information is being requested, some additional information will be returned.
     /// </summary>
     public partial class ItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_Buyer_User : global::System.IEquatable<ItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_Buyer_User>, IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_Buyer_User
     {
@@ -1261,7 +1274,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// The public-facing user ID of the user.
         ///
-        /// **Note:** Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to [Data Handling Compliance](https://developer.ebay.com/api-docs/static/data-handling-update.html).
+        /// **Note**: Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to [Data Handling Compliance](https://developer.ebay.com/api-docs/static/data-handling-update.html).
         /// </summary>
         public string UserId { get; }
 
@@ -1320,7 +1333,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// eBay User details
+    /// This type displays information about a registered eBay user. Some sensitive data will be masked/omitted if the eBay user for whom information is being requested is not the user issuing the query. If the person issuing the query has an existing order relationship with the user for whom information is being requested, some additional information will be returned.
     /// </summary>
     public partial class ItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_Seller_User : global::System.IEquatable<ItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_Seller_User>, IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_Seller_User
     {
@@ -1332,7 +1345,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// The public-facing user ID of the user.
         ///
-        /// **Note:** Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to [Data Handling Compliance](https://developer.ebay.com/api-docs/static/data-handling-update.html).
+        /// **Note**: Effective September 26, 2025, select developers will no longer receive username data for U.S. users through this field. Instead, an immutable user ID will be returned in its place. For more information, please refer to [Data Handling Compliance](https://developer.ebay.com/api-docs/static/data-handling-update.html).
         /// </summary>
         public string UserId { get; }
 
@@ -1391,7 +1404,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type represents the monetary amount of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial class ItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_Totals_CommittedTotal_Original_Amount : global::System.IEquatable<ItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_Totals_CommittedTotal_Original_Amount>, IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_Totals_CommittedTotal_Original_Amount
     {
@@ -1402,12 +1415,14 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The monetary amount, in the currency specified by the **currency** field.
+        /// The numerical value of the monetary amount in the currency specified through the **currency** field.
         /// </summary>
         public decimal Value { get; }
 
         /// <summary>
-        /// A three-letter ISO 4217 code that indicates the currency of the amount in the **value** field.
+        /// The three-letter ISO 4217 currency code associated with this monetary amount.
+        ///
+        /// **Format**: Three-letter uppercase alphabetic code (for example, `USD`, `EUR`, `GBP`)
         /// </summary>
         public CurrencyAlpha3Code? Currency { get; }
 
@@ -1606,7 +1621,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// An Item represents a specific, purchasable configuration within a listing. It includes a unique combination of identifying characteristics such global identifiers, listing terms, availability, price, and regulatory requirements necessary to complete a transaction. Every listing contains at least one item, providing a unified approach that works transparently across simple single-sku listings and complex multi-sku listing.
+    /// This type represents an item, which is a specific, purchasable configuration within a listing. It includes a unique combination of identifying characteristics such global identifiers, listing terms, availability, price, and regulatory requirements necessary to complete a transaction. Every listing contains at least one item, providing a unified approach that works transparently across simple single-sku listings and complex multi-sku listing.
     /// </summary>
     public partial class ItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_LineItem_Item_Item : global::System.IEquatable<ItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_LineItem_Item_Item>, IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_LineItem_Item_Item
     {
@@ -1616,7 +1631,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// ID of an item.
+        /// This field identifies a purchasable item in a single-SKU or multiple-SKU listing.
         /// </summary>
         public string ItemId { get; }
 
@@ -1765,7 +1780,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// The human-readable label representing a Best Offer purchase flow . Value: `Best Offer`.
+        /// The human-readable label representing a Best Offer purchase flow. Value: `Best Offer`.
         /// </summary>
         public string Label { get; }
 
@@ -2150,7 +2165,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The purchase quantity of the line item associated with this purchase contract.
-        /// **Note**: This value will always be '1' for an auction listing, but can be more for a fixed-price item with multiple quantity available.
+        ///
+        /// **Note**: This value will always be `1` for an auction listing, but can be more for a fixed-price item with multiple quantity available.
         /// </summary>
         public int Quantity { get; }
 
@@ -2160,7 +2176,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_LineItem_Item Item { get; }
 
         /// <summary>
-        /// This container will provide more information on how the item commitment was initiated. For example, the buyer won an auction, the buyer and seller came to terms on a Best Offer or seller-initiated offer, or if a **commitToPurchase** mutation was used on behalf of a buyer.
+        /// This object will provide more information on how the item commitment was initiated. For example, the buyer won an auction, the buyer and seller came to terms on a Best Offer or seller-initiated offer, or if a **commitToPurchase** mutation was used on behalf of a buyer.
         /// </summary>
         public IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_LineItem_PurchaseFlow? PurchaseFlow { get; }
 
@@ -2252,33 +2268,35 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The exact date and time when the item commitment was initially created in the system. This marks the start of the item commitment lifecycle.
-        /// **Note**: Guaranteed to be non-null.
+        ///
+        /// **Note**: This object will never be returned `null`.
         /// </summary>
         public global::System.DateTimeOffset CreatedAt { get; }
 
         /// <summary>
-        /// The exact date and time when the item commitment was last modified or updated in the system. This timestamp captures any changes made to the item  commitment after initial creation, including change in state.
-        /// **Note**: Guaranteed to be non-null.
+        /// This object provides the exact date and time when the item commitment was last modified or updated in the system. This timestamp captures any changes made to the item  commitment after initial creation, including change in state.
+        ///
+        /// **Note**: This object is guaranteed to be non-null.
         /// </summary>
         public global::System.DateTimeOffset UpdatedAt { get; }
 
         /// <summary>
-        /// The unique identfier of the eBay marketplace where the item commitment was created.
+        /// The unique identifier of the eBay marketplace where the item commitment was created.
         /// </summary>
         public Marketplace CommittedMarketplace { get; }
 
         /// <summary>
-        /// This container provides Information on the current state of the item commitment. The information that one will see here will be dependent on the state of the item commitment.
+        /// This object provides information on the current state of the item commitment. The information that one will see here will be dependent on the state of the item commitment.
         /// </summary>
         public IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_State State { get; }
 
         /// <summary>
-        /// This container is only returned if the item commitment has been cancelled, and includes the unique identifier of the cancellation.
+        /// This object is only returned if the item commitment has been cancelled, and includes the unique identifier of the cancellation.
         /// </summary>
         public IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_Cancellation? Cancellation { get; }
 
         /// <summary>
-        /// This container is only returned if there is a refund associated with the item commitment, and includes the unique identifier of the refund.
+        /// This object is only returned if there is a refund associated with the item commitment and includes the unique identifier of the refund.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_Refunds>? Refunds { get; }
 
@@ -2288,17 +2306,17 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_Buyer Buyer { get; }
 
         /// <summary>
-        /// The seller who owns the eBay listing that spawned the item commitment.
+        /// This field represents the seller who owns the eBay listing that originated the item commitment.
         /// </summary>
         public IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_Seller Seller { get; }
 
         /// <summary>
-        /// This container shows total sales price of the eBay item associated with the item commitment, including any deposit for a motor vehicle. These monetary values will be shown in multiple currencies if the buyer or seller use a different currency than the default currency of the eBay marketplace.
+        /// This object shows total sales price of the eBay item associated with the item commitment, including any deposit for a motor vehicle. These monetary values will be shown in multiple currencies if the buyer or seller use a different currency than the default currency of the eBay marketplace.
         /// </summary>
         public IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_Totals Totals { get; }
 
         /// <summary>
-        /// This container show details on the line item associated with the item commitment, including the identifier of the item, purchase quantity, how the item was purchased, and SKU value if defined.
+        /// This object show details of the line item associated with the item commitment, including the identifier of the item, purchase quantity, how the item was purchased, and SKU value if defined.
         /// </summary>
         public IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments_LineItem LineItem { get; }
 
@@ -2479,7 +2497,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type is used to display a list of a seller's or a buyer's item commitments that match search criteria for an **itemCommitments** query. The **pagination** container will have string values that can be used to toggle to the next or previous page of results if there are multiple pages of results.
+    /// This type is used to display a list of a seller's or a buyer's item commitments that match search criteria for an **itemCommitments** query. The **pagination** object will have string values that can be used to toggle to the next or previous page of results if there are multiple pages of results.
     /// </summary>
     public partial class ItemCommitments_ItemCommitments_BuyerItemCommitments_PaginatedItemCommitments : global::System.IEquatable<ItemCommitments_ItemCommitments_BuyerItemCommitments_PaginatedItemCommitments>, IItemCommitments_ItemCommitments_BuyerItemCommitments_PaginatedItemCommitments
     {
@@ -2490,12 +2508,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This array has the list of a seller's or a buyer's item commitments that match search criteria. If the **itemCommitments** query produced more than one page of results, the string values in the **pagination** container can be used to toggle to the next or previous page of results in a subsequent query.
+        /// This array returns a list of a seller's or a buyer's item commitments that match search criteria. If the **itemCommitments** query produced more than one page of results, the string values in the **pagination** object can be used to toggle to the next or previous page of results in a subsequent query.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IItemCommitments_ItemCommitments_BuyerItemCommitments_ItemCommitments> ItemCommitments { get; }
 
         /// <summary>
-        /// This container has the string values that can be used in the **pageCursor** field of a query to retrieve the next or previous page of results if there are multiple pages of results.
+        /// This object has string values that can be used in the **pageCursor** field of a query to retrieve the next or previous page of results if there are multiple pages of results.
         /// </summary>
         public IItemCommitments_ItemCommitments_BuyerItemCommitments_Pagination Pagination { get; }
 
@@ -2556,7 +2574,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This is the base output type used for **itemCommitments** queries. The **sellerItemCommitments** container is used when queries are being made on behalf of an authenticated seller, and the **buyerItemCommitments** container is used when queries are being made on behalf of an authenticated buyer.
+    /// This is the base output type used for **itemCommitments** queries. The **sellerItemCommitments** object is used when queries are being made on behalf of an authenticated seller, and the **buyerItemCommitments** object is used when queries are being made on behalf of an authenticated buyer.
     /// </summary>
     public partial class ItemCommitments_ItemCommitments_ItemCommitmentsOutput : global::System.IEquatable<ItemCommitments_ItemCommitments_ItemCommitmentsOutput>, IItemCommitments_ItemCommitments_ItemCommitmentsOutput
     {
@@ -2566,13 +2584,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container shows all item commitments that match the search criteria for an authenticated buyer.
-        ///
-        /// Execution Errors:
-        /// | Code                  |  Message                                                                     |
-        /// |-----------------------|------------------------------------------------------------------------------|
-        /// | BAD_INPUT_VALUE       |  Input value is not correct.                                                 |
-        /// | INTERNAL_SERVER_ERROR |  System failure.                                                             |
+        /// This object shows all item commitments that match the search criteria for an authenticated buyer.
         /// </summary>
         public IItemCommitments_ItemCommitments_BuyerItemCommitments BuyerItemCommitments { get; }
 

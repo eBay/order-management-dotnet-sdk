@@ -47,7 +47,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// This field allows the buyer to provide a custom message to the seller regarding the purchase quote being requested.
-        /// **Minimum length**: 1 character
+        ///
         /// **Maximum length**: 512 characters
         /// </summary>
         public string? MessageToSeller
@@ -61,7 +61,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used to provide an alternative shipping address to use if the buyer wishes that the items be sent to this address instead of the buyer's shipping address on file with eBay.
+        /// This object is used to provide an alternative shipping address to use if the buyer wishes that the items be sent to this address instead of the buyer's shipping address on file with eBay.
         /// </summary>
         public AddressInput? ShippingAddress
         {

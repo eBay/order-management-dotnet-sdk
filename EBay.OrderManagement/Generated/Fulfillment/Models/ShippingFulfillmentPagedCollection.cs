@@ -37,15 +37,35 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
 #else
         public List<global::EBay.OrderManagement.Generated.Fulfillment.Models.ShippingFulfillment> Fulfillments { get; set; }
 #endif
+        /// <summary>Maximum number of fulfillments returned per page.</summary>
+        public int? Limit { get; set; }
+        /// <summary>URI of the next page of results, if one exists.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Next { get; set; }
+#nullable restore
+#else
+        public string Next { get; set; }
+#endif
+        /// <summary>Number of fulfillments skipped before this page.</summary>
+        public int? Offset { get; set; }
+        /// <summary>URI of the previous page of results, if one exists.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Prev { get; set; }
+#nullable restore
+#else
+        public string Prev { get; set; }
+#endif
         /// <summary>The total number of fulfillments in the specified order.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; If no fulfillments are found for the order, this field is returned with a value of &lt;code&gt;0&lt;/code&gt;.&lt;/span&gt;</summary>
         public int? Total { get; set; }
         /// <summary>This array is only returned if one or more errors or warnings occur with the call request.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::EBay.OrderManagement.Generated.Fulfillment.Models.ErrorDetailV3>? Warnings { get; set; }
+        public List<global::EBay.OrderManagement.Generated.Fulfillment.Models.ErrorDetail>? Warnings { get; set; }
 #nullable restore
 #else
-        public List<global::EBay.OrderManagement.Generated.Fulfillment.Models.ErrorDetailV3> Warnings { get; set; }
+        public List<global::EBay.OrderManagement.Generated.Fulfillment.Models.ErrorDetail> Warnings { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::EBay.OrderManagement.Generated.Fulfillment.Models.ShippingFulfillmentPagedCollection"/> and sets the default values.
@@ -73,8 +93,12 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "fulfillments", n => { Fulfillments = n.GetCollectionOfObjectValues<global::EBay.OrderManagement.Generated.Fulfillment.Models.ShippingFulfillment>(global::EBay.OrderManagement.Generated.Fulfillment.Models.ShippingFulfillment.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "limit", n => { Limit = n.GetIntValue(); } },
+                { "next", n => { Next = n.GetStringValue(); } },
+                { "offset", n => { Offset = n.GetIntValue(); } },
+                { "prev", n => { Prev = n.GetStringValue(); } },
                 { "total", n => { Total = n.GetIntValue(); } },
-                { "warnings", n => { Warnings = n.GetCollectionOfObjectValues<global::EBay.OrderManagement.Generated.Fulfillment.Models.ErrorDetailV3>(global::EBay.OrderManagement.Generated.Fulfillment.Models.ErrorDetailV3.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "warnings", n => { Warnings = n.GetCollectionOfObjectValues<global::EBay.OrderManagement.Generated.Fulfillment.Models.ErrorDetail>(global::EBay.OrderManagement.Generated.Fulfillment.Models.ErrorDetail.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -85,8 +109,12 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::EBay.OrderManagement.Generated.Fulfillment.Models.ShippingFulfillment>("fulfillments", Fulfillments);
+            writer.WriteIntValue("limit", Limit);
+            writer.WriteStringValue("next", Next);
+            writer.WriteIntValue("offset", Offset);
+            writer.WriteStringValue("prev", Prev);
             writer.WriteIntValue("total", Total);
-            writer.WriteCollectionOfObjectValues<global::EBay.OrderManagement.Generated.Fulfillment.Models.ErrorDetailV3>("warnings", Warnings);
+            writer.WriteCollectionOfObjectValues<global::EBay.OrderManagement.Generated.Fulfillment.Models.ErrorDetail>("warnings", Warnings);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

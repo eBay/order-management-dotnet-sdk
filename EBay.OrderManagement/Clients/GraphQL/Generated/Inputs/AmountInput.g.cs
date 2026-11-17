@@ -21,7 +21,7 @@ using EBay.OrderManagement.Clients.GraphQL;
 namespace EBay.OrderManagement.Generated.GraphQL
 {
     /// <summary>
-    /// This input type is used to represent the monetary price of an item, listing, offer, etc.
+    /// This type is used to express a monetary amount in a specific currency.
     /// </summary>
     public partial class AmountInput : global::System.IEquatable<AmountInput>
     {

@@ -21,7 +21,7 @@ using EBay.OrderManagement.Clients.GraphQL;
 namespace EBay.OrderManagement.Generated.GraphQL
 {
     /// <summary>
-    /// This input type defines the payload for the **updateSellerReturnResponseRulesPriorities** mutation. This mutation updates the order that the seller's return-respond automation rules should be executed. To reorder the rules, provide all `ruleIds` in the list, regardless of their status (enabled or disabled). Only the priority is updated (rule status remains unchanged, disabled rules will continue to stay disabled). Once updated, the active rules are evaluated in the order specified.
+    /// This input type defines the payload for the **updateSellerReturnResponseRulesPriorities** mutation. This mutation updates the order that the seller's return response rules should be executed. To reorder the rules, provide all `ruleIds` in the list, regardless of their status (enabled or disabled). Only the priority is updated (rule status remains unchanged, disabled rules will continue to stay disabled). Once updated, the active rules are evaluated in the order specified.
     /// </summary>
     public partial class UpdateSellerReturnResponseRulesPrioritiesInput : global::System.IEquatable<UpdateSellerReturnResponseRulesPrioritiesInput>
     {
@@ -31,8 +31,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         private bool _set_prioritizedRuleIds;
 
         /// <summary>
-        /// Marketplace where the item is **listed/published** (e.g., EBAY_US, EBAY_DE, EBAY_UK).
-        /// All listings published on this marketplace inherit these preferences .
+        /// The eBay marketplace where the item is **listed/published** (e.g., EBAY_US, EBAY_DE, EBAY_UK).
         /// </summary>
         public ListingMarketplace ListingMarketplace
         {

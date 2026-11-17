@@ -31,7 +31,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         private bool _set_dateType;
 
         /// <summary>
-        /// This container is used to set the time range. All item commitments either created or updated within this time range are retrieved.
+        /// This object is used to set the time range. All item commitments either created or updated within this time range are retrieved.
         /// </summary>
         public DateTimeRangeInput DateTimeRange
         {
@@ -45,8 +45,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The enumeration value here controls whether retrieved item commitments are item commitments that were created within this date range or updated within this date range. The supported values are:
-        /// - CREATED
-        /// - UPDATED
+        /// - `CREATED`
+        /// - `UPDATED`
         /// </summary>
         public ItemCommitmentsDateType DateType
         {

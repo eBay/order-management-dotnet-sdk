@@ -37,6 +37,14 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
 #else
         public List<global::EBay.OrderManagement.Generated.Fulfillment.Models.AppliedPromotion> AppliedPromotions { get; set; }
 #endif
+        /// <summary>This container is returned only if the line item is associated with a combine-shipping group. It contains details about the combine-shipping window for the line item.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::EBay.OrderManagement.Generated.Fulfillment.Models.CombineShipping? CombineShipping { get; set; }
+#nullable restore
+#else
+        public global::EBay.OrderManagement.Generated.Fulfillment.Models.CombineShipping CombineShipping { get; set; }
+#endif
         /// <summary>This array is only returned for a Parts &amp; Accessory item and identifies the buyer&apos;s motor vehicle that is compatible with the part or accessory.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -76,6 +84,14 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
 #nullable restore
 #else
         public global::EBay.OrderManagement.Generated.Fulfillment.Models.EbayCollectedCharges EbayCollectedCharges { get; set; }
+#endif
+        /// <summary>This container is returned only if the line item was purchased through an eBay Live event. It contains details about the associated eBay Live event.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::EBay.OrderManagement.Generated.Fulfillment.Models.EbayLiveContext? EbayLiveContext { get; set; }
+#nullable restore
+#else
+        public global::EBay.OrderManagement.Generated.Fulfillment.Models.EbayLiveContext EbayLiveContext { get; set; }
 #endif
         /// <summary>This container consists of information that is needed by the seller to send a digital gift card to the buyer or recipient of the digital gift card. This container is only returned and applicable for digital gift card line items.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -155,6 +171,8 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
 #endif
         /// <summary>The unique identifier of the eBay marketplace where the line item was listed. Often, the &lt;strong&gt;listingMarketplaceId&lt;/strong&gt; and the &lt;strong&gt;purchaseMarketplaceId&lt;/strong&gt; identifier are the same, but there are occasions when an item will surface on multiple eBay marketplaces.</summary>
         public global::EBay.OrderManagement.Generated.Fulfillment.Models.MarketplaceIdEnum? PurchaseMarketplaceId { get; set; }
+        /// <summary>This enumeration value indicates the channel through which the line item was purchased.</summary>
+        public global::EBay.OrderManagement.Generated.Fulfillment.Models.PurchaseSourceEnum? PurchaseSource { get; set; }
         /// <summary>The number of units of the line item in the order. These are represented as a group by a single &lt;strong&gt;lineItemId&lt;/strong&gt;.</summary>
         public int? Quantity { get; set; }
         /// <summary>This array is always returned, but it is returned as an empty array unless the seller has submitted a partial or full refund to the buyer for the order. If a refund has occurred, the refund amount and refund date will be shown for each refund.</summary>
@@ -233,11 +251,13 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "appliedPromotions", n => { AppliedPromotions = n.GetCollectionOfObjectValues<global::EBay.OrderManagement.Generated.Fulfillment.Models.AppliedPromotion>(global::EBay.OrderManagement.Generated.Fulfillment.Models.AppliedPromotion.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "combineShipping", n => { CombineShipping = n.GetObjectValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.CombineShipping>(global::EBay.OrderManagement.Generated.Fulfillment.Models.CombineShipping.CreateFromDiscriminatorValue); } },
                 { "compatibilityProperties", n => { CompatibilityProperties = n.GetCollectionOfObjectValues<global::EBay.OrderManagement.Generated.Fulfillment.Models.Property>(global::EBay.OrderManagement.Generated.Fulfillment.Models.Property.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "deliveryCost", n => { DeliveryCost = n.GetObjectValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.DeliveryCost>(global::EBay.OrderManagement.Generated.Fulfillment.Models.DeliveryCost.CreateFromDiscriminatorValue); } },
                 { "discountedLineItemCost", n => { DiscountedLineItemCost = n.GetObjectValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.Amount>(global::EBay.OrderManagement.Generated.Fulfillment.Models.Amount.CreateFromDiscriminatorValue); } },
                 { "ebayCollectAndRemitTaxes", n => { EbayCollectAndRemitTaxes = n.GetCollectionOfObjectValues<global::EBay.OrderManagement.Generated.Fulfillment.Models.EbayCollectAndRemitTax>(global::EBay.OrderManagement.Generated.Fulfillment.Models.EbayCollectAndRemitTax.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "ebayCollectedCharges", n => { EbayCollectedCharges = n.GetObjectValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.EbayCollectedCharges>(global::EBay.OrderManagement.Generated.Fulfillment.Models.EbayCollectedCharges.CreateFromDiscriminatorValue); } },
+                { "ebayLiveContext", n => { EbayLiveContext = n.GetObjectValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.EbayLiveContext>(global::EBay.OrderManagement.Generated.Fulfillment.Models.EbayLiveContext.CreateFromDiscriminatorValue); } },
                 { "giftDetails", n => { GiftDetails = n.GetObjectValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.GiftDetails>(global::EBay.OrderManagement.Generated.Fulfillment.Models.GiftDetails.CreateFromDiscriminatorValue); } },
                 { "itemLocation", n => { ItemLocation = n.GetObjectValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.ItemLocation>(global::EBay.OrderManagement.Generated.Fulfillment.Models.ItemLocation.CreateFromDiscriminatorValue); } },
                 { "legacyItemId", n => { LegacyItemId = n.GetStringValue(); } },
@@ -250,6 +270,7 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
                 { "listingMarketplaceId", n => { ListingMarketplaceId = n.GetEnumValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.MarketplaceIdEnum>(); } },
                 { "properties", n => { Properties = n.GetObjectValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.LineItemProperties>(global::EBay.OrderManagement.Generated.Fulfillment.Models.LineItemProperties.CreateFromDiscriminatorValue); } },
                 { "purchaseMarketplaceId", n => { PurchaseMarketplaceId = n.GetEnumValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.MarketplaceIdEnum>(); } },
+                { "purchaseSource", n => { PurchaseSource = n.GetEnumValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.PurchaseSourceEnum>(); } },
                 { "quantity", n => { Quantity = n.GetIntValue(); } },
                 { "refunds", n => { Refunds = n.GetCollectionOfObjectValues<global::EBay.OrderManagement.Generated.Fulfillment.Models.LineItemRefund>(global::EBay.OrderManagement.Generated.Fulfillment.Models.LineItemRefund.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "sku", n => { Sku = n.GetStringValue(); } },
@@ -268,11 +289,13 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::EBay.OrderManagement.Generated.Fulfillment.Models.AppliedPromotion>("appliedPromotions", AppliedPromotions);
+            writer.WriteObjectValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.CombineShipping>("combineShipping", CombineShipping);
             writer.WriteCollectionOfObjectValues<global::EBay.OrderManagement.Generated.Fulfillment.Models.Property>("compatibilityProperties", CompatibilityProperties);
             writer.WriteObjectValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.DeliveryCost>("deliveryCost", DeliveryCost);
             writer.WriteObjectValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.Amount>("discountedLineItemCost", DiscountedLineItemCost);
             writer.WriteCollectionOfObjectValues<global::EBay.OrderManagement.Generated.Fulfillment.Models.EbayCollectAndRemitTax>("ebayCollectAndRemitTaxes", EbayCollectAndRemitTaxes);
             writer.WriteObjectValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.EbayCollectedCharges>("ebayCollectedCharges", EbayCollectedCharges);
+            writer.WriteObjectValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.EbayLiveContext>("ebayLiveContext", EbayLiveContext);
             writer.WriteObjectValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.GiftDetails>("giftDetails", GiftDetails);
             writer.WriteObjectValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.ItemLocation>("itemLocation", ItemLocation);
             writer.WriteStringValue("legacyItemId", LegacyItemId);
@@ -285,6 +308,7 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
             writer.WriteEnumValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.MarketplaceIdEnum>("listingMarketplaceId", ListingMarketplaceId);
             writer.WriteObjectValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.LineItemProperties>("properties", Properties);
             writer.WriteEnumValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.MarketplaceIdEnum>("purchaseMarketplaceId", PurchaseMarketplaceId);
+            writer.WriteEnumValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.PurchaseSourceEnum>("purchaseSource", PurchaseSource);
             writer.WriteIntValue("quantity", Quantity);
             writer.WriteCollectionOfObjectValues<global::EBay.OrderManagement.Generated.Fulfillment.Models.LineItemRefund>("refunds", Refunds);
             writer.WriteStringValue("sku", Sku);

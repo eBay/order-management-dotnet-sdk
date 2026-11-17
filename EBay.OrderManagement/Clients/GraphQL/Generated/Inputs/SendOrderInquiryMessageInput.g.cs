@@ -32,7 +32,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The unique identifier of the inquiry for which to send the message.
-        /// **Note:** This must be a valid inquiry that the user has access to.
+        ///
+        /// **Note**: This must be a valid inquiry that the user has access to.
         /// </summary>
         public string InquiryId
         {
@@ -46,7 +47,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The text content of the message to send.
-        /// **Minimum length**: 1 character
+        ///
         /// **Maximum length**: 500 characters
         /// </summary>
         public string Message

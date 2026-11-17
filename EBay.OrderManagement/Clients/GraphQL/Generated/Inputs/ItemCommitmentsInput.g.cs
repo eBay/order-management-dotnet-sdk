@@ -21,8 +21,9 @@ using EBay.OrderManagement.Clients.GraphQL;
 namespace EBay.OrderManagement.Generated.GraphQL
 {
     /// <summary>
-    /// This input type is used when retrieving item commitments for an authenticated seller or buyer. The **itemCommitmentsFirstPage** container is used for an initial search of item commitments, and includes parameters to retrieve item commitments in specific states and/or from a specific listing, as well as a field to control the number of item commitments retrieved per page of results. The **itemCommitmentsPage** container is used for a subsequent search of item commitments, and allows the user to retrieve the next or previous page of results if the query produced multiple pages of results.
-    /// **Note**: Either the **itemCommitmentsFirstPage** container or the **itemCommitmentsPage** container may be used, but not both.
+    /// This input type is used when retrieving item commitments for an authenticated seller or buyer. The **itemCommitmentsFirstPage** object is used for an initial search of item commitments, and includes parameters to retrieve item commitments in specific states and/or from a specific listing, as well as a field to control the number of item commitments retrieved per page of results. The **itemCommitmentsPage** object is used for a subsequent search of item commitments, and allows the user to retrieve the next or previous page of results if the query produced multiple pages of results.
+    ///
+    /// **Note**: Either the **itemCommitmentsFirstPage** object or the **itemCommitmentsPage** object may be used, but not both.
     /// </summary>
     public partial class ItemCommitmentsInput : global::System.IEquatable<ItemCommitmentsInput>
     {
@@ -32,7 +33,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         private bool _set_itemCommitmentsPage;
 
         /// <summary>
-        /// This container is used for the initial query of item commitments, and includes parameters to retrieve item commitments in specific states and/or from a specific listing, as well as a field to control the number of item commitments retrieved per page of results.
+        /// This object is used for the initial query of item commitments, and includes parameters to retrieve item commitments in specific states and/or from a specific listing, as well as a field to control the number of item commitments retrieved per page of results.
         /// </summary>
         public ItemCommitmentsFirstPageInput? ItemCommitmentsFirstPage
         {
@@ -45,7 +46,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container is used for a subsequent search of item commitments, and allows the user to retrieve the next or previous page of results if the query produced multiple pages of results.
+        /// This object is used for a subsequent search of item commitments, and allows the user to retrieve the next or previous page of results if the query produced multiple pages of results.
         /// </summary>
         public PageInfoInput? ItemCommitmentsPage
         {

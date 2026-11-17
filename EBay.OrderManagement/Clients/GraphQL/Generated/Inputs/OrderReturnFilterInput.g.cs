@@ -33,7 +33,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// This field specifies the creation date range in which to retrieve order returns. If omitted or sent as null, the query returns using the default value.
         ///
-        /// **Default:** Calculates and uses the last 30 days
+        /// **Default**: Calculates and uses the last 30 days
         /// </summary>
         public DateTimeRangeInput? DateRange
         {
@@ -48,7 +48,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// This field specifies an enumerated value to retrieve order returns that match preset filters, such as `AWAITING_ACTION_FROM_SELLER`. If omitted, the query filters using the field's default value.
         ///
-        /// **Default:** AWAITING_ACTION_FROM_SELLER (immediate action is required by seller)
+        /// **Default**: AWAITING_ACTION_FROM_SELLER (immediate action is required by seller)
         /// </summary>
         public OrderReturnFilterPreset? Presets
         {

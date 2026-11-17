@@ -21,7 +21,7 @@ using EBay.OrderManagement.Clients.GraphQL;
 namespace EBay.OrderManagement.Generated.GraphQL
 {
     /// <summary>
-    /// The values in this enumerated type indicate the listing marketplace associated with the order.
+    /// This enumerated type indicates the listing marketplace associated with the order.
     /// </summary>
     public enum Marketplace
     {
@@ -34,9 +34,21 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// </summary>
         EbayAu,
         /// <summary>
+        /// This value indicates that the listing marketplace is the French language version of eBay Belgium marketplace.
+        /// </summary>
+        EbayBefr,
+        /// <summary>
+        /// This value indicates that the listing marketplace is the Dutch language version of eBay Belgium marketplace.
+        /// </summary>
+        EbayBenl,
+        /// <summary>
         /// This value indicates that the listing marketplace is the English language version of eBay Canada marketplace.
         /// </summary>
         EbayCa,
+        /// <summary>
+        /// This value indicates that the listing marketplace is the French language version of eBay Canada marketplace.
+        /// </summary>
+        EbayCafr,
         /// <summary>
         /// This value indicates that the listing marketplace is eBay Switzerland.
         /// </summary>
@@ -92,7 +104,11 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// This value indicates that the listing marketplace is eBay US.
         /// </summary>
-        EbayUs
+        EbayUs,
+        /// <summary>
+        /// This value indicates that the listing marketplace is eBay US Motors.
+        /// </summary>
+        EbayUsMotors
     }
 
     internal static class MarketplaceSerializer
@@ -103,7 +119,10 @@ namespace EBay.OrderManagement.Generated.GraphQL
             {
                 "EBAY_AT" => Marketplace.EbayAt,
                 "EBAY_AU" => Marketplace.EbayAu,
+                "EBAY_BEFR" => Marketplace.EbayBefr,
+                "EBAY_BENL" => Marketplace.EbayBenl,
                 "EBAY_CA" => Marketplace.EbayCa,
+                "EBAY_CAFR" => Marketplace.EbayCafr,
                 "EBAY_CH" => Marketplace.EbayCh,
                 "EBAY_DE" => Marketplace.EbayDe,
                 "EBAY_ES" => Marketplace.EbayEs,
@@ -118,6 +137,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
                 "EBAY_PL" => Marketplace.EbayPl,
                 "EBAY_SG" => Marketplace.EbaySg,
                 "EBAY_US" => Marketplace.EbayUs,
+                "EBAY_US_MOTORS" => Marketplace.EbayUsMotors,
                 _ => throw new GraphQLResultException($"String value '{value}' can't be converted to enum Marketplace")
             };
         }
@@ -128,7 +148,10 @@ namespace EBay.OrderManagement.Generated.GraphQL
             {
                 Marketplace.EbayAt => "EBAY_AT",
                 Marketplace.EbayAu => "EBAY_AU",
+                Marketplace.EbayBefr => "EBAY_BEFR",
+                Marketplace.EbayBenl => "EBAY_BENL",
                 Marketplace.EbayCa => "EBAY_CA",
+                Marketplace.EbayCafr => "EBAY_CAFR",
                 Marketplace.EbayCh => "EBAY_CH",
                 Marketplace.EbayDe => "EBAY_DE",
                 Marketplace.EbayEs => "EBAY_ES",
@@ -143,6 +166,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
                 Marketplace.EbayPl => "EBAY_PL",
                 Marketplace.EbaySg => "EBAY_SG",
                 Marketplace.EbayUs => "EBAY_US",
+                Marketplace.EbayUsMotors => "EBAY_US_MOTORS",
                 _ => throw new global::System.ArgumentException($"Enum Marketplace value '{value}' can't be converted to string")
             };
         }

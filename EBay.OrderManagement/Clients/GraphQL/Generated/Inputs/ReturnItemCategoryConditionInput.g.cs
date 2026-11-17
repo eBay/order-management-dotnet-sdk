@@ -31,7 +31,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         private bool _set_categoryIds;
 
         /// <summary>
-        /// A list of leaf category IDs to which the rule applies. Contraints:
+        /// A list of leaf category IDs to which the rule applies. Constraints:
         /// - they must be eBay leaf category IDs
         /// - a maximum of 20 category IDs can be specified
         /// - IDs must be unique

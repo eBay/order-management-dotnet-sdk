@@ -26,8 +26,10 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IOrdersResult
     {
         /// <summary>
-        /// Entry point for the **authenticated user's** order data.
-        /// See `OrdersOutput` for field-level details and pagination contracts.
+        ///   This query can be used to retrieve detailed information about one or more of a user's orders.
+        ///
+        ///   ### HTTP Headers
+        ///   - **X-EBAY-C-MARKETPLACE-ID**: Determines the site/marketplace id associated with the calling context. Defaults to EBAY-US.
         /// </summary>
         public IOrders_Orders Orders { get; }
     }
@@ -43,8 +45,10 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Entry point for the **authenticated user's** order data.
-        /// See `OrdersOutput` for field-level details and pagination contracts.
+        ///   This query can be used to retrieve detailed information about one or more of a user's orders.
+        ///
+        ///   ### HTTP Headers
+        ///   - **X-EBAY-C-MARKETPLACE-ID**: Determines the site/marketplace id associated with the calling context. Defaults to EBAY-US.
         /// </summary>
         public IOrders_Orders Orders { get; }
 
@@ -108,11 +112,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IOrders_Orders_SellerOrders_Orders_Logistics_FulfillmentPlan_LogisticsPlanSteps_MethodName
     {
         /// <summary>
-        /// A unique identifier.
+        /// The unique identifier of the entity.
         /// </summary>
         public string Id { get; }
         /// <summary>
-        /// A human-readable name or description.
+        /// A human-readable name or description of the identifier entity .
+        ///
         /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayName { get; }
@@ -131,7 +136,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IOrders_Orders_SellerOrders_Orders_Logistics_FulfillmentPlan_LogisticsPlanSteps
     {
         /// <summary>
-        /// This container shows the user-friendly description and unique identifier of the logistics step, for example, `Standard Shipping`.
+        /// This object shows the user-friendly description and unique identifier of the logistics step, for example, `Standard Shipping`.
         /// </summary>
         public IOrders_Orders_SellerOrders_Orders_Logistics_FulfillmentPlan_LogisticsPlanSteps_MethodName MethodName { get; }
     }
@@ -140,6 +145,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// This type convey details of a digital delivery logistics step involved in a fulfillment plan.
     /// </summary>
     public partial interface IOrders_Orders_SellerOrders_Orders_Logistics_FulfillmentPlan_LogisticsPlanSteps_DigitalDeliveryStep : IOrders_Orders_SellerOrders_Orders_Logistics_FulfillmentPlan_LogisticsPlanSteps
+    {
+    }
+
+    /// <summary>
+    /// This type conveys details of a package drop-off logistics step involved in a fulfillment plan. This step is used when the seller is required to physically drop off the package at a designated location such as a post office, retail store, or authorized carrier drop-off point, as part of an intermediated shipping fulfillment. This step appears in both `logisticsPlanSteps` (the intended plan) and `logisticsExecutionSteps` (the actual execution) within the `logistics` field of an order.
+    /// </summary>
+    public partial interface IOrders_Orders_SellerOrders_Orders_Logistics_FulfillmentPlan_LogisticsPlanSteps_PackageDropOffStep : IOrders_Orders_SellerOrders_Orders_Logistics_FulfillmentPlan_LogisticsPlanSteps
     {
     }
 
@@ -158,7 +170,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type convey details of a shipping logistics step involved in a fulfillment plan.
+    /// This type conveys the details of a shipping logistics step involved in a fulfillment plan.
     /// </summary>
     public partial interface IOrders_Orders_SellerOrders_Orders_Logistics_FulfillmentPlan_LogisticsPlanSteps_ShippingStep : IOrders_Orders_SellerOrders_Orders_Logistics_FulfillmentPlan_LogisticsPlanSteps
     {
@@ -170,12 +182,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IOrders_Orders_SellerOrders_Orders_Logistics_FulfillmentPlan
     {
         /// <summary>
-        /// The identifier displayed here will indicate the type of fufillment plan available to be used or selected to be used. Below are some possible values that can be returned here:
-        /// - SHIPPING: standard domestic or international shipping.
-        /// - INTERMEDIATED_SHIPPING: shipping that involves multiple shipping legs, with eBay or an eBay partner taking care of at least one of those shipping legs. Examples of this include Global Shipping Program, eBay International Shipping, eBay Vault, and Authenticity Guarantee.
-        /// - STORE_PICKUP: buyer picks up item at local store for a 'Buy online, pick up in store' (BOPIS) or 'Click and Collect' order.
-        /// - PICKUP: local pickup.
-        /// - DIGITAL_DELIVERY: digital delivery of an item, such as a gift card.
+        /// The identifier displayed here will indicate the type of fulfillment plan available to be used or selected to be used. Below are some possible values that can be returned here:
+        /// - `SHIPPING`: standard domestic or international shipping.
+        /// - `INTERMEDIATED_SHIPPING`: shipping that involves multiple shipping legs, with eBay or an eBay partner taking care of at least one of those shipping legs. Examples of this include Global Shipping Program, eBay International Shipping, eBay Vault, and Authenticity Guarantee.
+        /// - `STORE_PICKUP`: buyer picks up item at local store for a 'Buy online, pick up in store' (BOPIS) or 'Click and Collect' order.
+        /// - `PICKUP`: local pickup.
+        /// - `DIGITAL_DELIVERY`: digital delivery of an item, such as a gift card.
         /// </summary>
         public string PlanType { get; }
         /// <summary>
@@ -228,7 +240,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// A state representing when the order was abandoned before completion.
+    /// This type represents the state when the order was abandoned before completion.
     /// </summary>
     public partial interface IOrders_Orders_SellerOrders_Orders_OrderState_OrderAbandoned : IOrders_Orders_SellerOrders_Orders_OrderState
     {
@@ -247,7 +259,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// A state representing when the order was canceled.
+    /// This type represents the state when the order was canceled.
     /// </summary>
     public partial interface IOrders_Orders_SellerOrders_Orders_OrderState_OrderCancelled : IOrders_Orders_SellerOrders_Orders_OrderState
     {
@@ -329,7 +341,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// The current state of the funding process.
         ///
-        /// **Note:** Use this field to track and manage funding.
+        /// **Note**: Use this field to track and manage funding.
         /// </summary>
         public IOrders_Orders_SellerOrders_Orders_OrderState_FundingState FundingState { get; }
         /// <summary>
@@ -350,7 +362,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type defines the unique identifier of an order, which is an confirmed request by a customer to purchase one or more products or services through an e-commerce platform. It contains all relevant details required to process, fulfill, and track the transaction, including customer information, items purchased, payment details, shipping data, and state updates.
+    /// This type defines the unique identifier of an order, which is a confirmed request by a customer to purchase one or more products or services through an e-commerce platform. It contains all relevant details required to process, fulfill, and track the transaction, including customer information, items purchased, payment details, shipping data, and state updates.
     /// </summary>
     public partial interface IOrders_Orders_SellerOrders_Orders
     {
@@ -361,18 +373,17 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// The timestamp when the order was initially created which marks the start of the order lifecycle.
         ///
-        /// **Note:** This is a non-null field, always.
+        /// **Note**: This object is never null.
         /// </summary>
         public global::System.DateTimeOffset PlacedAt { get; }
         /// <summary>
         /// The timestamp when the order was last updated. This timestamp captures changes made to order details, state, or related information.
         ///
-        /// **Note:** This is a non-null field, always.
+        /// **Note**: This object is never null.
         /// </summary>
         public global::System.DateTimeOffset UpdatedAt { get; }
         /// <summary>
-        /// Logistics information associated with the order, describing how the purchased items
-        /// will be fulfilled, delivered, or made available to the buyer.
+        /// This object returns logistics information associated with the order. This information describes how the purchased items will be fulfilled, delivered, or made available to the buyer.
         /// </summary>
         public IOrders_Orders_SellerOrders_Orders_Logistics Logistics { get; }
         /// <summary>
@@ -382,7 +393,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type defines the unique identifier of an order, which is an confirmed request by a customer to purchase one or more products or services through an e-commerce platform. It contains all relevant details required to process, fulfill, and track the transaction, including customer information, items purchased, payment details, shipping data, and state updates.
+    /// This type defines the unique identifier of an order, which is a confirmed request by a customer to purchase one or more products or services through an e-commerce platform. It contains all relevant details required to process, fulfill, and track the transaction, including customer information, items purchased, payment details, shipping data, and state updates.
     /// </summary>
     public partial interface IOrders_Orders_SellerOrders_Orders_Order : IOrders_Orders_SellerOrders_Orders
     {
@@ -415,8 +426,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// A type representing a page of orders.
-    /// Includes a list of orders and pagination info.
+    /// This type represents a page of orders and includes a list of orders and pagination information.
     /// </summary>
     public partial interface IOrders_Orders_SellerOrders
     {
@@ -425,46 +435,31 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IOrders_Orders_SellerOrders_Orders> Orders { get; }
         /// <summary>
-        /// Pagination information including the runtime cursor and page availability.
+        /// This object includes pagination information, including the runtime cursor and page availability.
         /// </summary>
         public IOrders_Orders_SellerOrders_Pagination Pagination { get; }
     }
 
     /// <summary>
-    /// A type representing a page of orders.
-    /// Includes a list of orders and pagination info.
+    /// This type represents a page of orders and includes a list of orders and pagination information.
     /// </summary>
     public partial interface IOrders_Orders_SellerOrders_PaginatedOrders : IOrders_Orders_SellerOrders
     {
     }
 
     /// <summary>
-    /// Order views for the authenticated user.
-    ///
-    /// Provides cursor-based pagination for both buyer and seller order lists.
-    /// Cursors represent the query state for consistent paging even under concurrent updates.
+    /// This type provides cursor-based pagination for both buyer and seller order lists. Cursors represent the query state for consistent paging even under concurrent updates.
     /// </summary>
     public partial interface IOrders_Orders
     {
         /// <summary>
-        /// Fetches a list of orders for the current user as seller.
-        /// Requires filters and pagination info in the input.
-        /// Generates a runtime cursor representing the query state for subsequent pages.
-        ///
-        /// Execution Errors:
-        /// | Code                  |  Message                                                                     |
-        /// |-----------------------|------------------------------------------------------------------------------|
-        /// | BAD_INPUT_VALUE       |  Input value is not correct.                                                 |
-        /// | INTERNAL_SERVER_ERROR |  System failure.                                                             |
+        /// This object returns a list of orders for the current user as seller. This object requires filters and pagination info in the input, and generates a runtime cursor representing the query state for subsequent pages.
         /// </summary>
         public IOrders_Orders_SellerOrders SellerOrders { get; }
     }
 
     /// <summary>
-    /// Order views for the authenticated user.
-    ///
-    /// Provides cursor-based pagination for both buyer and seller order lists.
-    /// Cursors represent the query state for consistent paging even under concurrent updates.
+    /// This type provides cursor-based pagination for both buyer and seller order lists. Cursors represent the query state for consistent paging even under concurrent updates.
     /// </summary>
     public partial interface IOrders_Orders_OrdersOutput : IOrders_Orders
     {
@@ -482,12 +477,13 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// A unique identifier.
+        /// The unique identifier of the entity.
         /// </summary>
         public string Id { get; }
 
         /// <summary>
-        /// A human-readable name or description.
+        /// A human-readable name or description of the identifier entity .
+        ///
         /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayName { get; }
@@ -562,7 +558,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container shows the user-friendly description and unique identifier of the logistics step, for example, `Standard Shipping`.
+        /// This object shows the user-friendly description and unique identifier of the logistics step, for example, `Standard Shipping`.
         /// </summary>
         public IOrders_Orders_SellerOrders_Orders_Logistics_FulfillmentPlan_LogisticsPlanSteps_MethodName MethodName { get; }
 
@@ -621,6 +617,75 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
+    /// This type conveys details of a package drop-off logistics step involved in a fulfillment plan. This step is used when the seller is required to physically drop off the package at a designated location such as a post office, retail store, or authorized carrier drop-off point, as part of an intermediated shipping fulfillment. This step appears in both `logisticsPlanSteps` (the intended plan) and `logisticsExecutionSteps` (the actual execution) within the `logistics` field of an order.
+    /// </summary>
+    public partial class Orders_Orders_SellerOrders_Orders_Logistics_FulfillmentPlan_LogisticsPlanSteps_PackageDropOffStep : global::System.IEquatable<Orders_Orders_SellerOrders_Orders_Logistics_FulfillmentPlan_LogisticsPlanSteps_PackageDropOffStep>, IOrders_Orders_SellerOrders_Orders_Logistics_FulfillmentPlan_LogisticsPlanSteps_PackageDropOffStep
+    {
+        public Orders_Orders_SellerOrders_Orders_Logistics_FulfillmentPlan_LogisticsPlanSteps_PackageDropOffStep(IOrders_Orders_SellerOrders_Orders_Logistics_FulfillmentPlan_LogisticsPlanSteps_MethodName methodName)
+        {
+            this.MethodName = methodName;
+        }
+
+        /// <summary>
+        /// This object shows the user-friendly description and unique identifier of the logistics step, for example, `Standard Shipping`.
+        /// </summary>
+        public IOrders_Orders_SellerOrders_Orders_Logistics_FulfillmentPlan_LogisticsPlanSteps_MethodName MethodName { get; }
+
+        public virtual bool Equals(Orders_Orders_SellerOrders_Orders_Logistics_FulfillmentPlan_LogisticsPlanSteps_PackageDropOffStep? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return global::System.Object.Equals(MethodName, other.MethodName);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((Orders_Orders_SellerOrders_Orders_Logistics_FulfillmentPlan_LogisticsPlanSteps_PackageDropOffStep)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                if (MethodName is not null)
+                {
+                    hash ^= 397 * MethodName.GetHashCode();
+                }
+                return hash;
+            }
+        }
+    }
+
+    /// <summary>
     /// This type convey details of a pickup logistics step involved in a fulfillment plan.
     /// </summary>
     public partial class Orders_Orders_SellerOrders_Orders_Logistics_FulfillmentPlan_LogisticsPlanSteps_PickupStep : global::System.IEquatable<Orders_Orders_SellerOrders_Orders_Logistics_FulfillmentPlan_LogisticsPlanSteps_PickupStep>, IOrders_Orders_SellerOrders_Orders_Logistics_FulfillmentPlan_LogisticsPlanSteps_PickupStep
@@ -631,7 +696,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container shows the user-friendly description and unique identifier of the logistics step, for example, `Standard Shipping`.
+        /// This object shows the user-friendly description and unique identifier of the logistics step, for example, `Standard Shipping`.
         /// </summary>
         public IOrders_Orders_SellerOrders_Orders_Logistics_FulfillmentPlan_LogisticsPlanSteps_MethodName MethodName { get; }
 
@@ -700,7 +765,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container shows the user-friendly description and unique identifier of the logistics step, for example, `Standard Shipping`.
+        /// This object shows the user-friendly description and unique identifier of the logistics step, for example, `Standard Shipping`.
         /// </summary>
         public IOrders_Orders_SellerOrders_Orders_Logistics_FulfillmentPlan_LogisticsPlanSteps_MethodName MethodName { get; }
 
@@ -759,7 +824,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type convey details of a shipping logistics step involved in a fulfillment plan.
+    /// This type conveys the details of a shipping logistics step involved in a fulfillment plan.
     /// </summary>
     public partial class Orders_Orders_SellerOrders_Orders_Logistics_FulfillmentPlan_LogisticsPlanSteps_ShippingStep : global::System.IEquatable<Orders_Orders_SellerOrders_Orders_Logistics_FulfillmentPlan_LogisticsPlanSteps_ShippingStep>, IOrders_Orders_SellerOrders_Orders_Logistics_FulfillmentPlan_LogisticsPlanSteps_ShippingStep
     {
@@ -769,7 +834,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This container shows the user-friendly description and unique identifier of the logistics step, for example, `Standard Shipping`.
+        /// This object shows the user-friendly description and unique identifier of the logistics step, for example, `Standard Shipping`.
         /// </summary>
         public IOrders_Orders_SellerOrders_Orders_Logistics_FulfillmentPlan_LogisticsPlanSteps_MethodName MethodName { get; }
 
@@ -839,12 +904,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The identifier displayed here will indicate the type of fufillment plan available to be used or selected to be used. Below are some possible values that can be returned here:
-        /// - SHIPPING: standard domestic or international shipping.
-        /// - INTERMEDIATED_SHIPPING: shipping that involves multiple shipping legs, with eBay or an eBay partner taking care of at least one of those shipping legs. Examples of this include Global Shipping Program, eBay International Shipping, eBay Vault, and Authenticity Guarantee.
-        /// - STORE_PICKUP: buyer picks up item at local store for a 'Buy online, pick up in store' (BOPIS) or 'Click and Collect' order.
-        /// - PICKUP: local pickup.
-        /// - DIGITAL_DELIVERY: digital delivery of an item, such as a gift card.
+        /// The identifier displayed here will indicate the type of fulfillment plan available to be used or selected to be used. Below are some possible values that can be returned here:
+        /// - `SHIPPING`: standard domestic or international shipping.
+        /// - `INTERMEDIATED_SHIPPING`: shipping that involves multiple shipping legs, with eBay or an eBay partner taking care of at least one of those shipping legs. Examples of this include Global Shipping Program, eBay International Shipping, eBay Vault, and Authenticity Guarantee.
+        /// - `STORE_PICKUP`: buyer picks up item at local store for a 'Buy online, pick up in store' (BOPIS) or 'Click and Collect' order.
+        /// - `PICKUP`: local pickup.
+        /// - `DIGITAL_DELIVERY`: digital delivery of an item, such as a gift card.
         /// </summary>
         public string PlanType { get; }
 
@@ -976,7 +1041,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// A state representing when the order was abandoned before completion.
+    /// This type represents the state when the order was abandoned before completion.
     /// </summary>
     public partial class Orders_Orders_SellerOrders_Orders_OrderState_OrderAbandoned : global::System.IEquatable<Orders_Orders_SellerOrders_Orders_OrderState_OrderAbandoned>, IOrders_Orders_SellerOrders_Orders_OrderState_OrderAbandoned
     {
@@ -1072,7 +1137,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// A state representing when the order was canceled.
+    /// This type represents the state when the order was canceled.
     /// </summary>
     public partial class Orders_Orders_SellerOrders_Orders_OrderState_OrderCancelled : global::System.IEquatable<Orders_Orders_SellerOrders_Orders_OrderState_OrderCancelled>, IOrders_Orders_SellerOrders_Orders_OrderState_OrderCancelled
     {
@@ -1498,7 +1563,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// The current state of the funding process.
         ///
-        /// **Note:** Use this field to track and manage funding.
+        /// **Note**: Use this field to track and manage funding.
         /// </summary>
         public IOrders_Orders_SellerOrders_Orders_OrderState_FundingState FundingState { get; }
 
@@ -1651,7 +1716,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This type defines the unique identifier of an order, which is an confirmed request by a customer to purchase one or more products or services through an e-commerce platform. It contains all relevant details required to process, fulfill, and track the transaction, including customer information, items purchased, payment details, shipping data, and state updates.
+    /// This type defines the unique identifier of an order, which is a confirmed request by a customer to purchase one or more products or services through an e-commerce platform. It contains all relevant details required to process, fulfill, and track the transaction, including customer information, items purchased, payment details, shipping data, and state updates.
     /// </summary>
     public partial class Orders_Orders_SellerOrders_Orders_Order : global::System.IEquatable<Orders_Orders_SellerOrders_Orders_Order>, IOrders_Orders_SellerOrders_Orders_Order
     {
@@ -1672,20 +1737,19 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// The timestamp when the order was initially created which marks the start of the order lifecycle.
         ///
-        /// **Note:** This is a non-null field, always.
+        /// **Note**: This object is never null.
         /// </summary>
         public global::System.DateTimeOffset PlacedAt { get; }
 
         /// <summary>
         /// The timestamp when the order was last updated. This timestamp captures changes made to order details, state, or related information.
         ///
-        /// **Note:** This is a non-null field, always.
+        /// **Note**: This object is never null.
         /// </summary>
         public global::System.DateTimeOffset UpdatedAt { get; }
 
         /// <summary>
-        /// Logistics information associated with the order, describing how the purchased items
-        /// will be fulfilled, delivered, or made available to the buyer.
+        /// This object returns logistics information associated with the order. This information describes how the purchased items will be fulfilled, delivered, or made available to the buyer.
         /// </summary>
         public IOrders_Orders_SellerOrders_Orders_Logistics Logistics { get; }
 
@@ -1847,8 +1911,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// A type representing a page of orders.
-    /// Includes a list of orders and pagination info.
+    /// This type represents a page of orders and includes a list of orders and pagination information.
     /// </summary>
     public partial class Orders_Orders_SellerOrders_PaginatedOrders : global::System.IEquatable<Orders_Orders_SellerOrders_PaginatedOrders>, IOrders_Orders_SellerOrders_PaginatedOrders
     {
@@ -1864,7 +1927,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public global::System.Collections.Generic.IReadOnlyList<IOrders_Orders_SellerOrders_Orders> Orders { get; }
 
         /// <summary>
-        /// Pagination information including the runtime cursor and page availability.
+        /// This object includes pagination information, including the runtime cursor and page availability.
         /// </summary>
         public IOrders_Orders_SellerOrders_Pagination Pagination { get; }
 
@@ -1925,10 +1988,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// Order views for the authenticated user.
-    ///
-    /// Provides cursor-based pagination for both buyer and seller order lists.
-    /// Cursors represent the query state for consistent paging even under concurrent updates.
+    /// This type provides cursor-based pagination for both buyer and seller order lists. Cursors represent the query state for consistent paging even under concurrent updates.
     /// </summary>
     public partial class Orders_Orders_OrdersOutput : global::System.IEquatable<Orders_Orders_OrdersOutput>, IOrders_Orders_OrdersOutput
     {
@@ -1938,15 +1998,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Fetches a list of orders for the current user as seller.
-        /// Requires filters and pagination info in the input.
-        /// Generates a runtime cursor representing the query state for subsequent pages.
-        ///
-        /// Execution Errors:
-        /// | Code                  |  Message                                                                     |
-        /// |-----------------------|------------------------------------------------------------------------------|
-        /// | BAD_INPUT_VALUE       |  Input value is not correct.                                                 |
-        /// | INTERNAL_SERVER_ERROR |  System failure.                                                             |
+        /// This object returns a list of orders for the current user as seller. This object requires filters and pagination info in the input, and generates a runtime cursor representing the query state for subsequent pages.
         /// </summary>
         public IOrders_Orders_SellerOrders SellerOrders { get; }
 
@@ -2110,6 +2162,9 @@ namespace EBay.OrderManagement.Generated.GraphQL
             {
             case "DigitalDeliveryStep":
                 return new Orders_Orders_SellerOrders_Orders_Logistics_FulfillmentPlan_LogisticsPlanSteps_DigitalDeliveryStep(
+                    Parse_Orders_Orders_SellerOrders_Orders_Logistics_FulfillmentPlan_LogisticsPlanSteps_MethodName(GraphQLJson.Required(element, "methodName")));
+            case "PackageDropOffStep":
+                return new Orders_Orders_SellerOrders_Orders_Logistics_FulfillmentPlan_LogisticsPlanSteps_PackageDropOffStep(
                     Parse_Orders_Orders_SellerOrders_Orders_Logistics_FulfillmentPlan_LogisticsPlanSteps_MethodName(GraphQLJson.Required(element, "methodName")));
             case "PickupStep":
                 return new Orders_Orders_SellerOrders_Orders_Logistics_FulfillmentPlan_LogisticsPlanSteps_PickupStep(

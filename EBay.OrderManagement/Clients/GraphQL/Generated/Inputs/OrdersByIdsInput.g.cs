@@ -23,7 +23,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This input type defines the payload for the **ordersByIds** query, used to retrieve orders by their unique IDs. Supports requesting 1 to 100 orders per call.
     ///
-    /// **Note:** Only non-null order IDs are accepted.
+    /// **Note**: Only non-null order IDs are accepted.
     /// </summary>
     public partial class OrdersByIdsInput : global::System.IEquatable<OrdersByIdsInput>
     {
@@ -33,7 +33,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A list of one or more unique order IDs to retrieve. This field accepts up to 100 unique order IDs.
         ///
-        /// **Note:** The input is validated to make sure IDs are non-empty and properly formatted.
+        /// **Note**: Each unique order ID in the array should be delimited by a comma.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<string> OrderIds
         {

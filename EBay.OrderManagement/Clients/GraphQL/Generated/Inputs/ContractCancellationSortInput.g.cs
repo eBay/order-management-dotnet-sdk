@@ -33,7 +33,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// Specifies the field by which the contract cancellations are sorted.
         ///
-        /// **Default:** Sorts by the requested date
+        /// **Default**: Sorts by the requested date
         /// </summary>
         public ContractCancellationSortField? SortField
         {
@@ -48,7 +48,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// Specifies the sort direction of the contract cancellations returned in the result.
         ///
-        /// **Default:** `ASC`
+        /// **Default**: `ASC`
         /// </summary>
         public SortOrder? SortOrder
         {

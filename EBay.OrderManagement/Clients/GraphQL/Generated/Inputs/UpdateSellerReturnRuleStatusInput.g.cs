@@ -31,7 +31,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         private bool _set_status;
 
         /// <summary>
-        /// The unique identifier of the rule.
+        /// The unique identifier of the return rule to enable/disable.
         /// </summary>
         public string RuleId
         {
@@ -46,7 +46,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// The status can be `ENABLED` or `DISABLED`:
         /// - `ENABLED`: The rule is evaluated according to its assigned priority (lower priority number execute first). The first rule that meets the specified conditions will be applied to the return request
-        /// - `DISABLED`: The rules is not evaluated and will be skipped
+        /// - `DISABLED`: The rule is not evaluated and will be skipped
         /// </summary>
         public ReturnPreferenceStatus Status
         {

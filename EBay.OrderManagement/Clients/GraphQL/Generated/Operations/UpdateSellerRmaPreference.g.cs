@@ -103,7 +103,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This base response union type for the **updateSellerRmaPreference** mutation reflects whether the return preference was successfully updated or if an error occurred that prevented the update.
     ///
-    /// **Note:** Additional error types may be added to this union in the future.
+    /// **Note**: Additional error types may be added to this union in the future.
     /// </summary>
     public partial interface IUpdateSellerRmaPreference_UpdateSellerRmaPreference
     {
@@ -122,7 +122,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable error message. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
     }
@@ -133,7 +133,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IUpdateSellerRmaPreference_UpdateSellerRmaPreference_RmaPreference
     {
         /// <summary>
-        /// Whether the preference status is enabled (`true`) or disabled (`false`).
+        /// This boolean indicates whether the preference status is enabled (`true`) or disabled (`false`).
         /// </summary>
         public ReturnPreferenceStatus PreferenceStatus { get; }
     }
@@ -184,7 +184,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// A human-readable error message. This alphanumeric string is not localized and may change without notice.
         ///
-        /// **Maximum length:** 512 characters
+        /// **Maximum length**: 512 characters
         /// </summary>
         public string ErrorMessage { get; }
 
@@ -263,7 +263,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Whether the preference status is enabled (`true`) or disabled (`false`).
+        /// This boolean indicates whether the preference status is enabled (`true`) or disabled (`false`).
         /// </summary>
         public ReturnPreferenceStatus PreferenceStatus { get; }
 

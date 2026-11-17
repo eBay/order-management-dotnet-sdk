@@ -46,7 +46,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// If 'true', the original outbound shipping charge for this item as part of the offer is waived; if `false`, it is not waived.
+        /// If `true`, the original outbound shipping charge for this item as part of the offer is waived; if `false`, it is not waived.
         /// </summary>
         public bool? ItemShippingPriceWaived
         {

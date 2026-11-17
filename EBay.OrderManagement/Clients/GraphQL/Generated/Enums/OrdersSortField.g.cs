@@ -26,11 +26,11 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public enum OrdersSortField
     {
         /// <summary>
-        /// Sort by the datetime when the order was confirmed.
+        /// This value sorts by the datetime when the order was confirmed.
         /// </summary>
         ConfirmedAt,
         /// <summary>
-        /// Sort by the datetime when the order was last updated.
+        /// This value sorts by the datetime when the order was last updated.
         /// </summary>
         UpdatedAt
     }

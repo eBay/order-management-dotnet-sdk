@@ -44,7 +44,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Conditions to be evaluated.
+        /// The conditions to be evaluated.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<ReturnRuleConditionInput> RuleConditions
         {

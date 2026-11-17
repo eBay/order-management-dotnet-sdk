@@ -31,7 +31,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
         private bool _set_displayName;
 
         /// <summary>
-        /// This container is used to specify the cost (if any) to pick up the order if the pickup option specified in the corresponding **displayName** field is used. If the pickup option is free to the buyer, this container must still be inclued with the value set to '0.0'.
+        /// This object is used to specify the cost (if any) to pick up the order if the pickup option specified in the corresponding **displayName** field is used. If the pickup option is free to the buyer, This object must still be inclued with the value set to '0.0'.
+        ///
         /// **Note**: The default currency of the eBay listing marketplace should be used.
         /// </summary>
         public AmountInput Cost
@@ -46,8 +47,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The display name of the logistics option.
-        /// **Format**: Alphanumeric characters and may include spaces.
-        /// **Minimum length**: 1 character
+        ///
         /// **Maximum length**: 100 characters
         /// </summary>
         public string DisplayName

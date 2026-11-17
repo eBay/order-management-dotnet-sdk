@@ -23,7 +23,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// <summary>
     /// This enumerated type provides reasons for seller cancellation of an order.
     ///
-    /// **Note:** Additional values may be added to this enumerated type in the future; clients should handle unrecognized values gracefully.
+    /// **Note**: Additional values may be added to this enumerated type in the future; clients should handle unrecognized values gracefully.
     ///
     /// Client implementation guidelines:
     /// - Include a default or fallback case when switching on these values
@@ -32,7 +32,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// - Persist the raw string value to preserve unknown future values
     ///
     /// Example:
-    /// ```typescript
+    /// \`\`\`typescript
     /// switch (reason) {
     /// case 'BUYER_REQUESTED':
     /// // handle...
@@ -41,24 +41,24 @@ namespace EBay.OrderManagement.Generated.GraphQL
     /// default:
     /// // handle unknown future values gracefully
     /// }
-    /// ```
+    /// \`\`\`
     /// </summary>
     public enum ContractCancellationSellerReasonInput
     {
         /// <summary>
-        ///  The buyer requested the order cancellation.
+        /// This value indicates that the buyer requested that the seller initiate the order cancellation.
         /// </summary>
         BuyerRequested,
         /// <summary>
-        ///  The item is out of stock.
+        /// This value indicates that the seller cancelled the contract due to being out of stock of the item.
         /// </summary>
         OutOfStock,
         /// <summary>
-        ///  There are issues with the buyer's shipping address.
+        /// This value indicates that the seller cancelled the contract due to issues with the buyer's shipping address.
         /// </summary>
         ShippingAddressIssues,
         /// <summary>
-        ///  The contract is unpaid.
+        /// This value indicates that the seller cancelled the contract due to the contract remaining unpaid.
         /// </summary>
         UnpaidContract
     }

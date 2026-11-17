@@ -45,6 +45,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The carrier name as provided by the user, when the carrier is not recognized by eBay Marketplace.
+        ///
         /// **Note**: This field is only applicable if **carrierCode** is set to `UNSUPPORTED`.
         /// </summary>
         public string? UnsupportedCarrierName

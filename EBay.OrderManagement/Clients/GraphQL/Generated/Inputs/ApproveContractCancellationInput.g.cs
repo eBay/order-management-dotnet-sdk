@@ -31,7 +31,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         private bool _set_relistAllItems;
 
         /// <summary>
-        ///  The ID of the contract cancellation to approve.
+        /// The unique identifier of the contract cancellation to approve.
         /// </summary>
         public string CancellationId
         {
@@ -44,11 +44,11 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Whether to relist all items from the canceled purchase quote.
+        /// This boolean field is used to control whether or not to automatically relist all line items from the cancelled purchase quote.
         ///
-        /// **Note:** Must be `false` if the **contractCancellationReason** from the create mutation used (for example,  **CreateOrderCancellationInput**) was set to `OUT_OF_STOCK`.
+        /// **Note**: This boolean must be `false` if the contract cancellation reason is `OUT_OF_STOCK`.
         ///
-        /// **Default:** `false`
+        /// **Default**: `false`
         /// </summary>
         public bool? RelistAllItems
         {

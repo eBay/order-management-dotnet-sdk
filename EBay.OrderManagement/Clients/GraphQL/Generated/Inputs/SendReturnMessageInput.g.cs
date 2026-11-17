@@ -33,8 +33,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// The reply text to include. The message is stored as provided and not localized.
         ///
-        /// **Minimum length:** 1 character
-        /// **Maximum length:** 500 characters
+        /// **Maximum length**: 500 characters
         /// </summary>
         public string Message
         {
@@ -47,7 +46,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The unique identifier of the Return which to send a message. This must be a valid return ID that the user has permission to access.
+        /// The unique identifier of the return request for which to send a message. This must be a valid return ID that the user has permission to access.
         /// </summary>
         public string ReturnId
         {

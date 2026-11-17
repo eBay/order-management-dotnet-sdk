@@ -65,6 +65,9 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Order.Item
         /// <returns>A <see cref="global::EBay.OrderManagement.Generated.Fulfillment.Models.Order"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::EBay.OrderManagement.Generated.Fulfillment.Models.ErrorResponse">When receiving a 400 status code</exception>
+        /// <exception cref="global::EBay.OrderManagement.Generated.Fulfillment.Models.ErrorResponse">When receiving a 404 status code</exception>
+        /// <exception cref="global::EBay.OrderManagement.Generated.Fulfillment.Models.ErrorResponse">When receiving a 500 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<global::EBay.OrderManagement.Generated.Fulfillment.Models.Order?> GetAsync(Action<RequestConfiguration<global::EBay.OrderManagement.Generated.Fulfillment.Order.Item.OrderItemRequestBuilder.OrderItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -75,7 +78,13 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Order.Item
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::EBay.OrderManagement.Generated.Fulfillment.Models.Order>(requestInfo, global::EBay.OrderManagement.Generated.Fulfillment.Models.Order.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "400", global::EBay.OrderManagement.Generated.Fulfillment.Models.ErrorResponse.CreateFromDiscriminatorValue },
+                { "404", global::EBay.OrderManagement.Generated.Fulfillment.Models.ErrorResponse.CreateFromDiscriminatorValue },
+                { "500", global::EBay.OrderManagement.Generated.Fulfillment.Models.ErrorResponse.CreateFromDiscriminatorValue },
+            };
+            return await RequestAdapter.SendAsync<global::EBay.OrderManagement.Generated.Fulfillment.Models.Order>(requestInfo, global::EBay.OrderManagement.Generated.Fulfillment.Models.Order.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Use this call to retrieve the contents of an order based on its unique identifier, &lt;i&gt;orderId&lt;/i&gt;. This value is returned in the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders&quot; target=&quot;_blank&quot;&gt;getOrders&lt;/a&gt; call&apos;s &lt;strong&gt;orders.orderId&lt;/strong&gt; field when you search for orders by creation date, modification date, or fulfillment status. Include the optional &lt;strong&gt;fieldGroups&lt;/strong&gt; query parameter set to &lt;code&gt;TAX_BREAKDOWN&lt;/code&gt; to return a breakdown of the taxes and fees. &lt;br&gt;&lt;br&gt; The returned &lt;strong&gt;Order&lt;/strong&gt; object contains information you can use to create and process fulfillments, including the following: &lt;ul&gt; &lt;li&gt;Information about the buyer and seller&lt;/li&gt; &lt;li&gt;Information about the order&apos;s line items&lt;/li&gt; &lt;li&gt; The plans for packaging, addressing, and shipping the order&lt;/li&gt; &lt;li&gt;The status of payment, packaging, addressing, and shipping the order&lt;/li&gt; &lt;li&gt;A summary of monetary amounts specific to the order such as pricing, payments, and shipping costs&lt;/li&gt; &lt;li&gt;A summary of applied taxes and fees and, optionally, a breakdown of each &lt;/li&gt;&lt;/ul&gt;
@@ -112,15 +121,8 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Order.Item
         public partial class OrderItemRequestBuilderGetQueryParameters 
         {
             /// <summary>This parameter lets you control what is returned in the response.&lt;br&gt;&lt;br&gt;&lt;span class=&quot;tablenote&quot;&gt;&lt;strong&gt;Note:&lt;/strong&gt; The only presently supported value is &lt;code&gt;TAX_BREAKDOWN&lt;/code&gt;. This field group adds addition fields to the response that return a breakdown of taxes and fees.&lt;/span&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
             [QueryParameter("fieldGroups")]
-            public string? FieldGroups { get; set; }
-#nullable restore
-#else
-            [QueryParameter("fieldGroups")]
-            public string FieldGroups { get; set; }
-#endif
+            public global::EBay.OrderManagement.Generated.Fulfillment.Order.Item.GetFieldGroupsQueryParameterType? FieldGroups { get; set; }
         }
     }
 }

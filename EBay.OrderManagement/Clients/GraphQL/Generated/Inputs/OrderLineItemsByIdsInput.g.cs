@@ -29,7 +29,9 @@ namespace EBay.OrderManagement.Generated.GraphQL
         private bool _set_lineItemIds;
 
         /// <summary>
-        /// Input line item IDs to search.
+        /// This array is used to specify a list of up to 100 unique identifiers of line items, and the orders associated with these line item IDs will be returned.
+        ///
+        /// **Note**: Each unique line item ID is delimited with a comma.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<string> LineItemIds
         {

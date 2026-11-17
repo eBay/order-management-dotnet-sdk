@@ -29,7 +29,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         private bool _set_returnShipmentOriginCountries;
 
         /// <summary>
-        /// Country code in ISO format. Example `US` for United States.
+        /// The country code in ISO format. Example `US` for United States.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<CountryAlpha2Code> ReturnShipmentOriginCountries
         {

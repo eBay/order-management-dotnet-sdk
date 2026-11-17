@@ -30,13 +30,7 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The date and time that the payment being held is expected to be released to the seller. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field will be returned if known by eBay. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? ExpectedReleaseDate { get; set; }
-#nullable restore
-#else
-        public string ExpectedReleaseDate { get; set; }
-#endif
+        public DateTimeOffset? ExpectedReleaseDate { get; set; }
         /// <summary>The monetary amount of the payment being held. This field is always returned with the &lt;strong&gt;paymentHolds&lt;/strong&gt; array. </summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -62,13 +56,7 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
         public string HoldState { get; set; }
 #endif
         /// <summary>The date and time that the payment being held was actually released to the seller. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the seller&apos;s payment is actually released into the seller&apos;s account.&lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? ReleaseDate { get; set; }
-#nullable restore
-#else
-        public string ReleaseDate { get; set; }
-#endif
+        public DateTimeOffset? ReleaseDate { get; set; }
         /// <summary>A list of one or more possible actions that the seller can take to expedite the release of the payment hold.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -102,11 +90,11 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "expectedReleaseDate", n => { ExpectedReleaseDate = n.GetStringValue(); } },
+                { "expectedReleaseDate", n => { ExpectedReleaseDate = n.GetDateTimeOffsetValue(); } },
                 { "holdAmount", n => { HoldAmount = n.GetObjectValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.Amount>(global::EBay.OrderManagement.Generated.Fulfillment.Models.Amount.CreateFromDiscriminatorValue); } },
                 { "holdReason", n => { HoldReason = n.GetStringValue(); } },
                 { "holdState", n => { HoldState = n.GetStringValue(); } },
-                { "releaseDate", n => { ReleaseDate = n.GetStringValue(); } },
+                { "releaseDate", n => { ReleaseDate = n.GetDateTimeOffsetValue(); } },
                 { "sellerActionsToRelease", n => { SellerActionsToRelease = n.GetCollectionOfObjectValues<global::EBay.OrderManagement.Generated.Fulfillment.Models.SellerActionsToRelease>(global::EBay.OrderManagement.Generated.Fulfillment.Models.SellerActionsToRelease.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
@@ -117,11 +105,11 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("expectedReleaseDate", ExpectedReleaseDate);
+            writer.WriteDateTimeOffsetValue("expectedReleaseDate", ExpectedReleaseDate);
             writer.WriteObjectValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.Amount>("holdAmount", HoldAmount);
             writer.WriteStringValue("holdReason", HoldReason);
             writer.WriteStringValue("holdState", HoldState);
-            writer.WriteStringValue("releaseDate", ReleaseDate);
+            writer.WriteDateTimeOffsetValue("releaseDate", ReleaseDate);
             writer.WriteCollectionOfObjectValues<global::EBay.OrderManagement.Generated.Fulfillment.Models.SellerActionsToRelease>("sellerActionsToRelease", SellerActionsToRelease);
             writer.WriteAdditionalData(AdditionalData);
         }

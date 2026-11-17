@@ -41,7 +41,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// <summary>
         /// This object defines return category conditions.
         ///
-        /// **Note:** Multiple categories can be included in a single condition.
+        /// **Note**: Multiple categories can be included in a single condition.
         /// </summary>
         public ReturnItemCategoryConditionInput? CategoryCondition
         {
@@ -54,7 +54,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Item location countries condition.
+        /// This object is used to configure the countries that the return rule applies to.
         /// </summary>
         public ReturnItemLocationCountryConditionInput? ItemLocationCountriesCondition
         {
@@ -67,9 +67,9 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The listing return rule condition.
+        /// The return rule listing group that the return rule applies to.
         ///
-        /// **Note:** Only one listing group can be specified per condition.
+        /// **Note**: Only one listing group can be specified per condition.
         /// </summary>
         public ReturnListingGroupConditionInput? ListingGroupCondition
         {
@@ -82,7 +82,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Return refund amount range condition.
+        /// The return refund amount range applicable to the rule condition is applied in this object.
         /// </summary>
         public ReturnRefundRangeConditionInput? RefundRangeCondition
         {
@@ -95,9 +95,9 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This object defines return reason conditions.
+        /// This object defines the return reason conditions.
         ///
-        /// **Note:** Multiple reasons can be included in a single condition.
+        /// **Note**: Multiple reasons can be included in a single condition.
         /// </summary>
         public ReturnReasonConditionInput? ReturnReasonCondition
         {
@@ -110,7 +110,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// Return-shipment origin countries condition.
+        /// This object defines the countries where returns will be accepted from if the return request matches the return rule.
         /// </summary>
         public ReturnShipmentOriginCountryConditionInput? ReturnShipmentOriginCountriesCondition
         {

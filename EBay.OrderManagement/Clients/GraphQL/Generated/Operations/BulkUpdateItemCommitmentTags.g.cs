@@ -26,14 +26,11 @@ namespace EBay.OrderManagement.Generated.GraphQL
     public partial interface IBulkUpdateItemCommitmentTagsResult
     {
         /// <summary>
-        /// This mutation allows a seller to add and/or delete up to five custom item commitment tags for up to 100 item commitments per operation.
-        /// **Note**: This operation is not available to buyers.
+        /// This mutation allows a seller to update the acknowledgment status of up to 100 item commitments per operation.
         ///
-        /// Execution Errors:
-        /// | Code                  |  Message                                                                     |
-        /// |-----------------------|------------------------------------------------------------------------------|
-        /// | BAD_INPUT_VALUE       |  Input size is 0 or over the limit. Please provide valid input.              |
-        /// | INTERNAL_SERVER_ERROR |  System failure.                                                             |
+        /// Supported values in the tags array are **acknowledged** and **unacknowledged**, and only one of these values can be used per item commitment.
+        ///
+        /// **Note**: Custom item commitment tag updates are not supported by this mutation.
         /// </summary>
         public IBulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTags BulkUpdateItemCommitmentTags { get; }
     }
@@ -49,14 +46,11 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This mutation allows a seller to add and/or delete up to five custom item commitment tags for up to 100 item commitments per operation.
-        /// **Note**: This operation is not available to buyers.
+        /// This mutation allows a seller to update the acknowledgment status of up to 100 item commitments per operation.
         ///
-        /// Execution Errors:
-        /// | Code                  |  Message                                                                     |
-        /// |-----------------------|------------------------------------------------------------------------------|
-        /// | BAD_INPUT_VALUE       |  Input size is 0 or over the limit. Please provide valid input.              |
-        /// | INTERNAL_SERVER_ERROR |  System failure.                                                             |
+        /// Supported values in the tags array are **acknowledged** and **unacknowledged**, and only one of these values can be used per item commitment.
+        ///
+        /// **Note**: Custom item commitment tag updates are not supported by this mutation.
         /// </summary>
         public IBulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTags BulkUpdateItemCommitmentTags { get; }
 
@@ -123,21 +117,21 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// Represents details about an error that occurred while updating an item commitment.
+    /// This type provides details about an error that occurred while updating an item commitment.
     /// </summary>
     public partial interface IBulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTags_Failures
     {
         /// <summary>
-        /// The ID of the item commitment that failed to be updated with a mutation.
+        /// The unique identifier of the item commitment that failed to be updated with a mutation.
         /// </summary>
         public string InputItemCommitmentId { get; }
         /// <summary>
         /// The unique identifier of the error. Below are the five errors that may occur:
-        /// - INVALID_INPUT: This error indicates that the item commitment ID is not recognized.
-        /// - NOT_AUTHORIZED: This error indicates that the item commitment doesn't belong to the authenticated eBay user, so this action cannot be taken.
-        /// - VERSION_LOCKED: This error indicates that the latest version of item commitment is locked, possibly because the item commitment was being modified by another process. With this error, the user can make another attempt to update the item commitment.
-        /// - TEMPORARILY_NOT_AVAILABLE: This error indicates that a system error occurred. This error may occur with a complete failure, and the user can try again after a short period of time.
-        /// - DEPENDENCY_TIME_OUT: — This error indicates that a timeout occurred. With this error, the user can try again after a short period of time.
+        /// - `INVALID_INPUT`: This error indicates that the item commitment ID is not recognized.
+        /// - `NOT_AUTHORIZED`: This error indicates that the item commitment doesn't belong to the authenticated eBay user, so this action cannot be taken.
+        /// - `VERSION_LOCKED`: This error indicates that the latest version of item commitment is locked, possibly because the item commitment was being modified by another process. With this error, the user can make another attempt to update the item commitment.
+        /// - `TEMPORARILY_NOT_AVAILABLE`: This error indicates that a system error occurred. This error may occur with a complete failure, and the user can try again after a short period of time.
+        /// - `DEPENDENCY_TIME_OUT`: — This error indicates that a timeout occurred. With this error, the user can try again after a short period of time.
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
@@ -145,26 +139,27 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// </summary>
         public string DisplayMessage { get; }
         /// <summary>
-        /// This boolean indicates whether or not the user should retry a mutation to update the corresponding item commitment again. If this field is returned as 'true', the user can make another attempt to update the item commitment.
+        /// This boolean indicates whether or not the user should retry a mutation to update the corresponding item commitment again. If this field is returned as `true`, the user can make another attempt to update the item commitment.
         /// </summary>
         public bool Retryable { get; }
     }
 
     /// <summary>
-    /// Represents details about an error that occurred while updating an item commitment.
+    /// This type provides details about an error that occurred while updating an item commitment.
     /// </summary>
     public partial interface IBulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTags_Failures_UpdateItemCommitmentError : IBulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTags_Failures
     {
     }
 
     /// <summary>
-    /// This output type is used when a **bulkUpdateItemCommitmentTags** mutation fails completely, and none of the specified item commitments are updated with new custom tags or deleted custom tags. The **failures** array will show the identifiers of the item commitments whose custom tags failed to be updated, and the error fields will provide more details on the issue(s) that caused the mutation to fail.
+    /// This output type is used when a **bulkUpdateItemCommitmentTags** mutation fails completely, and none of the specified item commitments are updated with new item commitment tags or deleted item commitment tags. The **failures** array will show the identifiers of the item commitments whose item commitment tags failed to be updated, and the error fields will provide more details on the issue(s) that caused the mutation to fail.
     /// </summary>
     public partial interface IBulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTagsCompleteFailure : IBulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTags
     {
         /// <summary>
         /// The unique identifier of the error.
-        /// **Note**: Currently this field will always show UPDATE_ITEM_COMMITMENT_TAGS_COMPLETE_FAILURE.
+        ///
+        /// **Note**: Currently this field will always show `UPDATE_ITEM_COMMITMENT_TAGS_COMPLETE_FAILURE`.
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
@@ -172,7 +167,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// </summary>
         public string ErrorMessage { get; }
         /// <summary>
-        /// This array shows the full list of item commitments that failed to be updated with new custom tags or deleted custom tags.
+        /// This array shows the full list of item commitments that failed to be updated with new item commitment tags or deleted item commitment tags.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IBulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTags_Failures> Failures { get; }
     }
@@ -196,21 +191,21 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// Represents details about an error that occurred while updating an item commitment.
+    /// This type provides details about an error that occurred while updating an item commitment.
     /// </summary>
     public partial interface IBulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTags_Failures_1
     {
         /// <summary>
-        /// The ID of the item commitment that failed to be updated with a mutation.
+        /// The unique identifier of the item commitment that failed to be updated with a mutation.
         /// </summary>
         public string InputItemCommitmentId { get; }
         /// <summary>
         /// The unique identifier of the error. Below are the five errors that may occur:
-        /// - INVALID_INPUT: This error indicates that the item commitment ID is not recognized.
-        /// - NOT_AUTHORIZED: This error indicates that the item commitment doesn't belong to the authenticated eBay user, so this action cannot be taken.
-        /// - VERSION_LOCKED: This error indicates that the latest version of item commitment is locked, possibly because the item commitment was being modified by another process. With this error, the user can make another attempt to update the item commitment.
-        /// - TEMPORARILY_NOT_AVAILABLE: This error indicates that a system error occurred. This error may occur with a complete failure, and the user can try again after a short period of time.
-        /// - DEPENDENCY_TIME_OUT: — This error indicates that a timeout occurred. With this error, the user can try again after a short period of time.
+        /// - `INVALID_INPUT`: This error indicates that the item commitment ID is not recognized.
+        /// - `NOT_AUTHORIZED`: This error indicates that the item commitment doesn't belong to the authenticated eBay user, so this action cannot be taken.
+        /// - `VERSION_LOCKED`: This error indicates that the latest version of item commitment is locked, possibly because the item commitment was being modified by another process. With this error, the user can make another attempt to update the item commitment.
+        /// - `TEMPORARILY_NOT_AVAILABLE`: This error indicates that a system error occurred. This error may occur with a complete failure, and the user can try again after a short period of time.
+        /// - `DEPENDENCY_TIME_OUT`: — This error indicates that a timeout occurred. With this error, the user can try again after a short period of time.
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
@@ -218,26 +213,27 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// </summary>
         public string DisplayMessage { get; }
         /// <summary>
-        /// This boolean indicates whether or not the user should retry a mutation to update the corresponding item commitment again. If this field is returned as 'true', the user can make another attempt to update the item commitment.
+        /// This boolean indicates whether or not the user should retry a mutation to update the corresponding item commitment again. If this field is returned as `true`, the user can make another attempt to update the item commitment.
         /// </summary>
         public bool Retryable { get; }
     }
 
     /// <summary>
-    /// Represents details about an error that occurred while updating an item commitment.
+    /// This type provides details about an error that occurred while updating an item commitment.
     /// </summary>
     public partial interface IBulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTags_Failures_UpdateItemCommitmentError_1 : IBulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTags_Failures_1
     {
     }
 
     /// <summary>
-    /// This output type is used when a **bulkUpdateItemCommitmentTags** mutation is partially successful, where one or more specified custom tags operations in one or more item commitments were successfully performed, but one or more other specified custom tags operations in one or more item commitments failed. The **updatedItemCommitments** array will display all item commitments whose custom tags were updated, the **failures** array will show the identifiers of the item commitments whose custom tags failed to be updated, and the error fields will provide more details on the issue(s) that caused the mutation to only be partially successful.
+    /// This output type is used when a **bulkUpdateItemCommitmentTags** mutation is partially successful, where one or more specified item commitment tag operations in one or more item commitments were successfully performed, but one or more other specified item commitment tag operations in one or more item commitments failed. The **updatedItemCommitments** array will display all item commitments whose item commitment tags were updated, the **failures** array will show the identifiers of the item commitments whose item commitment tags failed to be updated, and the error fields will provide more details on the issue(s) that caused the mutation to only be partially successful.
     /// </summary>
     public partial interface IBulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTagsPartialFailure : IBulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTags
     {
         /// <summary>
         /// The unique identifier of the error.
-        /// **Note**: Currently this field will always show UPDATE_ITEM_COMMITMENT_TAGS_PARTIAL_FAILURE.
+        ///
+        /// **Note**: Currently this field will always show `UPDATE_ITEM_COMMITMENT_TAGS_PARTIAL_FAILURE`.
         /// </summary>
         public string ErrorCode { get; }
         /// <summary>
@@ -245,11 +241,11 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// </summary>
         public string ErrorMessage { get; }
         /// <summary>
-        /// This array shows the full list of item commitments that were successfully updated with new custom tags or deleted custom tags.
+        /// This array shows the full list of item commitments that were successfully updated with new item commitment tags or deleted item commitment tags.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IBulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTags_UpdatedItemCommitments> UpdatedItemCommitments { get; }
         /// <summary>
-        /// This array shows the full list of item commitments that failed to be updated with new custom tags or deleted custom tags.
+        /// This array shows the full list of item commitments that failed to be updated with new item commitment tags or deleted item commitment tags.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IBulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTags_Failures_1> Failures { get; }
     }
@@ -273,18 +269,18 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This output type is used when a **bulkUpdateItemCommitmentTags** mutation when all specified custom tags operations in all item commitments were successfully performed, and displays detailed information on each of the updated item commitments.
+    /// This output type is used for a **bulkUpdateItemCommitmentTags** mutation when all specified item commitment tag operations in all item commitments were successfully performed, and displays detailed information on each of the updated item commitments.
     /// </summary>
     public partial interface IBulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTagsSuccess : IBulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTags
     {
         /// <summary>
-        /// This array shows the full list of item commitments that were successfully updated with new custom tags or deleted custom tags.
+        /// This array shows the full list of item commitments that were successfully updated with new item commitment tags or deleted item commitment tags.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IBulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTags_UpdatedItemCommitments_1> UpdatedItemCommitments { get; }
     }
 
     /// <summary>
-    /// Represents details about an error that occurred while updating an item commitment.
+    /// This type provides details about an error that occurred while updating an item commitment.
     /// </summary>
     public partial class BulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTags_Failures_UpdateItemCommitmentError : global::System.IEquatable<BulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTags_Failures_UpdateItemCommitmentError>, IBulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTags_Failures_UpdateItemCommitmentError
     {
@@ -297,17 +293,17 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The ID of the item commitment that failed to be updated with a mutation.
+        /// The unique identifier of the item commitment that failed to be updated with a mutation.
         /// </summary>
         public string InputItemCommitmentId { get; }
 
         /// <summary>
         /// The unique identifier of the error. Below are the five errors that may occur:
-        /// - INVALID_INPUT: This error indicates that the item commitment ID is not recognized.
-        /// - NOT_AUTHORIZED: This error indicates that the item commitment doesn't belong to the authenticated eBay user, so this action cannot be taken.
-        /// - VERSION_LOCKED: This error indicates that the latest version of item commitment is locked, possibly because the item commitment was being modified by another process. With this error, the user can make another attempt to update the item commitment.
-        /// - TEMPORARILY_NOT_AVAILABLE: This error indicates that a system error occurred. This error may occur with a complete failure, and the user can try again after a short period of time.
-        /// - DEPENDENCY_TIME_OUT: — This error indicates that a timeout occurred. With this error, the user can try again after a short period of time.
+        /// - `INVALID_INPUT`: This error indicates that the item commitment ID is not recognized.
+        /// - `NOT_AUTHORIZED`: This error indicates that the item commitment doesn't belong to the authenticated eBay user, so this action cannot be taken.
+        /// - `VERSION_LOCKED`: This error indicates that the latest version of item commitment is locked, possibly because the item commitment was being modified by another process. With this error, the user can make another attempt to update the item commitment.
+        /// - `TEMPORARILY_NOT_AVAILABLE`: This error indicates that a system error occurred. This error may occur with a complete failure, and the user can try again after a short period of time.
+        /// - `DEPENDENCY_TIME_OUT`: — This error indicates that a timeout occurred. With this error, the user can try again after a short period of time.
         /// </summary>
         public string ErrorCode { get; }
 
@@ -317,7 +313,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string DisplayMessage { get; }
 
         /// <summary>
-        /// This boolean indicates whether or not the user should retry a mutation to update the corresponding item commitment again. If this field is returned as 'true', the user can make another attempt to update the item commitment.
+        /// This boolean indicates whether or not the user should retry a mutation to update the corresponding item commitment again. If this field is returned as `true`, the user can make another attempt to update the item commitment.
         /// </summary>
         public bool Retryable { get; }
 
@@ -388,7 +384,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This output type is used when a **bulkUpdateItemCommitmentTags** mutation fails completely, and none of the specified item commitments are updated with new custom tags or deleted custom tags. The **failures** array will show the identifiers of the item commitments whose custom tags failed to be updated, and the error fields will provide more details on the issue(s) that caused the mutation to fail.
+    /// This output type is used when a **bulkUpdateItemCommitmentTags** mutation fails completely, and none of the specified item commitments are updated with new item commitment tags or deleted item commitment tags. The **failures** array will show the identifiers of the item commitments whose item commitment tags failed to be updated, and the error fields will provide more details on the issue(s) that caused the mutation to fail.
     /// </summary>
     public partial class BulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTagsCompleteFailure : global::System.IEquatable<BulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTagsCompleteFailure>, IBulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTagsCompleteFailure
     {
@@ -404,7 +400,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The unique identifier of the error.
-        /// **Note**: Currently this field will always show UPDATE_ITEM_COMMITMENT_TAGS_COMPLETE_FAILURE.
+        ///
+        /// **Note**: Currently this field will always show `UPDATE_ITEM_COMMITMENT_TAGS_COMPLETE_FAILURE`.
         /// </summary>
         public string ErrorCode { get; }
 
@@ -414,7 +411,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string ErrorMessage { get; }
 
         /// <summary>
-        /// This array shows the full list of item commitments that failed to be updated with new custom tags or deleted custom tags.
+        /// This array shows the full list of item commitments that failed to be updated with new item commitment tags or deleted item commitment tags.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IBulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTags_Failures> Failures { get; }
 
@@ -554,7 +551,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// Represents details about an error that occurred while updating an item commitment.
+    /// This type provides details about an error that occurred while updating an item commitment.
     /// </summary>
     public partial class BulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTags_Failures_UpdateItemCommitmentError_1 : global::System.IEquatable<BulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTags_Failures_UpdateItemCommitmentError_1>, IBulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTags_Failures_UpdateItemCommitmentError_1
     {
@@ -567,17 +564,17 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// The ID of the item commitment that failed to be updated with a mutation.
+        /// The unique identifier of the item commitment that failed to be updated with a mutation.
         /// </summary>
         public string InputItemCommitmentId { get; }
 
         /// <summary>
         /// The unique identifier of the error. Below are the five errors that may occur:
-        /// - INVALID_INPUT: This error indicates that the item commitment ID is not recognized.
-        /// - NOT_AUTHORIZED: This error indicates that the item commitment doesn't belong to the authenticated eBay user, so this action cannot be taken.
-        /// - VERSION_LOCKED: This error indicates that the latest version of item commitment is locked, possibly because the item commitment was being modified by another process. With this error, the user can make another attempt to update the item commitment.
-        /// - TEMPORARILY_NOT_AVAILABLE: This error indicates that a system error occurred. This error may occur with a complete failure, and the user can try again after a short period of time.
-        /// - DEPENDENCY_TIME_OUT: — This error indicates that a timeout occurred. With this error, the user can try again after a short period of time.
+        /// - `INVALID_INPUT`: This error indicates that the item commitment ID is not recognized.
+        /// - `NOT_AUTHORIZED`: This error indicates that the item commitment doesn't belong to the authenticated eBay user, so this action cannot be taken.
+        /// - `VERSION_LOCKED`: This error indicates that the latest version of item commitment is locked, possibly because the item commitment was being modified by another process. With this error, the user can make another attempt to update the item commitment.
+        /// - `TEMPORARILY_NOT_AVAILABLE`: This error indicates that a system error occurred. This error may occur with a complete failure, and the user can try again after a short period of time.
+        /// - `DEPENDENCY_TIME_OUT`: — This error indicates that a timeout occurred. With this error, the user can try again after a short period of time.
         /// </summary>
         public string ErrorCode { get; }
 
@@ -587,7 +584,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string DisplayMessage { get; }
 
         /// <summary>
-        /// This boolean indicates whether or not the user should retry a mutation to update the corresponding item commitment again. If this field is returned as 'true', the user can make another attempt to update the item commitment.
+        /// This boolean indicates whether or not the user should retry a mutation to update the corresponding item commitment again. If this field is returned as `true`, the user can make another attempt to update the item commitment.
         /// </summary>
         public bool Retryable { get; }
 
@@ -658,7 +655,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This output type is used when a **bulkUpdateItemCommitmentTags** mutation is partially successful, where one or more specified custom tags operations in one or more item commitments were successfully performed, but one or more other specified custom tags operations in one or more item commitments failed. The **updatedItemCommitments** array will display all item commitments whose custom tags were updated, the **failures** array will show the identifiers of the item commitments whose custom tags failed to be updated, and the error fields will provide more details on the issue(s) that caused the mutation to only be partially successful.
+    /// This output type is used when a **bulkUpdateItemCommitmentTags** mutation is partially successful, where one or more specified item commitment tag operations in one or more item commitments were successfully performed, but one or more other specified item commitment tag operations in one or more item commitments failed. The **updatedItemCommitments** array will display all item commitments whose item commitment tags were updated, the **failures** array will show the identifiers of the item commitments whose item commitment tags failed to be updated, and the error fields will provide more details on the issue(s) that caused the mutation to only be partially successful.
     /// </summary>
     public partial class BulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTagsPartialFailure : global::System.IEquatable<BulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTagsPartialFailure>, IBulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTagsPartialFailure
     {
@@ -675,7 +672,8 @@ namespace EBay.OrderManagement.Generated.GraphQL
 
         /// <summary>
         /// The unique identifier of the error.
-        /// **Note**: Currently this field will always show UPDATE_ITEM_COMMITMENT_TAGS_PARTIAL_FAILURE.
+        ///
+        /// **Note**: Currently this field will always show `UPDATE_ITEM_COMMITMENT_TAGS_PARTIAL_FAILURE`.
         /// </summary>
         public string ErrorCode { get; }
 
@@ -685,12 +683,12 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string ErrorMessage { get; }
 
         /// <summary>
-        /// This array shows the full list of item commitments that were successfully updated with new custom tags or deleted custom tags.
+        /// This array shows the full list of item commitments that were successfully updated with new item commitment tags or deleted item commitment tags.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IBulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTags_UpdatedItemCommitments> UpdatedItemCommitments { get; }
 
         /// <summary>
-        /// This array shows the full list of item commitments that failed to be updated with new custom tags or deleted custom tags.
+        /// This array shows the full list of item commitments that failed to be updated with new item commitment tags or deleted item commitment tags.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IBulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTags_Failures_1> Failures { get; }
 
@@ -832,7 +830,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
     }
 
     /// <summary>
-    /// This output type is used when a **bulkUpdateItemCommitmentTags** mutation when all specified custom tags operations in all item commitments were successfully performed, and displays detailed information on each of the updated item commitments.
+    /// This output type is used for a **bulkUpdateItemCommitmentTags** mutation when all specified item commitment tag operations in all item commitments were successfully performed, and displays detailed information on each of the updated item commitments.
     /// </summary>
     public partial class BulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTagsSuccess : global::System.IEquatable<BulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTagsSuccess>, IBulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTagsSuccess
     {
@@ -845,7 +843,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         public string __typename { get; }
 
         /// <summary>
-        /// This array shows the full list of item commitments that were successfully updated with new custom tags or deleted custom tags.
+        /// This array shows the full list of item commitments that were successfully updated with new item commitment tags or deleted item commitment tags.
         /// </summary>
         public global::System.Collections.Generic.IReadOnlyList<IBulkUpdateItemCommitmentTags_BulkUpdateItemCommitmentTags_UpdatedItemCommitments_1> UpdatedItemCommitments { get; }
 

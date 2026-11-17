@@ -31,7 +31,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         private bool _set_sortOrder;
 
         /// <summary>
-        /// This field specifies how the returned order inquiries are sorted (e.g., 'CREATED_AT'). The sorting defaults to 'CREATED_AT' if not specified.
+        /// This field specifies how the returned order inquiries are sorted (e.g., `CREATED_AT`). The sorting defaults to `CREATED_AT` if not specified.
         /// </summary>
         public OrderInquirySortField? SortField
         {
@@ -44,7 +44,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         }
 
         /// <summary>
-        /// This field specifies the sort order of the response: 'ASC' for ascending, 'DESC' for descending. The sorting defaults to 'ASC' if not specified.
+        /// This field specifies the sort order of the response: `ASC` for ascending, `DESC` for descending. The sorting defaults to `ASC` if not specified.
         /// </summary>
         public SortOrder? SortOrder
         {

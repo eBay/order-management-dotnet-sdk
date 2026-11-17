@@ -38,13 +38,7 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
         public global::EBay.OrderManagement.Generated.Fulfillment.Models.Amount Amount { get; set; }
 #endif
         /// <summary>The date and time that the refund was issued. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. This field is not returned until the refund has been issued. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? RefundDate { get; set; }
-#nullable restore
-#else
-        public string RefundDate { get; set; }
-#endif
+        public DateTimeOffset? RefundDate { get; set; }
         /// <summary>Unique identifier of a refund that was initiated for an order through the &lt;strong&gt;issueRefund&lt;/strong&gt; method. If the &lt;strong&gt;issueRefund&lt;/strong&gt; method was used to issue one or more refunds at the line item level, these refund identifiers are returned at the line item level instead (&lt;strong&gt;lineItems.refunds.refundId&lt;/strong&gt; field).&lt;br&gt;&lt;br&gt; A &lt;strong&gt;refundId&lt;/strong&gt; value is returned in the response of the &lt;strong&gt;issueRefund&lt;/strong&gt; method, and this same value will be returned in the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorder&quot; target=&quot;_blank&quot;&gt;getOrder&lt;/a&gt; and &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders&quot; target=&quot;_blank&quot;&gt;getOrders&lt;/a&gt; responses for pending and completed refunds. For other refunds, see the &lt;strong&gt;refundReferenceId&lt;/strong&gt; field.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -89,7 +83,7 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "amount", n => { Amount = n.GetObjectValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.Amount>(global::EBay.OrderManagement.Generated.Fulfillment.Models.Amount.CreateFromDiscriminatorValue); } },
-                { "refundDate", n => { RefundDate = n.GetStringValue(); } },
+                { "refundDate", n => { RefundDate = n.GetDateTimeOffsetValue(); } },
                 { "refundId", n => { RefundId = n.GetStringValue(); } },
                 { "refundReferenceId", n => { RefundReferenceId = n.GetStringValue(); } },
                 { "refundStatus", n => { RefundStatus = n.GetEnumValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.RefundStatusEnum>(); } },
@@ -103,7 +97,7 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.Amount>("amount", Amount);
-            writer.WriteStringValue("refundDate", RefundDate);
+            writer.WriteDateTimeOffsetValue("refundDate", RefundDate);
             writer.WriteStringValue("refundId", RefundId);
             writer.WriteStringValue("refundReferenceId", RefundReferenceId);
             writer.WriteEnumValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.RefundStatusEnum>("refundStatus", RefundStatus);

@@ -38,13 +38,7 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
         public global::EBay.OrderManagement.Generated.Fulfillment.Models.Amount Amount { get; set; }
 #endif
         /// <summary>The date and time that the payment was received by the seller. This field will not be returned if buyer has yet to pay for the order. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html&quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? PaymentDate { get; set; }
-#nullable restore
-#else
-        public string PaymentDate { get; set; }
-#endif
+        public DateTimeOffset? PaymentDate { get; set; }
         /// <summary>This container is only returned if eBay is temporarily holding the seller&apos;s funds for the order. If a payment hold has been placed on the order, this container includes the reason for the payment hold, the expected release date of the funds into the seller&apos;s account, the current state of the hold, and as soon as the payment hold has been released, the actual release date.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -91,7 +85,7 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "amount", n => { Amount = n.GetObjectValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.Amount>(global::EBay.OrderManagement.Generated.Fulfillment.Models.Amount.CreateFromDiscriminatorValue); } },
-                { "paymentDate", n => { PaymentDate = n.GetStringValue(); } },
+                { "paymentDate", n => { PaymentDate = n.GetDateTimeOffsetValue(); } },
                 { "paymentHolds", n => { PaymentHolds = n.GetCollectionOfObjectValues<global::EBay.OrderManagement.Generated.Fulfillment.Models.PaymentHold>(global::EBay.OrderManagement.Generated.Fulfillment.Models.PaymentHold.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "paymentMethod", n => { PaymentMethod = n.GetEnumValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.PaymentMethodTypeEnum>(); } },
                 { "paymentReferenceId", n => { PaymentReferenceId = n.GetStringValue(); } },
@@ -106,7 +100,7 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.Amount>("amount", Amount);
-            writer.WriteStringValue("paymentDate", PaymentDate);
+            writer.WriteDateTimeOffsetValue("paymentDate", PaymentDate);
             writer.WriteCollectionOfObjectValues<global::EBay.OrderManagement.Generated.Fulfillment.Models.PaymentHold>("paymentHolds", PaymentHolds);
             writer.WriteEnumValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.PaymentMethodTypeEnum>("paymentMethod", PaymentMethod);
             writer.WriteStringValue("paymentReferenceId", PaymentReferenceId);

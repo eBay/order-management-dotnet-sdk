@@ -34,6 +34,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// The enumeration value here controls whether item commitments are sorted according to creation date or last update action. The supported values are:
         /// - CREATED_AT
         /// - UPDATED_AT
+        ///
         /// **Default**: CREATED_AT
         /// </summary>
         public ItemCommitmentsSortField SortField
@@ -50,6 +51,7 @@ namespace EBay.OrderManagement.Generated.GraphQL
         /// The enumeration value here controls whether item commitments are sorted in descending (most recent first) or ascending order. The supported values are:
         /// - DESC
         /// - ASC
+        ///
         /// **Default**: DESC
         /// </summary>
         public SortOrder SortOrder

@@ -30,13 +30,7 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The date and time the order was cancelled, if applicable. This timestamp is in &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; format, which uses the 24-hour Universal Coordinated Time (UTC) clock. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2015-08-04T19:09:02.768Z&lt;/code&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? CancelledDate { get; set; }
-#nullable restore
-#else
-        public string CancelledDate { get; set; }
-#endif
+        public DateTimeOffset? CancelledDate { get; set; }
         /// <summary>This array contains details of one or more buyer requests to cancel the order. &lt;br&gt;&lt;br&gt;&lt;strong&gt;For the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorders&quot; target=&quot;_blank&quot;&gt;getOrders&lt;/a&gt; call:&lt;/strong&gt;  This array is returned but is always empty.&lt;br&gt;&lt;br&gt;&lt;strong&gt;For the &lt;a href=&quot;/develop/api/sell/fulfillment_api#sell-fulfillment_api-order-getorder&quot; target=&quot;_blank&quot;&gt;getOrder&lt;/a&gt; call:&lt;/strong&gt; This array is returned fully populated with information about any cancellation requests.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -74,7 +68,7 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
             {
                 { "cancelRequests", n => { CancelRequests = n.GetCollectionOfObjectValues<global::EBay.OrderManagement.Generated.Fulfillment.Models.CancelRequest>(global::EBay.OrderManagement.Generated.Fulfillment.Models.CancelRequest.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "cancelState", n => { CancelState = n.GetEnumValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.CancelStateEnum>(); } },
-                { "cancelledDate", n => { CancelledDate = n.GetStringValue(); } },
+                { "cancelledDate", n => { CancelledDate = n.GetDateTimeOffsetValue(); } },
             };
         }
         /// <summary>
@@ -84,7 +78,7 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("cancelledDate", CancelledDate);
+            writer.WriteDateTimeOffsetValue("cancelledDate", CancelledDate);
             writer.WriteCollectionOfObjectValues<global::EBay.OrderManagement.Generated.Fulfillment.Models.CancelRequest>("cancelRequests", CancelRequests);
             writer.WriteEnumValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.CancelStateEnum>("cancelState", CancelState);
             writer.WriteAdditionalData(AdditionalData);
