@@ -32,7 +32,6 @@ namespace OrderManagementSample
                 // Sandbox hosts (api, apiz and graphqlapi.sandbox.ebay.com) are trusted by default.
                 config.FulfillmentBaseUrl = "https://api.sandbox.ebay.com/sell/fulfillment/v1";
                 config.LogisticsBaseUrl = "https://api.sandbox.ebay.com/sell/logistics/v1_beta";
-                config.PostOrderApiBaseUrl = "https://api.sandbox.ebay.com/post-order/v2";
                 config.GraphQLBaseUrl = SandboxGraphQLUrl;
             }
             if (!string.IsNullOrWhiteSpace(graphQLUrl))
@@ -53,7 +52,7 @@ namespace OrderManagementSample
     public sealed class OrderRow
     {
         public string OrderId { get; set; }
-        public string Created { get; set; }
+        public DateTimeOffset? Created { get; set; }
         public string Fulfillment { get; set; }
         public string Total { get; set; }
         public string State { get; set; }
@@ -126,7 +125,7 @@ namespace OrderManagementSample
                 var row = RowFor(rows, order.OrderId);
                 if (row.Created == null)
                 {
-                    row.Created = order.PlacedAt.ToString("o", CultureInfo.InvariantCulture);
+                    row.Created = order.PlacedAt;
                 }
                 row.State = DescribeState(order.OrderState);
                 row.Payment = DescribePayment(order.OrderState);

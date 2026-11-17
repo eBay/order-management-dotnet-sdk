@@ -106,7 +106,7 @@ namespace OrderManagementSample
             }
             Check(failures, byId.TryGetValue("01-10002-00002", out restOnly) && restOnly.State == null, "REST-only order");
             Check(failures, byId.TryGetValue("01-10003-00003", out graphQLOnly) && graphQLOnly.State == "Cancelled"
-                && graphQLOnly.Created == "2024-05-01T09:30:00.0000000+00:00", "GraphQL-only order");
+                && graphQLOnly.Created == new DateTimeOffset(2024, 5, 1, 9, 30, 0, TimeSpan.Zero), "GraphQL-only order");
         }
 
         /// <summary>
