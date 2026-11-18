@@ -21,17 +21,17 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum OrderFulfillmentStatus
     {
-        [EnumMember(Value = "FULFILLED")]
+        [EnumMember(Value = "NOT_STARTED")]
         #pragma warning disable CS1591
-        FULFILLED,
+        NOT_STARTED,
         #pragma warning restore CS1591
         [EnumMember(Value = "IN_PROGRESS")]
         #pragma warning disable CS1591
         IN_PROGRESS,
         #pragma warning restore CS1591
-        [EnumMember(Value = "NOT_STARTED")]
+        [EnumMember(Value = "FULFILLED")]
         #pragma warning disable CS1591
-        NOT_STARTED,
+        FULFILLED,
         #pragma warning restore CS1591
     }
 }

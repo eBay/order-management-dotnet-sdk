@@ -30,21 +30,9 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The date and time the appointment ends, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock. Required for tire installation. &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2022-10-28T00:00:00.000Z&lt;/code&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? AppointmentEndTime { get; set; }
-#nullable restore
-#else
-        public string AppointmentEndTime { get; set; }
-#endif
+        public DateTimeOffset? AppointmentEndTime { get; set; }
         /// <summary>The date and time the appointment begins, formatted as an &lt;a href=&quot;https://www.iso.org/iso-8601-date-and-time-format.html &quot; title=&quot;https://www.iso.org &quot; target=&quot;_blank&quot;&gt;ISO&amp;nbsp;8601&lt;/a&gt; string, which is based on the 24-hour Coordinated Universal Time (UTC) clock.  &lt;br&gt;&lt;br&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;[YYYY]-[MM]-[DD]T[hh]:[mm]:[ss].[sss]Z&lt;/code&gt; &lt;br&gt;&lt;strong&gt;Example:&lt;/strong&gt; &lt;code&gt;2022-10-28T00:10:00.000Z&lt;/code&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? AppointmentStartTime { get; set; }
-#nullable restore
-#else
-        public string AppointmentStartTime { get; set; }
-#endif
+        public DateTimeOffset? AppointmentStartTime { get; set; }
         /// <summary>The status of the appointment.</summary>
         public global::EBay.OrderManagement.Generated.Fulfillment.Models.AppointmentStatusEnum? AppointmentStatus { get; set; }
         /// <summary>The type of appointment. &lt;code&gt;MACRO&lt;/code&gt; appointments only have a start time (not bounded with end time). &lt;code&gt;TIME_SLOT&lt;/code&gt; appointments have a period (both start time and end time). Required for tire installation.</summary>
@@ -84,8 +72,8 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "appointmentEndTime", n => { AppointmentEndTime = n.GetStringValue(); } },
-                { "appointmentStartTime", n => { AppointmentStartTime = n.GetStringValue(); } },
+                { "appointmentEndTime", n => { AppointmentEndTime = n.GetDateTimeOffsetValue(); } },
+                { "appointmentStartTime", n => { AppointmentStartTime = n.GetDateTimeOffsetValue(); } },
                 { "appointmentStatus", n => { AppointmentStatus = n.GetEnumValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.AppointmentStatusEnum>(); } },
                 { "appointmentType", n => { AppointmentType = n.GetEnumValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.AppointmentTypeEnum>(); } },
                 { "appointmentWindow", n => { AppointmentWindow = n.GetEnumValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.AppointmentWindowEnum>(); } },
@@ -99,8 +87,8 @@ namespace EBay.OrderManagement.Generated.Fulfillment.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("appointmentEndTime", AppointmentEndTime);
-            writer.WriteStringValue("appointmentStartTime", AppointmentStartTime);
+            writer.WriteDateTimeOffsetValue("appointmentEndTime", AppointmentEndTime);
+            writer.WriteDateTimeOffsetValue("appointmentStartTime", AppointmentStartTime);
             writer.WriteEnumValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.AppointmentStatusEnum>("appointmentStatus", AppointmentStatus);
             writer.WriteEnumValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.AppointmentTypeEnum>("appointmentType", AppointmentType);
             writer.WriteEnumValue<global::EBay.OrderManagement.Generated.Fulfillment.Models.AppointmentWindowEnum>("appointmentWindow", AppointmentWindow);

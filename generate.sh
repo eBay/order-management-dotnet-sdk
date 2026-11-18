@@ -41,18 +41,10 @@ dotnet kiota generate \
   -o EBay.OrderManagement/Generated/Logistics \
   --ebc --co
 
-dotnet kiota generate \
-  -l csharp \
-  -d specs/openapi/post-order-api.json \
-  -c PostOrderApiApiClient \
-  -n EBay.OrderManagement.Generated.PostOrderApi \
-  -o EBay.OrderManagement/Generated/PostOrderApi \
-  --ebc --co
-
 echo "Adding license headers to generated files..."
 ./add-license-headers.sh ./EBay.OrderManagement/Generated
 
-echo "Building (triggers StrawberryShake GraphQL codegen)..."
+echo "Building (compile check)..."
 DOTNET_ROLL_FORWARD=LatestMajor dotnet build EBay.OrderManagement/EBay.OrderManagement.csproj
 
 echo "Done."
